@@ -6,3 +6,32 @@ url: https://just-the-docs.github.io
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+# Heading anchor links appear on hover over h1-h6 tags in page content
+# allowing users to deep link to a particular heading on a page.
+#
+# Supports true (default) or false
+heading_anchors: true
+
+# Color scheme supports "light" (default) and "dark"
+color_scheme: dark
+
+callouts:
+  warning:
+    title: Warning
+    color: red
+
+callouts:
+  warning:
+    title: Note
+    color: purple
+
+callouts:
+  warning:
+    title: Important
+    color: blue
+
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "10.9.0"
