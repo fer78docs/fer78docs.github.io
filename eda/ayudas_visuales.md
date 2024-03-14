@@ -9,7 +9,7 @@ parent: Exploratory Data Analysis
 Presentar resultados a las partes interesadas es muy complejo en el sentido de que nuestra audiencia puede no tener suficientes conocimientos técnicos para comprender la jerga de programación y otros tecnicismos. Por tanto, las ayudas visuales son herramientas muy útiles. En este capítulo, nos centraremos en diferentes tipos de ayudas visuales que se pueden utilizar con nuestros conjuntos de datos. 
 
 - [Line chart (Gráfico de Líneas)](#Line chart)
-- Bar chart (Gráfico de Líneas)
+- [Bar chart (Gráfico de Líneas)](#Bar chart)
 - Scatter plot (Gráfico de Dispersión)
 - Area plot and stacked plot (Parcela de área y parcela apilada)
 - Pie chart (Gráfico Circular)
@@ -36,3 +36,4 @@ plt.show()
 ![Line Chart](https://fer78docs.github.io/assets/images/line_chart.jpg){width=500}
 
 
+### Bar chart
