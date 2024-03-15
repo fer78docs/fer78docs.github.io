@@ -10,7 +10,7 @@ Presentar resultados a las partes interesadas es muy complejo en el sentido de q
 
 - [Line chart (Gráfico de Líneas)](#line)
 - [Bar chart (Gráfico de Barras)](#bar)
-- Scatter plot (Gráfico de Dispersión)
+- [Scatter plot (Gráfico de Dispersión)](#scatter)
 - Area plot and stacked plot (Parcela de área y parcela apilada)
 - Pie chart (Gráfico Circular)
 - Table chart (Gráfico de Tabla)
@@ -63,3 +63,14 @@ plt.show()
 ```
 
 ![Bar Chart](https://fer78docs.github.io/assets/images/bar_chart.webp)
+
+
+Para crear un grafico de barras horizontales se mantiene el codigo, exepto `plt.xticks` lo cambiamos por `plt.yticks()` y `plt.bar()` los cambiamos por `plt.barh()`.
+
+![Bar Chart](https://fer78docs.github.io/assets/images/bar_chart_horizontal.webp)
+
+
+
+
+### Scatter plot (Gráfico de Dispersión)
+{: #scatter}
