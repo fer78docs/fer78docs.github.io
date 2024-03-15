@@ -8,8 +8,8 @@ parent: Exploratory Data Analysis
 
 Presentar resultados a las partes interesadas es muy complejo en el sentido de que nuestra audiencia puede no tener suficientes conocimientos técnicos para comprender la jerga de programación y otros tecnicismos. Por tanto, las ayudas visuales son herramientas muy útiles. En este capítulo, nos centraremos en diferentes tipos de ayudas visuales que se pueden utilizar con nuestros conjuntos de datos. 
 
-- [Line chart (Gráfico de Líneas)](#Line chart)
-- [Bar chart (Gráfico de Líneas)](#Bar chart)
+- [Line chart (Gráfico de Líneas)](#id1)
+- [Bar chart (Gráfico de Barras)](#bar)
 - Scatter plot (Gráfico de Dispersión)
 - Area plot and stacked plot (Parcela de área y parcela apilada)
 - Pie chart (Gráfico Circular)
@@ -19,7 +19,7 @@ Presentar resultados a las partes interesadas es muy complejo en el sentido de q
 - Lollipop chart (Gráfico de Piruletas)
 
 
-### Line chart 
+### Line chart (Gráfico de Líneas)<div id='id1'></a>
 Se utiliza un gráfico de líneas para ilustrar la relación entre dos o más variables continuas. Estas pueden ser por ejemplo fechas y precios. 
 
 ```python
@@ -33,7 +33,8 @@ plt.ylabel('Precio')
 plt.legend()
 plt.show()
 ```
-![Line Chart](https://fer78docs.github.io/assets/images/line_chart.jpg){width=500}
+![Line Chart](https://fer78docs.github.io/assets/images/line_chart.jpg)
 
 
-### Bar chart
+### Bar chart (Gráfico de Barras) 
+{: #bar}
