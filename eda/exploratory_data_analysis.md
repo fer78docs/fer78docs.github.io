@@ -137,3 +137,31 @@ graph TD
 
 Los analistas y científicos de datos combinan libremente los pasos mencionados en los enfoques anteriores para obtener información significativa de los datos. Además de eso, es esencialmente difícil juzgar o estimar qué modelo es mejor para el análisis de datos. Todos ellos tienen sus paradigmas y son aptos para diferentes tipos de análisis de datos.
 
+
+## Resumenes Univariados
+
+Los resúmenes univariados se centran en la descripción y análisis de una sola variable a la vez. Este tipo de análisis es fundamental en estadística y análisis de datos, ya que proporciona una comprensión básica de las características y la distribución de los datos en una dimensión. 
+
+
+
+## Estadísticas Bivariadas
+
+En contraste con las estadísticas univariadas, las estadísticas bivariadas se utilizan para resumir la relación entre dos variables. Son útiles para responder preguntas como:
+
+¿Los coches con transmisión manual tienden a costar más o menos que los de transmisión automática?
+¿Los coches más antiguos tienden a costar menos dinero?
+¿Es más probable que los coches de transmisión automática sean vendidos por individuos o concesionarios?
+Dependiendo de los tipos de variables entre las que queramos resumir una relación, deberíamos elegir diferentes estadísticas resumidas.
+
+### Una Variable Cuantitativa y Una Variable Categórica
+Si queremos saber si los coches con transmisión manual tienden a costar más o menos que los de transmisión automática, nos interesa la relación entre transmisión (categórica) y precio de venta (cuantitativa). Para responder a esta pregunta, podemos usar una diferencia de medias o medianas.
+
+Por ejemplo, podríamos calcular que el precio mediano de los coches con transmisión automática es 100000 Rupias más alto que para los coches con transmisión manual.
+
+### Dos Variables Cuantitativas
+Si queremos saber si los coches más antiguos tienden a costar menos dinero, nos interesa la relación entre año y precio de venta, ambas cuantitativas. Para responder a esta pregunta, podemos usar la correlación de Pearson.
+
+Por ejemplo, si calculamos que la correlación entre año y precio de venta es 0.4, podemos concluir que hay una asociación positiva moderada entre estas variables (los coches más antiguos tienden a costar menos dinero).
+
+### Dos Variables Categóricas
+Si queremos saber si es más probable que los coches de transmisión automática sean vendidos por individuos o concesionarios, nos interesa la relación entre transmisión y tipo de vendedor, ambas categóricas. Podemos explorar esta relación usando una tabla de contingencia y el estadístico Chi-Cuadrado.
