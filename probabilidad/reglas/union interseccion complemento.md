@@ -38,11 +38,14 @@ Por último, el complemento de un conjunto consta de todos los resultados posibl
 
 Considere el conjunto A del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: {2, 4, 6} . Podemos escribir el complemento del conjunto A como A C . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: {1, 2, 3, 4, 5, 6} .
 
-*Ejemplo 1:*
+**Ejemplo 1:**
 
 Interseccion y union de dos eventos:
-* A = {1, 2, 3}
-* B = {1, 2, 3, 4, 6}
+
+```
+A = {1, 2, 3}
+B = {1, 2, 3, 4, 6}
+```
 
 Interseccion: 
 
@@ -62,13 +65,19 @@ Complemento de B:
 ![union](https://fer78docs.github.io/assets/images/complemento_B.png)
 
 
-*Ejemplo 2:*
+**Ejemplo 2:**
 
 Interseccion y union de dos eventos:
-* A = {5}
-* B = {2, 3, 4, 5, 6}
+
+```
+A = {5}
+B = {2, 3, 4, 5, 6}
+```
 
 Interseccion: 
 
 ![interseccion](https://fer78docs.github.io/assets/images/interseccion_ejemplo2.png)
 
+En el siguinete enlace hay un programa interactivo que muestra la union y la interseccion de dos eventos segun el resultado de lanzar dados: 
+
+[Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/venn-diagram-draft-2/venn-diagram.html)
