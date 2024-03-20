@@ -47,3 +47,41 @@ Output
 ```
 0.1141
 ```
+
+## Funciones de densidad de probabilidad y función de distribución acumulativa
+
+Podemos tomar la diferencia entre dos rangos superpuestos para calcular la probabilidad de que una selección aleatoria esté dentro de un rango de valores para distribuciones continuas. Este es esencialmente el mismo proceso que calcular la probabilidad de un rango de valores para distribuciones discretas.
+
+![Rangos superpuestos](https://fer78docs.github.io/assets/images/Normal-PDF-Range.gif)
+
+Digamos que queremos calcular la probabilidad de observar aleatoriamente a una mujer de entre 165 cm y 175 cm, suponiendo que las alturas todavía siguen la distribución Normal (167,74, 8). Podemos calcular la probabilidad de observar estos valores o menos. La diferencia entre estas dos probabilidades será la probabilidad de observar aleatoriamente a una mujer en este rango dado. Esto se puede hacer en Python usando el método `norm.cdf()` de la biblioteca `scipy.stats`. Como se mencionó anteriormente, este método adopta 3 valores:
+
+```python
+import scipy.stats as stats
+# P(165 < X < 175) = P(X < 175) - P(X < 165)
+# stats.norm.cdf(x, loc, scale) - stats.norm.cdf(x, loc, scale)
+print(stats.norm.cdf(175, 167.74, 8) - stats.norm.cdf(165, 167.74, 8))
+```
+Output
+```
+0.45194
+```
+
+También podemos calcular la probabilidad de observar aleatoriamente un valor o mayor restando de 1 la probabilidad de observar menos que el valor dado. Esto es posible porque sabemos que el área total bajo la curva es 1, por lo que la probabilidad de observar algo mayor que un valor es 1 menos la probabilidad de observar algo menor que el valor dado.
+
+Digamos que queremos calcular la probabilidad de observar a una mujer que mide más de 172 centímetros, suponiendo que las alturas todavía siguen la distribución Normal (167,74, 8). Podemos pensar en esto como lo opuesto a observar a una mujer que mide menos de 172 centímetros. Podemos visualizarlo de esta manera:
+
+![Grafica](https://static-assets.codecademy.com/skillpaths/master-stats-ii/probability-distributions/norm_pdf_167_8_filled2.svg)
+
+Podemos usar el siguiente código para calcular el área azul tomando 1 menos el área roja:
+```python
+import scipy.stats as stats
+
+# P(X > 172) = 1 - P(X < 172)
+# 1 - stats.norm.cdf(x, loc, scale)
+print(1 - stats.norm.cdf(172, 167.74, 8))
+```
+Output
+```
+0.45194
+```
