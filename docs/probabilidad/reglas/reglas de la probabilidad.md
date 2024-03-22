@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Reglas de la probabilidad
-nav_order: 1
-parent: Probabilidad
+title: Probability Rules
+nav_order: 2
+parent: Probability
 has_children: true
 ---
 

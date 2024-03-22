@@ -2,8 +2,8 @@
 layout: default
 title: Regla de Multiplicacion
 nav_order: 6
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
+parent: Probability Rules
+grand_parent: Probability
 ---
 
 # Regla de multiplicación

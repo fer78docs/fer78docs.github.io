@@ -2,8 +2,8 @@
 layout: default
 title: Eventos Mutuamente Excluyentes
 nav_order: 3
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
+parent: Probability Rules
+grand_parent: Probability
 ---
 
 # Eventos mutuamente excluyentes

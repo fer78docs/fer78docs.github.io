@@ -2,8 +2,8 @@
 layout: default
 title: Independencia y Dependencia
 nav_order: 2
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
+parent: Probability Rules
+grand_parent: Probability
 ---
 
 # Independencia y dependencia

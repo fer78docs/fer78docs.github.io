@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Intro Probability Distributions
-nav_order: 2
+nav_order: 3
 parent: Probability
 has_children: true
 ---

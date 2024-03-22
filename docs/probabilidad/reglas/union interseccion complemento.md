@@ -2,8 +2,8 @@
 layout: default
 title: Union, Interseccion y complementos
 nav_order: 1
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
+parent: Probability Rules
+grand_parent: Probability
 ---
 
 # Unión, Intersección y Complemento
@@ -19,7 +19,7 @@ Por ejemplo, digamos que tenemos dos conjuntos, A y B.
 * A representa lanzar un número impar con un dado de seis caras (el conjunto {1, 3, 5} ). 
 * B representa sacar un número mayor que dos (el conjunto {3, 4, 5, 6}) . 
 
-La unión de estos dos conjuntos sería todo en el conjunto A , el conjunto B o ambos: {1, 3, 4, 5, 6} . Podemos escribir la unión de dos eventos matemáticamente como (A o B) .
+La unión de estos dos conjuntos sería todo en el conjunto A , el conjunto B o ambos: {1, 3, 4, 5, 6}. Podemos escribir la unión de dos eventos matemáticamente como **(A ∪ B)** o **(A o B)**.
 
 ![Union de conjuntos](https://fer78docs.github.io/assets/images/union-ayb.png)
 
@@ -28,7 +28,7 @@ La intersección de dos conjuntos abarca cualquier elemento que exista en ambos 
 
 ![interseccion de conjuntos](https://fer78docs.github.io/assets/images/interseccion_ayb.png)
 
-La intersección de los conjuntos anteriores (A representa sacar un número impar en un dado de seis caras y B representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: {3, 5} . Podemos escribir matemáticamente la intersección de dos eventos como (A y B).
+La intersección de los conjuntos anteriores (A representa sacar un número impar en un dado de seis caras y B representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: {3, 5} . Podemos escribir matemáticamente la intersección de dos eventos como **P(A ∩ B)** o **P(A y B)**.
 
 
 ## Complementar
@@ -36,7 +36,7 @@ Por último, el complemento de un conjunto consta de todos los resultados posibl
 
 ![Complementos de A](https://fer78docs.github.io/assets/images/complemento_dea.png)
 
-Considere el conjunto A del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: {2, 4, 6} . Podemos escribir el complemento del conjunto A como A C . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: {1, 2, 3, 4, 5, 6} .
+Considere el conjunto A del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: {2, 4, 6} . Podemos escribir el complemento del conjunto A como AC . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: {1, 2, 3, 4, 5, 6} .
 
 **Ejemplo 1:**
 

@@ -2,8 +2,8 @@
 layout: default
 title: Teorema de Bayes
 nav_order: 7
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
+parent: Probability Rules
+grand_parent: Probability
 ---
 
 ## Teorema de Bayes
@@ -17,7 +17,7 @@ Imagine que es un paciente que recientemente dio positivo por faringitis estrept
 P(ST|+)
 ```
 
-o calculate this probability, we will use something called Bayes Theorem, which states the following:
+Para calcular esta probabilidad utilizamos el teorema de Bayes que tiene la formula siguiente:
 ```
 P(B ∣ A)= P(A ∣ B) * P(B) / P(A)
 ```

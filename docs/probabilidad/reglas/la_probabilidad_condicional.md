@@ -2,9 +2,8 @@
 layout: default
 title: La probabilidad condicional
 nav_order: 5
-parent: Reglas de la probabilidad
-grand_parent: Probabilidad
----
+parent: Probability Rules
+grand_parent: Probability
 
 # La probabilidad condicional
 

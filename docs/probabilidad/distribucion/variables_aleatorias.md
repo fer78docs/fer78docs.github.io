@@ -6,7 +6,7 @@ parent: Intro Probability Distributions
 grand_parent: Probability
 ---
 
-## Variables aleatorias
+# Variables aleatorias
 Una variable aleatoria es, en su forma más simple, una función. En probabilidad, a menudo utilizamos variables aleatorias para representar eventos aleatorios. Por ejemplo, podríamos usar una variable aleatoria para representar el resultado de una tirada de dado: cualquier número entre uno y seis.
 
 Las variables aleatorias deben ser numéricas, lo que significa que siempre toman un número en lugar de una característica o cualidad. Si queremos usar una variable aleatoria para representar un evento con resultados no numéricos, podemos elegir números para representar esos resultados. Por ejemplo, podríamos representar el lanzamiento de una moneda como una variable aleatoria asignando a “cara” un valor de 1 y a “cruz” un valor de 0.
