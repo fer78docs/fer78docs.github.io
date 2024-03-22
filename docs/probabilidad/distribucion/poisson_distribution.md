@@ -148,3 +148,55 @@ Las distribuciones de probabilidad también tienen varianzas calculables. Las va
 Sabemos que la distribución de Poisson tiene una variable aleatoria discreta y debe ser mayor que 0 (piense, un vendedor no puede tener menos de 0 ventas, una tienda no puede tener menos de 0 clientes), por lo que a medida que aumenta el valor esperado, el número de posibles Los valores que la distribución puede asumir también aumentarían.
 
 El primer gráfico a continuación muestra una distribución de Poisson con lambda igual a tres, y el segundo gráfico muestra una distribución de Poisson con lambda igual a quince. Observe que en el segundo gráfico, la dispersión de la distribución aumenta. Además, tenga en cuenta que la altura de las barras en la segunda barra disminuye ya que hay más valores posibles en la distribución.
+
+![Distribucion de Poisson 1 ](https://fer78docs.github.io/assets/images/distribucion_poisson_1.png)
+
+![Distribucion de Poisson 2 ](https://fer78docs.github.io/assets/images/distribucion_poisson_2.png)
+
+Como podemos ver, a medida que aumenta el parámetro lambda, también aumenta la varianza (o dispersión) de los valores posibles.
+
+Podemos calcular la varianza de una muestra usando el método `numpy.var()`:
+
+```python
+import scipy.stats as stats
+import numpy as np
+
+rand_vars = stats.poisson.rvs(4, size = 1000)
+print(np.var(rand_vars))
+```
+Output:
+```
+3.864559
+```
+
+Debido a que esto se calcula a partir de una muestra, es posible que la varianza no sea EXACTAMENTE igual a lambda. Sin embargo, esperamos que sea relativamente cercano cuando el tamaño de la muestra es grande, como en este ejemplo.
+
+Otra forma de ver el aumento de los valores posibles es tomar el rango de una muestra (los valores mínimo y máximo de un conjunto). El siguiente código extraerá 1000 variables aleatorias de la distribución de Poisson con lambda = 4 y luego imprimirá los valores mínimo y máximo observados usando las funciones `.min()` y `.max()` de Python:
+
+```python
+import scipy.stats as stats
+
+rand_vars = stats.poisson.rvs(4, size = 1000)
+
+print(min(rand_vars), max(rand_vars))
+```
+Output:
+```
+0 12
+```
+
+Si aumentamos el valor de lambda a 10, veamos cómo cambian los valores mínimo y máximo:
+
+```python
+import scipy.stats as stats
+
+rand_vars = stats.poisson.rvs(10, size = 1000)
+
+print(min(rand_vars), max(rand_vars))
+```
+Output:
+```
+1 22
+```
+
+Estos valores están más distribuidos, lo que indica una variación mayor.
