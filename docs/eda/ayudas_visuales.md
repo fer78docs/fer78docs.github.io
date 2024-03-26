@@ -383,7 +383,7 @@ Quizás se pregunte de dónde obtuvimos la fórmula para calcular el paso 6 en e
 ```
 
 ## Grafico de Piruletas (Lollipop chart)
-{: ##Lollipop}
+{: #Lollipop}
 
 Se puede utilizar un gráfico de paleta para mostrar la clasificación de los datos. Es similar a un gráfico de barras ordenado.
 
