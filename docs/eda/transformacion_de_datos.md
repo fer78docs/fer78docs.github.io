@@ -9,6 +9,7 @@ parent: Exploratory Data Analysis
 Uno de los pasos fundamentales del Análisis Exploratorio de Datos (EDA) es el `Data Wrangling`. La trasnformacion de datos es un conjunto de técnicas utilizadas para convertir datos de un formato o estructura a otro formato o estructura. 
 
 En el proceso de preparación de datos, ciertas tareas suelen realizarse en un orden específico para maximizar la eficiencia y efectividad del flujo de trabajo. Aquí está la lista reordenada de acuerdo con un flujo de trabajo típico de limpieza y preparación de datos:
+{: #subir}
 
 1. **[Key restructuring](#Keyrest)** (*reestructuración de claves*) Consiste en transformar claves con significados específicos en claves genéricas para facilitar su uso y análisis. Ejemplo: Cambiar un identificador de producto específico del proveedor a un identificador universal. Este paso a menudo precede a otros procesos, ya que asegura que tienes un sistema de claves coherente y bien definido que es esencial para la integración y el análisis de datos.
 2. [**Data Validation**](#validation) (*validación de datos*) Es el proceso de aplicar reglas o algoritmos para verificar la precisión y la integridad de los datos en relación con ciertos criterios o estándares. Ejemplo: Verificar si los números de teléfono en una base de datos siguen un formato específico. La validación es crucial para identificar tempranamente datos incorrectos o inadecuados antes de proceder con la limpieza y transformación de los datos.
@@ -25,14 +26,74 @@ Este flujo de trabajo es iterativo y puede requerir ajustes en función de las n
 
 La razón principal para transformar los datos es obtener una mejor representación de modo que los datos transformados sean compatibles con otros datos. Además de esto, la interoperabilidad en un sistema se puede lograr siguiendo una estructura y un formato de datos comunes.
 
-
-## Key restructuring
+#### [Top](#subir)
+## Key Restructuring
 {: #Keyrest}
-En el ámbito de la ciencia de datos, "Key Restructuring" se refiere a la reorganización o transformación de las claves en un conjunto de datos. Las "claves" en este contexto suelen ser identificadores únicos o conjuntos de campos que sirven para relacionar registros entre sí. En pandas, esto puede implicar una serie de operaciones destinadas a garantizar que las claves de los datos sean consistentes, únicas y adecuadamente estructuradas para análisis o combinaciones de datos subsiguientes.
+En el ámbito de la ciencia de datos, "Key Restructuring" se refiere a la reorganización o transformación de las claves en un conjunto de datos. Las "claves" en este contexto suelen ser identificadores únicos o conjuntos de campos que sirven para relacionar registros entre sí. 
 
+### Algunas operaciones de Key Restructuring en SQL:
 
+#### Renombrar Claves (Renombrar Columnas)
 
-### Operaciones comunes de reestructuración de claves en pandas:
+```sql
+ALTER TABLE nombre_tabla
+RENAME COLUMN nombre_viejo TO nombre_nuevo;
+```
+
+#### Reasignar Valores de Clave (Actualizar Valores)
+
+```sql
+UPDATE nombre_tabla
+SET columna_clave = 'nuevo_valor'
+WHERE condicion; -- La condición que determina cuándo asignar el nuevo valor.
+```
+
+#### Crear Claves Compuestas (Agregar Claves Primarias Compuestas)
+
+```sql
+ALTER TABLE nombre_tabla
+ADD CONSTRAINT nombre_constraint PRIMARY KEY (columna1, columna2);
+```
+
+#### Eliminación de Claves Innecesarias (Eliminar Columnas)
+
+```sql
+ALTER TABLE nombre_tabla
+DROP COLUMN nombre_columna_innecesaria;
+```
+
+#### Asegurar la Unicidad (Verificar y Eliminar Duplicados)
+
+Primero verificarías la unicidad (esto no es una sentencia SQL sino un proceso que puede involucrar varias consultas y análisis):
+
+```sql
+SELECT columna_clave, COUNT(*)
+FROM nombre_tabla
+GROUP BY columna_clave
+HAVING COUNT(*) > 1;
+```
+
+Y para eliminar duplicados, generalmente se hace una operación más compleja, que puede involucrar eliminar y luego reinsertar los datos limpios, o utilizando una tabla temporal o subconsultas para identificar y mantener solo una fila de cada conjunto de duplicados.
+
+#### Reindexación Basada en Claves (Establecer una Nueva Clave Primaria)
+
+Para reindexar basado en una columna existente (asumiendo que quieres hacer esa columna una nueva clave primaria):
+
+```sql
+-- Primero, si ya hay una PK, quítala.
+ALTER TABLE nombre_tabla
+DROP CONSTRAINT pk_nombre_tabla;
+
+-- Luego, establece la nueva PK.
+ALTER TABLE nombre_tabla
+ADD PRIMARY KEY (columna_clave);
+```
+
+Recuerda que cada una de estas operaciones puede tener un impacto significativo en la base de datos y deben ser ejecutadas con precaución. Es recomendable realizar una copia de seguridad de los datos antes de hacer cambios estructurales. Además, es importante tener en cuenta las dependencias existentes, como las claves foráneas y las vistas o procedimientos almacenados que pueden verse afectados por estos cambios.
+
+En entornos de producción, estos cambios a menudo se realizan durante ventanas de mantenimiento programadas para minimizar el impacto en los usuarios de la base de datos. Además, las alteraciones en la estructura de la base de datos deben ser revisadas y aprobadas dentro del proceso de control de cambios de la organización para asegurar que se entienden todas las implicaciones y que se manejan correctamente.
+
+### Algunas operaciones de Key Restructuring en Pandas:
 
 #### Renombrar Claves
 Para renombrar claves (es decir, los nombres de las columnas que actúan como claves), puedes utilizar el método `rename()`:
@@ -72,11 +133,132 @@ Finalmente, puedes querer reindexar tu DataFrame para que las claves sean el nue
 ```python
 df.set_index('key_column', inplace=True)
 ```
-
+#### [Top](#subir)
 ## Data Validation
 {: #validation}
 
-El proceso de verificar si los datos cumplen con un conjunto de reglas o normas antes de ser procesados o analizados. Es una etapa crítica en el ciclo de vida de la ciencia de datos, ya que trabajar con datos erróneos o mal formateados puede llevar a conclusiones incorrectas y afectar la calidad de los resultados del análisis. En Pandas, hay varias técnicas y herramientas que puedes usar para realizar la validación de datos.
+El proceso de verificar si los datos cumplen con un conjunto de reglas o normas antes de ser procesados o analizados. Es una etapa crítica en el ciclo de vida de la ciencia de datos, ya que trabajar con datos erróneos o mal formateados puede llevar a conclusiones incorrectas y afectar la calidad de los resultados del análisis. 
+
+### Data Validation en SQL
+En SQL, la validación de datos es un proceso crítico similar al que se realiza en Pandas, pero se lleva a cabo dentro del entorno de una base de datos. Las técnicas de validación de datos en SQL a menudo implican el uso de consultas para verificar la integridad y exactitud de los datos antes de su uso para análisis o informes. A continuación, se presentan algunas técnicas comunes para la validación de datos en SQL:
+
+#### Verificación de Tipos de Datos
+Asegurarte de que las columnas tienen los tipos de datos esperados es un primer paso esencial. 
+
+```sql
+SELECT COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_NAME = 'tu_tabla';
+```
+
+#### Restricciones de Integridad
+
+Las restricciones de integridad en las definiciones de tabla ayudan a garantizar que los datos cumplan con ciertos criterios.
+
+- `PRIMARY KEY`:` Asegura que una columna o conjunto de columnas tenga valores únicos.
+- `FOREIGN KEY`: Asegura que los valores de una columna coincidan con valores en otra tabla, manteniendo la integridad referencial.
+- Unicidad `UNIQUE`: Asegura que todos los valores en una columna sean distintos.
+- Restricción de Verificación `CHECK`: Asegura que los valores de una columna cumplan con una condición especificada.
+
+#### Valores Nulos
+
+Verificar la presencia o ausencia de valores nulos puede ser crítico.
+
+```sql
+SELECT COUNT(*) 
+FROM tu_tabla 
+WHERE tu_columna IS NULL;
+```
+
+#### Rangos y Valores Aceptables
+
+Puedes validar que los datos estén dentro de rangos esperados usando cláusulas `WHERE`.
+
+```sql
+SELECT * 
+FROM tu_tabla 
+WHERE tu_columna NOT BETWEEN valor_min AND valor_max;
+```
+
+#### Consistencia de Datos Categóricos
+
+Para asegurar que los datos categóricos sean consistentes, puedes validar contra un conjunto de valores aceptables.
+
+```sql
+SELECT *
+FROM tu_tabla 
+WHERE categoria_columna NOT IN ('Categoria1', 'Categoria2', 'Categoria3');
+```
+
+#### Patrones de Datos
+
+Si esperas que los datos sigan ciertos patrones (como formatos de correo electrónico o números de teléfono), puedes usar expresiones regulares si tu sistema de gestión de base de datos lo soporta (por ejemplo, `RLIKE` o `SIMILAR TO` en algunos sistemas SQL).
+
+```sql
+SELECT * 
+FROM tu_tabla 
+WHERE texto_columna NOT RLIKE 'patron_regex';
+```
+
+#### Valores Duplicados
+
+Para encontrar duplicados, que pueden indicar problemas en la entrada de datos o en los procesos de carga:
+
+```sql
+SELECT columna, COUNT(*) 
+FROM tu_tabla 
+GROUP BY columna 
+HAVING COUNT(*) > 1;
+```
+
+#### Integridad Referencial
+
+Validar que todas las claves foráneas apunten a una clave primaria válida:
+
+```sql
+SELECT * 
+FROM tabla_foranea f
+LEFT JOIN tabla_primaria p
+ON f.clave_foranea = p.clave_primaria
+WHERE p.clave_primaria IS NULL;
+```
+
+#### Data Completeness
+
+Para validar la completitud de los datos, puedes verificar si ciertos campos que siempre deben estar llenos, están efectivamente completos:
+
+```sql
+SELECT * 
+FROM tu_tabla 
+WHERE campo_requerido IS NULL OR campo_requerido = '';
+```
+
+#### Comprobaciones Personalizadas
+
+Para requisitos de validación más complejos, puedes escribir consultas personalizadas o incluso procedimientos almacenados que implementen lógica de validación específica del dominio.
+
+```sql
+SELECT * 
+FROM tu_tabla 
+WHERE NOT (condicion1 AND/OR condicion2);
+```
+
+#### Validación Antes de la Carga de Datos
+
+Antes de cargar datos en una base de datos, es común realizar una serie de comprobaciones para asegurar que los datos que se van a insertar cumplan con las reglas de validación necesarias. Esto puede incluir comprobaciones de limpieza de datos (data cleansing), como eliminar espacios adicionales, estandarizar textos, etc.
+
+```sql
+INSERT INTO tabla_destino
+SELECT *
+FROM tabla_origen
+WHERE condicion_de_validacion;
+```
+
+Recuerda que algunas de estas operaciones pueden ser costosas en términos de rendimiento, especialmente en bases de datos grandes, por lo que deben ser planificadas cuidadosamente, posiblemente ejecutándose durante períodos de baja actividad o implementando índices para optimizar las consultas de validación.
+
+### Validacion de datos en Pandas
+
+En Pandas, hay varias técnicas y herramientas que puedes usar para realizar la validación de datos.
 
 - `Usar Métodos de String para Validación de Texto`: que te permiten validar y limpiar datos de texto. Estos métodos se aplican a las columnas de tipo str.
 - `Verificar valores nulos`:  Comprobar y manejar valores nulos
@@ -91,6 +273,8 @@ El proceso de verificar si los datos cumplen con un conjunto de reglas o normas 
 
 La validación de datos es un proceso continuo y debe adaptarse específicamente a las necesidades y reglas de negocio relevantes para tu análisis o modelo. Cada conjunto de datos puede requerir un conjunto diferente de validaciones, dependiendo de su origen, complejidad y cómo se va a utilizar en el análisis.
 
+#### Verificación de Tipos de Datos
+Una de las validaciones más básicas es asegurarse de que las columnas tienen el tipo de dato correcto (por ejemplo, numérico, cadena de texto, fecha/hora).
 
 ```python
 # Verificar el tipo de dato de cada columna
@@ -98,95 +282,314 @@ df.dtypes
 
 # Convertir una columna a un tipo de dato específico
 df['column'] = df['column'].astype(type)
+```
 
+#### Aplicar Condiciones de Validación
+Puedes aplicar condiciones de validación y usar máscaras booleanas para filtrar datos que no cumplan con ciertos criterios.
+
+```python
 # Verificar que todos los valores en una columna sean positivos
 assert (df['column'] > 0).all()
+```
 
+#### Usar Métodos de String para Validación de Texto
+
+Pandas tiene métodos de string que te permiten validar y limpiar datos de texto. Estos métodos se aplican a las columnas de tipo `str`.
+
+```python
 # Verificar si el texto de una columna cumple con un patrón (regex)
 df['text_column'].str.match(r'^\w+$')
 
 # Extraer partes de una cadena que cumple con un patrón
 df['text_column'].str.extract(r'(pattern)')
+```
 
+#### Valores Nulos o Faltantes
+
+Comprobar y manejar valores nulos es una parte importante de la validación de datos.
+
+```python
 # Verificar la presencia de valores nulos
 df.isnull().sum()
 
 # Eliminar filas con valores nulos
 df.dropna(subset=['column'], inplace=True)
+```
 
+#### Valores Únicos y Duplicados
+
+Garantizar la unicidad en ciertas columnas puede ser crucial, especialmente para las claves primarias.
+
+```python
 # Verificar si los valores en una columna son únicos
 df['column'].is_unique
 
 # Eliminar duplicados basados en una o más columnas
 df.drop_duplicates(subset=['column1', 'column2'], inplace=True)
+```
 
-# Verificar que los valores de una columna estén en un conjunto de categorías
-allowed_values = {'cat1', 'cat2', 'cat3'}
-df['category_column'].isin(allowed_values)
+#### Rangos de Valores
 
+Asegurarte de que los datos estén dentro de un rango esperado es otra forma común de validación.
+
+```python
 # Verificar que todos los valores de una columna estén dentro de un rango
 df[(df['column'] >= min_value) & (df['column'] <= max_value)]
 ```
 
+#### Valores Consistentes
+
+Para datos categóricos, a menudo necesitas validar que los valores pertenecen a un conjunto de categorías definidas.
+
+```python
+# Verificar que los valores de una columna estén en un conjunto de categorías
+allowed_values = {'cat1', 'cat2', 'cat3'}
+df['category_column'].isin(allowed_values)
+```
+
+#### Utilizando `pd.Series` y Funciones Personalizadas
+
+Puedes usar `apply()` con una función personalizada para validar datos de manera más específica.
+
+```python
+# Aplicar una función de validación personalizada a cada valor de una columna
+df['column'].apply(lambda x: my_validation_function(x))
+```
+
+#### Validación Cruzada Entre Columnas
+
+En ocasiones, la validación de una columna depende de los valores en otra columna, lo cual requiere validación cruzada.
+
+```python
+# Validar una columna basada en los valores de otra
+df.apply(lambda row: row['column1'] < row['column2'], axis=1)
+```
+
+Esta operación valida que el valor en `column1` sea menor que el valor en `column2` para cada fila.
+
+#### Consideraciones Importantes
+
+- `Manejo de Errores:` Cuando se utiliza `assert`, el código arrojará una excepción `AssertionError` si la condición no es verdadera. Debes manejar estos errores de manera adecuada.
+- `Validación en la Carga de Datos:` Pandas también permite especificar tipos de datos al momento de cargar datos (por ejemplo, con `pd.read_csv(dtype=...)`), lo cual puede ser una forma temprana de validación.
+- `Retroalimentación de la Validación:` Es importante no solo identificar dónde los datos no cumplen con las expectativas, sino también proporcionar retroalimentación adecuada para corregir las fuentes de los datos si es posible.
+
+La validación de datos es un proceso continuo y debe adaptarse específicamente a las necesidades y reglas de negocio relevantes para tu análisis o modelo. Cada conjunto de datos puede requerir un conjunto diferente de validaciones, dependiendo de su origen, complejidad y cómo se va a utilizar en el análisis.
+
+
+#### [Top](#subir)
 ## Data Cleaning
 {: #cleaning}
 
 El objetivo es detectar y corregir (o eliminar) registros corruptos o inexactos de un conjunto de datos, tratar los valores faltantes, estandarizar o normalizar datos y realizar cualquier otra acción que mejore la calidad de los datos. Al gunas tareas son:
 
-- Identificación y Tratamiento de Valores Faltantes
-- Estandarización y Normalización de Datos
-- Manejo de outliers
-- verificacion de consistencia de los datos
-- Trabajo con fechas y horas
+El proceso de limpieza de datos ("data cleaning" en inglés) con Pandas en Python es fundamental para asegurar la calidad de los datos antes de proceder al análisis. El objetivo es detectar y corregir (o eliminar) registros corruptos o inexactos de un conjunto de datos, tratar los valores faltantes, estandarizar o normalizar datos y realizar cualquier otra acción que mejore la calidad de los datos.
+
+### Tareas y métodos típicos para la limpieza de datos en SQL:
+
+Realizar tareas de limpieza de datos en SQL puede variar dependiendo del sistema de gestión de base de datos (DBMS) específico que estés utilizando (como PostgreSQL, MySQL, SQL Server, etc.), ya que las funciones y operaciones disponibles pueden diferir. A continuación, te muestro cómo puedes realizar algunas de estas tareas comunes de limpieza de datos utilizando SQL:
+
+#### Detectar Valores Faltantes
+
+```sql
+SELECT *
+FROM tu_tabla
+WHERE columna IS NULL;
+```
+
+#### Eliminar Datos Faltantes
+
+```sql
+DELETE FROM tu_tabla
+WHERE columna IS NULL;
+```
+
+Eliminar columnas con valores NA generalmente requeriría modificar el esquema de la tabla para eliminar la columna, lo cual no es una operación directamente comparable en SQL.
+
+#### Rellenar Datos Faltantes
+
+En SQL, rellenar datos faltantes puede ser más complejo y depende del DBMS. Un ejemplo usando `COALESCE` en PostgreSQL para rellenar valores nulos con un valor específico:
+
+```sql
+UPDATE tu_tabla
+SET columna = COALESCE(columna, 'valor_por_defecto');
+```
+
+#### Conversión de Tipos de Datos
+
+```sql
+ALTER TABLE tu_tabla
+ALTER COLUMN columna TYPE nuevo_tipo USING columna::nuevo_tipo;
+```
+
+#### Normalización de Cadenas de Texto
+
+Convertir texto a minúsculas o mayúsculas:
+
+```sql
+-- PostgreSQL
+UPDATE tu_tabla
+SET columna = LOWER(columna);
+
+UPDATE tu_tabla
+SET columna = UPPER(columna);
+```
+
+Eliminar espacios al inicio y al final:
+
+```sql
+-- PostgreSQL
+UPDATE tu_tabla
+SET columna = TRIM(columna);
+```
+
+#### Aplicación de una Función Personalizada
+
+Dependiendo del sistema, podrías definir funciones personalizadas (por ejemplo, en PostgreSQL con PL/pgSQL) y luego aplicarlas en tus consultas.
+
+#### Descomposición y Extracción de Características
+
+Separar una columna en varias basándose en un delimitador:
+
+```sql
+-- PostgreSQL
+SELECT SPLIT_PART(columna, ' ', 1) AS primera_parte,
+       SPLIT_PART(columna, ' ', 2) AS segunda_parte
+FROM tu_tabla;
+```
+
+Extraer grupos utilizando expresiones regulares:
+
+```sql
+-- PostgreSQL
+SELECT SUBSTRING(columna FROM '(\d+)') AS numero_extraido
+FROM tu_tabla;
+```
+
+#### Mapeo de Datos a un Rango o a Categorías
+
+Cambiar valores específicos en una columna:
+
+```sql
+UPDATE tu_tabla
+SET columna = CASE
+    WHEN columna = 'old_value' THEN 'new_value'
+    ELSE columna
+END;
+```
+
+#### Trabajo con Fechas y Horas
+
+Convertir una cadena a fecha y hora:
+
+```sql
+-- PostgreSQL
+UPDATE tu_tabla
+SET columna_fecha = TO_DATE(columna, 'YYYY-MM-DD')
+WHERE columna IS NOT NULL;
+```
+
+Descomponer fechas en componentes más detallados:
+
+```sql
+SELECT EXTRACT(YEAR FROM columna_fecha) AS año,
+       EXTRACT(MONTH FROM columna_fecha) AS mes,
+       EXTRACT(DAY FROM columna_fecha) AS día
+FROM tu_tabla;
+```
+
+Cada uno de estos ejemplos muestra cómo algunas de las tareas de limpieza de datos realizadas comúnmente en Pandas pueden ser aplicadas en SQL. Es importante notar que la sintaxis específica y las funciones disponibles pueden variar entre diferentes sistemas de gestión de bases de datos.
 
 
+### Tareas y métodos típicos usados en Pandas para la limpieza de datos:
+
+#### Detectar valores faltantes:
 
 ```python
-# Detetectar datos faltantes
 df.isnull()  # Devuelve un DataFrame con la marca True en los lugares donde hay valores faltantes.
 df.isna()    # Alias de isnull().
 df.notnull() # Devuelve lo contrario de isnull().
+```
 
-# Eliminar datos faltantes:
+#### Eliminar datos faltantes:
+
+```python
 df.dropna()  # Elimina filas con valores NA.
 df.dropna(axis=1) # Elimina columnas con valores NA.
-Rellenar datos faltantes:
+```
 
-# Rellenar valores faltantes
+#### Rellenar datos faltantes:
+
+```python
 df.fillna(value) # Rellena los valores NA con un valor específico.
 df.fillna(method='ffill')  # Propaga el último valor válido hacia adelante para rellenar los NA.
 df.fillna(method='bfill')  # Usa el siguiente valor válido para llenar hacia atrás los NA.
+```
 
-#operaciones de normalizacion de textos
+#### Conversión de tipos de datos:
+
+```python
+df.astype({'col1': 'int32', 'col2': 'float64'}) # Cambia el tipo de datos de una o más columnas.
+```
+
+#### Normalización de cadenas de texto:
+
+```python
 df['col'].str.lower() # Convierte texto a minúsculas.
 df['col'].str.upper() # Convierte texto a mayúsculas.
 df['col'].str.strip() # Elimina espacios al inicio y al final.
-Aplicación de una función personalizada:
+```
 
-# aplica funciones personalizadas
+#### Aplicación de una función personalizada:
+
+```python
 df['col'].apply(lambda x: custom_function(x)) # Aplica una función a cada elemento de la columna.
+```
 
-# Descomposición y extracción de características:
+#### Manejo de outliers:
+
+Los métodos para manejar outliers varían ampliamente, pero podrías querer filtrarlos o imputarlos en función de medidas estadísticas como la media y la desviación estándar, o basándote en percentiles.
+
+#### Descomposición y extracción de características:
+
+```python
 df['col'].str.split(' ', expand=True) # Separa una columna en varias basándose en un delimitador.
 df['col'].str.extract('(\d+)') # Extrae grupos de una columna basándose en una expresión regular.
+```
 
-# Mapeo de datos a un rango o a categorías:
+#### Mapeo de datos a un rango o a categorías:
+
+```python
 df['col'].map({'old_value': 'new_value'}) # Cambia valores específicos en una columna.
 df['col'].replace(['old_value1', 'old_value2'], 'new_value') # Reemplaza varios valores con uno nuevo.
+```
 
-# Transformación de datos con groupby:
-df.groupby('col').transform('mean') # Aplica una función de agregación y distribuye los resultados
+#### Transformación de datos con `groupby`:
 
-# Consistencia en categorías:
+```python
+df.groupby('col').transform('mean') # Aplica una función de agregación y distribuye los resultados.
+```
+
+#### Verificación de la consistencia de los datos, consistencia en categorías:
+
+```python
 df['col'].unique() # Verifica los valores únicos para identificar inconsistencias.
+```
 
-# Validación de rangos:
+#### Validación de rangos:
+
+```python
 df[(df['col'] >= min_value) & (df['col'] <= max_value)] # Filtra datos fuera de un rango específico.
+```
 
-# conversiones de fecha
+#### Trabajo con Fechas y Horas, conversión a fecha y hora:
+
+```python
 pd.to_datetime(df['date_col'], errors='coerce') # Convierte una columna a datetime, gestionando errores.
+```
 
-# Descomposición en componentes más detallados:
+#### Descomposición en componentes más detallados:
+
+```python
 df['date_col'].dt.year  # Extrae el año.
 df['date_col'].dt.month # Extrae el mes.
 df['date_col'].dt.day   # Extrae el día.
@@ -198,7 +601,7 @@ Una vez limpios los datos, es buena práctica guardar el DataFrame resultante en
 df.to_csv('clean_data.csv', index=False) # Guarda el DataFrame en un archivo CSV sin el índice.
 ```
 
-
+#### [Top](#subir)
 ## Data Deduplication
 {: #deduplication}
 
@@ -275,95 +678,248 @@ Mientras que `.drop_duplicates()` se usa para eliminar duplicados, `.duplicated(
 ```python
 df = df.duplicates()
 ```
-
+#### [Top](#subir)
 ## Data Derivation
 {: #derivation}
 Se refiere al proceso de crear nuevos datos basados en datos ya existentes. Esto implica aplicar un conjunto de reglas o algoritmos para extraer o generar información adicional a partir de los datos originales. En la ciencia de datos, es una técnica comúnmente utilizada para enriquecer el conjunto de datos y facilitar el análisis posterior o la construcción de modelos de aprendizaje automático.
 
-Ejemplos Comunes de Data Derivation:
-La derivación de datos, o "Data Derivation", se refiere al proceso de crear nuevos datos basados en datos ya existentes. Esto implica aplicar un conjunto de reglas o algoritmos para extraer o generar información adicional a partir de los datos originales. En la ciencia de datos, es una técnica comúnmente utilizada para enriquecer el conjunto de datos y facilitar el análisis posterior o la construcción de modelos de aprendizaje automático.
+### Ejemplos Comunes de Data Derivation en SQL:
+La derivación de datos en SQL, especialmente en el contexto de la ciencia de datos, implica la creación de nuevos datos a partir de los existentes mediante el uso de consultas y operaciones de SQL. Este proceso es fundamental para extraer información útil, crear características para el análisis o modelado predictivo, y enriquecer el conjunto de datos con perspectivas adicionales. Aquí te muestro cómo llevar a cabo algunas tareas comunes de derivación de datos en SQL:
 
-### Ejemplos Comunes de Data Derivation:
+#### Cálculo de Estadísticas Descriptivas
+Puedes calcular estadísticas como la media, mediana, suma, mínimo y máximo directamente en SQL. 
+```sql
+SELECT AVG(columna_numerica) AS media,
+       SUM(columna_numerica) AS suma,
+       MIN(columna_numerica) AS minimo,
+       MAX(columna_numerica) AS maximo
+FROM tu_tabla;
+```
 
-- **Cálculo de características estadísticas:** A partir de datos numéricos, se pueden derivar medias, medianas, desviaciones estándar, sumas, etc., ya sea a lo largo del tiempo, por categorías, o para el conjunto de datos completo.
+#### Transformaciones y Operaciones Matemáticas
+SQL permite realizar operaciones matemáticas básicas directamente en las consultas, lo que facilita la transformación de datos numéricos.
+
+```sql
+SELECT columna_numerica * 100 AS columna_porcentaje
+FROM tu_tabla;
+```
+
+#### Extracción de Componentes de Fecha y Hora
+Las funciones de fecha y hora en SQL son extremadamente útiles para descomponer campos de fecha y hora en componentes como el año, mes, día, hora, etc.
+
+```sql
+SELECT EXTRACT(YEAR FROM columna_fecha) AS anno,
+       EXTRACT(MONTH FROM columna_fecha) AS mes,
+       EXTRACT(DAY FROM columna_fecha) AS dia
+FROM tu_tabla;
+```
+
+#### Creación de Variables Categóricas
+Puedes usar `CASE` o funciones similares para convertir variables numéricas en categóricas o para crear banderas basadas en ciertas condiciones.
+
+```sql
+SELECT *,
+       CASE
+           WHEN columna_numerica > 100 THEN 'Alto'
+           WHEN columna_numerica BETWEEN 50 AND 100 THEN 'Medio'
+           ELSE 'Bajo'
+       END AS categoria
+FROM tu_tabla;
+```
+
+#### Agregación de Datos
+La agregación de datos a nivel de grupo es fundamental en la ciencia de datos para resumir información. SQL hace esto eficientemente con `GROUP BY`.
+
+```sql
+SELECT categoria, AVG(columna_numerica) AS media_categoria
+FROM tu_tabla
+GROUP BY categoria;
+```
+
+#### Unión de Tablas para Enriquecer Datos
+
+La combinación de datos de múltiples tablas a través de `JOIN` permite enriquecer el conjunto de datos original con información adicional, crucial para análisis complejos y modelado.
+
+```sql
+SELECT a.*, b.informacion_adicional
+FROM tabla_principal a
+LEFT JOIN tabla_secundaria b ON a.id = b.id_relacionado;
+```
+
+#### Cálculo de Diferencias Temporales
+
+Para series temporales o datos ordenados, calcular la diferencia en tiempo entre eventos puede revelar insights importantes.
+
+```sql
+SELECT id,
+       columna_fecha,
+       columna_fecha - LAG(columna_fecha) OVER (ORDER BY columna_fecha) AS diferencia_dias
+FROM tu_tabla;
+```
+
+#### Manipulación de Texto
+
+SQL también permite realizar operaciones básicas de manipulación de texto, como concatenación, extracción de subcadenas y aplicación de expresiones regulares.
+
+```sql
+SELECT CONCAT(columna_texto1, ' ', columna_texto2) AS texto_combinado
+FROM tu_tabla;
+```
+
+
+
+### Ejemplos Comunes de Data Derivation en Pandas:
+
+#### Cálculo de características estadísticas:
+A partir de datos numéricos, se pueden derivar medias, medianas, desviaciones estándar, sumas, etc., ya sea a lo largo del tiempo, por categorías, o para el conjunto de datos completo.
   
-  ```python
-  df['average'] = df['data'].mean()
-  ```
+```python
+df['average'] = df['data'].mean()
+```
 
-- **Transformaciones matemáticas:** Aplicación de fórmulas matemáticas a los datos para obtener nuevas columnas. Por ejemplo, normalización de datos, cambio de escala, etc.
+#### Transformaciones matemáticas:
+Aplicación de fórmulas matemáticas a los datos para obtener nuevas columnas. Por ejemplo, normalización de datos, cambio de escala, etc.
   
-  ```python
-  df['normalized'] = (df['data'] - df['data'].mean()) / df['data'].std()
-  ```
+```python
+df['normalized'] = (df['data'] - df['data'].mean()) / df['data'].std()
+```
 
-- **Descomposición de fechas y horas:** Extracción de año, mes, día, hora, minuto o segundo de campos de fecha y hora para analizar tendencias temporales o ciclos.
+#### Descomposición de fechas y horas:
+Extracción de año, mes, día, hora, minuto o segundo de campos de fecha y hora para analizar tendencias temporales o ciclos.
   
-  ```python
-  df['year'] = df['date'].dt.year
-  ```
+```python
+df['year'] = df['date'].dt.year
+```
 
-- **Concatenación o separación de texto:** Unir o dividir cadenas para formar identificadores únicos o separar información compuesta en varios componentes.
+#### Concatenación o separación de texto:
+Unir o dividir cadenas para formar identificadores únicos o separar información compuesta en varios componentes.
   
-  ```python
-  df['full_name'] = df['first_name'] + ' ' + df['last_name']
-  ```
+```python
+df['full_name'] = df['first_name'] + ' ' + df['last_name']
+```
 
-- **Creación de indicadores:** Transformar variables categóricas en una serie de indicadores binarios, a menudo conocido como "one-hot encoding".
+#### Creación de indicadores:
+Transformar variables categóricas en una serie de indicadores binarios, a menudo conocido como "one-hot encoding".
   
-  ```python
-  df = pd.concat([df, pd.get_dummies(df['category'])], axis=1)
-  ```
+```python
+df = pd.concat([df, pd.get_dummies(df['category'])], axis=1)
+```
 
-- **Interacciones de características:** Combinar características mediante multiplicación o cualquier otra operación para capturar interacciones entre ellas en modelos predictivos.
+#### Interacciones de características:
+Combinar características mediante multiplicación o cualquier otra operación para capturar interacciones entre ellas en modelos predictivos.
   
-  ```python
-  df['interaction'] = df['feature1'] * df['feature2']
-  ```
+```python
+df['interaction'] = df['feature1'] * df['feature2']
+```
 
-- **Binning o discretización:** Convertir variables continuas en categóricas a través de la creación de intervalos.
+#### Binning o discretización:
+Convertir variables continuas en categóricas a través de la creación de intervalos.
   
-  ```python
-  df['binned'] = pd.cut(df['continuous_variable'], bins=3)
-  ```
+```python
+df['binned'] = pd.cut(df['continuous_variable'], bins=3)
+```
 
-- **Cálculo de diferencias y cambios:** Para series temporales o datos ordenados, calcular la diferencia o el cambio porcentual entre filas consecutivas.
+#### Cálculo de diferencias y cambios:
+Para series temporales o datos ordenados, calcular la diferencia o el cambio porcentual entre filas consecutivas.
   
-  ```python
-  df['difference'] = df['data'].diff()
-  df['pct_change'] = df['data'].pct_change()
-  ```
+```python
+df['difference'] = df['data'].diff()
+df['pct_change'] = df['data'].pct_change()
+```
 
-- **Aplicación de condiciones lógicas:** Crear nuevas columnas con valores basados en condiciones lógicas aplicadas a los datos.
+#### Aplicación de condiciones lógicas:
+Crear nuevas columnas con valores basados en condiciones lógicas aplicadas a los datos.
   
-  ```python
-  df['is_adult'] = df['age'].apply(lambda x: True if x >= 18 else False)
-  ```
+```python
+df['is_adult'] = df['age'].apply(lambda x: True if x >= 18 else False)
+```
 
-- **Extracción de información de texto:** Utilizar expresiones regulares o métodos de procesamiento de lenguaje natural para extraer información como nombres, fechas, y entidades clave de textos.
+#### Extracción de información de texto:
+Utilizar expresiones regulares o métodos de procesamiento de lenguaje natural para extraer información como nombres, fechas, y entidades clave de textos.
   
-  ```python
-  df['email_domain'] = df['email'].str.extract(r'@(\w+.\w+)')
-  ```
+```python
+df['email_domain'] = df['email'].str.extract(r'@(\w+.\w+)')
+```
 
 La derivación de datos es una práctica que no solo mejora la comprensión de los datos, sino que también puede revelar patrones ocultos, simplificar modelos predictivos y mejorar la precisión de los análisis. En Pandas, la derivación de datos se beneficia del amplio conjunto de operaciones vectorizadas y de las funciones de alto rendimiento, que permiten manipular y transformar grandes conjuntos de datos de forma eficiente.
 
 
-
+#### [Top](#subir)
 ## Format Revisioning 
 {: #revisioning}
 
+La revisión de formato, o "Format Revisioning", en el contexto de la ciencia de datos, implica convertir datos de un formato a otro para mejorar su usabilidad, compatibilidad o para prepararlos para análisis específicos. Este proceso es esencial cuando se trabaja con conjuntos de datos que provienen de diversas fuentes y pueden no estar en el formato deseado para análisis o procesamiento posterior. A continuación, se detallan algunas tareas y métodos comunes para la revisión de formato:
+
+### Métodos comunes en Pandas
+
+#### Convertir tipos de datos de columnas:
+Es común necesitar cambiar el tipo de datos de las columnas, por ejemplo, convertir una columna de tipo objeto a tipo numérico o a tipo datetime.
+  
+```python
+df['columna'] = pd.to_numeric(df['columna'], errors='coerce')
+df['fecha'] = pd.to_datetime(df['fecha'])
+```
+
+#### Normalización de Textos
+A menudo, los datos textuales necesitan ser normalizados a un formato común para garantizar la consistencia.
+```python
+df['texto'] = df['texto'].str.lower()  # Convertir a minúsculas
+df['texto'] = df['texto'].str.strip()  # Eliminar espacios en blanco al inicio y al final
+```
+
+#### Formateo de Datos Numéricos
+Cambio de representación numérica:
+```python
+df['entero'] = df['flotante'].astype(int)
+```
+
+#### Trabajar con Fechas y Horas
+Conversión y extracción de componentes de fechas:**
+  Pandas facilita la conversión de strings a objetos datetime y la extracción de componentes como año, mes, día, etc.
+  
+  ```python
+  df['datetime'] = pd.to_datetime(df['fecha_str'])
+  df['año'] = df['datetime'].dt.year
+  ```
+
+### Formateo de Datos Categóricos
+
+- **Conversión a categorías:**
+  Para datos con un número limitado de valores únicos, convertirlos a tipo categórico puede ser más eficiente en términos de memoria.
+  
+  ```python
+  df['categoría'] = df['categoría'].astype('category')
+  ```
+
+### Exportación a Diferentes Formatos
+
+Una vez que los datos están en el formato deseado, Pandas ofrece múltiples funciones para exportar los datos a diversos formatos para su uso en otras aplicaciones, análisis o almacenamiento.
+
+- **CSV, Excel, JSON, HTML, SQL, y más:**
+  
+  ```python
+  df.to_csv('datos.csv', index=False)
+  df.to_excel('datos.xlsx', sheet_name='Hoja 1', index=False)
+  df.to_json('datos.json')
+  df.to_html('datos.html')
+  df.to_sql('nombre_tabla', con=conexion, if_exists='replace', index=False)
+  ```
+
+### Resumen
+
+La revisión de formato en Pandas es una parte fundamental del proceso de limpieza y preparación de datos, que asegura que los datos estén en el formato correcto y listos para análisis posteriores. Estos métodos y tareas permiten a los científicos de datos manipular y transformar los datos de manera eficiente, preparándolos para un análisis más profundo o para la visualización.
 
 
+#### [Top](#subir)
 ## Data aggregation
 {: #aggregation}
 
 
-
+#### [Top](#subir)
 ## Data Filtering
 {: #filtering}
 
-
+#### [Top](#subir)
 ## Data joining
 {: #joining}
 
@@ -507,6 +1063,6 @@ Comparar dos DataFrameo Series, respectivamente, y resumir sus diferencias. De f
 df1.compare(df2)
 ```
 
-
+#### [Top](#subir)
 ## Data Integration
 {: #integration}
