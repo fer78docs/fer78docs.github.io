@@ -6,20 +6,197 @@ parent: Exploratory Data Analysis
 ---
 
 # Transformación de datos
-Uno de los pasos fundamentales del Análisis Exploratorio de Datos (EDA) es el `Data Wrangling`. La trasnformacion de datos es un conjunto de técnicas utilizadas para convertir datos de un formato o estructura a otro formato o estructura. Los siguientes son algunos ejemplos de actividades de transformación de datos en data analisys:
+Uno de los pasos fundamentales del Análisis Exploratorio de Datos (EDA) es el `Data Wrangling`. La trasnformacion de datos es un conjunto de técnicas utilizadas para convertir datos de un formato o estructura a otro formato o estructura. 
 
-- **[Data deduplication](#deduplication)** (*deduplicación de datos*) Implica la identificación y eliminación de registros duplicados dentro de un conjunto de datos para mejorar la calidad y la precisión de los datos. Ejemplo: Eliminar entradas duplicadas en una base de datos de clientes.
-- La **[Key restructuring](#Keyrest)** (*reestructuración de claves*) Consiste en transformar claves con significados específicos en claves genéricas para facilitar su uso y análisis. Ejemplo: Cambiar un identificador de producto específico del proveedor a un identificador universal.
-- La **Data Cleansing** (*limpieza de datos*)  Implica la eliminación o corrección de datos inexactos, incompletos, obsoletos o irrelevantes para mejorar la calidad general de los datos. Ejemplo: Eliminar espacios en blanco adicionales alrededor de los valores en una columna de datos.
-- La **Data Validation** (*validación de datos*) Es el proceso de aplicar reglas o algoritmos para verificar la precisión y la integridad de los datos en relación con ciertos criterios o estándares. Ejemplo: Verificar si los números de teléfono en una base de datos siguen un formato específico.
-- La **Format revisioning** (*revisión de formato*) Consiste en convertir datos de un formato a otro para facilitar su análisis o integración con otros sistemas. Ejemplo: Convertir una fecha de formato de texto a formato de fecha y hora estándar.
-- La **Data derivation** (*derivación de datos*) Implica la creación de nuevas variables o atributos a partir de datos existentes utilizando reglas o algoritmos definidos. Ejemplo: Calcular la edad de los clientes a partir de su fecha de nacimiento.
-- La **Data aggregation** (*agregación de datos*) Consiste en buscar, extraer, resumir y preservar información importante en diferentes sistemas de informes para facilitar el análisis. Ejemplo: Sumar las ventas mensuales para obtener ventas anuales totales.
-- La **Data integration** (*integración de datos*) Involucra combinar datos de múltiples fuentes y formatos en un único esquema o estructura para análisis coherente. Ejemplo: Integrar datos de ventas de diferentes sucursales en una sola base de datos.
-- El **Data filtering** (*filtrado de datos*) Implica identificar y seleccionar solo los datos relevantes para un análisis específico, descartando datos irrelevantes o no deseados. Ejemplo: Filtrar registros de ventas para mostrar solo transacciones realizadas en un período de tiempo específico.
-- La **[Data joining](#joining)** (*unión de datos*) Consiste en combinar dos o más conjuntos de datos relacionados mediante una clave común para realizar análisis conjunto. Ejemplo: Unir datos de clientes con datos de pedidos utilizando un identificador único de cliente.
+En el proceso de preparación de datos, ciertas tareas suelen realizarse en un orden específico para maximizar la eficiencia y efectividad del flujo de trabajo. Aquí está la lista reordenada de acuerdo con un flujo de trabajo típico de limpieza y preparación de datos:
+
+1. **[Key restructuring](#Keyrest)** (*reestructuración de claves*) Consiste en transformar claves con significados específicos en claves genéricas para facilitar su uso y análisis. Ejemplo: Cambiar un identificador de producto específico del proveedor a un identificador universal. Este paso a menudo precede a otros procesos, ya que asegura que tienes un sistema de claves coherente y bien definido que es esencial para la integración y el análisis de datos.
+2. [**Data Validation**](#validation) (*validación de datos*) Es el proceso de aplicar reglas o algoritmos para verificar la precisión y la integridad de los datos en relación con ciertos criterios o estándares. Ejemplo: Verificar si los números de teléfono en una base de datos siguen un formato específico. La validación es crucial para identificar tempranamente datos incorrectos o inadecuados antes de proceder con la limpieza y transformación de los datos.
+3. [**Data Cleaning**](#cleaning) (*limpieza de datos*)  Implica la eliminación o corrección de datos inexactos, incompletos, obsoletos o irrelevantes para mejorar la calidad general de los datos. Ejemplo: Eliminar espacios en blanco adicionales alrededor de los valores en una columna de datos. Una vez validados los datos, el siguiente paso es la limpieza, donde se eliminan o corrigen los datos inexactos o incompletos.
+4. **[Data deduplication](#deduplication)** (*deduplicación de datos*) Implica la identificación y eliminación de registros duplicados dentro de un conjunto de datos para mejorar la calidad y la precisión de los datos. Ejemplo: Eliminar entradas duplicadas en una base de datos de clientes. La deduplicación a menudo sigue a la limpieza, ya que los errores de datos identificados y corregidos pueden incluir la eliminación de duplicados.
+5. [**Data derivation**](#derivation) (*derivación de datos*) Implica la creación de nuevas variables o atributos a partir de datos existentes utilizando reglas o algoritmos definidos. Ejemplo: Calcular la edad de los clientes a partir de su fecha de nacimiento. Después de asegurarse de que los datos están limpios y libres de duplicados, puede ser útil derivar nuevos datos o atributos relevantes para el análisis.
+6. [**Format revisioning**](#revisioning) (*revisión de formato*) Consiste en convertir datos de un formato a otro para facilitar su análisis o integración con otros sistemas. Ejemplo: Convertir una fecha de formato de texto a formato de fecha y hora estándar. Convertir datos a formatos estandarizados es importante para la coherencia y para preparar los datos para la agregación o el análisis.
+7. [**Data aggregation**](#aggregation) (*agregación de datos*) Consiste en buscar, extraer, resumir y preservar información importante en diferentes sistemas de informes para facilitar el análisis. Ejemplo: Sumar las ventas mensuales para obtener ventas anuales totales. Una vez que los datos están limpios y en formatos coherentes, puedes comenzar a agruparlos para resumir y preparar para un análisis más detallado.
+8. [**Data filtering**](#filtering) (*filtrado de datos*) Implica identificar y seleccionar solo los datos relevantes para un análisis específico, descartando datos irrelevantes o no deseados. Ejemplo: Filtrar registros de ventas para mostrar solo transacciones realizadas en un período de tiempo específico. Filtrar los datos para centrarse en subconjuntos relevantes es comúnmente el paso previo a la unión y la integración, asegurando que solo se combinen los datos pertinentes.
+9. **[Data joining](#joining)** (*unión de datos*) Consiste en combinar dos o más conjuntos de datos relacionados mediante una clave común para realizar análisis conjunto. Ejemplo: Unir datos de clientes con datos de pedidos utilizando un identificador único de cliente. Con los datos ya limpios, validados y correctamente estructurados, el siguiente paso es unir los conjuntos de datos relacionados basándose en claves comunes.
+10. [**Data integration**](#integration) (*integración de datos*) Involucra combinar datos de múltiples fuentes y formatos en un único esquema o estructura para análisis coherente. Ejemplo: Integrar datos de ventas de diferentes sucursales en una sola base de datos. Finalmente, una vez que los datos han sido unidos y todas las claves están correctamente alineadas, la integración puede proceder para combinar múltiples fuentes/formats de datos en una estructura cohesiva y lista para el análisis.
+
+Este flujo de trabajo es iterativo y puede requerir ajustes en función de las necesidades específicas del proyecto y la naturaleza de los datos. Además, algunos pasos pueden superponerse o requerir ir y volver, especialmente en proyectos complejos o cuando surgen nuevos datos o requisitos de análisis.
 
 La razón principal para transformar los datos es obtener una mejor representación de modo que los datos transformados sean compatibles con otros datos. Además de esto, la interoperabilidad en un sistema se puede lograr siguiendo una estructura y un formato de datos comunes.
+
+
+## Key restructuring
+{: #Keyrest}
+En el ámbito de la ciencia de datos, "Key Restructuring" se refiere a la reorganización o transformación de las claves en un conjunto de datos. Las "claves" en este contexto suelen ser identificadores únicos o conjuntos de campos que sirven para relacionar registros entre sí. En pandas, esto puede implicar una serie de operaciones destinadas a garantizar que las claves de los datos sean consistentes, únicas y adecuadamente estructuradas para análisis o combinaciones de datos subsiguientes.
+
+
+
+### Operaciones comunes de reestructuración de claves en pandas:
+
+#### Renombrar Claves
+Para renombrar claves (es decir, los nombres de las columnas que actúan como claves), puedes utilizar el método `rename()`:
+```python
+df.rename(columns={'old_name': 'new_name'}, inplace=True)
+```
+
+#### Reasignar Valores de Clave
+Cambiar los valores dentro de las claves mismas, lo que se puede hacer con operaciones de mapeo o aplicando funciones:
+```python
+df['key_column'] = df['key_column'].map(lambda x: 'new_value' if condition else x)
+```
+
+#### Crear Claves Compuestas
+Una clave compuesta es una clave única que se compone de la combinación de dos o más columnas:
+```python
+df['composite_key'] = df['key_part1'].astype(str) + '-' + df['key_part2'].astype(str)
+```
+
+#### Eliminación de Claves Innecesarias
+Puedes eliminar claves que ya no son necesarias o que podrían causar confusión en el análisis de datos:
+```python
+df.drop(columns=['unnecessary_key'], inplace=True)
+```
+
+#### Asegurar la Unicidad
+Es importante garantizar que las claves sean únicas antes de realizar operaciones como combinaciones. Puedes verificar la unicidad de las claves y eliminar duplicados si es necesario:
+```python
+if df['key_column'].is_unique:
+    print("Las claves son únicas.")
+else:
+    df.drop_duplicates(subset=['key_column'], inplace=True)
+```
+
+#### Reindexación Basada en Claves
+Finalmente, puedes querer reindexar tu DataFrame para que las claves sean el nuevo índice:
+```python
+df.set_index('key_column', inplace=True)
+```
+
+## Data Validation
+{: #validation}
+
+El proceso de verificar si los datos cumplen con un conjunto de reglas o normas antes de ser procesados o analizados. Es una etapa crítica en el ciclo de vida de la ciencia de datos, ya que trabajar con datos erróneos o mal formateados puede llevar a conclusiones incorrectas y afectar la calidad de los resultados del análisis. En Pandas, hay varias técnicas y herramientas que puedes usar para realizar la validación de datos.
+
+- `Usar Métodos de String para Validación de Texto`: que te permiten validar y limpiar datos de texto. Estos métodos se aplican a las columnas de tipo str.
+- `Verificar valores nulos`:  Comprobar y manejar valores nulos
+- `Verificación de Tipos de Datos:` Una de las validaciones más básicas es asegurarse de que las columnas tienen el tipo de dato correcto 
+- `Aplicar Condiciones de Validación`: aplicar condiciones de validación y usar máscaras booleanas para filtrar datos que no cumplan con ciertos criterios.
+- `Rangos de valores`: Asegurarte de que los datos estén dentro de un rango esperado es otra forma común de validación.
+- `Valores consistentes`: Para datos categóricos, a menudo necesitas validar que los valores pertenecen a un conjunto de categorías definidas.
+- `Validación Cruzada Entre Columnas`: En ocasiones, la validación de una columna depende de los valores en otra columna, lo cual requiere validación cruzada.
+- `Manejo de Errores`: Cuando se utiliza `assert`, el código arrojará una excepción `AssertionError` si la condición no es verdadera. Debes manejar estos errores de manera adecuada.
+- ``Validación en la Carga de Datos``: Pandas también permite especificar tipos de datos al momento de cargar datos (por ejemplo, con `pd.read_csv(dtype=...)`), lo cual puede ser una forma temprana de validación.
+- ``Retroalimentación de la Validación``: Es importante no solo identificar dónde los datos no cumplen con las expectativas, sino también proporcionar retroalimentación adecuada para corregir las fuentes de los datos si es posible.
+
+La validación de datos es un proceso continuo y debe adaptarse específicamente a las necesidades y reglas de negocio relevantes para tu análisis o modelo. Cada conjunto de datos puede requerir un conjunto diferente de validaciones, dependiendo de su origen, complejidad y cómo se va a utilizar en el análisis.
+
+
+```python
+# Verificar el tipo de dato de cada columna
+df.dtypes
+
+# Convertir una columna a un tipo de dato específico
+df['column'] = df['column'].astype(type)
+
+# Verificar que todos los valores en una columna sean positivos
+assert (df['column'] > 0).all()
+
+# Verificar si el texto de una columna cumple con un patrón (regex)
+df['text_column'].str.match(r'^\w+$')
+
+# Extraer partes de una cadena que cumple con un patrón
+df['text_column'].str.extract(r'(pattern)')
+
+# Verificar la presencia de valores nulos
+df.isnull().sum()
+
+# Eliminar filas con valores nulos
+df.dropna(subset=['column'], inplace=True)
+
+# Verificar si los valores en una columna son únicos
+df['column'].is_unique
+
+# Eliminar duplicados basados en una o más columnas
+df.drop_duplicates(subset=['column1', 'column2'], inplace=True)
+
+# Verificar que los valores de una columna estén en un conjunto de categorías
+allowed_values = {'cat1', 'cat2', 'cat3'}
+df['category_column'].isin(allowed_values)
+
+# Verificar que todos los valores de una columna estén dentro de un rango
+df[(df['column'] >= min_value) & (df['column'] <= max_value)]
+```
+
+## Data Cleaning
+{: #cleaning}
+
+El objetivo es detectar y corregir (o eliminar) registros corruptos o inexactos de un conjunto de datos, tratar los valores faltantes, estandarizar o normalizar datos y realizar cualquier otra acción que mejore la calidad de los datos. Al gunas tareas son:
+
+- Identificación y Tratamiento de Valores Faltantes
+- Estandarización y Normalización de Datos
+- Manejo de outliers
+- verificacion de consistencia de los datos
+- Trabajo con fechas y horas
+
+
+
+```python
+# Detetectar datos faltantes
+df.isnull()  # Devuelve un DataFrame con la marca True en los lugares donde hay valores faltantes.
+df.isna()    # Alias de isnull().
+df.notnull() # Devuelve lo contrario de isnull().
+
+# Eliminar datos faltantes:
+df.dropna()  # Elimina filas con valores NA.
+df.dropna(axis=1) # Elimina columnas con valores NA.
+Rellenar datos faltantes:
+
+# Rellenar valores faltantes
+df.fillna(value) # Rellena los valores NA con un valor específico.
+df.fillna(method='ffill')  # Propaga el último valor válido hacia adelante para rellenar los NA.
+df.fillna(method='bfill')  # Usa el siguiente valor válido para llenar hacia atrás los NA.
+
+#operaciones de normalizacion de textos
+df['col'].str.lower() # Convierte texto a minúsculas.
+df['col'].str.upper() # Convierte texto a mayúsculas.
+df['col'].str.strip() # Elimina espacios al inicio y al final.
+Aplicación de una función personalizada:
+
+# aplica funciones personalizadas
+df['col'].apply(lambda x: custom_function(x)) # Aplica una función a cada elemento de la columna.
+
+# Descomposición y extracción de características:
+df['col'].str.split(' ', expand=True) # Separa una columna en varias basándose en un delimitador.
+df['col'].str.extract('(\d+)') # Extrae grupos de una columna basándose en una expresión regular.
+
+# Mapeo de datos a un rango o a categorías:
+df['col'].map({'old_value': 'new_value'}) # Cambia valores específicos en una columna.
+df['col'].replace(['old_value1', 'old_value2'], 'new_value') # Reemplaza varios valores con uno nuevo.
+
+# Transformación de datos con groupby:
+df.groupby('col').transform('mean') # Aplica una función de agregación y distribuye los resultados
+
+# Consistencia en categorías:
+df['col'].unique() # Verifica los valores únicos para identificar inconsistencias.
+
+# Validación de rangos:
+df[(df['col'] >= min_value) & (df['col'] <= max_value)] # Filtra datos fuera de un rango específico.
+
+# conversiones de fecha
+pd.to_datetime(df['date_col'], errors='coerce') # Convierte una columna a datetime, gestionando errores.
+
+# Descomposición en componentes más detallados:
+df['date_col'].dt.year  # Extrae el año.
+df['date_col'].dt.month # Extrae el mes.
+df['date_col'].dt.day   # Extrae el día.
+```
+
+#### Guardar el DataFrame Limpio
+Una vez limpios los datos, es buena práctica guardar el DataFrame resultante en un archivo para futuros análisis.
+```python
+df.to_csv('clean_data.csv', index=False) # Guarda el DataFrame en un archivo CSV sin el índice.
+```
 
 
 ## Data Deduplication
@@ -99,40 +276,92 @@ Mientras que `.drop_duplicates()` se usa para eliminar duplicados, `.duplicated(
 df = df.duplicates()
 ```
 
-## Key restructuring
-{: #Keyrest}
+## Data Derivation
+{: #derivation}
+Se refiere al proceso de crear nuevos datos basados en datos ya existentes. Esto implica aplicar un conjunto de reglas o algoritmos para extraer o generar información adicional a partir de los datos originales. En la ciencia de datos, es una técnica comúnmente utilizada para enriquecer el conjunto de datos y facilitar el análisis posterior o la construcción de modelos de aprendizaje automático.
+
+Ejemplos Comunes de Data Derivation:
+La derivación de datos, o "Data Derivation", se refiere al proceso de crear nuevos datos basados en datos ya existentes. Esto implica aplicar un conjunto de reglas o algoritmos para extraer o generar información adicional a partir de los datos originales. En la ciencia de datos, es una técnica comúnmente utilizada para enriquecer el conjunto de datos y facilitar el análisis posterior o la construcción de modelos de aprendizaje automático.
+
+### Ejemplos Comunes de Data Derivation:
+
+- **Cálculo de características estadísticas:** A partir de datos numéricos, se pueden derivar medias, medianas, desviaciones estándar, sumas, etc., ya sea a lo largo del tiempo, por categorías, o para el conjunto de datos completo.
+  
+  ```python
+  df['average'] = df['data'].mean()
+  ```
+
+- **Transformaciones matemáticas:** Aplicación de fórmulas matemáticas a los datos para obtener nuevas columnas. Por ejemplo, normalización de datos, cambio de escala, etc.
+  
+  ```python
+  df['normalized'] = (df['data'] - df['data'].mean()) / df['data'].std()
+  ```
+
+- **Descomposición de fechas y horas:** Extracción de año, mes, día, hora, minuto o segundo de campos de fecha y hora para analizar tendencias temporales o ciclos.
+  
+  ```python
+  df['year'] = df['date'].dt.year
+  ```
+
+- **Concatenación o separación de texto:** Unir o dividir cadenas para formar identificadores únicos o separar información compuesta en varios componentes.
+  
+  ```python
+  df['full_name'] = df['first_name'] + ' ' + df['last_name']
+  ```
+
+- **Creación de indicadores:** Transformar variables categóricas en una serie de indicadores binarios, a menudo conocido como "one-hot encoding".
+  
+  ```python
+  df = pd.concat([df, pd.get_dummies(df['category'])], axis=1)
+  ```
+
+- **Interacciones de características:** Combinar características mediante multiplicación o cualquier otra operación para capturar interacciones entre ellas en modelos predictivos.
+  
+  ```python
+  df['interaction'] = df['feature1'] * df['feature2']
+  ```
+
+- **Binning o discretización:** Convertir variables continuas en categóricas a través de la creación de intervalos.
+  
+  ```python
+  df['binned'] = pd.cut(df['continuous_variable'], bins=3)
+  ```
+
+- **Cálculo de diferencias y cambios:** Para series temporales o datos ordenados, calcular la diferencia o el cambio porcentual entre filas consecutivas.
+  
+  ```python
+  df['difference'] = df['data'].diff()
+  df['pct_change'] = df['data'].pct_change()
+  ```
+
+- **Aplicación de condiciones lógicas:** Crear nuevas columnas con valores basados en condiciones lógicas aplicadas a los datos.
+  
+  ```python
+  df['is_adult'] = df['age'].apply(lambda x: True if x >= 18 else False)
+  ```
+
+- **Extracción de información de texto:** Utilizar expresiones regulares o métodos de procesamiento de lenguaje natural para extraer información como nombres, fechas, y entidades clave de textos.
+  
+  ```python
+  df['email_domain'] = df['email'].str.extract(r'@(\w+.\w+)')
+  ```
+
+La derivación de datos es una práctica que no solo mejora la comprensión de los datos, sino que también puede revelar patrones ocultos, simplificar modelos predictivos y mejorar la precisión de los análisis. En Pandas, la derivación de datos se beneficia del amplio conjunto de operaciones vectorizadas y de las funciones de alto rendimiento, que permiten manipular y transformar grandes conjuntos de datos de forma eficiente.
 
 
 
-## Data Deduplication
-{: #deduplication}
+## Format Revisioning 
+{: #revisioning}
 
 
 
-## Data Deduplication
-{: #deduplication}
+## Data aggregation
+{: #aggregation}
 
 
 
-
-## Data Deduplication
-{: #deduplication}
-
-
-
-
-## Data Deduplication
-{: #deduplication}
-
-
-
-## Data Deduplication
-{: #deduplication}
-
-
-
-## Data Deduplication
-{: #deduplication}
+## Data Filtering
+{: #filtering}
 
 
 ## Data joining
@@ -277,3 +506,7 @@ Comparar dos DataFrameo Series, respectivamente, y resumir sus diferencias. De f
 ```python
 df1.compare(df2)
 ```
+
+
+## Data Integration
+{: #integration}
