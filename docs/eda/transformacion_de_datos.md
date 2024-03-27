@@ -25,6 +25,79 @@ La razón principal para transformar los datos es obtener una mejor representaci
 ## Data Deduplication
 {: #deduplication}
 
+La deduplicación de datos, en el contexto de la ciencia de datos, es el proceso de identificar y eliminar registros duplicados dentro de un conjunto de datos. Los datos duplicados pueden surgir por diversas razones, como la integración de datos de múltiples fuentes, errores en la entrada de datos, o como resultado de procesos de recopilación de datos. 
+
+![Data Deduplicaction](https://fer78docs.github.io/assets/images/data_deduplication.webp)
+
+### Data Deduplication en SQL
+
+La deduplicación de datos se puede lograr mediante varios métodos, como la palabra clave `DISTINCT`, `GROUP BY` o funciones de ventana como `ROW_NUMBER()`. Supongamos que tenemos un conjunto de datos con datos de ventas de una tienda online. El conjunto de datos puede contener registros duplicados debido a diversos motivos, como fallas del sistema, problemas de integración de datos o múltiples entradas para la misma transacción.
+
+| transaction_id | product_id | sale_amount | sale_date  |
+|----------------|------------|-------------|------------|
+| 1              | ABC123     | 100         | 2023-07-01 |
+| 2              | DEF456     | 50          | 2023-07-02 |
+| 3              | GHI789     | 75          | 2023-07-03 |
+| 4              | ABC123     | 100         | 2023-07-01 |
+| 5              | XYZ999     | 200         | 2023-07-04 |
+
+
+Creando una nueva tabla con registros deduplicados usando `DISTINCT`:
+
+```sql
+CREATE TABLE sales_data_dedup AS
+SELECT DISTINCT transaction_id, product_id, sale_amount, sale_date
+FROM sales_data;
+```
+
+Podemos usar `GROUP BY` para agrupar los registros según columnas específicas y luego aplicar funciones agregadas como `SUM`, `COUNT`, etc. En este caso, usaremos GROUP BY para eliminar duplicados.
+
+Creando una nueva tabla con registros deduplicados usando `GROUP BY`:
+```sql
+CREATE TABLE sales_data_dedup AS
+SELECT transaction_id, product_id, sale_amount, sale_date
+FROM sales_data
+GROUP BY transaction_id, product_id, sale_amount, sale_date;
+```
+Es importante tener en cuenta que cuando se utiliza `GROUP BY` para eliminar duplicados, no se garantiza el orden de las filas dentro de cada grupo. Si el orden de las filas es significativo, considere usar la función de ventana `ROW_NUMBER()` para eliminar duplicados manteniendo el orden deseado.
+
+La función de ventana `ROW_NUMBER()` asigna un número entero único a cada fila según el orden especificado. Al usar esta función y seleccionar solo filas con `ROW_NUMBER() = 1`, podemos deduplicar los datos.
+
+nueva tabla con registros deduplicados usando ROW_NUMBER(): 
+
+```sql
+CREATE TABLE sales_data_dedup AS
+SELECT transaction_id, product_id, sale_amount, sale_date
+FROM ( SELECT transaction_id, product_id, sale_amount, sale_date,
+        ROW_NUMBER() OVER (PARTITION BY transaction_id, product_id, sale_amount, sale_date ORDER BY transaction_id) as row_num
+FROM sales_data) t
+WHERE row_num = 1;
+```
+
+En todos los métodos, deduplicamos con éxito los datos de ventas y creamos una nueva tabla sales_data_dedup que contiene registros únicos.
+
+### Data Deduplication en Python
+
+#### Estrategias de Deduplicación en la Práctica
+- Análisis Exploratorio de Datos (EDA): Antes de eliminar duplicados, es importante realizar un EDA para entender por qué aparecen duplicados y asegurarse de que su eliminación no sesgará los análisis posteriores.
+- Deduplicación basada en columnas específicas: En algunos casos, puede ser deseable eliminar duplicados basándose solo en algunas columnas que deben ser únicas, utilizando el argumento subset.
+- Registros Completos vs. Incompletos: Al deduplicar, considera la posibilidad de mantener el registro más completo (por ejemplo, con menos valores NA) en cada conjunto de duplicados. 
+
+
+### df.drop_duplicates()
+Este es el método más directo para eliminar filas duplicadas de un DataFrame. Por defecto, `drop_duplicates()` elimina las filas que tienen todas sus columnas idénticas a otra fila, **manteniendo la primera ocurrencia** de cada conjunto de duplicados y descartando el resto.  
+Puedes modificar su comportamiento con argumentos como `subset`, para especificar un subconjunto de columnas para considerar en la búsqueda de duplicados, y `keep`, para indicar cuál de los duplicados mantener (`'first'`, `'last'`, o `False` para eliminar todos los duplicados).
+
+```python
+df = df.drop_duplicates()
+```
+
+### df.duplicated()
+Mientras que `.drop_duplicates()` se usa para eliminar duplicados, `.duplicated()` es útil para marcar los duplicados. Este método retorna una Serie booleana que indica si cada fila es un duplicado (basado en todas las columnas o un subconjunto especificado) de una fila anterior. Esto es especialmente útil para explorar los datos y entender la naturaleza de los duplicados antes de decidir cómo manejarlos.
+
+```python
+df = df.duplicates()
+```
 
 ## Key restructuring
 {: #Keyrest}
@@ -70,16 +143,18 @@ La razón principal para transformar los datos es obtener una mejor representaci
 ### Pandas
 Pandas proporciona varios métodos para combinar y comparar Series o DataFrames.Los metodos para unir marcos de datos con Pandas son:  `append()`, `concat()`, `merge()` o `join()`. El metodo `compare()` muestra las diferencias en valores entre dos Series o DataFrame.
 
-- `concat()`: fusiona varias Series o DataFrames a lo largo de un índice o columna compartido.
-- `DataFrame.join()`: fusiona varios DataFrame a lo largo de las columnas
-- `DataFrame.combine_first()`: actualice los valores faltantes con valores no faltantes en la misma ubicación
-- `merge()`: Combina dos Series o DataFrames con unión estilo SQL
+- [`concat()`](#concat): fusiona varias Series o DataFrames a lo largo de un índice o columna compartido.
+- [`df.join()`](#join): fusiona varios DataFrame a lo largo de las columnas
+- [`df.combine_first()`](#first): actualice los valores faltantes con valores no faltantes en la misma ubicación
+- [`merge()`](#merge): Combina dos Series o DataFrames con unión estilo SQL
+- [`compare()`](#compare): muestra las diferencias en valores entre dos Series o DataFrames.
 - `merge_ordered()`: Combina dos Series o DataFrames a lo largo de un eje ordenado
 - `merge_asof()`: Combina dos Series o DataFrames con keys coincidentes cercanas en lugar de exactas
-- `compare()`: muestra las diferencias en valores entre dos Series o DataFrames.
 
 
-### .concat()
+
+### pd.concat()
+{: #concat}
 Toma como entrada una lista, diccionario , Series o DataFrames y los une a lo largo de un eje específico:
 
 - `Axis 0`: Concatenación vertical (por defecto), donde los DataFrames o Series se apilan uno encima del otro. Esto es equivalente a añadir filas.
@@ -116,11 +191,11 @@ result_ignore_index = pd.concat([df1, df2], ignore_index=True)
 result_keys = pd.concat([df1, df2], keys=['x', 'y'])
 ```
 
-{:nota}
 Al concatenar DataFramecon ejes con nombres, pandas intentará conservar estos nombres de índice/columna siempre que sea posible. En el caso de que todas las entradas compartan un nombre común, este nombre se asignará al resultado. Cuando los nombres de entrada no coinciden, el resultado no tendrá nombre.
 
 
-### .merge()
+### pd.merge()
+{: #merge}
 Realiza operaciones de unión similares a bases de datos relacionales como SQL. Los usuarios que estén familiarizados con SQL pero que sean nuevos en Pandas pueden hacer referencia a una comparación con SQL .
 
 #### Tipos de fusión 
@@ -161,3 +236,44 @@ El argumento `how` de `merge()` especifica qué claves se incluyen en la tabla r
 
 - `cross`: No se basa en claves para realizar la unión. En lugar de eso, crea un producto cartesiano, combinando cada fila del marco izquierdo con cada fila del marco derecho, resultando en un número de filas igual al producto del número de filas de ambos marcos.
 
+#### Integridad de los datos al realizar operaciones de fusión
+
+El argumento `validate` permite al usuario especificar la expectativa sobre la relación entre las claves de unión en los DataFrames que se están combinando, ayudando a identificar problemas de datos antes de que la fusión se complete. Acepta una de las siguientes cadenas, cada una representando un tipo específico de relación entre las claves de los DataFrames a fusionar:
+
+- `1:1`: Verifica que las claves sean únicas tanto en el DataFrame izquierdo como en el derecho. Esto asegura que cada clave se utiliza exactamente una vez en cada DataFrame. Es útil cuando quieres garantizar que no hay duplicados en ninguna de las tablas antes de la fusión.
+- `1:m o m:1`: Verifica que todas las claves en el DataFrame del lado '1' sean únicas, pero permite duplicados en el lado 'm'. Esto es común en situaciones donde un DataFrame tiene una clave primaria y el otro tiene una clave foránea que puede repetirse.
+- `m:m`: Permite duplicados en ambos DataFrames. Aunque este es el comportamiento predeterminado si no se especifica validate, utilizar este argumento explícitamente puede ser útil para documentar la naturaleza de la fusión y garantizar que la operación es intencional.
+
+
+### df.join()
+{: #join}
+El método `.join()` permite unir DataFrames basándose en sus índices o en una clave (columna) común. Por defecto, realiza una unión izquierda (left join), manteniendo todas las filas del DataFrame sobre el cual se llama el método e incorporando las columnas del DataFrame pasado como argumento.
+
+```python
+df1.join(df2)
+```
+En este ejemplo, `df1` es el DataFrame "izquierdo" al cual se unirán las columnas de `df2` basándose en los índices de ambos DataFrames.
+
+Parámetros Importantes
+- `other`: Otro DataFrame o Serie o lista de DataFrames con los cuales se unirá el DataFrame original.
+- `on`: Especifica la columna del DataFrame desde el cual se llama `.join()` que se utilizará como clave para la unión. Si se especifica, esta columna debe existir en el DataFrame "izquierdo".
+- `how`: Define cómo se realiza la unión: 'left' (por defecto), 'right', 'inner', 'outer'.
+- `lsuffix`, `rsuffix`: Sufijos a agregar a las columnas con el mismo nombre en ambos DataFrames para diferenciarlas en el DataFrame resultante.
+
+### df.combine.first()
+{: #first}
+Actualice los valores faltantes de uno DataFrame con los valores no faltantes en otro DataFrameen la ubicación correspondiente. Es decir, se puede utilizar para rellenar valores faltantes en un DataFrame con valores de otro DataFrame. La idea es que, para cualquier elemento en el DataFrame original que sea NA (no disponible o `NaN`), si hay un valor correspondiente en el mismo lugar del otro DataFrame, este valor se usará para rellenar el NA en el DataFrame original. Si no hay NA, el valor del DataFrame original se mantiene. Este método no modifica ninguno de los DataFrames originales; en su lugar, crea un nuevo DataFrame como resultado.
+
+```python
+df1.combine_first(df2)
+```
+En este caso, df1 es el DataFrame principal cuyos valores NA se buscan rellenar con los valores de df2. Los índices y columnas de ambos DataFrames juegan un papel crucial aquí: combine_first intentará hacer la coincidencia basándose en estos índices y columnas. Si df2 tiene valores en posiciones donde df1 tiene NA, estos valores de df2 se utilizan en el DataFrame resultante.
+
+
+### .compare()
+{: #compare}
+Comparar dos DataFrameo Series, respectivamente, y resumir sus diferencias. De forma predeterminada, si dos valores correspondientes son iguales, se mostrarán como NaN. Además, si todos los valores están en una fila/columna completa, la fila/columna se omitirá del resultado. Las diferencias restantes se alinearán en columnas.
+
+```python
+df1.compare(df2)
+```
