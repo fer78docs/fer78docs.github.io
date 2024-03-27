@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Asociaciones dos categoricas
-nav_order: 4
+nav_order: 7
 parent: Exploratory Data Analysis
 ---
 

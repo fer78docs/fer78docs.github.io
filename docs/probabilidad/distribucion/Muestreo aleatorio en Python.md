@@ -178,21 +178,21 @@ plt.title(f"Sampling Dist Mean: {mean_sampling_distribution}")
 plt.xlabel("")
 plt.show()
 ```
+
+
 ![Graficos CTL](https://fer78docs.github.io/assets/images/ejemplo ctl.png)
 
 ### Error estándar
 
 La segunda parte del teorema del límite central es:
 
-La distribución muestral de la media tiene una distribución normal, con una desviación estándar igual a la desviación estándar de la población (a menudo indicada como la letra griega, sigma) dividida por la raíz cuadrada del tamaño de la muestra (a menudo indicada como n):
-```
-σ / √x
-​```
+La distribución muestral de la media tiene una distribución normal, con una desviación estándar igual a la desviación estándar de la población (a menudo indicada como la letra griega, sigma) dividida por la raíz cuadrada del tamaño de la muestra (a menudo indicada como n): σ / √x
 
 La desviación estándar de una distribución muestral también se conoce como error estándar de la estimación de la media . En muchos casos, no podemos conocer la desviación estándar de la población, por lo que estimamos el error estándar utilizando la desviación estándar de la muestra:
-```
+
 standard deviation of our sample / √ sample size
-​```
+
+
 Dos cosas importantes a tener en cuenta sobre esta fórmula son que:
 
 - A medida que aumenta el tamaño de la muestra, el error estándar disminuirá.
