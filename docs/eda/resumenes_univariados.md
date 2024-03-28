@@ -15,10 +15,16 @@ Las estadísticas descriptivas ayudan a resumir un conjunto de datos proporciona
 Los resúmenes univariados se centran en la descripción y análisis de una sola variable a la vez. Este tipo de análisis es fundamental en estadística y análisis de datos, ya que proporciona una comprensión básica de las características y la distribución de los datos en una dimensión. Los resúmenes univariados son un paso inicial crucial en el análisis exploratorio de datos (EDA) para identificar patrones, tendencias, anomalías y posibles relaciones entre variables. A continuación, se detallan algunos de los conceptos y técnicas más importantes en los resúmenes univariados:
 
 ## Resumenes de Variables Cuantitativas 
+
 ### Medidas de Tendencia Central
+La medida de tendencia central tiende a describir el valor promedio o medio de conjuntos de datos que se supone proporciona un resumen óptimo de todo el conjunto de mediciones. Este valor es un número que de alguna manera es central para el conjunto. Las medidas más comunes para analizar la frecuencia de distribución de los datos son la media, la mediana y la moda.
+
 * **Media (Promedio)**: Es la suma de todos los valores de la variable dividida por el número de observaciones. Proporciona el centro de gravedad de la distribución, pero es sensible a valores extremos (outliers).
+
 * **Mediana:**Es el valor que divide al conjunto de datos en dos partes iguales cuando los datos están ordenados. La mediana es menos sensible a valores extremos y proporciona una mejor medida del centro para distribuciones sesgadas.
+
 * **Media recortada:**  es una medida estadística de tendencia central que se asemeja a la media aritmética, pero con una diferencia clave: antes de calcular la media, se eliminan los valores extremos de ambos extremos de un conjunto de datos. El porcentaje exacto de datos a recortar depende del análisis, pero un enfoque común es eliminar el 5% de los valores más bajos y el 5% de los valores más altos.
+
 * **Moda:** Es el valor o valores que aparecen con mayor frecuencia en el conjunto de datos. Es útil para datos categóricos y para identificar picos en distribuciones multimodales.
 
 ```python
@@ -33,9 +39,16 @@ print(f'Media Recortada: Rs.{round(trim_mean(df.column, proportiontocut=0.1), 2)
 
 ### Medidas de Dispersión
 
+El segundo tipo de estadística descriptiva es la medida de dispersión , también conocida como medida de variabilidad . Se utiliza para describir la variabilidad en un conjunto de datos, que puede ser una muestra o una población. Generalmente se utiliza junto con una medida de tendencia central para proporcionar una descripción general de un conjunto de datos. Una medida de dispersión/variabilidad/extensión nos da una idea de qué tan bien representa la tendencia central los datos. Si analizamos el conjunto de datos de cerca, a veces, la media/promedio puede no ser la mejor representación de los datos porque variará cuando haya grandes variaciones entre los datos. En tal caso, una medida de dispersión representará la variabilidad en un conjunto de datos con mucha más precisión.
+
+Múltiples técnicas proporcionan medidas de dispersión en nuestro conjunto de datos. Algunos métodos comúnmente utilizados son la desviación estándar (o varianza), los valores mínimo y máximo de las variables, el rango, la curtosis y la asimetría
+
 * **Rango:** Es la diferencia entre el valor máximo y mínimo de la variable. Proporciona una idea de la amplitud de la distribución.
+
 * **Desviación Estándar y Varianza:** Estas medidas indican cuánto tienden a dispersarse los valores alrededor de la media. La varianza es el promedio de las diferencias al cuadrado de la media, y la desviación estándar es la raíz cuadrada de la varianza.
+
 * **Rango Intercuartílico (IQR):** Es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Ofrece una medida de la dispersión central y es menos sensible a outliers.
+
 * **Desviación media absoluta (MAD):** el valor medio absoluto de la distancia entre cada punto de datos y la media.
 
 ```python
@@ -48,9 +61,74 @@ print(f'Desviación Estándar: Rs.{df.column.std().round(2)}')
 print(f'Desviación Media Absoluta: Rs.{(df.column - df.column.mean()).abs().mean().round(2)}')
 ```
 
-### Forma de la Distribución
+### Oblicuidad
+
+En teoría de la probabilidad y estadística, la asimetría es una medida de la asimetría de la variable en el conjunto de datos con respecto a su media. El valor de asimetría puede ser positivo, negativo o indefinido. El valor de asimetría nos dice si los datos son asimétricos o simétricos. A continuación se muestra una ilustración de un conjunto de datos con sesgo positivo, datos simétricos y algunos datos con sesgo negativo:
+
 * **Sesgo (Skewness):** Mide la asimetría de la distribución. Una distribución con sesgo positivo tiene una cola más larga hacia la derecha, mientras que un sesgo negativo indica una cola más larga hacia la izquierda.
-* **Curtosis:** Indica el grado de concentración de valores alrededor de la media, comparando la forma de la distribución con una distribución normal. Las distribuciones con alta curtosis tienen colas más pesadas y un pico más agudo.
+
+![Oblicuidad](https://fer78docs.github.io/assets/images/oblicuidad.webp)
+
+Tenga en cuenta las siguientes observaciones del diagrama anterior:
+
+- El gráfico del lado derecho tiene una cola que es más larga que la cola del lado derecho. Esto indica que la distribución de los datos está sesgada hacia la izquierda. Si selecciona cualquier punto en la cola más larga de la izquierda, la media es menor que la moda. Esta condición se conoce como asimetría negativa.
+
+- El gráfico del lado izquierdo tiene una cola que es más larga en el lado derecho. Si selecciona cualquier punto en la cola derecha, el valor medio es mayor que la moda. Esta condición se conoce como asimetría positiva.
+
+- El gráfico del medio tiene una cola derecha que es igual que la cola izquierda. Esta condición se conoce como condición simétrica.
+
+Diferentes bibliotecas de Python tienen funciones para obtener la asimetría del conjunto de datos. La biblioteca `SciPy` tiene la función `scipy.stats.skew(dataset)`. Usando la biblioteca `pandas` , podemos calcular la asimetría en nuestro marco de datos usando la función 
+```python
+df.skew()
+```
+Además, también podemos calcular la asimetría a nivel de columna. Por ejemplo, la inclinación de la altura de la columna se puede calcular utilizando el método . función.df.loc[:,"height"].skew()
+
+### Curtosis:
+
+La curtosis es una medida estadística que ilustra en qué medida las colas de la distribución difieren de las de una distribución normal. Esta técnica puede identificar si una distribución determinada contiene valores extremos.
+
+Pero espera, ¿no es eso similar a lo que hacemos con la asimetría? No precisamente. La asimetría normalmente mide la simetría de la distribución dada. Por otro lado, la curtosis mide el peso de las colas de distribución.
+
+La curtosis, a diferencia de la asimetría, no se trata de picos o planitud. Es la medida de la presencia de valores atípicos en una distribución determinada. Tanto la curtosis alta como la baja son un indicador de que los datos necesitan más investigación. Cuanto mayor es la curtosis, mayores son los valores atípicos.
+
+#### Tipos de curtosis
+Hay tres tipos de curtosis: mesocúrtica, leptocúrtica y platicúrtica. Veamos estos uno por uno:
+
+- `Mesocúrtico` : si algún conjunto de datos sigue una distribución normal, sigue una distribución mesocúrtica. Tiene curtosis alrededor de 0.
+
+- `Leptocúrtico` : en este caso, la distribución tiene curtosis mayor que 3 y las colas gruesas indican que la distribución produce más valores atípicos.
+
+- `Platicúrtica`: En este caso, la distribución tiene curtosis negativa y las colas son muy delgadas en comparación con la distribución normal.
+
+Los tres tipos de curtosis se muestran en el siguiente diagrama:
+
+|[Tipos de Curtosis](https://fer78docs.github.io/assets/images/tipos_curtuosis.webp)
+
+Diferentes bibliotecas de Python tienen funciones para obtener la curtosis del conjunto de datos. La biblioteca `SciPy` tiene la función `scipy.stats.kurtosis(dataset)` . Usando la biblioteca pandas , calculamos la curtosis de nuestro marco de datos usando la función:
+```python
+# Kurtosis of data in data using skew() function
+kurtosis =df.kurt()
+print(kurtosis)
+
+# Kurtosis of the specific column
+sk_height=df.loc[:,"height"].kurt()
+print(sk_height)
+```
+
+De manera similar, podemos calcular la curtosis de cualquier columna de datos en particular. Por ejemplo, podemos calcular la curtosis de la altura de la columna como df.loc[:,"height"].kurt().
+
+
+### Calcular percentiles
+Los percentiles miden el porcentaje de valores en cualquier conjunto de datos que se encuentran por debajo de un determinado valor. Para calcular percentiles, debemos asegurarnos de que nuestra lista esté ordenada. Un ejemplo sería si dijeras que el percentil 80 de los datos es 130: entonces, ¿qué significa eso? Bueno, simplemente significa que el 80% de los valores están por debajo de 130. Bastante fácil, ¿verdad? Usaremos la siguiente fórmula para esto:
+
+Porciento de x = 
+
+
+
+
+
+
+
 
 ### Visualización de variables cuantitativas
 Si bien las estadísticas resumidas son ciertamente útiles para explorar y cuantificar una característica, puede que nos resulte difícil concentrarnos en un montón de números. Es por eso que la visualización de datos es un elemento tan poderoso de EDA.
@@ -60,7 +138,9 @@ Para variables cuantitativas, los diagramas de caja y los histogramas son dos vi
 La biblioteca de Python `seaborn`, construida sobre `matplotlib`, ofrece las funciones `boxplot()` y `histplot()` para trazar fácilmente datos desde un DataFrame de pandas:
 
 * **Histogramas:** Permiten visualizar la distribución de frecuencias de una variable continua, identificando modas, asimetrías y la forma general de la distribución.
+
 * **Diagramas de caja (Boxplots):** Ofrecen una representación visual de la mediana, los cuartiles y los valores atípicos, y son útiles para comparar distribuciones y detectar outliers.
+
 * **Gráficos de barras:** Son útiles para datos categóricos, mostrando la frecuencia o proporción de cada categoría.
 
 Los resúmenes univariados son esenciales para cualquier análisis de datos, ya que proporcionan los fundamentos para entender cada variable individualmente antes de explorar las relaciones entre múltiples variables.
@@ -72,7 +152,7 @@ Cuando se trata de variables categóricas, las medidas de tendencia central y di
 
 En cambio, una buena manera de resumir las variables categóricas es generar una tabla de frecuencia que contenga el recuento de cada valor distinto. Por ejemplo, puede que nos interese saber cuántos de los listados de alquileres de la ciudad de Nueva York pertenecen a cada distrito. Relacionado, también podemos encontrar qué municipio tiene más listados.
 
-Pandas ofrece el método `.value_counts()` para generar los recuentos de todos los valores en una columna de DataFrame:
+Pandas ofrece el método `.value_counts()` para generar los recuentos de todos los valores en una columna de DataFrame. Tambien podemos ver los primeros 30 valores mas grandes usando la funcion `nlargest()`
 
 ### Proporciones de valor para datos categóricos
 
