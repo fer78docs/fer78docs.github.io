@@ -1,11 +1,16 @@
 ---
 layout: default
-title: Resumenes Univariados
-nav_order: 1
+title: Descriptive Statistics
+nav_order: 2
 parent: Exploratory Data Analysis
 ---
 
-# Resumenes Univariados
+# Estadisticas Descriptivas
+
+Las estadísticas descriptivas ayudan a resumir un conjunto de datos proporcionado e identificar las características más significativas de los datos bajo consideración. 
+
+
+## Resumenes Univariados
 
 Los resúmenes univariados se centran en la descripción y análisis de una sola variable a la vez. Este tipo de análisis es fundamental en estadística y análisis de datos, ya que proporciona una comprensión básica de las características y la distribución de los datos en una dimensión. Los resúmenes univariados son un paso inicial crucial en el análisis exploratorio de datos (EDA) para identificar patrones, tendencias, anomalías y posibles relaciones entre variables. A continuación, se detallan algunos de los conceptos y técnicas más importantes en los resúmenes univariados:
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data Transformation
-nav_order: 4
+nav_order: 1
 parent: Exploratory Data Analysis
 ---
 
@@ -11,16 +11,26 @@ Uno de los pasos fundamentales del Análisis Exploratorio de Datos (EDA) es el `
 En el proceso de preparación de datos, ciertas tareas suelen realizarse en un orden específico para maximizar la eficiencia y efectividad del flujo de trabajo. Aquí está la lista reordenada de acuerdo con un flujo de trabajo típico de limpieza y preparación de datos:
 {: #subir}
 
-1. **[Key restructuring](#Keyrest)** (*reestructuración de claves*) Consiste en transformar claves con significados específicos en claves genéricas para facilitar su uso y análisis. Ejemplo: Cambiar un identificador de producto específico del proveedor a un identificador universal. Este paso a menudo precede a otros procesos, ya que asegura que tienes un sistema de claves coherente y bien definido que es esencial para la integración y el análisis de datos.
-2. [**Data Validation**](#validation) (*validación de datos*) Es el proceso de aplicar reglas o algoritmos para verificar la precisión y la integridad de los datos en relación con ciertos criterios o estándares. Ejemplo: Verificar si los números de teléfono en una base de datos siguen un formato específico. La validación es crucial para identificar tempranamente datos incorrectos o inadecuados antes de proceder con la limpieza y transformación de los datos.
-3. [**Data Cleaning**](#cleaning) (*limpieza de datos*)  Implica la eliminación o corrección de datos inexactos, incompletos, obsoletos o irrelevantes para mejorar la calidad general de los datos. Ejemplo: Eliminar espacios en blanco adicionales alrededor de los valores en una columna de datos. Una vez validados los datos, el siguiente paso es la limpieza, donde se eliminan o corrigen los datos inexactos o incompletos.
-4. **[Data deduplication](#deduplication)** (*deduplicación de datos*) Implica la identificación y eliminación de registros duplicados dentro de un conjunto de datos para mejorar la calidad y la precisión de los datos. Ejemplo: Eliminar entradas duplicadas en una base de datos de clientes. La deduplicación a menudo sigue a la limpieza, ya que los errores de datos identificados y corregidos pueden incluir la eliminación de duplicados.
-5. [**Data derivation**](#derivation) (*derivación de datos*) Implica la creación de nuevas variables o atributos a partir de datos existentes utilizando reglas o algoritmos definidos. Ejemplo: Calcular la edad de los clientes a partir de su fecha de nacimiento. Después de asegurarse de que los datos están limpios y libres de duplicados, puede ser útil derivar nuevos datos o atributos relevantes para el análisis.
-6. [**Format revisioning**](#revisioning) (*revisión de formato*) Consiste en convertir datos de un formato a otro para facilitar su análisis o integración con otros sistemas. Ejemplo: Convertir una fecha de formato de texto a formato de fecha y hora estándar. Convertir datos a formatos estandarizados es importante para la coherencia y para preparar los datos para la agregación o el análisis.
-7. [**Data aggregation**](#aggregation) (*agregación de datos*) Consiste en buscar, extraer, resumir y preservar información importante en diferentes sistemas de informes para facilitar el análisis. Ejemplo: Sumar las ventas mensuales para obtener ventas anuales totales. Una vez que los datos están limpios y en formatos coherentes, puedes comenzar a agruparlos para resumir y preparar para un análisis más detallado.
-8. [**Data filtering**](#filtering) (*filtrado de datos*) Implica identificar y seleccionar solo los datos relevantes para un análisis específico, descartando datos irrelevantes o no deseados. Ejemplo: Filtrar registros de ventas para mostrar solo transacciones realizadas en un período de tiempo específico. Filtrar los datos para centrarse en subconjuntos relevantes es comúnmente el paso previo a la unión y la integración, asegurando que solo se combinen los datos pertinentes.
-9. **[Data joining](#joining)** (*unión de datos*) Consiste en combinar dos o más conjuntos de datos relacionados mediante una clave común para realizar análisis conjunto. Ejemplo: Unir datos de clientes con datos de pedidos utilizando un identificador único de cliente. Con los datos ya limpios, validados y correctamente estructurados, el siguiente paso es unir los conjuntos de datos relacionados basándose en claves comunes.
-10. [**Data integration**](#integration) (*integración de datos*) Involucra combinar datos de múltiples fuentes y formatos en un único esquema o estructura para análisis coherente. Ejemplo: Integrar datos de ventas de diferentes sucursales en una sola base de datos. Finalmente, una vez que los datos han sido unidos y todas las claves están correctamente alineadas, la integración puede proceder para combinar múltiples fuentes/formats de datos en una estructura cohesiva y lista para el análisis.
+1. **[Key restructuring](#Keyrest)** (*reestructuración de claves*) Consiste en transformar claves con significados específicos en claves genéricas para facilitar su uso y análisis. Ejemplo: Cambiar un identificador de producto específico del proveedor a un identificador universal. 
+
+2. [**Data Validation**](#validation) (*validación de datos*) Es el proceso de aplicar reglas o algoritmos para verificar la precisión y la integridad de los datos en relación con ciertos criterios o estándares. Ejemplo: Verificar si los números de teléfono en una base de datos siguen un formato específico.
+
+3. [**Data Cleaning**](#cleaning) (*limpieza de datos*)  Implica la eliminación o corrección de datos inexactos, incompletos, obsoletos o irrelevantes para mejorar la calidad general de los datos. Ejemplo: Eliminar espacios en blanco adicionales alrededor de los valores en una columna de datos. 
+
+4. **[Data deduplication](#deduplication)** (*deduplicación de datos*) Implica la identificación y eliminación de registros duplicados dentro de un conjunto de datos para mejorar la calidad y la precisión de los datos. Ejemplo: Eliminar entradas duplicadas en una base de datos de clientes. 
+
+5. [**Data derivation**](#derivation) (*derivación de datos*) Implica la creación de nuevas variables o atributos a partir de datos existentes utilizando reglas o algoritmos definidos. Ejemplo: Calcular la edad de los clientes a partir de su fecha de nacimiento. 
+
+6. [**Format revisioning**](#revisioning) (*revisión de formato*) Consiste en convertir datos de un formato a otro para facilitar su análisis o integración con otros sistemas. Ejemplo: Convertir una fecha de formato de texto a formato de fecha y hora estándar. 
+
+7. [**Data aggregation**](#aggregation) (*agregación de datos*) Consiste en buscar, extraer, resumir y preservar información importante en diferentes sistemas de informes para facilitar el análisis. Ejemplo: Sumar las ventas mensuales para obtener ventas anuales totales. 
+
+8. [**Data filtering**](#filtering) (*filtrado de datos*) Implica identificar y seleccionar solo los datos relevantes para un análisis específico, descartando datos irrelevantes o no deseados. Ejemplo: Filtrar registros de ventas para mostrar solo transacciones realizadas en un período de tiempo específico. 
+
+9. **[Data joining](#joining)** (*unión de datos*) Consiste en combinar dos o más conjuntos de datos relacionados mediante una clave común para realizar análisis conjunto. Ejemplo: Unir datos de clientes con datos de pedidos utilizando un identificador único de cliente. 
+
+10. [**Data integration**](#integration) (*integración de datos*) Involucra combinar datos de múltiples fuentes y formatos en un único esquema o estructura para análisis coherente. Ejemplo: Integrar datos de ventas de diferentes sucursales en una sola base de datos. 
+
 
 Este flujo de trabajo es iterativo y puede requerir ajustes en función de las necesidades específicas del proyecto y la naturaleza de los datos. Además, algunos pasos pueden superponerse o requerir ir y volver, especialmente en proyectos complejos o cuando surgen nuevos datos o requisitos de análisis.
 
@@ -30,70 +40,6 @@ La razón principal para transformar los datos es obtener una mejor representaci
 ## Key Restructuring
 {: #Keyrest}
 En el ámbito de la ciencia de datos, "Key Restructuring" se refiere a la reorganización o transformación de las claves en un conjunto de datos. Las "claves" en este contexto suelen ser identificadores únicos o conjuntos de campos que sirven para relacionar registros entre sí. 
-
-### Algunas operaciones de Key Restructuring en SQL:
-
-#### Renombrar Claves (Renombrar Columnas)
-
-```sql
-ALTER TABLE nombre_tabla
-RENAME COLUMN nombre_viejo TO nombre_nuevo;
-```
-
-#### Reasignar Valores de Clave (Actualizar Valores)
-
-```sql
-UPDATE nombre_tabla
-SET columna_clave = 'nuevo_valor'
-WHERE condicion; -- La condición que determina cuándo asignar el nuevo valor.
-```
-
-#### Crear Claves Compuestas (Agregar Claves Primarias Compuestas)
-
-```sql
-ALTER TABLE nombre_tabla
-ADD CONSTRAINT nombre_constraint PRIMARY KEY (columna1, columna2);
-```
-
-#### Eliminación de Claves Innecesarias (Eliminar Columnas)
-
-```sql
-ALTER TABLE nombre_tabla
-DROP COLUMN nombre_columna_innecesaria;
-```
-
-#### Asegurar la Unicidad (Verificar y Eliminar Duplicados)
-
-Primero verificarías la unicidad (esto no es una sentencia SQL sino un proceso que puede involucrar varias consultas y análisis):
-
-```sql
-SELECT columna_clave, COUNT(*)
-FROM nombre_tabla
-GROUP BY columna_clave
-HAVING COUNT(*) > 1;
-```
-
-Y para eliminar duplicados, generalmente se hace una operación más compleja, que puede involucrar eliminar y luego reinsertar los datos limpios, o utilizando una tabla temporal o subconsultas para identificar y mantener solo una fila de cada conjunto de duplicados.
-
-#### Reindexación Basada en Claves (Establecer una Nueva Clave Primaria)
-
-Para reindexar basado en una columna existente (asumiendo que quieres hacer esa columna una nueva clave primaria):
-
-```sql
--- Primero, si ya hay una PK, quítala.
-ALTER TABLE nombre_tabla
-DROP CONSTRAINT pk_nombre_tabla;
-
--- Luego, establece la nueva PK.
-ALTER TABLE nombre_tabla
-ADD PRIMARY KEY (columna_clave);
-```
-
-Recuerda que cada una de estas operaciones puede tener un impacto significativo en la base de datos y deben ser ejecutadas con precaución. Es recomendable realizar una copia de seguridad de los datos antes de hacer cambios estructurales. Además, es importante tener en cuenta las dependencias existentes, como las claves foráneas y las vistas o procedimientos almacenados que pueden verse afectados por estos cambios.
-
-En entornos de producción, estos cambios a menudo se realizan durante ventanas de mantenimiento programadas para minimizar el impacto en los usuarios de la base de datos. Además, las alteraciones en la estructura de la base de datos deben ser revisadas y aprobadas dentro del proceso de control de cambios de la organización para asegurar que se entienden todas las implicaciones y que se manejan correctamente.
-
-### Algunas operaciones de Key Restructuring en Pandas:
 
 #### Renombrar Claves
 Para renombrar claves (es decir, los nombres de las columnas que actúan como claves), puedes utilizar el método `rename()`:
@@ -138,125 +84,6 @@ df.set_index('key_column', inplace=True)
 {: #validation}
 
 El proceso de verificar si los datos cumplen con un conjunto de reglas o normas antes de ser procesados o analizados. Es una etapa crítica en el ciclo de vida de la ciencia de datos, ya que trabajar con datos erróneos o mal formateados puede llevar a conclusiones incorrectas y afectar la calidad de los resultados del análisis. 
-
-### Data Validation en SQL
-En SQL, la validación de datos es un proceso crítico similar al que se realiza en Pandas, pero se lleva a cabo dentro del entorno de una base de datos. Las técnicas de validación de datos en SQL a menudo implican el uso de consultas para verificar la integridad y exactitud de los datos antes de su uso para análisis o informes. A continuación, se presentan algunas técnicas comunes para la validación de datos en SQL:
-
-#### Verificación de Tipos de Datos
-Asegurarte de que las columnas tienen los tipos de datos esperados es un primer paso esencial. 
-
-```sql
-SELECT COLUMN_NAME, DATA_TYPE 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE TABLE_NAME = 'tu_tabla';
-```
-
-#### Restricciones de Integridad
-
-Las restricciones de integridad en las definiciones de tabla ayudan a garantizar que los datos cumplan con ciertos criterios.
-
-- `PRIMARY KEY`:` Asegura que una columna o conjunto de columnas tenga valores únicos.
-- `FOREIGN KEY`: Asegura que los valores de una columna coincidan con valores en otra tabla, manteniendo la integridad referencial.
-- Unicidad `UNIQUE`: Asegura que todos los valores en una columna sean distintos.
-- Restricción de Verificación `CHECK`: Asegura que los valores de una columna cumplan con una condición especificada.
-
-#### Valores Nulos
-
-Verificar la presencia o ausencia de valores nulos puede ser crítico.
-
-```sql
-SELECT COUNT(*) 
-FROM tu_tabla 
-WHERE tu_columna IS NULL;
-```
-
-#### Rangos y Valores Aceptables
-
-Puedes validar que los datos estén dentro de rangos esperados usando cláusulas `WHERE`.
-
-```sql
-SELECT * 
-FROM tu_tabla 
-WHERE tu_columna NOT BETWEEN valor_min AND valor_max;
-```
-
-#### Consistencia de Datos Categóricos
-
-Para asegurar que los datos categóricos sean consistentes, puedes validar contra un conjunto de valores aceptables.
-
-```sql
-SELECT *
-FROM tu_tabla 
-WHERE categoria_columna NOT IN ('Categoria1', 'Categoria2', 'Categoria3');
-```
-
-#### Patrones de Datos
-
-Si esperas que los datos sigan ciertos patrones (como formatos de correo electrónico o números de teléfono), puedes usar expresiones regulares si tu sistema de gestión de base de datos lo soporta (por ejemplo, `RLIKE` o `SIMILAR TO` en algunos sistemas SQL).
-
-```sql
-SELECT * 
-FROM tu_tabla 
-WHERE texto_columna NOT RLIKE 'patron_regex';
-```
-
-#### Valores Duplicados
-
-Para encontrar duplicados, que pueden indicar problemas en la entrada de datos o en los procesos de carga:
-
-```sql
-SELECT columna, COUNT(*) 
-FROM tu_tabla 
-GROUP BY columna 
-HAVING COUNT(*) > 1;
-```
-
-#### Integridad Referencial
-
-Validar que todas las claves foráneas apunten a una clave primaria válida:
-
-```sql
-SELECT * 
-FROM tabla_foranea f
-LEFT JOIN tabla_primaria p
-ON f.clave_foranea = p.clave_primaria
-WHERE p.clave_primaria IS NULL;
-```
-
-#### Data Completeness
-
-Para validar la completitud de los datos, puedes verificar si ciertos campos que siempre deben estar llenos, están efectivamente completos:
-
-```sql
-SELECT * 
-FROM tu_tabla 
-WHERE campo_requerido IS NULL OR campo_requerido = '';
-```
-
-#### Comprobaciones Personalizadas
-
-Para requisitos de validación más complejos, puedes escribir consultas personalizadas o incluso procedimientos almacenados que implementen lógica de validación específica del dominio.
-
-```sql
-SELECT * 
-FROM tu_tabla 
-WHERE NOT (condicion1 AND/OR condicion2);
-```
-
-#### Validación Antes de la Carga de Datos
-
-Antes de cargar datos en una base de datos, es común realizar una serie de comprobaciones para asegurar que los datos que se van a insertar cumplan con las reglas de validación necesarias. Esto puede incluir comprobaciones de limpieza de datos (data cleansing), como eliminar espacios adicionales, estandarizar textos, etc.
-
-```sql
-INSERT INTO tabla_destino
-SELECT *
-FROM tabla_origen
-WHERE condicion_de_validacion;
-```
-
-Recuerda que algunas de estas operaciones pueden ser costosas en términos de rendimiento, especialmente en bases de datos grandes, por lo que deben ser planificadas cuidadosamente, posiblemente ejecutándose durante períodos de baja actividad o implementando índices para optimizar las consultas de validación.
-
-### Validacion de datos en Pandas
 
 En Pandas, hay varias técnicas y herramientas que puedes usar para realizar la validación de datos.
 
@@ -384,124 +211,6 @@ El objetivo es detectar y corregir (o eliminar) registros corruptos o inexactos 
 
 El proceso de limpieza de datos ("data cleaning" en inglés) con Pandas en Python es fundamental para asegurar la calidad de los datos antes de proceder al análisis. El objetivo es detectar y corregir (o eliminar) registros corruptos o inexactos de un conjunto de datos, tratar los valores faltantes, estandarizar o normalizar datos y realizar cualquier otra acción que mejore la calidad de los datos.
 
-### Tareas y métodos típicos para la limpieza de datos en SQL:
-
-Realizar tareas de limpieza de datos en SQL puede variar dependiendo del sistema de gestión de base de datos (DBMS) específico que estés utilizando (como PostgreSQL, MySQL, SQL Server, etc.), ya que las funciones y operaciones disponibles pueden diferir. A continuación, te muestro cómo puedes realizar algunas de estas tareas comunes de limpieza de datos utilizando SQL:
-
-#### Detectar Valores Faltantes
-
-```sql
-SELECT *
-FROM tu_tabla
-WHERE columna IS NULL;
-```
-
-#### Eliminar Datos Faltantes
-
-```sql
-DELETE FROM tu_tabla
-WHERE columna IS NULL;
-```
-
-Eliminar columnas con valores NA generalmente requeriría modificar el esquema de la tabla para eliminar la columna, lo cual no es una operación directamente comparable en SQL.
-
-#### Rellenar Datos Faltantes
-
-En SQL, rellenar datos faltantes puede ser más complejo y depende del DBMS. Un ejemplo usando `COALESCE` en PostgreSQL para rellenar valores nulos con un valor específico:
-
-```sql
-UPDATE tu_tabla
-SET columna = COALESCE(columna, 'valor_por_defecto');
-```
-
-#### Conversión de Tipos de Datos
-
-```sql
-ALTER TABLE tu_tabla
-ALTER COLUMN columna TYPE nuevo_tipo USING columna::nuevo_tipo;
-```
-
-#### Normalización de Cadenas de Texto
-
-Convertir texto a minúsculas o mayúsculas:
-
-```sql
--- PostgreSQL
-UPDATE tu_tabla
-SET columna = LOWER(columna);
-
-UPDATE tu_tabla
-SET columna = UPPER(columna);
-```
-
-Eliminar espacios al inicio y al final:
-
-```sql
--- PostgreSQL
-UPDATE tu_tabla
-SET columna = TRIM(columna);
-```
-
-#### Aplicación de una Función Personalizada
-
-Dependiendo del sistema, podrías definir funciones personalizadas (por ejemplo, en PostgreSQL con PL/pgSQL) y luego aplicarlas en tus consultas.
-
-#### Descomposición y Extracción de Características
-
-Separar una columna en varias basándose en un delimitador:
-
-```sql
--- PostgreSQL
-SELECT SPLIT_PART(columna, ' ', 1) AS primera_parte,
-       SPLIT_PART(columna, ' ', 2) AS segunda_parte
-FROM tu_tabla;
-```
-
-Extraer grupos utilizando expresiones regulares:
-
-```sql
--- PostgreSQL
-SELECT SUBSTRING(columna FROM '(\d+)') AS numero_extraido
-FROM tu_tabla;
-```
-
-#### Mapeo de Datos a un Rango o a Categorías
-
-Cambiar valores específicos en una columna:
-
-```sql
-UPDATE tu_tabla
-SET columna = CASE
-    WHEN columna = 'old_value' THEN 'new_value'
-    ELSE columna
-END;
-```
-
-#### Trabajo con Fechas y Horas
-
-Convertir una cadena a fecha y hora:
-
-```sql
--- PostgreSQL
-UPDATE tu_tabla
-SET columna_fecha = TO_DATE(columna, 'YYYY-MM-DD')
-WHERE columna IS NOT NULL;
-```
-
-Descomponer fechas en componentes más detallados:
-
-```sql
-SELECT EXTRACT(YEAR FROM columna_fecha) AS año,
-       EXTRACT(MONTH FROM columna_fecha) AS mes,
-       EXTRACT(DAY FROM columna_fecha) AS día
-FROM tu_tabla;
-```
-
-Cada uno de estos ejemplos muestra cómo algunas de las tareas de limpieza de datos realizadas comúnmente en Pandas pueden ser aplicadas en SQL. Es importante notar que la sintaxis específica y las funciones disponibles pueden variar entre diferentes sistemas de gestión de bases de datos.
-
-
-### Tareas y métodos típicos usados en Pandas para la limpieza de datos:
-
 #### Detectar valores faltantes:
 
 ```python
@@ -609,54 +318,6 @@ La deduplicación de datos, en el contexto de la ciencia de datos, es el proceso
 
 ![Data Deduplicaction](https://fer78docs.github.io/assets/images/data_deduplication.webp)
 
-### Data Deduplication en SQL
-
-La deduplicación de datos se puede lograr mediante varios métodos, como la palabra clave `DISTINCT`, `GROUP BY` o funciones de ventana como `ROW_NUMBER()`. Supongamos que tenemos un conjunto de datos con datos de ventas de una tienda online. El conjunto de datos puede contener registros duplicados debido a diversos motivos, como fallas del sistema, problemas de integración de datos o múltiples entradas para la misma transacción.
-
-| transaction_id | product_id | sale_amount | sale_date  |
-|----------------|------------|-------------|------------|
-| 1              | ABC123     | 100         | 2023-07-01 |
-| 2              | DEF456     | 50          | 2023-07-02 |
-| 3              | GHI789     | 75          | 2023-07-03 |
-| 4              | ABC123     | 100         | 2023-07-01 |
-| 5              | XYZ999     | 200         | 2023-07-04 |
-
-
-Creando una nueva tabla con registros deduplicados usando `DISTINCT`:
-
-```sql
-CREATE TABLE sales_data_dedup AS
-SELECT DISTINCT transaction_id, product_id, sale_amount, sale_date
-FROM sales_data;
-```
-
-Podemos usar `GROUP BY` para agrupar los registros según columnas específicas y luego aplicar funciones agregadas como `SUM`, `COUNT`, etc. En este caso, usaremos GROUP BY para eliminar duplicados.
-
-Creando una nueva tabla con registros deduplicados usando `GROUP BY`:
-```sql
-CREATE TABLE sales_data_dedup AS
-SELECT transaction_id, product_id, sale_amount, sale_date
-FROM sales_data
-GROUP BY transaction_id, product_id, sale_amount, sale_date;
-```
-Es importante tener en cuenta que cuando se utiliza `GROUP BY` para eliminar duplicados, no se garantiza el orden de las filas dentro de cada grupo. Si el orden de las filas es significativo, considere usar la función de ventana `ROW_NUMBER()` para eliminar duplicados manteniendo el orden deseado.
-
-La función de ventana `ROW_NUMBER()` asigna un número entero único a cada fila según el orden especificado. Al usar esta función y seleccionar solo filas con `ROW_NUMBER() = 1`, podemos deduplicar los datos.
-
-nueva tabla con registros deduplicados usando ROW_NUMBER(): 
-
-```sql
-CREATE TABLE sales_data_dedup AS
-SELECT transaction_id, product_id, sale_amount, sale_date
-FROM ( SELECT transaction_id, product_id, sale_amount, sale_date,
-        ROW_NUMBER() OVER (PARTITION BY transaction_id, product_id, sale_amount, sale_date ORDER BY transaction_id) as row_num
-FROM sales_data) t
-WHERE row_num = 1;
-```
-
-En todos los métodos, deduplicamos con éxito los datos de ventas y creamos una nueva tabla sales_data_dedup que contiene registros únicos.
-
-### Data Deduplication en Python
 
 #### Estrategias de Deduplicación en la Práctica
 - Análisis Exploratorio de Datos (EDA): Antes de eliminar duplicados, es importante realizar un EDA para entender por qué aparecen duplicados y asegurarse de que su eliminación no sesgará los análisis posteriores.
@@ -682,93 +343,6 @@ df = df.duplicates()
 ## Data Derivation
 {: #derivation}
 Se refiere al proceso de crear nuevos datos basados en datos ya existentes. Esto implica aplicar un conjunto de reglas o algoritmos para extraer o generar información adicional a partir de los datos originales. En la ciencia de datos, es una técnica comúnmente utilizada para enriquecer el conjunto de datos y facilitar el análisis posterior o la construcción de modelos de aprendizaje automático.
-
-### Ejemplos Comunes de Data Derivation en SQL:
-La derivación de datos en SQL, especialmente en el contexto de la ciencia de datos, implica la creación de nuevos datos a partir de los existentes mediante el uso de consultas y operaciones de SQL. Este proceso es fundamental para extraer información útil, crear características para el análisis o modelado predictivo, y enriquecer el conjunto de datos con perspectivas adicionales. Aquí te muestro cómo llevar a cabo algunas tareas comunes de derivación de datos en SQL:
-
-#### Cálculo de Estadísticas Descriptivas
-Puedes calcular estadísticas como la media, mediana, suma, mínimo y máximo directamente en SQL. 
-```sql
-SELECT AVG(columna_numerica) AS media,
-       SUM(columna_numerica) AS suma,
-       MIN(columna_numerica) AS minimo,
-       MAX(columna_numerica) AS maximo
-FROM tu_tabla;
-```
-
-#### Transformaciones y Operaciones Matemáticas
-SQL permite realizar operaciones matemáticas básicas directamente en las consultas, lo que facilita la transformación de datos numéricos.
-
-```sql
-SELECT columna_numerica * 100 AS columna_porcentaje
-FROM tu_tabla;
-```
-
-#### Extracción de Componentes de Fecha y Hora
-Las funciones de fecha y hora en SQL son extremadamente útiles para descomponer campos de fecha y hora en componentes como el año, mes, día, hora, etc.
-
-```sql
-SELECT EXTRACT(YEAR FROM columna_fecha) AS anno,
-       EXTRACT(MONTH FROM columna_fecha) AS mes,
-       EXTRACT(DAY FROM columna_fecha) AS dia
-FROM tu_tabla;
-```
-
-#### Creación de Variables Categóricas
-Puedes usar `CASE` o funciones similares para convertir variables numéricas en categóricas o para crear banderas basadas en ciertas condiciones.
-
-```sql
-SELECT *,
-       CASE
-           WHEN columna_numerica > 100 THEN 'Alto'
-           WHEN columna_numerica BETWEEN 50 AND 100 THEN 'Medio'
-           ELSE 'Bajo'
-       END AS categoria
-FROM tu_tabla;
-```
-
-#### Agregación de Datos
-La agregación de datos a nivel de grupo es fundamental en la ciencia de datos para resumir información. SQL hace esto eficientemente con `GROUP BY`.
-
-```sql
-SELECT categoria, AVG(columna_numerica) AS media_categoria
-FROM tu_tabla
-GROUP BY categoria;
-```
-
-#### Unión de Tablas para Enriquecer Datos
-
-La combinación de datos de múltiples tablas a través de `JOIN` permite enriquecer el conjunto de datos original con información adicional, crucial para análisis complejos y modelado.
-
-```sql
-SELECT a.*, b.informacion_adicional
-FROM tabla_principal a
-LEFT JOIN tabla_secundaria b ON a.id = b.id_relacionado;
-```
-
-#### Cálculo de Diferencias Temporales
-
-Para series temporales o datos ordenados, calcular la diferencia en tiempo entre eventos puede revelar insights importantes.
-
-```sql
-SELECT id,
-       columna_fecha,
-       columna_fecha - LAG(columna_fecha) OVER (ORDER BY columna_fecha) AS diferencia_dias
-FROM tu_tabla;
-```
-
-#### Manipulación de Texto
-
-SQL también permite realizar operaciones básicas de manipulación de texto, como concatenación, extracción de subcadenas y aplicación de expresiones regulares.
-
-```sql
-SELECT CONCAT(columna_texto1, ' ', columna_texto2) AS texto_combinado
-FROM tu_tabla;
-```
-
-
-
-### Ejemplos Comunes de Data Derivation en Pandas:
 
 #### Cálculo de características estadísticas:
 A partir de datos numéricos, se pueden derivar medias, medianas, desviaciones estándar, sumas, etc., ya sea a lo largo del tiempo, por categorías, o para el conjunto de datos completo.
@@ -882,42 +456,173 @@ Conversión y extracción de componentes de fechas:**
   df['año'] = df['datetime'].dt.year
   ```
 
-### Formateo de Datos Categóricos
-
-- **Conversión a categorías:**
-  Para datos con un número limitado de valores únicos, convertirlos a tipo categórico puede ser más eficiente en términos de memoria.
+#### Conversión a categorías
+Para datos con un número limitado de valores únicos, convertirlos a tipo categórico puede ser más eficiente en términos de memoria.
   
-  ```python
-  df['categoría'] = df['categoría'].astype('category')
-  ```
+```python
+df['categoría'] = df['categoría'].astype('category')
+```
 
 ### Exportación a Diferentes Formatos
 
-Una vez que los datos están en el formato deseado, Pandas ofrece múltiples funciones para exportar los datos a diversos formatos para su uso en otras aplicaciones, análisis o almacenamiento.
+Una vez que los datos están en el formato deseado, Pandas ofrece múltiples funciones para exportar los datos a diversos formatos para su uso en otras aplicaciones, análisis o almacenamiento. 
 
-- **CSV, Excel, JSON, HTML, SQL, y más:**
-  
-  ```python
-  df.to_csv('datos.csv', index=False)
-  df.to_excel('datos.xlsx', sheet_name='Hoja 1', index=False)
-  df.to_json('datos.json')
-  df.to_html('datos.html')
-  df.to_sql('nombre_tabla', con=conexion, if_exists='replace', index=False)
-  ```
-
-### Resumen
-
-La revisión de formato en Pandas es una parte fundamental del proceso de limpieza y preparación de datos, que asegura que los datos estén en el formato correcto y listos para análisis posteriores. Estos métodos y tareas permiten a los científicos de datos manipular y transformar los datos de manera eficiente, preparándolos para un análisis más profundo o para la visualización.
+```python
+df.to_csv('datos.csv', index=False)
+df.to_excel('datos.xlsx', sheet_name='Hoja 1', index=False)
+df.to_json('datos.json')
+df.to_html('datos.html')
+df.to_sql('nombre_tabla', con=conexion, if_exists='replace', index=False)
+```
 
 
 #### [Top](#subir)
 ## Data aggregation
 {: #aggregation}
 
+La agregación de datos es un paso crítico en el análisis de datos, particularmente útil para resumir o extraer información valiosa de un conjunto de datos. En Pandas, esta fase implica combinar datos de múltiples filas en un solo resumen. Aquí hay una visión general de las tareas y métodos comunes utilizados en Pandas para la agregación de datos:
+
+#### GroupBy: Agrupación de Datos
+
+La función `.groupby()` es central para la mayoría de las tareas de agregación en Pandas. Permite agrupar datos en categorías basadas en una o más columnas y aplicar una función de agregación a cada grupo.
+
+```python
+df.groupby('columna_categorica')['columna_a_agregar'].sum()
+```
+
+#### Agregaciones Múltiples con .agg()
+
+Puedes realizar múltiples agregaciones en un solo paso con el método `.agg()`, pasando una lista de funciones de agregación que quieres aplicar a las columnas.
+
+```python
+df.groupby('columna_categorica').agg({'columna_a_agregar1': 'sum',
+                                       'columna_a_agregar2': ['mean', 'std']})
+```
+
+#### Pivot Tables: Tablas Pivote
+
+Las tablas pivote son útiles para resumir datos y ver la relación entre dos dimensiones de manera tabular. En Pandas, puedes crear una tabla pivote con `.pivot_table()`.
+
+```python
+df.pivot_table(values='columna_a_agregar', index='columna_categorica', columns='otra_columna_categorica', aggfunc='mean')
+```
+
+#### Crosstab: Tablas de Contingencia
+
+Para agregación de frecuencias o conteo cruzado entre dos (o más) columnas, puedes usar la función `pd.crosstab()`.
+
+```python
+pd.crosstab(df['columna_categorica1'], df['columna_categorica2'])
+```
+
+#### Rolling y Expanding: Agregaciones Móviles
+
+Para series temporales, a menudo es útil calcular estadísticas móviles (como la media móvil) o estadísticas acumulativas. Pandas ofrece `.rolling()` y `.expanding()` para estos propósitos.
+
+```python
+df['columna_numerica'].rolling(window=5).mean()  # Media móvil
+df['columna_numerica'].expanding().sum()         # Suma acumulativa
+```
+
+#### Resample: Reagrupación Temporal
+
+El método `.resample()` es específicamente útil para series temporales, permitiendo cambiar la frecuencia de los datos (por ejemplo, de diaria a mensual) y aplicar una función de agregación.
+
+```python
+df.resample('M')['columna_numerica'].sum()
+```
+
+#### Transform: Aplicación de Transformaciones con Retención de Forma
+
+A veces, necesitas aplicar una función de agregación pero mantener el mismo tamaño del DataFrame original. Esto es posible con `.transform()`.
+
+```python
+df.groupby('columna_categorica')['columna_numerica'].transform('mean')
+```
+
+#### Métodos de Agregación Personalizados
+
+Para necesidades de agregación más específicas, puedes definir tus propias funciones de agregación y aplicarlas usando `.apply()` en un DataFrame o Serie agrupado.
+
+```python
+def rango(x):
+    return x.max() - x.min()
+
+df.groupby('columna_categorica')['columna_numerica'].apply(rango)
+```
 
 #### [Top](#subir)
 ## Data Filtering
 {: #filtering}
+
+El filtrado de datos es una etapa crucial en el análisis de datos que implica seleccionar subconjuntos de datos basados en ciertos criterios. En Pandas, esto generalmente se realiza utilizando condiciones booleanas, métodos específicos y funcionalidades de indexación. Estos métodos permiten a los usuarios seleccionar datos que cumplan con condiciones específicas, excluyendo aquellos que no las cumplen. Aquí te explico algunas tareas y métodos comunes utilizados en Pandas para el filtrado de datos:
+
+#### Filtrado Básico con Condiciones Booleanas
+
+Puedes usar condiciones booleanas directamente en un DataFrame para filtrar filas. Este es el método más directo y se basa en operadores de comparación.
+
+```python
+df_filtrado = df[df['columna'] > valor]
+```
+
+#### Uso de `.loc[]` para Filtrado Avanzado
+
+El método `.loc[]` permite filtrar filas y seleccionar columnas por etiqueta. Es útil para aplicar condiciones complejas.
+
+```python
+df_filtrado = df.loc[df['columna'] > valor, ['columna1', 'columna2']]
+```
+
+#### Uso de `.query()` para Filtrado con Expresiones de Cadenas
+
+El método `.query()` permite filtrar un DataFrame utilizando una expresión de cadena que puede ser más legible y concisa, especialmente para filtros complejos.
+
+```python
+df_filtrado = df.query('columna > valor')
+```
+
+#### Filtrado Basado en Índices
+
+Si el DataFrame tiene un índice significativo (por ejemplo, fechas), puedes filtrar basándote en este índice directamente.
+
+```python
+df_filtrado = df[df.index > '2022-01-01']
+```
+
+#### Uso de Métodos Específicos para Filtrar
+
+Pandas ofrece métodos específicos que facilitan el filtrado de datos basado en condiciones comunes, como `.isin()`, `.between()`, y `.isnull()`.
+
+```python
+# Filtrado de valores dentro de una lista
+df_filtrado = df[df['columna'].isin([valor1, valor2])]
+
+# Filtrado de valores dentro de un rango
+df_filtrado = df[df['columna'].between(valor_min, valor_max)]
+
+# Filtrado de valores nulos o no nulos
+df_filtrado = df[df['columna'].isnull()]
+df_no_nulos = df[df['columna'].notnull()]
+```
+
+#### Filtrado con Funciones Personalizadas
+
+Para criterios de filtrado más complejos, puedes utilizar el método `.apply()` junto con una función personalizada.
+
+```python
+df_filtrado = df[df['columna'].apply(lambda x: mi_funcion_personalizada(x))]
+```
+
+#### Combinación de Condiciones
+
+Para filtros más complejos, puedes combinar múltiples condiciones usando operadores lógicos (`&` para AND, `|` para OR).
+
+```python
+df_filtrado = df[(df['columna1'] > valor1) & (df['columna2'] < valor2)]
+```
+
+Estas técnicas de filtrado son esenciales para preparar y limpiar tus datos antes del análisis, permitiéndote enfocarte en los segmentos de datos más relevantes para tus necesidades de análisis.
+
 
 #### [Top](#subir)
 ## Data joining
@@ -925,7 +630,6 @@ La revisión de formato en Pandas es una parte fundamental del proceso de limpie
 
 "Data Joining" se refiere al proceso de combinar dos o más conjuntos de datos basándose en una columna común o índice para crear un único conjunto de datos integrado. Los métodos utilizados para el data joining en ciencia de datos se inspiran en gran medida en las operaciones de unión de bases de datos relacionales. 
 
-### Pandas
 Pandas proporciona varios métodos para combinar y comparar Series o DataFrames.Los metodos para unir marcos de datos con Pandas son:  `append()`, `concat()`, `merge()` o `join()`. El metodo `compare()` muestra las diferencias en valores entre dos Series o DataFrame.
 
 - [`concat()`](#concat): fusiona varias Series o DataFrames a lo largo de un índice o columna compartido.
@@ -935,8 +639,6 @@ Pandas proporciona varios métodos para combinar y comparar Series o DataFrames.
 - [`compare()`](#compare): muestra las diferencias en valores entre dos Series o DataFrames.
 - `merge_ordered()`: Combina dos Series o DataFrames a lo largo de un eje ordenado
 - `merge_asof()`: Combina dos Series o DataFrames con keys coincidentes cercanas en lugar de exactas
-
-
 
 ### pd.concat()
 {: #concat}
@@ -1066,3 +768,4 @@ df1.compare(df2)
 #### [Top](#subir)
 ## Data Integration
 {: #integration}
+
