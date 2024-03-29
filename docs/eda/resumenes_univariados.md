@@ -102,7 +102,7 @@ Hay tres tipos de curtosis: mesocúrtica, leptocúrtica y platicúrtica. Veamos 
 
 Los tres tipos de curtosis se muestran en el siguiente diagrama:
 
-|[Tipos de Curtosis](https://fer78docs.github.io/assets/images/tipos_curtuosis.webp)
+![Tipos de Curtosis](https://fer78docs.github.io/assets/images/tipos_curtuosis.webp)
 
 Diferentes bibliotecas de Python tienen funciones para obtener la curtosis del conjunto de datos. La biblioteca `SciPy` tiene la función `scipy.stats.kurtosis(dataset)` . Usando la biblioteca pandas , calculamos la curtosis de nuestro marco de datos usando la función:
 ```python
