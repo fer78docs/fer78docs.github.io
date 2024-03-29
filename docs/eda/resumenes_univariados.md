@@ -119,14 +119,80 @@ De manera similar, podemos calcular la curtosis de cualquier columna de datos en
 
 
 ### Calcular percentiles
-Los percentiles miden el porcentaje de valores en cualquier conjunto de datos que se encuentran por debajo de un determinado valor. Para calcular percentiles, debemos asegurarnos de que nuestra lista esté ordenada. Un ejemplo sería si dijeras que el percentil 80 de los datos es 130: entonces, ¿qué significa eso? Bueno, simplemente significa que el 80% de los valores están por debajo de 130. Bastante fácil, ¿verdad? Usaremos la siguiente fórmula para esto:
+Los percentiles miden el porcentaje de valores en cualquier conjunto de datos que se encuentran por debajo de un determinado valor. Para calcular percentiles, debemos asegurarnos de que nuestra lista esté ordenada. Un ejemplo sería si dijeras que el percentil 80 de los datos es 130: entonces, ¿qué significa eso? Bueno, simplemente significa que el 80% de los valores están por debajo de 130.
+La formula es:
 
-Porciento de x = 
+percentil de x = (numero de valores menores de x / total de numeros observados) * 100
+
+Supongamos que tenemos los datos dados: 1, 2, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10. Entonces el valor percentil de 4 = (4/12) * 100 = 33,33%. Esto simplemente significa que el 33,33% de los datos son menores que 4.
+
+```python
+import numpy as np
+# Calcular el percentil 50% 
+percent = np.percentile(df['column'], 50,)
+```
 
 
+### Cuartiles
 
+Dado un conjunto de datos ordenado en orden ascendente, los cuartiles son los valores que dividen el conjunto de datos dado en cuartos. Los cuartiles se refieren a los tres puntos de datos que dividen el conjunto de datos dado en cuatro partes iguales, de modo que cada división representa el 25% del conjunto de datos. En términos de percentiles, el percentil 25 se denomina primer cuartil (Q1), el percentil 50 se denomina segundo cuartil (Q2) y el percentil 75 se denomina tercer cuartil (Q3).
 
+Según el cuartil, existe otra medida llamada rango intercuartil que también mide la variabilidad en el conjunto de datos. Se define de la siguiente manera:
 
+IQR = Q3 - Q1
+
+El IQR no se ve afectado por la presencia de valores atípicos. 
+
+```python
+column = df.column.sort_values()
+Q1 = np.percentile(column, 25)
+Q2 = np.percentile(column, 50)
+Q3 = np.percentile(column, 75)
+
+IQR = Q3 - Q1
+IQR
+```
+
+#### Visualizar cuartiles
+
+Si queremos trazar el diagrama de caja para un solo sujeto, podemos hacerlo usando la función `plt.boxplot()`
+
+```python
+plt.boxplot(serie, showmeans=True, whis = 99)
+```
+![Diagrama de Caja](https://fer78docs.github.io/assets/images/diagrama_caja.webp)
+
+El diagrama anterior ilustra el hecho de que la caja va del cuartil superior al inferior (alrededor de 62 y 73), mientras que los bigotes (las barras que se extienden desde la caja) van hasta un mínimo de 56 y un máximo de 90. La línea roja es la mediana (alrededor de 67), mientras que el pequeño triángulo (color verde) es la media.
+
+Ahora, agreguemos también diagramas de caja para otros temas. Podemos hacer esto fácilmente combinando todas las puntuaciones en una sola variable:
+
+```python
+box = plt.boxplot(scores, showmeans=True, whis=99)
+
+plt.setp(box['boxes'][0], color='blue')
+plt.setp(box['caps'][0], color='blue')
+plt.setp(box['caps'][1], color='blue')
+plt.setp(box['whiskers'][0], color='blue')
+plt.setp(box['whiskers'][1], color='blue')
+
+plt.setp(box['boxes'][1], color='red')
+plt.setp(box['caps'][2], color='red')
+plt.setp(box['caps'][3], color='red')
+plt.setp(box['whiskers'][2], color='red')
+plt.setp(box['whiskers'][3], color='red')
+
+plt.ylim([20, 95]) 
+plt.grid(True, axis='y') 
+plt.title('Distribution of the scores in three subjects', fontsize=18) 
+plt.ylabel('Total score in that subject') 
+plt.xticks([1,2,3], ['Physics','Literature','Computer'])
+
+plt.show()
+```
+
+![Diagrama de Caja](https://fer78docs.github.io/assets/images/digrama_varios_variables.webp)
+
+Del gráfico se desprende que la puntuación mínima obtenida por los estudiantes rondaba el 32, mientras que la puntuación máxima obtenida era 90, que fue en la asignatura de informática.
 
 
 
