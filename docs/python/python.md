@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Pandas
+title: Python
 nav_order: 2
-parent: Python
 has_children: true
 ---
