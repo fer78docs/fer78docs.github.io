@@ -32,3 +32,15 @@ En términos de fuerza de la relación, el valor de la correlación entre dos va
 Echemos un vistazo a algunos ejemplos que utilizan diagramas de dispersión. Los diagramas de dispersión muestran cuánto se ve afectada una variable por otra:
 
 ![Correlacion](https://fer78docs.github.io/assets/images/correlation_tipes.webp)
+
+## Análisis Bivariado
+
+Como su nombre indica, se trata del análisis de más de un (es decir, exactamente dos) tipo de variable. El análisis bivariado se utiliza para saber si existe una relación entre dos variables diferentes. Cuando creamos un diagrama de dispersión trazando una variable frente a otra en un plano cartesiano (piense en los ejes x e y), nos da una idea de lo que los datos intentan decirnos. Si los puntos de datos parecen ajustarse a la línea o curva, entonces existe una relación o correlación entre las dos variables. Generalmente, el análisis bivariado nos ayuda a predecir un valor para una variable (es decir, una variable dependiente) si conocemos el valor de la variable independiente.
+
+A continuación se muestra un diagrama que muestra un diagrama de dispersión de los dólares en publicidad y las tasas de ventas durante un período de tiempo:
+
+![Analisis Bivariado](https://fer78docs.github.io/assets/images/analisis_bivariado.webp)
+
+Este diagrama es el diagrama de dispersión para el análisis bivariado, donde los dólares de ventas y publicidad son dos variables. Al trazar un diagrama de dispersión, podemos ver que los valores de las ventas dependen de los dólares de publicidad; es decir, a medida que aumentan los dólares de publicidad, también aumentan los valores de ventas. Esta comprensión de la relación entre dos variables nos guiará en nuestras predicciones futuras:
+
+Ahora es el momento de realizar un análisis bivariado en nuestro conjunto de datos de automóviles. Veamos si los caballos de fuerza son un factor dependiente del precio de los automóviles o no:

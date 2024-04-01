@@ -7,10 +7,14 @@ parent: Exploratory Data Analysis
 
 # Estadisticas Descriptivas
 
-Las estadísticas descriptivas ayudan a resumir un conjunto de datos proporcionado e identificar las características más significativas de los datos bajo consideración. 
+Las estadísticas descriptivas ayudan a resumir un conjunto de datos proporcionado e identificar las características más significativas de los datos bajo consideración.
+
+## Tipos de análisis
+
+En esta sección, exploraremos diferentes tipos de análisis. Comenzaremos con el análisis univariado, luego pasaremos al análisis bivariado y, finalmente, discutiremos el análisis multivariado.
 
 
-## Resumenes Univariados
+## Analisis Univariado
 
 Los resúmenes univariados se centran en la descripción y análisis de una sola variable a la vez. Este tipo de análisis es fundamental en estadística y análisis de datos, ya que proporciona una comprensión básica de las características y la distribución de los datos en una dimensión. Los resúmenes univariados son un paso inicial crucial en el análisis exploratorio de datos (EDA) para identificar patrones, tendencias, anomalías y posibles relaciones entre variables. A continuación, se detallan algunos de los conceptos y técnicas más importantes en los resúmenes univariados:
 
