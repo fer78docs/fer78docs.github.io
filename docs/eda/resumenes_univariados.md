@@ -194,6 +194,144 @@ plt.show()
 
 Del gráfico se desprende que la puntuación mínima obtenida por los estudiantes rondaba el 32, mientras que la puntuación máxima obtenida era 90, que fue en la asignatura de informática.
 
+### Agrupación de conjuntos de datos
+
+Durante el análisis de datos, a menudo es esencial agrupar o agrupar datos según ciertos criterios. Por ejemplo, una tienda de comercio electrónico podría querer agrupar todas las ventas que se realizaron durante el período navideño o los pedidos que se recibieron el Black Friday. Estos conceptos de agrupación ocurren en varias partes del análisis de datos.
+
+La funcion `goupby()` proporciona funcionalidades que nos permiten dividir, aplicar y combinar en todo el marco de datos.
+
+#### Mecánica grupal
+
+Mientras trabajamos con los pandasmarcos de datos, nuestro análisis puede requerir que dividamos nuestros datos según ciertos criterios. Los mecánicos de Groupby acumulan nuestro conjunto de datos en varias clases en las que podemos realizar ejercicios y realizar cambios, como los siguientes:
+
+- Agrupar por características, jerárquicamente
+- Agregar un conjunto de datos por grupos
+- Aplicar funciones de agregación personalizadas a grupos
+- Transformar un conjunto de datos en grupo
+
+El método pandas groupby realiza dos funciones esenciales:
+
+- Divide los datos en grupos según algunos criterios.
+- Aplica una función a cada grupo de forma independiente.
+
+```python
+# Group the dataset by the column body-style
+style = df.groupby('body-style')
+
+# Get values items from group with value convertible 
+style.get_group("convertible")
+
+# formar grupos basados ​​en múltiples categorías
+df.groupby(["body-style","drive-wheels"])
+```
+
+No solo podemos agrupar el conjunto de datos con criterios específicos, sino que también podemos realizar operaciones aritméticas directamente en todo el grupo al mismo tiempo e imprimir el resultado como una serie o marco de datos. Existen funciones como `max()`, `min()`, `mean()`, `first()` y `last()` que se pueden aplicar directamente al objeto GroupBy para obtener estadísticas resumidas para cada grupo.
+
+```python
+# max() will print the maximum entry of each group 
+style['normalized-losses'].max()
+
+# min() will print the minimum entry of each group 
+style['normalized-losses'].min()
+
+# calcular la media de todas las variables cuantitativas
+style.mean()
+```
+
+Tenga en cuenta que podemos obtener el promedio de las variables de un dataframe agrupando solo por uno de los valores de una columna categorica, de la siguiente manera:
+
+```python
+# La varibale style tiene como valor el dataframe agrupado por body-style
+style.get_group("convertible").mean()
+```
+
+También podemos aplicar `count()` a variables del dataframe agrupado:
+
+```python
+style['column'].count()
+```
+
+## Data agregation
+
+La agregación es el proceso de implementar cualquier operación matemática en un conjunto de datos o un subconjunto del mismo. La agregación es una de las muchas técnicas de pandas que se utiliza para manipular los datos en el marco de datos para el análisis de datos.
+
+La función `df.aggregate()` se utiliza para aplicar agregación en una o más columnas. Algunas de las agregaciones más utilizadas son las siguientes:
+
+- `sum`: Devuelve la suma de los valores del eje solicitado
+- `min`: Devuelve el mínimo de los valores para el eje solicitado
+- `max`: Devuelve el máximo de los valores para el eje solicitado
+
+Dado que la agregación solo funciona con columnas de tipo numérico, se debe agrupar por  columnas numéricas del conjunto de datos y les apliquemos algunas funciones de agregación:
+
+```python
+# filtrar el dataset agrupado por colummnas numericas
+new_dataset = df.filter(["length","width","height","curb-weight","price"],axis=1)
+
+# applying single aggregation for mean over the columns
+new_dataset.agg("mean", axis="rows")
+
+# encontrar la suma y el mínimo de todas las columnas a la vez  
+new_dataset.agg(['sum', 'min']) 
+```
+
+El resultado es un marco de datos con filas que contienen el resultado de la agregación respectiva que se aplicó a las columnas. Para aplicar funciones de agregación en diferentes columnas, puede pasar un diccionario con una clave que contenga los nombres de las columnas y los valores que contengan la lista de funciones de agregación para cualquier columna específica:
+
+```python
+# find aggregation for these columns 
+new_dataset.aggregate({"length":['sum', 'min'], 
+              "width":['max', 'min'], 
+              "height":['min', 'sum'], 
+              "curb-weight":['sum']}) 
+# if any specific aggregation is not applied on a column
+# then it has NaN value corresponding to it
+```
+
+El resultado del código anterior es el siguiente:
+
+|      | length   | width | height | curb-weight |
+|------|----------|-------|--------|-------------|
+| max  | NaN      | 1.0000| NaN    | NaN         |
+| min  | 0.678039 | 0.8375| 47.8   | NaN         |
+| sum  | 168.257568 | NaN | 10807.1| 513689.0    |
+
+#### Operaciones grupales
+
+Las operaciones más importantes implementadas por groupBy son agregar, filtrar, transformar y aplicar. Una forma eficaz de implementar funciones de agregación en el conjunto de datos es hacerlo después de agrupar las columnas requeridas. La función agregada devolverá un único valor agregado para cada grupo. Una vez creados estos grupos, podemos aplicar varias operaciones de agregación a esos datos agrupados.
+
+```python
+# Group the data frame df by body-style and drive-wheels and extract stats from each group
+df.groupby(["body-style","drive-wheels"]).agg(
+    {
+         'height':min, # minimum height of car in each group
+         'length': max, # maximum length of car in each group
+         'price': 'mean', # average price of car in each group
+        
+    }
+)
+# Podemos crear un diccionario de agregación de funciones que queremos realizar en grupos y luego usarlo más tarde:
+aggregations=(
+    {
+         'height':min, # minimum height of car in each group
+         'length': max, # maximum length of car in each group
+         'price': 'mean', # average price of car in each group
+        
+    }
+)
+# implementing aggregations in groups
+df.groupby(
+   ["body-style","drive-wheels"]
+).agg(aggregations) 
+```
+`numpy` tambien tiene funciones de agregacion que podemos utilizar con `groupby`:
+
+```python
+import numpy as np
+
+df.groupby(
+   ["body-style","drive-wheels"])["price"].agg([np.sum, np.mean, np.std])
+```
+
+
 
 ## Visualización de variables cuantitativas
 Si bien las estadísticas resumidas son ciertamente útiles para explorar y cuantificar una característica, puede que nos resulte difícil concentrarnos en un montón de números. Es por eso que la visualización de datos es un elemento tan poderoso de EDA.
