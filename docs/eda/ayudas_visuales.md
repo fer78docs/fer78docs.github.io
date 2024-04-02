@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Ayudas visuales para EDA
-nav_order: 4
+nav_order: 9
 parent: Exploratory Data Analysis
 ---
 # Ayudas visuales para EDA

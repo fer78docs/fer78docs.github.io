@@ -41,7 +41,17 @@ Como se muestra en el primer y último gráfico, cuanto más cercana sea la dist
 - Una correlación perfecta tiene un valor de 1.
 - Una correlación negativa perfecta tiene un valor de -1.
 
-A una correlación altamente positiva se le asigna un valor más cercano a 1. A una correlación altamente negativa se le asigna un valor más cercano a -1. En el diagrama anterior, +0,8 da una correlación positiva alta y -0,8 da una correlación negativa alta. Cuanto más cerca esté el número de 0 (en el diagrama, esto es +0,3 y -0,3), más débil será la correlación.
+A una correlación altamente positiva se le asigna un valor más cercano a 1. A una correlación altamente negativa se le asigna un valor más cercano a -1. En el diagrama anterior, +0,8 da una correlación positiva alta y -0,8 da una correlación negativa alta. Cuanto más cerca 
+
+## La correlación no implica causa
+
+La correlación no implica causalidad es una frase interesante que escuchará principalmente en estadística y cuando aprenda en detalle sobre ciencia de datos. Pero, ¿qué significa? Bueno, simplemente indica que el hecho de que dos cosas se correlacionen no siempre significa que una cause la otra. Por ejemplo, el invierno noruego es frío y la gente tiende a gastar más dinero en comprar alimentos calientes, como sopa, que en verano. Sin embargo, esto no significa que el clima frío haga que la gente gaste más dinero en sopa. Por lo tanto, aunque el gasto de la gente en Noruega está relacionado con el clima frío, el gasto no es la causa del clima frío. Por tanto, la correlación no es causalidad.
+
+Tenga en cuenta que hay dos términos esenciales en esta frase: correlación y causalidad. La correlación revela cuán fuertemente se relacionan entre sí y cambian juntas las apariencias de las variables. La causalidad explica que cualquier cambio en el valor de una variable provocará una diferencia en la cantidad de otra variable. En este caso, una variable hace que suceda la otra variable. Este fenómeno se conoce como causa y efecto . Por ejemplo, cuando haces ejercicio ( X ), la cantidad de calorías ( Y ) que quemas es mayor cada minuto. Por tanto , X causa Y. 
+
+El ejemplo más común que se encuentra en cualquier libro de análisis de datos es el de las ventas de helados y el aumento y caída de los homicidios. Según este ejemplo, a medida que aumenta la venta de helados, aumenta el número de homicidios. Según la correlación, estos dos eventos están altamente correlacionados. Sin embargo, el consumo de helado no está provocando la muerte de personas. Estas dos cosas no se basan en la teoría de causa y efecto. Por tanto, correlación no significa causalidad.
+
+Entonces, ¿cuál es la conclusión de esta frase crítica? Bueno, en primer lugar, no debemos sacar conclusiones demasiado rápido basándose en la correlación. Es esencial invertir algo de tiempo en encontrar los factores subyacentes de los datos para comprender los factores críticos ocultos.
 
 
 ## Análisis Bivariado

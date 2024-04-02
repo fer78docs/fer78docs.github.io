@@ -62,7 +62,8 @@ Aquí, la correlación entre estas dos variables es 0.80957, que está cerca de 
 Usando la función `corr()` de pandas, la correlación entre todo el registro numérico se puede calcular de la siguiente manera:
 
 ```python
-correlation = df.corr(method='pearson')
+# numeric_only selecciona solo las variables float, int or boolean del dataframe. 
+correlation = df.corr(method='pearson', numeric_only = True)
 correlation
 ```
 
