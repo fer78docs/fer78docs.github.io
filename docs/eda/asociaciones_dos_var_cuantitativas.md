@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Asociaciones dos cuantitativas
-nav_order: 7
-parent: Exploratory Data Analysis
+title: Cuantitative / Cuantitative
+nav_order: 1
+parent: Correlation
+grand_parent: Exploratory Data Analysis
 ---
 
-# Asociaciones: dos variables cuantitativas
+# Correlacion: dos variables cuantitativas
 
 Cuando existen asociaciones entre variables, significa que la información sobre el valor de una variable nos da información sobre el valor de la otra variable. En esta lección, cubriremos formas de examinar una asociación entre dos variables cuantitativas.
 

@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Asociaciones dos categoricas
-nav_order: 7
-parent: Exploratory Data Analysis
+title: Categorical / Categorical
+nav_order: 3
+parent: Correlation
+grand_parent: Exploratory Data Analysis
 ---
 
-# Asociaciones: dos variables categoricas
+# Correlacion: dos variables categoricas
 
 Para tradajar este tema exploraremos una muestra de datos del Inventario de Personalidad Narcisista (NPI-40), una prueba de personalidad con 40 preguntas sobre preferencias personales y visión de uno mismo. Hay dos posibles respuestas a cada pregunta. El ejemplo con el que trabajaremos contiene respuestas a lo siguiente:
 

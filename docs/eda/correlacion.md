@@ -3,6 +3,7 @@ layout: default
 title: Correlation
 nav_order: 3
 parent: Exploratory Data Analysis
+has_children: true
 ---
 
 # Correlación
@@ -33,6 +34,16 @@ Echemos un vistazo a algunos ejemplos que utilizan diagramas de dispersión. Los
 
 ![Correlacion](https://fer78docs.github.io/assets/images/correlation_tipes.webp)
 
+Como se muestra en el primer y último gráfico, cuanto más cercana sea la distancia entre los puntos de datos cuando se trazan para formar una línea recta, mayor será la correlación entre las variables asociadas. Cuanto mayor sea la correlación entre ellas, más fuerte será la relación entre las variables. Cuanto más dispersos se vuelven los puntos de datos cuando se trazan (por lo tanto, no se crean patrones), menor es la correlación entre las dos variables. Aquí, debes observar los siguientes cuatro puntos importantes:
+
+- Cuando la gráfica de puntos de datos tiene una línea recta que pasa por el origen hasta los valores xey , entonces se dice que las variables tienen una correlación positiva .
+- Cuando los puntos de datos se trazan para generar una línea que va desde un valor alto en el eje y a un valor alto en el eje x , se dice que las variables tienen una correlación negativa .
+- Una correlación perfecta tiene un valor de 1.
+- Una correlación negativa perfecta tiene un valor de -1.
+
+A una correlación altamente positiva se le asigna un valor más cercano a 1. A una correlación altamente negativa se le asigna un valor más cercano a -1. En el diagrama anterior, +0,8 da una correlación positiva alta y -0,8 da una correlación negativa alta. Cuanto más cerca esté el número de 0 (en el diagrama, esto es +0,3 y -0,3), más débil será la correlación.
+
+
 ## Análisis Bivariado
 
 Como su nombre indica, se trata del análisis de más de un (es decir, exactamente dos) tipo de variable. El análisis bivariado se utiliza para saber si existe una relación entre dos variables diferentes. Cuando creamos un diagrama de dispersión trazando una variable frente a otra en un plano cartesiano (piense en los ejes x e y), nos da una idea de lo que los datos intentan decirnos. Si los puntos de datos parecen ajustarse a la línea o curva, entonces existe una relación o correlación entre las dos variables. Generalmente, el análisis bivariado nos ayuda a predecir un valor para una variable (es decir, una variable dependiente) si conocemos el valor de la variable independiente.
@@ -43,4 +54,7 @@ A continuación se muestra un diagrama que muestra un diagrama de dispersión de
 
 Este diagrama es el diagrama de dispersión para el análisis bivariado, donde los dólares de ventas y publicidad son dos variables. Al trazar un diagrama de dispersión, podemos ver que los valores de las ventas dependen de los dólares de publicidad; es decir, a medida que aumentan los dólares de publicidad, también aumentan los valores de ventas. Esta comprensión de la relación entre dos variables nos guiará en nuestras predicciones futuras:
 
-Ahora es el momento de realizar un análisis bivariado en nuestro conjunto de datos de automóviles. Veamos si los caballos de fuerza son un factor dependiente del precio de los automóviles o no:
+
+## Análisis multivariado
+
+El análisis multivariado es el análisis de tres o más variables. Esto nos permite observar las correlaciones (es decir, cómo cambia una variable con respecto a otra) e intentar hacer predicciones para el comportamiento futuro con mayor precisión que con el análisis bivariado.

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Grouping Datasets
-nav_order: 3
+nav_order: 5
 parent: Pandas
 grand_parent: Python
 ---

@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Asociaciones categoricas y cuantitativas
-nav_order: 5
-parent: Exploratory Data Analysis
+title: Categorical / Cuantitative
+nav_order: 2
+parent: Correlation
+grand_parent: Exploratory Data Analysis
 ---
 
-# Asociaciones entre variables cuantitativas y categoricas
+# Correlacion entre variables cuantitativas y categoricas
 
 Examinar la relación entre variables puede brindarnos información clave sobre nuestros datos. En esta lección, cubriremos formas de evaluar la asociación entre una variable cuantitativa y una variable categórica.
 
