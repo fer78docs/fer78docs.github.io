@@ -89,7 +89,7 @@ Solo quiero mencionar aquí que, aunque estos son los conjuntos finitos con los 
 
 También existen otras categorías de conjuntos finitos e infinitos. Los términos **"contable"** y **"no contable"** se utilizan para describir el tamaño de conjuntos infinitos. Estos conceptos son fundamentales para entender diferentes tipos de infinitos y cómo se pueden comparar entre sí.
 
-## Conjuntos Contables y no contables
+## Conjuntos Contables y No Contables
 {: #contab}
 
 ### Conjuntos Contables
