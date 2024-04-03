@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Analisis Multivariado Titanic
-nav_order: 2
+nav_order: 1
 parent: Jupyter Notebooks
 ---
 
