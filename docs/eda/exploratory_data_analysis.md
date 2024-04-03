@@ -5,7 +5,8 @@ nav_order: 2
 has_children: true
 ---
 
-# Exploratory Data Analysis
+# Exploratory Data Analysis.
+0
 
 El objetivo principal de esta sección es cubrir los fundamentos del Análisis de Datos Exploratorios (**EDA**) y comprender las diferentes etapas del proceso. 
 
