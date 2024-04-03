@@ -82,7 +82,11 @@ Tenga en cuenta que utilizamos el descriptor de acceso `loc` del marco de datos 
 
 ## Visualizando series de tiempo
 
-Esta seccion mejor verla en el ejemplo. Las tecnicas de vizualizacion incluyen:
+Esta seccion mejor verla en el ejemplo. 
+
+[Notebook Time Series](https://fer78docs.github.io/docs/ejemplos/Analisis%20de%20Series%20Temporales%20Open%20PSystem/Series_temporales.html)
+
+Las tecnicas de vizualizacion incluyen:
 
 - Agrupación de datos de series temporales
 - Remuestreo de datos de series temporales

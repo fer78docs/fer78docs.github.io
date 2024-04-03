@@ -812,8 +812,3 @@ ax.legend();
 
 
 La captura de pantalla anterior muestra que la serie temporal media semanal aumenta con el tiempo y es mucho más suave que la serie temporal diaria.
-
-
-```python
-
-```
