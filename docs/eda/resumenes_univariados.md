@@ -1,17 +1,14 @@
 ---
 layout: default
-title: Descriptive Statistics
+title: Summary Statistics
 nav_order: 2
 parent: Exploratory Data Analysis
 ---
 
-# Estadisticas Descriptivas
+# Summary Statistics
 
-Las estadísticas descriptivas ayudan a resumir un conjunto de datos proporcionado e identificar las características más significativas de los datos bajo consideración.
+En el mundo del análisis de datos, trabajar con datos tabulares es una práctica común. Al analizar datos tabulares, a veces necesitamos obtener información rápida sobre los patrones y la distribución de los datos. Estos rápidos conocimientos suelen proporcionar la base para exploraciones y análisis adicionales. Nos referimos a estos conocimientos rápidos como estadísticas resumidas. Las estadísticas resumidas son muy útiles enproyectos de análisis de datos exploratorios porque nos ayudan a realizar una inspección rápida de los datos que estamos analizando.
 
-## Tipos de análisis
-
-En esta sección, exploraremos diferentes tipos de análisis. Comenzaremos con el análisis univariado, luego pasaremos al análisis bivariado y, finalmente, discutiremos el análisis multivariado.
 
 
 ## Analisis Univariado
@@ -23,23 +20,45 @@ Los resúmenes univariados se centran en la descripción y análisis de una sola
 ### Medidas de Tendencia Central
 La medida de tendencia central tiende a describir el valor promedio o medio de conjuntos de datos que se supone proporciona un resumen óptimo de todo el conjunto de mediciones. Este valor es un número que de alguna manera es central para el conjunto. Las medidas más comunes para analizar la frecuencia de distribución de los datos son la media, la mediana y la moda.
 
-* **Media (Promedio)**: Es la suma de todos los valores de la variable dividida por el número de observaciones. Proporciona el centro de gravedad de la distribución, pero es sensible a valores extremos (outliers).
+**Media (Promedio)**:   
+Es la suma de todos los valores de la variable dividida por el número de observaciones. Proporciona el centro de gravedad de la distribución, pero es sensible a valores extremos (outliers).
+```python
+# Pandas
+mean = df['column'].mean()
+# Numpy
+mean = np.mean(df['column'])
+```
 
-* **Mediana:**Es el valor que divide al conjunto de datos en dos partes iguales cuando los datos están ordenados. La mediana es menos sensible a valores extremos y proporciona una mejor medida del centro para distribuciones sesgadas.
-
-* **Media recortada:**  es una medida estadística de tendencia central que se asemeja a la media aritmética, pero con una diferencia clave: antes de calcular la media, se eliminan los valores extremos de ambos extremos de un conjunto de datos. El porcentaje exacto de datos a recortar depende del análisis, pero un enfoque común es eliminar el 5% de los valores más bajos y el 5% de los valores más altos.
-
-* **Moda:** Es el valor o valores que aparecen con mayor frecuencia en el conjunto de datos. Es útil para datos categóricos y para identificar picos en distribuciones multimodales.
+**Mediana:**  
+Es el valor que divide al conjunto de datos en dos partes iguales cuando los datos están ordenados. La mediana es menos sensible a valores extremos y proporciona una mejor medida del centro para distribuciones sesgadas.
 
 ```python
-print(f'Media: Rs.{df.column.mean().round()}')
-print(f'Mediana: Rs.{df.column.median().round()}')
-print(f'Moda: Rs.{df.column.mode().round()}')
+# Pandas
+median = df['column'].median()
+# Numpy
+median = np.median(df['column'])
+```
 
-# Calcular la media recortada
+**Media recortada:**  
+Es una medida estadística de tendencia central que se asemeja a la media aritmética, pero con una diferencia clave: antes de calcular la media, se eliminan los valores extremos de ambos extremos de un conjunto de datos. El porcentaje exacto de datos a recortar depende del análisis, pero un enfoque común es eliminar el 5% de los valores más bajos y el 5% de los valores más altos.
+
+```python
 from scipy.stats import trim_mean
 print(f'Media Recortada: Rs.{round(trim_mean(df.column, proportiontocut=0.1), 2)}')
 ```
+
+**Moda:**  
+Es el valor o valores que aparecen con mayor frecuencia en el conjunto de datos. Es útil para datos categóricos y para identificar picos en distribuciones multimodales.
+
+```python
+# Pandas
+mode = df['column'].mode()
+# Stats
+from scipy import stats
+node = stats.mode(df['column'])
+```
+
+
 
 ### Medidas de Dispersión
 
@@ -47,11 +66,37 @@ El segundo tipo de estadística descriptiva es la medida de dispersión , tambi�
 
 Múltiples técnicas proporcionan medidas de dispersión en nuestro conjunto de datos. Algunos métodos comúnmente utilizados son la desviación estándar (o varianza), los valores mínimo y máximo de las variables, el rango, la curtosis y la asimetría
 
-* **Rango:** Es la diferencia entre el valor máximo y mínimo de la variable. Proporciona una idea de la amplitud de la distribución.
+**Rango:** 
+Es la diferencia entre el valor máximo y mínimo de la variable. Proporciona una idea de la amplitud de la distribución.
 
-* **Desviación Estándar y Varianza:** Estas medidas indican cuánto tienden a dispersarse los valores alrededor de la media. La varianza es el promedio de las diferencias al cuadrado de la media, y la desviación estándar es la raíz cuadrada de la varianza.
+```python
+# Pandas
+max = df['column'].max()
+min = df['column'].min()
+# Numpy
+max = np.max(df['column'])
+min = np.min(df['column'])
+# Para calcular el rango
+range = max - min
+```
 
-* **Rango Intercuartílico (IQR):** Es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Ofrece una medida de la dispersión central y es menos sensible a outliers.
+**Varianza:**  
+Estas medidas indican cuánto tienden a dispersarse los valores alrededor de la media. La varianza es el promedio de las diferencias al cuadrado de la media, y la desviación estándar es la raíz cuadrada de la varianza.
+
+```python
+# Pandas
+median = df['column'].var()
+# Numpy
+median = np.var(df['column'])
+```
+
+**Desviación Estándar**  
+La desviación estándar esse deriva de la varianza y es simplemente la raíz cuadrada de la varianza. La desviación estándar suele ser más intuitiva porque se expresa en las mismas unidades que el conjunto de datos.
+
+```python
+desv_est = np.std(df['column'])
+```
+El método `std` en pandastambién se puede utilizar para calcular la desviación estándar de un conjunto de datos.
 
 * **Desviación media absoluta (MAD):** el valor medio absoluto de la distancia entre cada punto de datos y la media.
 
@@ -59,7 +104,7 @@ Múltiples técnicas proporcionan medidas de dispersión en nuestro conjunto de 
 print(f'Max: Rs.{df.column.max()}')
 print(f'Min: Rs.{df.column.min()}')
 print(f'Rango: Rs.{df.column.max() - df.column.min()}')
-print(f'Rango Intercuartil: Rs.{df.column.quantile(q=0.75) - df.column.quantile(q=0.25)}')
+
 print(f'Varianza: Rs.{df.column.var().round(2)}')
 print(f'Desviación Estándar: Rs.{df.column.std().round(2)}')
 print(f'Desviación Media Absoluta: Rs.{(df.column - df.column.mean()).abs().mean().round(2)}')
@@ -131,15 +176,24 @@ percentil de x = (numero de valores menores de x / total de numeros observados) 
 Supongamos que tenemos los datos dados: 1, 2, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10. Entonces el valor percentil de 4 = (4/12) * 100 = 33,33%. Esto simplemente significa que el 33,33% de los datos son menores que 4.
 
 ```python
-import numpy as np
-# Calcular el percentil 50% 
-percent = np.percentile(df['column'], 50,)
+# Pandas 0.5, 0.25, 0.75
+percentil = df.quantile(0.5)
+# Numpy - Calcular el percentil 50% 
+percentil = np.percentile(df['column'], 50,)
 ```
 
+**Comprobación de los cuartiles de un conjunto de datos**
+
+El cuartil es como el percentil porque se puede utilizar para medir la dispersión e identificar el centro de unconjunto de datos. Los percentiles y cuartiles se llaman cuantiles. Mientras que el percentil divide el conjunto de datos en 100 porciones iguales, el cuartil divide el conjunto de datos en 4 porciones iguales. Normalmente, tres cuartiles dividirán su conjunto de datos en cuatro porciones iguales.
 
 ### Cuartiles
 
 Dado un conjunto de datos ordenado en orden ascendente, los cuartiles son los valores que dividen el conjunto de datos dado en cuartos. Los cuartiles se refieren a los tres puntos de datos que dividen el conjunto de datos dado en cuatro partes iguales, de modo que cada división representa el 25% del conjunto de datos. En términos de percentiles, el percentil 25 se denomina primer cuartil (Q1), el percentil 50 se denomina segundo cuartil (Q2) y el percentil 75 se denomina tercer cuartil (Q3).
+
+**Rango Intercuartílico (IQR):**   
+Es la diferencia entre el tercer cuartil (Q3) y el primer cuartil (Q1). Ofrece una medida de la dispersión central y es menos sensible a outliers.
+
+El IQR es una estadística muy útil, especialmente cuando necesitamos identificar dónde se encuentra el 50% central de los valores de un conjunto de datos. A diferencia del rango, que puede verse sesgado por números muy altos o bajos (valores atípicos), el IQR no se ve afectado por los valores atípicos ya que se centra en el medio 50. También es útil cuando necesitamos calcular valores atípicos en un conjunto de datos.
 
 Según el cuartil, existe otra medida llamada rango intercuartil que también mide la variabilidad en el conjunto de datos. Se define de la siguiente manera:
 
@@ -147,15 +201,29 @@ IQR = Q3 - Q1
 
 El IQR no se ve afectado por la presencia de valores atípicos. 
 
+
 ```python
 column = df.column.sort_values()
+
+# Pandas
+Q1 = df.column.quantile(q=0.25)
+Q1 = df.column.quantile(q=0.50)
+Q1 = df.column.quantile(q=0.75)
+
+# Numpy
 Q1 = np.percentile(column, 25)
 Q2 = np.percentile(column, 50)
 Q3 = np.percentile(column, 75)
 
+# rango intercuartilico
 IQR = Q3 - Q1
-IQR
+
+
+from scipy import stats
+IQR = stats.iqr(df['colum'])
+
 ```
+
 
 #### Visualizar cuartiles
 
