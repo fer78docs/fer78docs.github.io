@@ -2,13 +2,13 @@
 title: Home
 layout: home
 nav_order: 1
-description: "Fernando Docs es la docuemntacion personal de los estudios de Fernando Rioseco Rodrigiuez."
+description: "Data Science Docs"
 permalink: /
 ---
 
-# **Enfocado en escribir mi propia documentacion**
+# **Data Science Docs**
 {: .fs-9 }
 
-En **Fernando Docs** se encuentra la documentacion de los estudios de Fernando Rioseco Rodriguez.
+My Docs for Data Science, Python and More.
 {: .fs-6 .fw-300 }
 

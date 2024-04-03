@@ -10,6 +10,8 @@ grand_parent: Exploratory Data Analysis
 
 El análisis multivariado es el análisis de tres o más variables. Esto nos permite observar las correlaciones (es decir, cómo cambia una variable con respecto a otra) e intentar hacer predicciones para el comportamiento futuro con mayor precisión que con el análisis bivariado.
 
+[Notebook: Discussing multivariate analysis using the Titanic dataset](https://fer78docs.github.io/docs/ejemplos/Analisis%20multivariado%20Titanic/Analisis%20multivariado%20Titanic.html)
+
 Inicialmente, exploramos la visualización del análisis univariado y bivariado; Asimismo, visualicemos el concepto de análisis multivariado.
 
 Una forma común de representar datos multivariados es hacer un **diagrama de dispersión matricial**, conocido como diagrama de pares. Un gráfico matricial o un gráfico de pares muestra cada par de variables comparadas entre sí. El gráfico de pares nos permite ver tanto la distribución de variables individuales como las relaciones entre dos variables:
