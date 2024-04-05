@@ -77,7 +77,7 @@ Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento
 
 ### Cardinalidad Finita
 
-La cardinalidad de un conjunto finito se denota como `|A|`, donde A es el conjunto. Por ejemplo, si tenemos un conjunto  A={2,4,6,8}, la cardinalidad de A es 4, porque hay cuatro elementos en el conjunto. Se escribe como  |A| = 4.
+La cardinalidad de un conjunto finito se denota como `|A|`, donde A es el conjunto. Por ejemplo, si tenemos un conjunto  A={2,4,6,8}, la cardinalidad de A es 4, porque hay cuatro elementos en el conjunto. Se escribe como  `|A| = 4`.
 
 ### Cardinalidad Infinita
 
