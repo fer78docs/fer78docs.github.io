@@ -14,6 +14,7 @@ parent: Probability & Statistics
 - [Power Sets](#power-sets)
 - [Universal Sets](#universal)
 - [Sets Operations](#operations)
+- [Leyes de Morgan](#leyes-de-morgan)
 
 La probabilidad hace un uso extensivo de operaciones de conjuntos. Por eso es importante introducir la notación y la terminología relevantes desde el principio. Entonces, comencemos por definir un conjunto. Hay muchas definiciones, con diferentes palabras y todas reflejan el mismo tipo de significado. La definición que he escrito aquí es de Nach Rosen quien trabajó en los laboratorios Bell y escribió libros sobre matemáticas.
 
@@ -258,3 +259,35 @@ print(A ^ B)  # {1, 2, 4, 5}
 
 Estos métodos y operaciones hacen de los conjuntos en Python una herramienta poderosa y flexible para el manejo de colecciones únicas de elementos y la implementación de lógica de teoría de conjuntos.
 
+## Leyes de Morgan
+
+Las leyes de De Morgan son principios fundamentales en la lógica y la teoría de conjuntos que describen cómo interactúan las operaciones de complemento con las operaciones de unión e intersección de conjuntos. Nombradas en honor al matemático y lógico británico Augustus De Morgan, estas leyes tienen aplicaciones significativas en varias áreas, incluida la lógica proposicional, el diseño de circuitos digitales, la teoría de la probabilidad, y más.
+
+Las leyes de De Morgan establecen que:
+
+### Primera Ley de De Morgan
+{: .highlight}
+El complemento de la unión de dos conjuntos es igual a la intersección de sus complementos.
+
+Esto significa que si tomas dos conjuntos \(A\) y \(B\), y buscas el conjunto de todos los elementos que no están ni en \(A\) ni en \(B\), obtendrás el mismo resultado que si primero encontraras los elementos que no están en \(A\), los elementos que no están en \(B\), y luego tomaras todos los elementos que son comunes a estos dos subconjuntos.
+
+### Segunda Ley de De Morgan
+
+El complemento de la intersección de dos conjuntos es igual a la unión de sus complementos.
+
+En notación simbólica, esto se puede expresar como:
+
+\[(A \cap B)^c = A^c \cup B^c\]
+
+Esto significa que si tomas dos conjuntos \(A\) y \(B\), y buscas el conjunto de todos los elementos que no están tanto en \(A\) como en \(B\) al mismo tiempo, obtendrás el mismo resultado que si primero encontraras los elementos que no están en \(A\) y los elementos que no están en \(B\), y luego tomaras la unión de estos dos subconjuntos.
+
+### Importancia de las Leyes de De Morgan
+
+Las leyes de De Morgan son herramientas poderosas para simplificar expresiones lógicas y operaciones de conjunto. Son especialmente útiles en las siguientes situaciones:
+
+- **Simplificación de Expresiones Booleanas:** En electrónica y ciencias de la computación, las leyes de De Morgan se utilizan para simplificar y minimizar las expresiones booleanas en el diseño de circuitos lógicos.
+- **Manipulación de Conjuntos en Matemáticas:** Ayudan a realizar operaciones de conjunto de manera más eficiente, especialmente cuando se trata de complementos.
+- **Demostraciones en Teoría de Conjuntos:** Son fundamentales en la demostración de propiedades y teoremas relacionados con conjuntos.
+- **Filtrado de Datos:** En programación, estas leyes pueden ser útiles para optimizar consultas y operaciones que involucran filtrado de datos basado en múltiples condiciones.
+
+Entender y aplicar las leyes de De Morgan es crucial para cualquier persona que trabaje con lógica, conjuntos, o sistemas que involucren razonamiento formal y operaciones de conjuntos.
