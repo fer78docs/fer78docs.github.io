@@ -15,6 +15,7 @@ parent: Probability & Statistics
 - [Universal Sets](#universal)
 - [Sets Operations](#operations)
 - [Leyes de Morgan](#leyes-de-morgan)
+- [Venn Diagrams Operations](#venn-diagrams-operations)
 
 La probabilidad hace un uso extensivo de operaciones de conjuntos. Por eso es importante introducir la notación y la terminología relevantes desde el principio. Entonces, comencemos por definir un conjunto. Hay muchas definiciones, con diferentes palabras y todas reflejan el mismo tipo de significado. La definición que he escrito aquí es de Nach Rosen quien trabajó en los laboratorios Bell y escribió libros sobre matemáticas.
 
@@ -266,20 +267,46 @@ Las leyes de De Morgan son principios fundamentales en la lógica y la teoría d
 Las leyes de De Morgan establecen que:
 
 ### Primera Ley de De Morgan
+
 {: .highlight}
 El complemento de la unión de dos conjuntos es igual a la intersección de sus complementos.
 
-Esto significa que si tomas dos conjuntos \(A\) y \(B\), y buscas el conjunto de todos los elementos que no están ni en \(A\) ni en \(B\), obtendrás el mismo resultado que si primero encontraras los elementos que no están en \(A\), los elementos que no están en \(B\), y luego tomaras todos los elementos que son comunes a estos dos subconjuntos.
+Esto significa que si tomas dos conjuntos `A` y `B`, y buscas el conjunto de todos los elementos que no están ni en `A` ni en `B`, obtendrás el mismo resultado que si primero encontraras los elementos que no están en `A`, los elementos que no están en `B`, y luego tomaras todos los elementos que son comunes a estos dos subconjuntos.
+
+```python
+# cojunto universal U, del cual A y B son subconjuntos
+U = {1, 2, 3, 4, 5, 6}
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+union_complement = U - (A.union(B))  # (A U B)'
+complement_intersection = (U - A).intersection(U - B)  # A' ∩ B'
+
+assert union_complement == complement_intersection
+``` 
+
+
 
 ### Segunda Ley de De Morgan
 
+{: .highlight}
 El complemento de la intersección de dos conjuntos es igual a la unión de sus complementos.
 
-En notación simbólica, esto se puede expresar como:
+Esto significa que si tomas dos conjuntos `A` y `B`, y buscas el conjunto de todos los elementos que no están tanto en `A` como en `B` al mismo tiempo, obtendrás el mismo resultado que si primero encontraras los elementos que no están en `A` y los elementos que no están en `B`, y luego tomaras la unión de estos dos subconjuntos.
 
-\[(A \cap B)^c = A^c \cup B^c\]
+```python
+# cojunto universal U, del cual A y B son subconjuntos
+U = {1, 2, 3, 4, 5, 6}
+A = {1, 2, 3}
+B = {3, 4, 5}
 
-Esto significa que si tomas dos conjuntos \(A\) y \(B\), y buscas el conjunto de todos los elementos que no están tanto en \(A\) como en \(B\) al mismo tiempo, obtendrás el mismo resultado que si primero encontraras los elementos que no están en \(A\) y los elementos que no están en \(B\), y luego tomaras la unión de estos dos subconjuntos.
+intersection_complement = U - (A.intersection(B))  # (A ∩ B)'
+complement_union = (U - A).union(U - B)  # A' U B'
+
+assert intersection_complement == complement_union
+```
+
+Los resultados de las operaciones según las leyes de De Morgan deberían ser iguales, lo cual es verificado por los assert, asegurando que ambos lados de las leyes sean equivalentes en cada caso. 
 
 ### Importancia de las Leyes de De Morgan
 
@@ -290,4 +317,80 @@ Las leyes de De Morgan son herramientas poderosas para simplificar expresiones l
 - **Demostraciones en Teoría de Conjuntos:** Son fundamentales en la demostración de propiedades y teoremas relacionados con conjuntos.
 - **Filtrado de Datos:** En programación, estas leyes pueden ser útiles para optimizar consultas y operaciones que involucran filtrado de datos basado en múltiples condiciones.
 
-Entender y aplicar las leyes de De Morgan es crucial para cualquier persona que trabaje con lógica, conjuntos, o sistemas que involucren razonamiento formal y operaciones de conjuntos.
+## Venn Diagrams Operations
+
+Los diagramas de Venn como una herramienta útil para representar visualmente operaciones y relaciones entre conjuntos, incluyendo la **unión**, **intersección**, **diferencia**, **complementos**, así como las relaciones de subconjuntos, superconjuntos y particiones. 
+
+Los diagramas de Venn utilizan figuras que típicamente se sitúan dentro de un rectángulo o un espacio que simboliza el conjunto universal, dentro del cual los círculos o formas representan conjuntos individuales.
+
+![Diagrama de Venn](https://fer78docs.github.io/assets/images/diagrama_venn.png)
+
+### Unión
+La unión de dos conjuntos engloba cualquier elemento que exista en uno o en ambos. Podemos representar esto visualmente como un diagrama de Venn .
+
+Por ejemplo, digamos que tenemos dos conjuntos, A y B. 
+* A representa lanzar un número impar con un dado de seis caras (el conjunto {1, 3, 5} ). 
+* B representa sacar un número mayor que dos (el conjunto {3, 4, 5, 6}) . 
+
+La unión de estos dos conjuntos sería todo en el conjunto A , el conjunto B o ambos: {1, 3, 4, 5, 6}. Podemos escribir la unión de dos eventos matemáticamente como **(A ∪ B)** o **(A o B)**.
+
+![Union de conjuntos](https://fer78docs.github.io/assets/images/union-ayb.png)
+
+### Intersección
+La intersección de dos conjuntos abarca cualquier elemento que exista en ambos conjuntos. Visualmente:
+
+![interseccion de conjuntos](https://fer78docs.github.io/assets/images/interseccion_ayb.png)
+
+La intersección de los conjuntos anteriores (A representa sacar un número impar en un dado de seis caras y B representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: {3, 5} . Podemos escribir matemáticamente la intersección de dos eventos como **P(A ∩ B)** o **P(A y B)**.
+
+
+### Complemento
+Por último, el complemento de un conjunto consta de todos los resultados posibles fuera del conjunto. Visualmente:
+
+![Complementos de A](https://fer78docs.github.io/assets/images/complemento_dea.png)
+
+Considere el conjunto A del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: {2, 4, 6} . Podemos escribir el complemento del conjunto A como AC . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: {1, 2, 3, 4, 5, 6} .
+
+**Ejemplo 1:**
+
+Interseccion y union de dos eventos:
+
+```
+A = {1, 2, 3}
+B = {1, 2, 3, 4, 6}
+```
+
+Interseccion: 
+
+![interseccion](https://fer78docs.github.io/assets/images/interseccion_evento_ejemplo.png)
+
+Union: 
+
+![union](https://fer78docs.github.io/assets/images/union_ejemplo_1.png)
+
+
+Complemento de A:
+
+![union](https://fer78docs.github.io/assets/images/complemento_A.png)
+
+Complemento de B:
+
+![union](https://fer78docs.github.io/assets/images/complemento_B.png)
+
+
+**Ejemplo 2:**
+
+Interseccion y union de dos eventos:
+
+```
+A = {5}
+B = {2, 3, 4, 5, 6}
+```
+
+Interseccion: 
+
+![interseccion](https://fer78docs.github.io/assets/images/interseccion_ejemplo2.png)
+
+En el siguinete enlace hay un programa interactivo que muestra la union y la interseccion de dos eventos segun el resultado de lanzar dados: 
+
+[Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/venn-diagram-draft-2/venn-diagram.html)
