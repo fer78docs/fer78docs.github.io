@@ -71,8 +71,9 @@ En cardinalidad, hablamos de un elemento de un conjunto o, a veces, de un miembr
 A = {1, 2, 5, 7}
 ```
 
-Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego `∈` se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de A de esta manera `1 ∈ A`. De forma contraria ∉ expresa que el elemento no pertenece al conjunto: `4 ∉ A`
+Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego `∈` se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de A de esta manera `1 ∈ A`. De forma contraria ∉ expresa que el elemento no pertenece al conjunto: `4 ∉ A`.
 
+{: .highlight}
 **La cardinalidad de un conjunto se refiere al número de elementos que contiene el conjunto**. En matemáticas y teoría de conjuntos, la cardinalidad puede ser **finita** o **infinita**. Un conjunto con una cantidad limitada de elementos tiene una cardinalidad finita, mientras que un conjunto que contiene una cantidad infinita de elementos tiene una cardinalidad infinita.
 
 ### Cardinalidad Finita
