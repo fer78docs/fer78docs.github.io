@@ -27,7 +27,7 @@ callouts:
     title: New
     color: green
   note:
-    title: Note
+    title: Concepts
     color: purple
   warning:
     title: Warning
