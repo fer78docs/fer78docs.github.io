@@ -10,7 +10,7 @@ grand_parent: Probability
 
 Dos eventos se consideran mutuamente excluyentes si no pueden ocurrir al mismo tiempo. Por ejemplo, considere un lanzamiento de una sola moneda: los eventos “cruz” y “cara” son mutuamente excluyentes porque no podemos obtener ambas caras y cruces en un solo lanzamiento.
 
-{: note}
+{: .note}
 Eventos mutuamente excluyentes son aquellos que no pueden ocurrir al mismo tiempo. Es decir, si ocurre uno, no puede ocurrir el otro.
 
 Podemos visualizar dos eventos mutuamente excluyentes como un par de círculos que no se superponen. No se superponen porque no hay ningún resultado para un evento que también esté en el espacio muestral para el otro:
