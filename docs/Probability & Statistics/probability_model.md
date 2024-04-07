@@ -77,9 +77,9 @@ Las **derivaciones de los axiomas de probabilidad** se refieren a las propiedade
 
 ### 1. **Probabilidad del Complemento de un Evento**
 
-Una de las derivaciones más directas es la probabilidad del complemento de un evento. Si \(A\) es un evento, entonces el complemento de \(A\), denotado \(A^c\), representa la ocurrencia de no-\(A\). Utilizando los axiomas, se puede demostrar que:
+Una de las derivaciones más directas es la probabilidad del complemento de un evento. Si \(A\) es un evento, entonces el complemento de \(A\), denotado $$A^c, representa la ocurrencia de no-\(A\). Utilizando los axiomas, se puede demostrar que:
 
-\[P(A^c) = 1 - P(A)\]
+$$P(A^c) = 1 - P(A)
 
 Esto se deduce del hecho de que \(A\) y \(A^c\) son mutuamente excluyentes y su unión es el espacio muestral completo, cuya probabilidad es 1.
 
