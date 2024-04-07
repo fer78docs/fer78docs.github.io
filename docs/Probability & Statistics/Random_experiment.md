@@ -7,6 +7,11 @@ parent: Probability & Statistics
 
 ## Experimento Aleatorio
 
+- [Experimento Aleatorio](#experimento-aleatorio)
+- [Resultado](#resultado)
+- [Eventos](#evento)
+- [Eventos Mutuamente Excluyentes](#eventos-mutuamente-excluyentes)
+
 Un **experimento aleatorio** es un concepto fundamental en el estudio de la probabilidad y la estadística.
 
 {: .note}
@@ -88,7 +93,7 @@ Los eventos se pueden clasificar de varias maneras dependiendo de sus caracterí
 
 2. **Lanzamiento de Dos Dados:** Aquí el espacio muestral es más complejo, incluyendo todas las combinaciones posibles de ambos dados. Un evento de interés podría ser "la suma de los dados es 7", que incluiría resultados como \((1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)\).
 
-### Eventos mutuamente excluyentes
+## Eventos mutuamente excluyentes
 
 Dos eventos se consideran mutuamente excluyentes si no pueden ocurrir al mismo tiempo. Por ejemplo, considere un lanzamiento de una sola moneda: los eventos “cruz” y “cara” son mutuamente excluyentes porque no podemos obtener ambas caras y cruces en un solo lanzamiento.
 

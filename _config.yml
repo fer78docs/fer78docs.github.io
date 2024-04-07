@@ -16,6 +16,8 @@ heading_anchors: true
 # Color scheme supports "light" (default) and "dark"
 # color_scheme: dark
 
+math: katex
+
 callouts_level: quiet # or loud
 callouts:
   highlight:
