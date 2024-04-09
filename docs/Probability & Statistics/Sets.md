@@ -73,14 +73,14 @@ En cardinalidad, hablamos de un elemento de un conjunto o, a veces, de un miembr
 A = {1, 2, 5, 7}
 ```
 
-Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego `∈` se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de A de esta manera `1 ∈ A`. De forma contraria ∉ expresa que el elemento no pertenece al conjunto: `4 ∉ A`.
+Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego $$∈$$ se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de A de esta manera $$1∈A$$. De forma contraria $$∉$$ expresa que el elemento no pertenece al conjunto: $$4∉A$$.
 
 {: .highlight}
 **La cardinalidad de un conjunto se refiere al número de elementos que contiene el conjunto**. En matemáticas y teoría de conjuntos, la cardinalidad puede ser **finita** o **infinita**. Un conjunto con una cantidad limitada de elementos tiene una cardinalidad finita, mientras que un conjunto que contiene una cantidad infinita de elementos tiene una cardinalidad infinita.
 
 ### Cardinalidad Finita
 
-La cardinalidad de un conjunto finito se denota como `|A|`, donde A es el conjunto. Por ejemplo, si tenemos un conjunto  A={2,4,6,8}, la cardinalidad de A es 4, porque hay cuatro elementos en el conjunto. Se escribe como  `|A| = 4`.
+La cardinalidad de un conjunto finito se denota como $$\|A\|$$, donde A es el conjunto. Por ejemplo, si tenemos un conjunto  A={2,4,6,8}, la cardinalidad de A es 4, porque hay cuatro elementos en el conjunto. Se escribe como  $$\|A\| = 4$$.
 
 ### Cardinalidad Infinita
 
@@ -88,7 +88,7 @@ Los conjuntos infinitos pueden ser contablemente infinitos o incontablemente inf
 
 #### Cardinalidad en Python
 
-En Python, la cardinalidad de un conjunto se puede obtener utilizando la función len(). Por ejemplo:
+En Python, la cardinalidad de un conjunto se puede obtener utilizando la función `len()`. Por ejemplo:
 
 ```python
 mi_conjunto = {2, 4, 6, 8}
@@ -111,8 +111,8 @@ Un conjunto se dice que es contable si sus elementos se pueden contar uno por un
 
 Ejemplos:
 
-- El conjunto de **todos los números enteros** Z es contable.
-- El conjunto de **todos los números racionales** Q (fracciones de enteros) es contable.
+- El conjunto de **todos los números enteros** $$Z$$ es contable.
+- El conjunto de **todos los números racionales** $$Q$$ (fracciones de enteros) es contable.
 
 ### Conjuntos No Contables
 
@@ -120,43 +120,43 @@ Un conjunto se dice que es no contable si es infinito y no se puede establecer u
 
 Ejemplo:
 
-- El conjunto de **todos los números reales** R, que incluye todos los puntos de una línea continua, es no contable.
-- El conjunto de **los números irracionales** (números que no se pueden expresar como fracciones de enteros, como raiz cuadrada de 2 o  π) es un subconjunto de R que también es no contable.
+- El conjunto de **todos los números reales** $$R$$, que incluye todos los puntos de una línea continua, es no contable.
+- El conjunto de **los números irracionales** (números que no se pueden expresar como fracciones de enteros, como $$\sqrt 2$$ o  $$π$$) es un subconjunto de $$R$$ que también es no contable.
 
 ## Subconjuntos
 
 {: #subset}
 
-En matemáticas, el concepto de **subconjunto** es fundamental en la teoría de conjuntos. Un subconjunto se refiere a una colección de elementos que son todos parte de otro conjunto, conocido como el conjunto superior o conjunto contenedor. La relación de subconjunto se define de manera que, si todos los elementos de un conjunto `A` también pertenecen a un conjunto `B`, entonces `A`es un subconjunto de `B`, lo cual se denota como `A ⊆ B`.
+En matemáticas, el concepto de **subconjunto** es fundamental en la teoría de conjuntos. Un subconjunto se refiere a una colección de elementos que son todos parte de otro conjunto, conocido como el conjunto superior o conjunto contenedor. La relación de subconjunto se define de manera que, si todos los elementos de un conjunto $$A$$ también pertenecen a un conjunto $$B$$, entonces $$A$$ es un subconjunto de $$B$$, lo cual se denota como $$A ⊆ B$$.
 
 ### Propiedades de los Subconjuntos
 
-1. **Subconjunto Propio:** Un subconjunto `A` de `B` se considera un subconjunto propio (o estricto) si `A` no es igual a `B`, es decir, si hay al menos un elemento en `B` que no está en `A`. Esto se denota como `A ⊂ B`.
+1. **Subconjunto Propio:** Un subconjunto $$A$$ de $$B$$ se considera un subconjunto propio (o estricto) si $$A$$ no es igual a $$B$$, es decir, si hay al menos un elemento en $$B$$ que no está en $$A$$. Esto se denota como $$A ⊂ B$$.
 
-2. **Subconjunto Impropio:** Cualquier conjunto es un subconjunto de sí mismo, `A ⊆ A`, lo que se conoce como subconjunto impropio.
+2. **Subconjunto Impropio:** Cualquier conjunto es un subconjunto de sí mismo, $$A ⊆ A$$, lo que se conoce como subconjunto impropio.
 
-3. **Subconjunto Vacío:** El conjunto vacío (denotado como `{∅}` es un subconjunto de cualquier conjunto, ya que la definición de subconjunto se cumple trivialmente (no hay elementos en el conjunto vacío que no estén en el otro conjunto).
+3. **Subconjunto Vacío:** El conjunto vacío (denotado como $$\{∅\}$$ es un subconjunto de cualquier conjunto, ya que la definición de subconjunto se cumple trivialmente (no hay elementos en el conjunto vacío que no estén en el otro conjunto).
 
 ### Ejemplos de Subconjuntos
 
-- Si tenemos el conjunto B = {1, 2, 3, 4}, entonces A = {2, 3} es un subconjunto de `B` porque todos los elementos de `A` también pertenecen a `B`.
-- El conjunto C = {1, 2, 3, 4} también es un subconjunto de `B`, pero es un subconjunto impropio porque `C` es igual a `B`.
+- Si tenemos el conjunto $$B = {1, 2, 3, 4}$$, entonces $$A = {2, 3}$$ es un subconjunto de $$B$$ porque todos los elementos de $$A$$ también pertenecen a $$B$$.
+- El conjunto $$C = {1, 2, 3, 4}$$ también es un subconjunto de $$B$$, pero es un subconjunto impropio porque $$C$$ es igual a $$B$$.
 
 ### Operaciones y Términos Relacionados
 
 - **Intersección:** La intersección de dos conjuntos contiene solo los elementos que son comunes a ambos. Si la intersección de dos conjuntos es igual a uno de ellos, entonces ese conjunto es un subconjunto del otro.
 - **Unión:** La unión de dos o más conjuntos contiene todos los elementos que pertenecen a cualquiera de los conjuntos. Un conjunto es un subconjunto de la unión de él mismo con cualquier otro conjunto.
-- **Complemento:** El complemento de un conjunto  `A`  dentro de un conjunto universal `U` contiene todos los elementos de `U` que no están en `A`. Por definición, `A` y su complemento son subconjuntos de `U`.
+- **Complemento:** El complemento de un conjunto  $$A$$  dentro de un conjunto universal `U` contiene todos los elementos de $$U$$ que no están en $$A$$. Por definición, $$A$$ y su complemento son subconjuntos de $$U$$.
 
 ## Power Set {#power-sets}
 
-El **conjunto potencia** o **power set** de un conjunto dado es el conjunto de todos los subconjuntos posibles de ese conjunto, incluyendo el conjunto vacío y el conjunto mismo. Si el conjunto original se denota como `S`, entonces su conjunto potencia se denota como `2^S` o `P(S)`.
+El **conjunto potencia** o **power set** de un conjunto dado es el conjunto de todos los subconjuntos posibles de ese conjunto, incluyendo el conjunto vacío y el conjunto mismo. Si el conjunto original se denota como $$S$$, entonces su conjunto potencia se denota como $$2^S$$ o $$P(S)$$.
 
 ### Propiedades
 
-1. **Cardinalidad:** Si el conjunto original `A` tiene n elementos, entonces el conjunto potencia de `S` tendrá `2^n` elementos. Esto se debe a que, para cada elemento del conjunto original, hay dos opciones en cada subconjunto posible: el elemento puede estar presente o no. Por lo tanto, con `n` elementos, hay `2^n` combinaciones posibles.
+1. **Cardinalidad:** Si el conjunto original $$A$$ tiene $$n$$ elementos, entonces el conjunto potencia de $$S$$ tendrá $$2^n$$ elementos. Esto se debe a que, para cada elemento del conjunto original, hay dos opciones en cada subconjunto posible: el elemento puede estar presente o no. Por lo tanto, con $$n$$ elementos, hay $$2^n$$ combinaciones posibles.
 
-2. **Incluye el Conjunto Vacío y el Conjunto Completo:** El conjunto potencia siempre incluirá, como mínimo, el conjunto vacío `{∅}` y el conjunto completo `A` como subconjuntos.
+2. **Incluye el Conjunto Vacío y el Conjunto Completo:** El conjunto potencia siempre incluirá, como mínimo, el conjunto vacío $$\{∅\}$$ y el conjunto completo $$A$$ como subconjuntos.
 
 Ejemplo:
 
@@ -165,7 +165,7 @@ A = {1, 2, 3, 4}
 P(A) = {∅,{1},{2},{3},{4},{1,2},{1,3},{1,4},{2,3},{2,4},{3,4},{1,2,3},{1,2,4},{1,3,4},{2,3,4},{1,2,3,4}}
 ```
 
-Este conjunto potencia tiene 2^4 = 16 subconjuntos, como esperaríamos dado que el conjunto original tiene 4 elementos.
+Este conjunto potencia tiene $$2^4 = 16$$ subconjuntos, como esperaríamos dado que el conjunto original tiene 4 elementos.
 
 ## Universal Sets {#universal}
 
@@ -173,8 +173,8 @@ En teoría de conjuntos, un **conjunto universal** es un conjunto que contiene t
 
 ### Características del Conjunto Universal
 
-- **Notación:** El conjunto universal a menudo se denota por la letra `U` o `Ω`.
-- **Complemento:** El complemento de un conjunto `A` (denotado como `A^c` o  (A con una barra encima) dentro de un conjunto universal `U` se define como todos los elementos de `U` que no están en `A`.
+- **Notación:** El conjunto universal a menudo se denota por la letra $$U$$ o $$Ω$$.
+- **Complemento:** El complemento de un conjunto $$A$$ (denotado como $$A^c$$ o $$\bar{A}$$ dentro de un conjunto universal $$U$$ se define como todos los elementos de $$U$$ que no están en $$A$$.
 - **Operaciones:** Todas las operaciones de conjuntos (unión, intersección, diferencia) se realizan con respecto al conjunto universal si no se especifica otro contexto.
 - **Depende del Contexto:** Lo que constituye el conjunto universal depende del contexto o del dominio del problema. Por ejemplo, en un estudio sobre números enteros, el conjunto de todos los números enteros podría actuar como el conjunto universal. En una discusión sobre colores, el conjunto de todos los colores posibles podría ser el conjunto universal.
 
@@ -187,15 +187,6 @@ U = {Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo}
 ```
 
 Cualquier conjunto de días, como los días laborables o el fin de semana, sería un subconjunto de este conjunto universal.
-
-### Importancia en la Lógica y la Matemática
-
-- **Fundamento para la Lógica:** El concepto de un conjunto universal es crucial para definiciones en lógica, especialmente en lógica de predicados, donde se habla de un "dominio de discurso" que actúa como un conjunto universal para los objetos bajo consideración.
-- **Teoría de Conjuntos:** En la teoría de conjuntos, el conjunto universal proporciona un marco para hablar sobre todas las posibles entidades matemáticas en un contexto dado.
-
-### Limitaciones y Paradojas
-
-- **Paradoja de Russell:** La idea de un conjunto de todos los conjuntos (un conjunto universal absoluto que incluiría a sí mismo) lleva a la paradoja de Russell, una de las paradojas más famosas en matemáticas. Esta paradoja muestra que debe haber algunas restricciones en la formación de conjuntos o la idea de un conjunto universal absoluto para evitar contradicciones.
 
 ## Operaciones con conjuntos {#operations}
 
@@ -269,9 +260,10 @@ Las leyes de De Morgan establecen que:
 ### Primera Ley de De Morgan
 
 {: .highlight}
-El complemento de la unión de dos conjuntos es igual a la intersección de sus complementos.
+El complemento de la unión de dos conjuntos es igual a la intersección de sus complementos. Esto se puede escribir como: $$(A∪B)^c = A^c ∩ B^c$$
 
-Esto significa que si tomas dos conjuntos `A` y `B`, y buscas el conjunto de todos los elementos que no están ni en `A` ni en `B`, obtendrás el mismo resultado que si primero encontraras los elementos que no están en `A`, los elementos que no están en `B`, y luego tomaras todos los elementos que son comunes a estos dos subconjuntos.
+
+Esto significa que si tomas dos conjuntos $$A$$ y $$B$$, y buscas el conjunto de todos los elementos que no están ni en $$A$$ ni en $$B$$, obtendrás el mismo resultado que si primero encontraras los elementos que no están en $$A$$, los elementos que no están en $$B$$, y luego tomaras todos los elementos que son comunes a estos dos subconjuntos.
 
 ```python
 # cojunto universal U, del cual A y B son subconjuntos
@@ -279,10 +271,10 @@ U = {1, 2, 3, 4, 5, 6}
 A = {1, 2, 3}
 B = {3, 4, 5}
 
-union_complement = U - (A.union(B))  # (A U B)'
-complement_intersection = (U - A).intersection(U - B)  # A' ∩ B'
+union_complement = U - (A.union(B))  # {6}
+complement_intersection = (U - A).intersection(U - B)  # {6}
 
-assert union_complement == complement_intersection
+assert union_complement == complement_intersection # true
 ``` 
 
 
@@ -290,9 +282,9 @@ assert union_complement == complement_intersection
 ### Segunda Ley de De Morgan
 
 {: .highlight}
-El complemento de la intersección de dos conjuntos es igual a la unión de sus complementos.
+El complemento de la intersección de dos conjuntos es igual a la unión de sus complementos. Se puede escribir como: $$(A∩B)^c = A^c ∪ B^c$$
 
-Esto significa que si tomas dos conjuntos `A` y `B`, y buscas el conjunto de todos los elementos que no están tanto en `A` como en `B` al mismo tiempo, obtendrás el mismo resultado que si primero encontraras los elementos que no están en `A` y los elementos que no están en `B`, y luego tomaras la unión de estos dos subconjuntos.
+Esto significa que si tomas dos conjuntos $$A$$ y $$B$$, y buscas el conjunto de todos los elementos que no están tanto en $$A$$ como en $$B$$ al mismo tiempo, obtendrás el mismo resultado que si primero encontraras los elementos que no están en $$A$$ y los elementos que no están en $$B$$, y luego tomaras la unión de estos dos subconjuntos.
 
 ```python
 # cojunto universal U, del cual A y B son subconjuntos
@@ -328,11 +320,12 @@ Los diagramas de Venn utilizan figuras que típicamente se sitúan dentro de un 
 ### Unión
 La unión de dos conjuntos engloba cualquier elemento que exista en uno o en ambos. Podemos representar esto visualmente como un diagrama de Venn .
 
-Por ejemplo, digamos que tenemos dos conjuntos, A y B. 
-* A representa lanzar un número impar con un dado de seis caras (el conjunto {1, 3, 5} ). 
-* B representa sacar un número mayor que dos (el conjunto {3, 4, 5, 6}) . 
+Por ejemplo, digamos que tenemos dos conjuntos, $$A$$ y $$B$$. 
 
-La unión de estos dos conjuntos sería todo en el conjunto A , el conjunto B o ambos: {1, 3, 4, 5, 6}. Podemos escribir la unión de dos eventos matemáticamente como **(A ∪ B)** o **(A o B)**.
+- A representa lanzar un número impar con un dado de seis caras: $$A = {1, 3, 5}$$. 
+- B representa sacar un número mayor que dos: $$B = {3, 4, 5, 6}$$.
+
+La unión de estos dos conjuntos sería todo en el conjunto $$A$$ , el conjunto $$B$$ o ambos: $${1, 3, 4, 5, 6}$$. Podemos escribir la unión de dos eventos matemáticamente como $$A ∪ B$$.
 
 ![Union de conjuntos](https://fer78docs.github.io/assets/images/union-ayb.png)
 
@@ -341,7 +334,7 @@ La intersección de dos conjuntos abarca cualquier elemento que exista en ambos 
 
 ![interseccion de conjuntos](https://fer78docs.github.io/assets/images/interseccion_ayb.png)
 
-La intersección de los conjuntos anteriores (A representa sacar un número impar en un dado de seis caras y B representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: {3, 5} . Podemos escribir matemáticamente la intersección de dos eventos como **P(A ∩ B)** o **P(A y B)**.
+La intersección de los conjuntos anteriores ($$A$$ representa sacar un número impar en un dado de seis caras y $$B$$ representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: $${3, 5}$$ . Podemos escribir matemáticamente la intersección de dos eventos como $$P(A ∩ B)$$.
 
 
 ### Complemento
@@ -349,7 +342,7 @@ Por último, el complemento de un conjunto consta de todos los resultados posibl
 
 ![Complementos de A](https://fer78docs.github.io/assets/images/complemento_dea.png)
 
-Considere el conjunto A del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: {2, 4, 6} . Podemos escribir el complemento del conjunto A como AC . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: {1, 2, 3, 4, 5, 6} .
+Considere el conjunto $$A$$ del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: $${2, 4, 6}$$ . Podemos escribir el complemento del conjunto $$A$$ como $$AC$$ . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: $${1, 2, 3, 4, 5, 6}$$ .
 
 **Ejemplo 1:**
 

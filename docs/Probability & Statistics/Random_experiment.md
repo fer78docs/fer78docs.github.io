@@ -35,7 +35,7 @@ Se refiere a cualquier proceso o acción que se realiza bajo condiciones especí
 ### Espacio Muestral y Eventos
 
 {: .highlight}
-El conjunto de todos los posibles resultados de un experimento aleatorio se denomina **espacio muestral**, simbolizado comúnmente como `S` u `Omega`. Cada resultado individual dentro del espacio muestral es un **punto muestral**.
+El conjunto de todos los posibles resultados de un experimento aleatorio se denomina **espacio muestral**, simbolizado comúnmente como $$S$$ o $$\Omega$$. Cada resultado individual dentro del espacio muestral es un **punto muestral**.
 
 {: .highlight}
 Un **evento** es un conjunto de resultados (puntos muestrales) del espacio muestral. Por ejemplo, en el lanzamiento de un dado, el evento "obtener un número par" incluiría los resultados 2, 4 y 6.
@@ -72,7 +72,7 @@ Este concepto se ilustra claramente con el experimento de lanzar repetidamente u
 En el ámbito de la teoría de probabilidad, el concepto de **evento** es central y fundamental para entender cómo funcionan los experimentos aleatorios y cómo se calculan las probabilidades de diferentes resultados. Un evento es básicamente una colección de posibles resultados de un experimento aleatorio, es decir, un subconjunto del espacio muestral asociado a dicho experimento.
 
 {: .note}
-Formalmente, un **evento** se define como cualquier conjunto de resultados posibles de un experimento. El espacio muestral `S` o `Omega` de un experimento es el conjunto de todos los posibles resultados individuales, y un evento es cualquier subconjunto de este espacio. Esto incluye desde el conjunto vacío, que representa un evento que nunca ocurre, hasta el espacio muestral completo, que es un evento que siempre ocurre.
+Formalmente, un **evento** se define como cualquier conjunto de resultados posibles de un experimento. El espacio muestral $$S$$ o $$\Omega$$ de un experimento es el conjunto de todos los posibles resultados individuales, y un evento es cualquier subconjunto de este espacio. Esto incluye desde el conjunto vacío, que representa un evento que nunca ocurre, hasta el espacio muestral completo, que es un evento que siempre ocurre.
 
 ### Clasificación de Eventos
 
@@ -89,9 +89,9 @@ Los eventos se pueden clasificar de varias maneras dependiendo de sus caracterí
 
 ### Ejemplos de Eventos
 
-1. **Lanzamiento de Moneda:** El espacio muestral es \(\{cara, cruz\}\). Un evento podría ser obtener "cara" en un lanzamiento. Otro evento podría ser obtener "cruz".
+1. **Lanzamiento de Moneda:** El espacio muestral es $$\{cara, cruz\}$$. Un evento podría ser obtener "cara" en un lanzamiento. Otro evento podría ser obtener "cruz".
 
-2. **Lanzamiento de Dos Dados:** Aquí el espacio muestral es más complejo, incluyendo todas las combinaciones posibles de ambos dados. Un evento de interés podría ser "la suma de los dados es 7", que incluiría resultados como \((1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)\).
+2. **Lanzamiento de Dos Dados:** Aquí el espacio muestral es más complejo, incluyendo todas las combinaciones posibles de ambos dados. Un evento de interés podría ser "la suma de los dados es 7", que incluiría resultados como $$(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)$$.
 
 ## Eventos mutuamente excluyentes
 
@@ -104,22 +104,22 @@ Podemos visualizar dos eventos mutuamente excluyentes como un par de círculos q
 
 ¿Qué pasa con los eventos que no son mutuamente excluyentes? 
 
-Si el evento A arroja un número impar y el evento B arroja un número mayor que dos, estos eventos no son mutuamente excluyentes. Tienen una intersección de {3, 5} . Cualquier evento que tenga una intersección no vacía no es mutuamente excluyente.
+Si el evento $$A$$ arroja un número impar y el evento $$B$$ arroja un número mayor que dos, estos eventos no son mutuamente excluyentes. Tienen una intersección de $$\{3, 5\}$$ . Cualquier evento que tenga una intersección no vacía no es mutuamente excluyente.
 
 **Ejemplos:**
 
-**a)** Tenemos una bolsa con cinco canicas: tres son verdes y dos son azules. Supongamos que sacamos una canica de la bolsa. El evento A es que la canica es verde. El evento B es que la canica es azul. ¿Son estos eventos mutuamente excluyentes? La respuesta es si, **son eventos mutualmente excluyentes**
+**a)** Tenemos una bolsa con cinco canicas: tres son verdes y dos son azules. Supongamos que sacamos una canica de la bolsa. El evento $$A$$ es que la canica es verde. El evento $$B$$ es que la canica es azul. ¿Son estos eventos mutuamente excluyentes? La respuesta es si, **son eventos mutualmente excluyentes**
 
-**b)** Lanzamos un dado una vez. En el evento A sale un número impar. El evento B es sacar un número mayor que cuatro. ¿Son estos eventos mutuamente excluyentes? No, son eventos **No mutalmente excluyentes**
+**b)** Lanzamos un dado una vez. En el evento $$A$$ sale un número impar. El evento $$B$$ es sacar un número mayor que cuatro. ¿Son estos eventos mutuamente excluyentes? No, son eventos **No mutalmente excluyentes**
 
 Explicacion: En el caso del lanzamiento de un dado:
 
-- El evento A incluye los resultados {1, 3, 5}.
-- El evento B incluye los resultados {5, 6}.
+- El evento $$A = {1, 3, 5}$$.
+- El evento $$B = {5, 6}$$.
 
-Para que A y B sean mutuamente excluyentes, no deberían tener ningún resultado en común. Sin embargo, como puedes ver, ambos eventos incluyen el número 5. Esto significa que hay una situación en la que ambos eventos pueden ocurrir al mismo tiempo (si el dado cae en 5). Dado que existe esta posibilidad, los eventos no son mutuamente excluyentes.
+Para que $$A$$ y $$B$$ sean mutuamente excluyentes, no deberían tener ningún resultado en común. Sin embargo, como puedes ver, ambos eventos incluyen el número 5. Esto significa que hay una situación en la que ambos eventos pueden ocurrir al mismo tiempo (si el dado cae en 5). Dado que existe esta posibilidad, los eventos no son mutuamente excluyentes.
 
-Por lo tanto, es posible que ocurra A y B simultáneamente, lo cual sucede si el resultado del lanzamiento del dado es un 5, satisfaciendo tanto la condición de ser impar (evento A) como la condición de ser mayor que cuatro (evento B).
+Por lo tanto, es posible que ocurra $$A$$ y $$B$$ simultáneamente, lo cual sucede si el resultado del lanzamiento del dado es un 5, satisfaciendo tanto la condición de ser impar (evento $$A$$) como la condición de ser mayor que cuatro (evento $$B$$).
 
-**c)** Lanzamos un dado una vez. En el evento A sale un número par. El evento B es sacar un número menor que dos. ¿Son estos eventos mutuamente excluyentes? La respuesta es si, **son eventos mutualmente excluyentes**
+**c)** Lanzamos un dado una vez. En el evento $$A$$ sale un número par. El evento $$B$$ es sacar un número menor que dos. ¿Son estos eventos mutuamente excluyentes? La respuesta es si, **son eventos mutualmente excluyentes**
 
