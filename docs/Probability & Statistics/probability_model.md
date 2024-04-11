@@ -325,10 +325,86 @@ Para ilustrar, imagina que tenemos un espacio muestral representado por un conju
 
 ![Ley de la probabilidad Total](https://fer78docs.github.io/assets/images/ley_probabilidad_total.jpg)
 
-
 Esta ley es especialmente útil cuando trabajamos con variables aleatorias que representan datos reales. A menudo, nos encontramos con distribuciones conjuntas que involucran varias variables aleatorias y deseamos calcular distribuciones marginales. La Ley de Probabilidad Total nos proporciona una forma de hacerlo, sumando las probabilidades de eventos que están condicionados por las particiones del espacio muestral.
 
-###  Ejemplo Práctico
+## Independencia de los modelos de probabilidad
 
-Digamos que lanzamos dos monedas y queremos calcular la probabilidad de obtener al menos una cara. Podemos dividir el espacio muestral en eventos donde la primera moneda es cara ($$A_1$$) y donde la primera moneda es sello ($$A_2$$). Usando la Ley de Probabilidad Total, podemos calcular la probabilidad de obtener al menos una cara sumando la probabilidad de obtener una cara con la primera moneda y una cara con la segunda moneda.
+La **independencia**, también conocida como independencia estadística, es una propiedad clave entre dos o más eventos en la teoría de la probabilidad. Dos eventos, $$A$$ y $$B$$, se consideran independientes si la ocurrencia de uno no afecta la probabilidad de ocurrencia del otro. Matemáticamente, esto se expresa como:
+
+$$P(A \cap B) = P(A) \times P(B)$$
+
+donde $$P(A \cap B)$$ es la probabilidad de que ambos eventos sucedan simultáneamente, y $$P(A)$$ y $$P(B)$$ son las probabilidades de que cada evento suceda independientemente.
+
+### Ejemplos de Independencia
+
+1. **Lanzamiento de una moneda y un dado**: Supongamos que lanzamos una moneda y un dado al mismo tiempo. La probabilidad de que la moneda muestre cara $$P(cara) = \frac{1}{2}$$, y la probabilidad de que el dado muestre un seis $$P(B_6) = \frac{1}{6}$$. Estos dos eventos son independientes porque el resultado de la moneda no influye en el resultado del dado, entonces:
+
+$$P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}$$
+
+2. **Elegir cartas de diferentes barajas**: Si eliges una carta de una baraja y otra de una baraja diferente, estos dos eventos son independientes porque el resultado de una elección no afecta el resultado de la otra.
+
+### Profundización en la Independencia Mutua
+
+La pregunta central en la transcripción es si la independencia es mutua; es decir, si $$A$$ es independiente de $$B$$, ¿implica esto que $$B$$ también es independiente de $$A$$? La respuesta es sí, porque la independencia entre dos eventos **es siempre mutua** dado que la relación matemática no cambia al invertir los roles.
+
+### Independencia en Conjuntos de Más de Dos Eventos
+
+Cuando tratamos con más de dos eventos, establecer la independencia se vuelve más complejo. Para que tres eventos, por ejemplo, $$A$$, $$B$$, y $$C$$, sean mutuamente independientes, deben cumplir todas las siguientes condiciones:
+
+- $$P(A \cap B \cap C) = P(A) \times P(B) \times P(C)$$
+- $$P(A \cap B) = P(A) \times P(B)$$ 
+- $$P(A \cap C) = P(A) \times P(C)$$
+- $$P(B \cap C) = P(B) \times P(C)$$
+
+Estas condiciones garantizan que la independencia se mantiene en todos los subconjuntos de eventos.
+
+## Modelos de probabilidad de Independencia condicional
+
+{: .note}
+La **independencia condicional** es un concepto más refinado que indica que **dos eventos pueden ser independientes bajo la condición de un tercer evento**. Matemáticamente, dos eventos $$A$$ y $$B$$ son condicionalmente independientes dado un tercer evento $$C$$ si:
+
+$$P(A \cap B | C) = P(A | C) \times P(B | C)$$
+
+Este concepto es crucial en contextos donde la independencia absoluta no se mantiene, pero se establece una vez que se considera un evento condicionante.
+
+### Ejemplo de Independencia Condicional
+
+Considera el caso de testear un software bajo diferentes condiciones de red. Dos fallos distintos, $$A$$ y $$B$$, pueden no ser independientes en general (es decir, que uno ocurra puede afectar la probabilidad del otro), pero si condicionamos al tipo de red $$C$$ (por ejemplo, 4G vs. WiFi), estos fallos pueden volverse independientes dentro de cada tipo de red.
+
+## Modelos de probabilidad Regla de Bayes
+
+La **Regla de Bayes** o **Teorema de Bayes**, es un pilar fundamental en la probabilidad y estadística, especialmente crucial en el campo del aprendizaje automático. Este concepto se presenta como un puente hacia el entendimiento de cómo se pueden utilizar modelos estadísticos para interpretar y predecir a partir de datos. 
+
+{: .note}
+La Regla de Bayes proporciona una forma de calcular la probabilidad posterior de un evento, dado algún conocimiento previo. Matemáticamente, se expresa como:
+
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+
+donde:
+- $$P(A\|B)$$ es la probabilidad de $$A$$ dado que $$B$$ ha ocurrido.
+- $$P(B\|A)$$ es la probabilidad de $$B$$ dado que $$A$$ ha ocurrido.
+- $$P(A)$$ es la probabilidad a priori de $$A$$.
+- $$P(B)$$ es la probabilidad total de $$B$$.
+
+### Prueba de la Regla de Bayes
+
+La prueba se basa en el principio de que la probabilidad conjunta de dos eventos, $$A$$ y $$B$$, es la misma sin importar el orden en que se consideren, es decir, $$P(A \cap B) = P(B \cap A)$$. Aplicando la definición de probabilidad condicional a ambos lados, obtenemos la regla de Bayes.
+
+### Ejemplo 
+
+Imagina que tienes una enfermedad rara (Evento $$A$$) y una prueba que detecta dicha enfermedad (Evento $$B$$). La Regla de Bayes te permite calcular la probabilidad de tener la enfermedad dado que la prueba es positiva, utilizando el conocimiento previo sobre la prevalencia de la enfermedad y la precisión de la prueba.
+
+### Aplicaciones en el Aprendizaje Automático
+
+La Regla de Bayes es la base del clasificador Bayesiano, un algoritmo de aprendizaje automático que clasifica los datos basándose en la probabilidad de que pertenezcan a una clase dada la observación de sus características. Este clasificador se utiliza en:
+- Filtros de spam en correos electrónicos.
+- Clasificación de documentos y textos.
+- Diagnósticos médicos automáticos.
+
+### Modelo Generativo vs. Modelo Discriminativo
+
+La distinción entre modelado generativo y discriminativo es fundamental en el aprendizaje automático:
+
+- **Modelo Generativo**: Intenta modelar cómo se generan los datos, combinando las distribuciones de las características y las clases. Ejemplos incluyen el clasificador Bayesiano y la mezcla de modelos Gaussianos.
+- **Modelo Discriminativo**: Se enfoca en la frontera entre las clases, intentando directamente predecir la clase a partir de las características observadas. Ejemplos incluyen la regresión logística y las máquinas de soporte vectorial (SVM).
 
