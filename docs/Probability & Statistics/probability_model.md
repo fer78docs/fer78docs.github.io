@@ -5,14 +5,19 @@ nav_order: 3
 parent: Probability & Statistics
 ---
 
-## Modelo de Probabilidad
+## Temas
 
 - [Espacio Muestral](#espacio-muestral-el-fundamento-del-modelo-de-probabilidad)
 - [Asignacion de Probabilidades](#asignación-de-probabilidades-medida-de-confianza-en-los-eventos)
 - [Probability Axioms](#probability-axioms)
 - [Derivaciones de axiomas de probabilidad](#derivaciones-de-axiomas-de-probabilidad)
 - [Modelos de probabilidad continua](#modelos-de-probabilidad-continua)
+- [La probabilidad condicional](#la-probabilidad-condicional)
+- [Probabilidad condicional en la Ley de Probabilidad Total](#probabilidad-condicional-en-la-ley-de-probabilidad-total)
+- [Independencia de los modelos de probabilidad](#independencia-de-los-modelos-de-probabilidad)
+- [Modelos de probabilidad de Independencia condicional](#modelos-de-probabilidad-de-independencia-condicional)
 
+## Modelo de Probabilidad
 
 {: .note}
 El **modelo de probabilidad** es un marco conceptual y matemático esencial en estadística y teoría de probabilidad que permite analizar y predecir el comportamiento de fenómenos aleatorios. Este modelo se basa en dos pilares fundamentales: **la definición del espacio muestral** y **la asignación de probabilidades** a los eventos dentro de este espacio. 
@@ -408,3 +413,8 @@ La distinción entre modelado generativo y discriminativo es fundamental en el a
 - **Modelo Generativo**: Intenta modelar cómo se generan los datos, combinando las distribuciones de las características y las clases. Ejemplos incluyen el clasificador Bayesiano y la mezcla de modelos Gaussianos.
 - **Modelo Discriminativo**: Se enfoca en la frontera entre las clases, intentando directamente predecir la clase a partir de las características observadas. Ejemplos incluyen la regresión logística y las máquinas de soporte vectorial (SVM).
 
+## Modelos de probabilidad hacia variables aleatoria
+
+Las **variables aleatorias** son entidades matemáticas que asignan resultados de procesos aleatorios a valores numéricos. **Son fundamentales para describir fenómenos en términos cuantitativos, permitiendo el uso de herramientas matemáticas y estadísticas para análisis y predicción.** Estas variables nos permiten la transición de conceptos teóricos de probabilidad a su aplicación práctica para modelar y analizar **datos reales**. 
+
+Este paso es crucial, ya que en el aprendizaje automático, los datos —y, por ende, los eventos que representan— se expresan casi exclusivamente a través de números. Aquí, se propone una sólida comprensión de cómo los principios de probabilidad y estadística subyacen en la base de modelos complejos de aprendizaje automático, particularmente a través del ejemplo del reconocimiento facial.
