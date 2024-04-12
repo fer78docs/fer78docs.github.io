@@ -9,7 +9,7 @@ parent: Probability & Statistics
 
 - [Espacio Muestral](#espacio-muestral-el-fundamento-del-modelo-de-probabilidad)
 - [Asignacion de Probabilidades](#asignación-de-probabilidades-medida-de-confianza-en-los-eventos)
-- [Probability Axioms](#probability-axioms)
+- [Axiomas de la Probabilidad](#axiomas-de-la-probabilidad)
 - [Derivaciones de axiomas de probabilidad](#derivaciones-de-axiomas-de-probabilidad)
 - [Modelos de probabilidad continua](#modelos-de-probabilidad-continua)
 - [La probabilidad condicional](#la-probabilidad-condicional)
@@ -51,7 +51,7 @@ Las probabilidades deben cumplir con ciertas propiedades o axiomas, como que:
 
 - **Control de Temperatura:** En un centro comercial que utiliza un sensor de temperatura para evaluar la fiebre de los visitantes, el espacio muestral incluye todas las temperaturas posibles registradas. Un evento relevante podría ser "registrar una temperatura menor o igual a 98 grados Fahrenheit", y su probabilidad refleja la proporción de visitantes que se espera que cumplan con esta condición.
 
-## Probability Axioms
+## Axiomas de la Probabilidad
 
 {: .highlight}
 Los **axiomas de la probabilidad**, son las *reglas fundamentales para definir las probabilidades de los eventos* dentro del marco de la teoría de probabilidad. Estos axiomas son esenciales para construir modelos de probabilidad que permitan analizar y predecir el comportamiento de fenómenos aleatorios de manera matemáticamente rigurosa. Hay tres axiomas principales de probabilidad, y a partir de ellos se pueden derivar diversas reglas y propiedades.
