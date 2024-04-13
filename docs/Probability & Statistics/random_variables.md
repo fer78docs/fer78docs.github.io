@@ -170,7 +170,7 @@ def simulate_bernoulli_trials(n, p=0.5):
 
 # Simular 1000 lanzamientos de una moneda con p = 0.7
 n_trials = 1000
-success_prob = 0.7
+success_prob = 0.612199
 frequency_of_success = simulate_bernoulli_trials(n_trials, success_prob)
 
 print(f"La frecuencia de éxito estimada es {frequency_of_success:.2f}")
@@ -204,4 +204,101 @@ plt.show()
 
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/Visualización de la Convergencia.png)
 
-Este gráfico mostrará cómo la frecuencia de éxitos se estabiliza y converge hacia la probabilidad real de éxito (0.7 en este caso) a medida que aumenta el número de ensayos, ilustrando la ley de los grandes números.
+Este gráfico mostrará cómo la frecuencia de éxitos se estabiliza y converge hacia la probabilidad real de éxito (0.612199 en este caso) a medida que aumenta el número de ensayos, ilustrando la ley de los grandes números.
+
+## Geometric Random Variable
+
+### Ensayos Independientes de Bernoulli
+
+{: .highlight}
+Un ensayo independiente implica que el resultado de un ensayo no influye ni puede ser influenciado por los resultados de otros ensayos. En el contexto de lanzar una moneda, significa que el resultado de un lanzamiento no afecta el resultado del siguiente.
+
+#### Ejemplo con Dos Lanzamientos
+Si lanzamos una moneda dos veces con una probabilidad de 0.7 de sacar cara en cada lanzamiento, la probabilidad de obtener dos caras seguidas sería $$0.7 \times 0.7 = 0.49$$.
+
+#### Explicación y Ejemplo
+Supongamos que lanzamos una moneda hasta que salga cara por primera vez, y queremos saber cuántos lanzamientos se necesitan.
+
+```python
+def geometric_trial(p=0.7):
+    """Simula una variable aleatoria geométrica.
+    Args:
+        p (float): Probabilidad de sacar cara. 
+    Returns:
+        int: Número de lanzamientos hasta el primer éxito.
+    """
+    count = 1
+    while bernoulli_trial(p) == 0:
+        count += 1
+    return count
+```
+
+Esta función utiliza la función de Bernoulli definida anteriormente para simular lanzamientos sucesivos hasta que el primer lanzamiento resulte en éxito (cara).
+
+### Función de Masa de Probabilidad (PMF) de la Variable Geométrica
+
+{: .highlight}
+La PMF de una variable aleatoria geométrica da la probabilidad de que se necesite un número específico de ensayos para alcanzar el primer éxito. 
+
+#### Ejemplo
+
+- $$P(X=1) = 0.7$$ (sacar cara en el primer lanzamiento).
+- $$P(X=2) = 0.3 \times 0.7$$ (sacar cruz en el primero y cara en el segundo).
+- $$P(X=n) = 0.3^{(n-1)} \times 0.7$$ (sacar cruz en los primeros $$n-1$$ lanzamientos y cara en el $$n$$-ésimo).
+
+### Prueba de normalización de variable aleatoria geométrica opcional
+
+Este segmento explica la variable aleatoria geométrica en detalle, destacando su importancia en el contexto de ensayos independientes de Bernoulli, como el lanzamiento repetido de una moneda hasta obtener el primer éxito (cara). Además, se aborda la propiedad de normalización de la distribución geométrica y se anticipa una demostración práctica utilizando Python. Vamos a desglosar y ampliar estos conceptos y ejemplos en español.
+
+### Variable Aleatoria Geométrica
+
+{: .highlight}
+La variable aleatoria geométrica mide el número de intentos necesarios hasta obtener el primer éxito en una serie de ensayos independientes de Bernoulli. Por ejemplo, en el lanzamiento de una moneda, esta variable contaría cuántos lanzamientos se realizan hasta que aparece la primera cara, asumiendo que cada lanzamiento es independiente del anterior.
+
+#### Propiedades de la Variable Geométrica
+
+- **Espacio Muestral Infinito pero Contable:** La variable geométrica puede tomar una cantidad infinita de valores (1, 2, 3, ...), ya que teóricamente podrían requerirse infinitos lanzamientos para obtener una cara. Sin embargo, estos valores son contables, lo que clasifica a la variable como discreta.
+- **Distribución de Probabilidad:** La probabilidad de que la variable aleatoria geométrica tome un valor específico $$k$$ es una función de la probabilidad de éxito $$p$$ y la probabilidad de fracaso $$q = 1-p$$. donde $$k$$ es el número de lanzamientos realizados hasta obtener el primer éxito.
+
+$$P(X = k) = q^{k-1} \cdot p$$
+
+### Demostración de la Propiedad de Normalización
+
+{: .highlight}
+Para cualquier variable aleatoria discreta, la suma de las probabilidades de todos los posibles valores debe ser igual a 1. Esto asegura que la distribución de probabilidad esté correctamente definida.
+
+#### Demostración para la Variable Geométrica
+Se puede demostrar que la suma de las probabilidades para todos los posibles valores de una variable geométrica es 1 utilizando la serie geométrica:
+
+$$
+\sum_{k=1}^{\infty} P(X = k) = \sum_{k=1}^{\infty} q^{k-1} \cdot p = p \sum_{k=0}^{\infty} q^k = p \cdot \frac{1}{1-q} = 1
+$$
+
+donde la suma de una serie geométrica $$\sum_{k=0}^{\infty} q^k$$ es $$\frac{1}{1-q}$$, y dado que $$q = 1-p$$, la expresión se simplifica a 1, confirmando que la distribución está bien definida.
+
+### Aplicación Práctica en Python
+
+Este código simula 1000 ensayos de una variable aleatoria geométrica y utiliza un histograma para visualizar cuántos lanzamientos se necesitan típicamente para obtener el primer éxito. Esta visualización ayuda a comprender la naturaleza de la distribución geométrica y la efectividad de los ensayos de Bernoulli independientes.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def geometric_trial(p=0.7):
+    count = 0
+    while np.random.rand() >= p:
+        count += 1
+    return count + 1
+
+# Simulación de 1000 ensayos geométricos
+results = [geometric_trial(p=0.7) for _ in range(1000)]
+
+# Visualización de la distribución
+plt.hist(results, bins=max(results), edgecolor='black')
+plt.title('Distribución de la Variable Aleatoria Geométrica')
+plt.xlabel('Número de Lanzamientos hasta el Primer Éxito')
+plt.ylabel('Frecuencia')
+plt.show()
+```
+![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/variable_aleatoria_geométrica.png)
+
