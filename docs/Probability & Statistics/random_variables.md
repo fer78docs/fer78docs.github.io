@@ -262,20 +262,6 @@ La variable aleatoria geométrica mide el número de intentos necesarios hasta o
 
 $$P(X = k) = q^{k-1} \cdot p$$
 
-### Demostración de la Propiedad de Normalización
-
-{: .highlight}
-Para cualquier variable aleatoria discreta, la suma de las probabilidades de todos los posibles valores debe ser igual a 1. Esto asegura que la distribución de probabilidad esté correctamente definida.
-
-#### Demostración para la Variable Geométrica
-Se puede demostrar que la suma de las probabilidades para todos los posibles valores de una variable geométrica es 1 utilizando la serie geométrica:
-
-$$
-\sum_{k=1}^{\infty} P(X = k) = \sum_{k=1}^{\infty} q^{k-1} \cdot p = p \sum_{k=0}^{\infty} q^k = p \cdot \frac{1}{1-q} = 1
-$$
-
-donde la suma de una serie geométrica $$\sum_{k=0}^{\infty} q^k$$ es $$\frac{1}{1-q}$$, y dado que $$q = 1-p$$, la expresión se simplifica a 1, confirmando que la distribución está bien definida.
-
 ### Aplicación Práctica en Python
 
 Este código simula 1000 ensayos de una variable aleatoria geométrica y utiliza un histograma para visualizar cuántos lanzamientos se necesitan típicamente para obtener el primer éxito. Esta visualización ayuda a comprender la naturaleza de la distribución geométrica y la efectividad de los ensayos de Bernoulli independientes.
@@ -301,4 +287,73 @@ plt.ylabel('Frecuencia')
 plt.show()
 ```
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/variable_aleatoria_geométrica.png)
+
+
+## Binomial Random Variables
+
+Este segmento explica la variable aleatoria binomial, que emerge de realizar múltiples ensayos independientes de Bernoulli, como lanzar una moneda varias veces. Esta variable aleatoria es crucial para entender fenómenos donde los resultados son binarios y se repiten en condiciones de independencia entre ensayos.
+
+{: .note}
+La **variable aleatoria binomial** $$X$$ representa el número de éxitos obtenidos en un número fijo $$N$$ de ensayos independientes de Bernoulli, cada uno con una probabilidad de éxito $$P$$. Por ejemplo, si lanzamos una moneda $$N$$ veces y cada lanzamiento tiene una probabilidad $$P$$ de resultar en cara (éxito), $$X$$ contaría cuántas caras se obtuvieron.
+
+#### Ejemplo Explicativo
+
+Supongamos que lanzamos una moneda tres veces $$N = 3$$, y cada lanzamiento tiene una probabilidad de 0.7 de ser cara. Los posibles resultados (espacio muestral) y la distribución de $$X$$ serían:
+
+- **0 caras (X = 0):** $$(Cruz, Cruz, Cruz)$$
+  - Probabilidad: $$(1 - 0.7)^3 = 0.027 $$
+- **1 cara (X = 1):** $$(Cara, Cruz, Cruz), (Cruz, Cara, Cruz), (Cruz, Cruz, Cara)$$
+  - Probabilidad: $$ \binom{3}{1} \times 0.7^1 \times 0.3^2 = 0.189 $$
+- **2 caras (X = 2):** $$(Cara, Cara, Cruz), (Cruz, Cara, Cara), (Cara, Cruz, Cara)$$
+  - Probabilidad: $$ \binom{3}{2} \times 0.7^2 \times 0.3^1 = 0.441$$
+- **3 caras (X = 3):** $$(Cara, Cara, Cara)$$
+  - Probabilidad: $$ 0.7^3 = 0.343 $$
+
+#### Fórmula General de la Binomial
+
+La probabilidad de obtener exactamente $$k$$ éxitos en $$N$$ ensayos se calcula usando la fórmula binomial:
+
+
+$$
+P(X = k) = \binom{N}{k} \times P^k \times (1-P)^{N-k}
+$$
+
+donde $$\binom{N}{k}$$ es el coeficiente binomial que representa el número de formas en que se pueden obtener $$k$$ éxitos en $$N$$ ensayos.
+
+### Ejemplo de Código en Python
+
+Para trabajar con la variable aleatoria binomial en Python, una de las herramientas más útiles y comunes es el módulo `numpy`, específicamente la función `numpy.random.binomial`. Este módulo facilita la simulación de ensayos binomiales, permitiendo generar datos que siguen una distribución binomial. 
+
+Este código utiliza la función `np.random.binomial` para simular 1000 ensayos binomiales donde se lanzan 10 monedas por ensayo con una probabilidad de 0.7 de obtener cara en cada lanzamiento. Luego, genera un histograma para visualizar la distribución de los resultados.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def simulate_binomial(n, p, trials):
+    """Simula 'trials' ensayos binomiales de 'n' lanzamientos con probabilidad 'p'."""
+    results = np.random.binomial(n, p, trials)
+    return results
+
+# Parámetros de la simulación
+n = 10  # Número de lanzamientos
+p = 0.7  # Probabilidad de cara
+trials = 1000  # Número de simulaciones
+
+# Realizar simulaciones
+results = simulate_binomial(n, p, trials)
+
+# Visualizar resultados
+plt.hist(results, bins=np.arange(n+2)-0.5, edgecolor='black', density=True)
+plt.title('Distribución Binomial de Caras en 10 Lanzamientos')
+plt.xlabel('Número de Caras')
+plt.ylabel('Frecuencia Relativa')
+plt.xticks(range(n+1))
+plt.show()
+```
+
+![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/distribucion_binomial.png)
+
+
+## Random Variables in Real Datasets
 
