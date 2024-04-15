@@ -14,7 +14,7 @@ parent: Probability & Statistics
 
 ### Experimento del Círculo Unitario
 
-![Experimento del Circulo Unitario](https://fer78docs.github.io/assets/pictures/circulo_unitario.png)
+![Experimento del Circulo Unitario](https://fer78docs.github.io/assets/images/circulo_unitario.png)
 
 Consideremos un experimento ilustrativo para entender mejor las variables aleatorias continuas. Imaginemos un círculo unitario, es decir, un círculo de radio uno, centrado en el origen de un sistema de coordenadas. En este experimento, el acto aleatorio consiste en colocar puntos dentro del círculo. La variable de interés en este caso es la distancia desde el origen hasta el punto donde cada punto es colocado aleatoriamente.
 
