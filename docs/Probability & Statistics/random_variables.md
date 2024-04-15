@@ -9,7 +9,10 @@ parent: Probability & Statistics
 
 - [Variables Aleatorias](#variables-aleatorias)
 - [Bernoulli Random Variables](#bernoulli-random-variables)
-
+- [Geometric Random Variable](#geometric-random-variable)
+- [Binomial Random Variables](#binomial-random-variables)
+- [Random Variables in Real Datasets](#random-variables-in-real-datasets)
+- [Zero Probability to Individual Values](#zero-probability-to-individual-values)
 
 ## Variables Aleatorias
 
@@ -309,17 +312,6 @@ Supongamos que lanzamos una moneda tres veces $$N = 3$$, y cada lanzamiento tien
 - **3 caras (X = 3):** $$(Cara, Cara, Cara)$$
   - Probabilidad: $$ 0.7^3 = 0.343 $$
 
-#### Fórmula General de la Binomial
-
-La probabilidad de obtener exactamente $$k$$ éxitos en $$N$$ ensayos se calcula usando la fórmula binomial:
-
-
-$$
-P(X = k) = \binom{N}{k} \times P^k \times (1-P)^{N-k}
-$$
-
-donde $$\binom{N}{k}$$ es el coeficiente binomial que representa el número de formas en que se pueden obtener $$k$$ éxitos en $$N$$ ensayos.
-
 ### Ejemplo de Código en Python
 
 Para trabajar con la variable aleatoria binomial en Python, una de las herramientas más útiles y comunes es el módulo `numpy`, específicamente la función `numpy.random.binomial`. Este módulo facilita la simulación de ensayos binomiales, permitiendo generar datos que siguen una distribución binomial. 
@@ -354,6 +346,46 @@ plt.show()
 
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/distribucion_binomial.png)
 
-
 ## Random Variables in Real Datasets
+
+Para explorar cómo se utilizan las variables aleatorias en conjuntos de datos reales, se puede utilizar Python junto con bibliotecas como `Pandas` y `Seaborn` para cargar y analizar datos. Por ejemplo, el conjunto de datos de Iris es frecuentemente usado para este tipo de análisis:
+
+```python
+import pandas as pd
+import seaborn as sns
+
+# Cargar el conjunto de datos de Iris
+iris = sns.load_dataset('iris')
+
+# Mostrar las primeras cinco filas del conjunto de datos
+print(iris.head())
+
+# Explorar las categorías únicas de la variable 'species'
+print(iris['species'].unique())
+```
+
+Este código carga el conjunto de datos de Iris, que incluye medidas como la longitud y el ancho del sépalo y del pétalo de diferentes especies de iris. Cada una de estas medidas se puede considerar como una variable aleatoria, donde los valores que toman son resultados de procesos aleatorios bajo condiciones controladas.
+
+#### Tareas de Aprendizaje Automático
+En el contexto del aprendizaje automático, las tareas comúnmente asociadas con variables aleatorias incluyen clasificación y regresión:
+- **Clasificación:** Determinar a qué categoría (especies en el caso de Iris) pertenece una observación basada en sus características.
+- **Regresión:** Predecir un valor continuo basado en otras variables (por ejemplo, predecir el largo del pétalo basado en otras medidas).
+
+Estas tareas utilizan las propiedades de las variables aleatorias para entrenar modelos que puedan generalizar bien a partir de datos nuevos.
+
+### Modelado de Variables Aleatorias en Python
+
+Para modelar variables aleatorias y sus distribuciones en Python, se utilizan técnicas estadísticas y de aprendizaje automático para ajustar modelos a los datos. Esto puede implicar calcular la función de masa de probabilidad para variables discretas o la función de densidad de probabilidad para variables continuas.
+
+#### Visualización y Análisis
+Utilizar visualizaciones como histogramas o gráficos de dispersión ayuda a entender la distribución y la relación entre variables aleatorias. Por ejemplo:
+
+```python
+sns.pairplot(iris, hue='species')
+plt.show()
+```
+
+Este gráfico muestra las relaciones entre todas las medidas en el conjunto de datos de Iris, coloreadas por especie, proporcionando una intuición visual de cómo las variables aleatorias se relacionan entre sí y cómo podrían influir en la clasificación de las especies.
+
+Comprender cómo las variables aleatorias se aplican a datos reales permite a los científicos de datos y a los profesionales del aprendizaje automático construir modelos más precisos y efectivos. La teoría detrás de las variables aleatorias es fundamental, pero su aplicación práctica a través de herramientas como Python facilita la exploración y el modelado efectivo de datos complejos en situaciones del mundo real.
 
