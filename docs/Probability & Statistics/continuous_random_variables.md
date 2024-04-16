@@ -52,7 +52,7 @@ Una Funcion de Densidad de Probabilidad de  no proporciona directamente la proba
 
 ### Propiedades Clave de las PDFs
 
-1. **Positividad:** Todos los valores de una PDF deben ser no negativos, una propiedad compartida con las PMFs.
+1. **Positividad:** Todos los valores de una PDF deben ser **no negativos**, una propiedad compartida con las PMFs.
 
 2. **Integración a Uno:** A diferencia de las PMFs, donde cada valor individual puede tener una probabilidad directamente asignada (y sumar todas las probabilidades da uno), en las PDFs el total del área bajo la curva debe ser igual a uno para que el modelo de probabilidad sea válido.
 
@@ -76,24 +76,38 @@ f(x) = \begin{cases}
 \end{cases}
 $$
 
-Esta forma de la función garantiza que la probabilidad de cualquier subintervalo dentro de \([10, 30]\) sea proporcional a su longitud. La constante \( \frac{1}{20} \) se deriva de la inversa de la longitud del intervalo (30 - 10 = 20), asegurando que el área total bajo la curva de la PDF sea 1, cumpliendo así con una propiedad fundamental de las distribuciones de probabilidad.
+Esta forma de la función garantiza que la probabilidad de cualquier subintervalo dentro de $$[10, 30]$$ sea proporcional a su longitud. La constante $$\frac{1}{20}$$ se deriva de la inversa de la longitud del intervalo $$(30 - 10 = 20)$$, asegurando que el área total bajo la curva de la PDF sea 1, cumpliendo así con una propiedad fundamental de las distribuciones de probabilidad.
 
-#### Ejemplo Práctico de la Distribución Uniforme
+### Ejemplo Práctico de la Distribución Uniforme
 
-Supongamos que queremos calcular la probabilidad de que \(X\) caiga entre 15 y 20. Dado que la altura de la función de densidad es \(\frac{1}{20}\) en todo el intervalo \([10, 30]\), el cálculo de esta probabilidad se reduce a evaluar el área de un rectángulo definido por el intervalo \([15, 20]\):
-\[
+Supongamos que queremos calcular la probabilidad de que $$X$$ caiga entre 15 y 20. Dado que la altura de la función de densidad es $$\frac{1}{20}$$ en todo el intervalo $$[10, 30]$$, el cálculo de esta probabilidad se reduce a evaluar el área de un rectángulo definido por el intervalo $$[15, 20]$$:
+
+$$
 P(15 \leq X \leq 20) = \frac{1}{20} \times (20 - 15) = \frac{1}{20} \times 5 = \frac{1}{4}
-\]
-Esto indica que hay una probabilidad del 25% de que \(X\) esté entre 15 y 20.
+$$
+
+Esto indica que hay una probabilidad del 25% de que $$X$$ esté entre 15 y 20.
 
 #### Aplicación en Simulaciones
 
-La distribución uniforme es ampliamente utilizada en la generación de números aleatorios, especialmente en simulaciones computacionales. Por ejemplo, la función `np.random.rand()` en Python genera números aleatorios uniformemente distribuidos en el intervalo \([0, 1]\). Estos valores pueden ser escalados a cualquier otro intervalo \([a, b]\) mediante la transformación:
-\[
+La distribución uniforme es ampliamente utilizada en la generación de números aleatorios, especialmente en simulaciones computacionales. Por ejemplo, la función `np.random.rand()` en Python genera números aleatorios uniformemente distribuidos en el intervalo $$[0, 1]$$. Estos valores pueden ser escalados a cualquier otro intervalo $$[a, b]$$ mediante la transformación:
+
+$$
 X = a + (b - a) \times \text{np.random.rand()}
-\]
+$$
+
 Esto es particularmente útil en estudios de simulación donde se requieren entradas aleatorias que sean equitativas en términos de probabilidad a lo largo de un intervalo dado.
 
-#### Conclusión
+### Implementar Uniform Distributions con Python
 
-La distribución uniforme continua ofrece una forma sencilla y eficaz de modelar y simular situaciones donde todos los resultados en un intervalo específico son igualmente probables. Su fácil implementación y las propiedades matemáticas claras hacen que sea una herramienta indispensable en estadística aplicada, investigación operativa, ingeniería, y otras disciplinas que requieren modelado estadístico y generación de números aleatorios. En el próximo video, exploraremos cómo implementar y utilizar estas propiedades en Python, mejorando nuestra capacidad para realizar simulaciones y análisis probabilísticos.
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+X = 100 * np.random.rand(100000)+20
+plt.hist(X, density=True, bins=50)
+sns.kdeplot(X)
+```
+
+![Uniform Distribution](https://fer78docs.github.io/assets/images/hist_random_continious.png)
+
