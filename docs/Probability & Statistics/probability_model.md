@@ -35,21 +35,34 @@ Es la base sobre la cual se construye el modelo de probabilidad, ya que define e
 
 Un **evento** es cualquier subconjunto del espacio muestral que representa una colección de resultados posibles en los que estamos interesados. Por ejemplo, en el lanzamiento de dos dados, un evento podría ser "obtener una suma par". Los eventos pueden variar desde el conjunto vacío (un evento imposible) hasta el espacio muestral completo (un evento seguro), incluyendo eventos más específicos que reflejan preguntas particulares sobre el experimento.
 
-### Asignación de Probabilidades: Medida de Confianza en los Eventos
-
-{: .note}
-La **asignación de probabilidades** es el proceso mediante el cual se atribuyen valores numéricos a los eventos en el espacio muestral, reflejando la confianza o la creencia en la ocurrencia de esos eventos. La probabilidad de un evento $$A$$, denotada como $$P(A)$$, es un **número no negativo** que indica qué tan probable es que $$A$$ ocurra cuando se realiza el experimento. 
-
-Las probabilidades deben cumplir con ciertas propiedades o axiomas, como que:
-
-- La suma de las probabilidades de todos los eventos elementales en el espacio muestral es igual a 1
-- La probabilidad de cualquier evento es la suma de las probabilidades de los resultados individuales que lo componen.
-
-### Ejemplos y Aplicaciones
+### Ejemplos
 
 - **Lanzamiento de Dados:** Consideramos un experimento donde se lanzan dos dados de cuatro caras. El espacio muestral incluye todas las combinaciones posibles de resultados, y un evento de interés podría ser "obtener una suma par". La probabilidad de este evento se calcula considerando todos los pares de resultados que cumplen con la condición y asignando probabilidades basadas en la regla de conteo uniforme o datos históricos.
 
 - **Control de Temperatura:** En un centro comercial que utiliza un sensor de temperatura para evaluar la fiebre de los visitantes, el espacio muestral incluye todas las temperaturas posibles registradas. Un evento relevante podría ser "registrar una temperatura menor o igual a 98 grados Fahrenheit", y su probabilidad refleja la proporción de visitantes que se espera que cumplan con esta condición.
+
+## Asignación de Probabilidades: Ley de Laplace
+
+{: .note}
+La **asignación de probabilidades** es el proceso mediante el cual se atribuyen valores numéricos a los eventos en el espacio muestral, reflejando la confianza o la creencia en la ocurrencia de esos eventos. La probabilidad de un evento $$A$$, denotada como $$P(A)$$, es un **número no negativo** que indica qué tan probable es que $$A$$ ocurra cuando se realiza el experimento. 
+
+La **Ley de Laplace**, también conocida como la regla de sucesión de Laplace, es un principio en teoría de probabilidades desarrollado por el matemático francés Pierre-Simon Laplace. Esta ley es una extensión del principio de indiferencia o principio de razón insuficiente, que establece que en ausencia de conocimiento previo sobre un fenómeno, uno debe asignar probabilidades iguales a todos los eventos posibles.
+
+La Ley de Laplace se aplica principalmente cuando no se tiene información previa que favorezca un resultado sobre otro. En este caso, la probabilidad de un evento en particular es simplemente el recíproco del número total de eventos igualmente probables.
+
+Si se considera que un evento puede resultar en $$n$$ resultados igualmente probables, y hay $$k$$ formas en que un evento específico puede ocurrir, entonces la probabilidad de ese evento, según Laplace, es:
+
+$$P(E) = \frac{k}{n}$$
+
+### Ejemplo Práctico
+
+Imagina que un bol contiene 3 bolas rojas y 2 bolas azules. Si se va a extraer una bola al azar, la probabilidad de sacar una bola roja, usando la Ley de Laplace, se calcula como el número de bolas rojas dividido por el número total de bolas:
+
+$$P(\text{Roja}) = \frac{3}{5}$$
+
+Si no supiéramos los colores de las bolas en el bol, pero sabemos que hay 5 bolas, y asumimos equiprobabilidad (ignorando cualquier información adicional), la probabilidad de sacar cualquier bola específica sería $$\frac{1}{5} $$.
+
+En resumen, la Ley de Laplace ofrece un marco útil para el análisis probabilístico en situaciones de información limitada, aunque es crucial considerar sus limitaciones y el contexto específico en que se aplica para evitar inferencias erróneas.
 
 ## Axiomas de la Probabilidad
 
@@ -60,9 +73,103 @@ Los **axiomas de la probabilidad**, son las *reglas fundamentales para definir l
 
 El primer axioma establece que **la probabilidad de cualquier evento es siempre un número no negativo**. Esto refleja la idea de que la probabilidad mide la confianza o expectativa de que un evento ocurra, lo cual no puede ser una cantidad negativa. Este axioma también permite que la probabilidad de un evento sea cero, lo que indica que el evento es imposible dentro del contexto del experimento.
 
-### Axioma 2: Aditividad
+### Axioma 2: Aditividad, Regla de la Suma
 
-El segundo axioma, conocido como la aditividad o **la regla de suma para eventos disjuntos, especifica que si dos eventos $$A$$ y $$B$$ son mutuamente excluyentes (es decir, no pueden ocurrir al mismo tiempo), entonces la probabilidad de que ocurra $$A$$ o $$B$$ es igual a la suma de sus probabilidades individuales.** Esto se extiende a una cantidad finita o infinita contable de eventos mutuamente excluyentes, asegurando que la probabilidad de su unión sea la suma de las probabilidades de cada evento.
+La **regla de la suma**, también conocida como la **regla de adición**, es un principio fundamental en la teoría de probabilidades que se utiliza para calcular la probabilidad de que ocurra al menos uno de dos eventos. 
+
+#### Eventos Mutuamente Excluyentes
+
+Para dos eventos $$A$$ y $$B$$ que no pueden ocurrir al mismo tiempo (es decir, son mutuamente excluyentes), la regla de la suma establece que la probabilidad de que ocurra $$A$$ o $$B$$ es simplemente la suma de sus probabilidades individuales:
+
+$$P(A \cup B) = P(A) + P(B)$$
+
+Por ejemplo, si tienes un mazo de cartas y quieres saber la probabilidad de sacar un rey o una reina, sumarías la probabilidad de sacar un rey con la probabilidad de sacar una reina, dado que no puedes sacar una carta que sea ambos a la vez.
+
+#### Eventos No Mutuamente Excluyentes
+
+Cuando los eventos pueden ocurrir simultáneamente (es decir, no son mutuamente excluyentes), se debe ajustar la regla de la suma para evitar contar dos veces la intersección de los eventos. La regla modificada es:
+
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la probabilidad de que $$A$$ y $$B$$ ocurran al mismo tiempo. Este ajuste es necesario para obtener una medida precisa de la probabilidad de que ocurra cualquiera de los eventos.
+
+### Ejemplos Prácticos
+
+1. **Cartas**:
+   - Si tienes un mazo de 52 cartas y quieres saber la probabilidad de sacar un as o un corazón, primero sumarías la probabilidad de sacar un as $$4/52$$ con la probabilidad de sacar un corazón $$13/52$$. Luego, restarías la probabilidad de sacar un as de corazones, ya que se contó dos veces $$1/52$$:
+   
+     $$
+     P(\text{As} \cup \text{Corazón}) = \frac{4}{52} + \frac{13}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}
+     $$
+
+2. **Dados**:
+   - Si lanzas un dado y quieres saber la probabilidad de obtener un número impar o un número mayor que 4, primero determinarías la probabilidad de cada uno de estos eventos y luego su intersección:
+     - Número impar (1, 3, 5): $$P(A) = \frac{3}{6}$$
+     - Número mayor que 4 (5, 6): $$P(B) = \frac{2}{6}$$
+     - Número impar y mayor que 4 (5): $$P(A \cap B) = \frac{1}{6}$$
+   
+     Aplicando la regla de la suma:
+   
+    $$P(A \cup B) = \frac{3}{6} + \frac{2}{6} - \frac{1}{6} = \frac{4}{6} = \frac{2}{3}$$
+
+
+### Regla de multiplicación
+
+Hemos analizado la regla de la suma, que describe la probabilidad de que ocurra un evento U otro evento (o ambos). ¿Qué pasa si queremos calcular la probabilidad de que dos eventos sucedan simultáneamente? Para dos eventos, $$A$$ y $$B$$ , esto es $$P(A y B)$$ o la probabilidad de la intersección de $$A∩B$$.
+
+La fórmula general para la probabilidad de que dos eventos ocurran simultáneamente es:
+
+$$P(A∩B) = P(A) * P(B|A)$$
+
+Sin embargo, para eventos independientes, podemos simplificar ligeramente esta fórmula.
+
+### Eventos dependientes
+
+Volvamos a nuestro ejemplo de la bolsa de canicas. Tenemos cinco canicas: dos son azules y tres son rojas. Escogemos dos canicas sin reposición. ¿Qué pasa si queremos saber la probabilidad de elegir una canica azul primero Y una canica azul después?
+
+Teniendo en cuenta la probabilidad condicional, la regla de multiplicación para estos dos eventos dependientes es:
+
+$$
+P(Azul 1.º y Azul 2.º) = P(azul 1º) * P(azul 2.º | Azul 1º )  
+P(Azul 1.º y Azul 2.º) = 2/5 * 1/4  
+P(Azul 1.º y Azul 2.º) = 1/10  
+$$
+
+Una forma de visualizar todos los resultados posibles de un par de eventos es un diagrama de árbol .
+
+Los diagramas de árbol tienen las siguientes propiedades:
+
+- Cada rama representa un conjunto específico de eventos.
+- Las probabilidades de que las ramas terminales (todos los conjuntos posibles de resultados) sumen uno.
+- Multiplicamos entre ramas (¡usando la regla de la multiplicación!) para calcular la probabilidad de que ocurra cada rama (conjunto de resultados).
+
+¡En el navegador de la derecha podrás jugar con uno en este enlace: 
+
+[Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/tree-diagram/tree.html)
+
+### Eventos independientes
+
+Para dos eventos independientes, la regla de la multiplicación se vuelve menos complicada. La probabilidad de que ocurran dos eventos independientes es:
+
+$$P(A y B) = P(A) * P(B)$$
+
+Esto se debe a que lo siguiente es cierto para eventos independientes:
+
+$$P(B|A ) = P(B)$$
+
+Veamos el ejemplo más sencillo: lanzar dos veces una moneda justa. El evento $$A$$ es que obtenemos cruz en el primer lanzamiento, y el evento $$B$$ es que obtenemos cruz en el segundo lanzamiento. $$P(A) = P(B) = 0.5$$ , entonces según nuestra fórmula, la probabilidad de obtener cruz en ambos lanzamientos sería:
+
+$$P(B y A ) = 0.5 * 0.5 = 0.25$$
+
+El subprograma del enlace hay un diagrama de árbol y diez canicas azules y naranjas debajo del diagrama de árbol (es posible que deba desplazarse hacia abajo para ver las canicas). Si haces clic en una de las canicas, el diagrama de árbol se completará según lo que hayas seleccionado. 
+
+Después de seleccionar dos canicas, aparecerá una ecuación para la regla del producto encima de las canicas. 
+
+El número de canicas naranjas y azules se aleatoriza cada vez que golpeas Reset, por lo que verás muchos valores diferentes para prob1 , prob2 y final_prob .
+
+Pruebe todos los resultados posibles y observe el diagrama de árbol en consecuencia:
+
+[Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/tree-diagram/tree.html)
 
 ### Axioma 3: Probabilidad del Espacio Muestral
 
