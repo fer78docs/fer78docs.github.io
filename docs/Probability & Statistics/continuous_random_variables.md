@@ -111,3 +111,91 @@ sns.kdeplot(X)
 
 ![Uniform Distribution](https://fer78docs.github.io/assets/images/hist_random_continious.png)
 
+## Exponential Random Variables
+
+Las variables aleatorias exponenciales son un tipo importante de distribución de probabilidad continua que se utiliza **para modelar el tiempo entre eventos en procesos que son continuos** y sin memoria. Esta distribución es especialmente útil en el ámbito de la teoría de colas, la fiabilidad de sistemas y en la modelación de procesos de llegada en sistemas de comunicaciones.
+
+Una variable aleatoria exponencial, denotada como $$X$$, **describe el tiempo entre eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante**. Matemáticamente, la función de densidad de probabilidad (PDF) de una variable aleatoria exponencial está dada por:
+
+$$
+f(x; \lambda) = \lambda e^{-\lambda x} \quad \text{para } x \geq 0
+$$
+
+Donde:
+- $$\lambda$$ es la tasa de llegada o tasa de fallo, también conocida como parámetro de tasa, que indica el número promedio de eventos por unidad de tiempo.
+- $$e$$ es la base del logaritmo natural.
+- $$x$$ representa el tiempo.
+
+Las principales características de esta distribución incluyen:
+- **Sin memoria**: La distribución exponencial es la única distribución continua que tiene la propiedad de falta de memoria, lo que significa que la probabilidad de que ocurra un evento en el futuro es independiente de cualquier historia pasada.
+  
+$$
+P(X > s + t | X > s) = P(X > t) \quad \text{para todo } s, t \geq 0
+$$
+
+- **Media y Varianza**:
+  - La media (esperanza) de $$X$$ es $$\frac{1}{\lambda}$$.
+  - La varianza de $$X$$ es $$\frac{1}{\lambda^2}$$.
+
+#### Ejemplos de Aplicación
+
+1. **Teoría de Colas**: En el análisis de colas, la distribución exponencial se utiliza para modelar los tiempos de llegada de clientes a un servicio o los tiempos de servicio necesarios en puntos de atención.
+  
+2. **Fiabilidad de Sistemas**: En ingeniería de fiabilidad, se utiliza para modelar el tiempo hasta el fallo de componentes electrónicos o mecánicos. Por ejemplo, si un componente tiene una tasa de fallo constante de \( \lambda \) fallos por hora, el tiempo hasta el fallo del componente puede modelarse como una variable aleatoria exponencial.
+
+3. **Procesos de Llegada en Redes de Comunicación**: En telecomunicaciones, los tiempos entre llegadas de paquetes de datos pueden modelarse utilizando distribuciones exponenciales.
+
+### Simulación en Python
+
+Aquí se presenta un ejemplo básico de cómo generar y visualizar variables aleatorias exponenciales utilizando Python y NumPy:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetro de tasa
+lambda_param = 1.0
+
+# Generar 1000 variables aleatorias exponenciales
+data = np.random.exponential(1/lambda_param, 1000)
+
+# Visualizar los datos
+plt.hist(data, bins=50, density=True, alpha=0.75, label='Datos simulados')
+plt.title('Histograma de Variables Aleatorias Exponenciales')
+plt.xlabel('Tiempo')
+plt.ylabel('Densidad')
+plt.legend()
+plt.show()
+```
+
+![Probability density funtion](https://fer78docs.github.io/assets/images/pdf_histogram.png)
+
+El código siguiente utiliza NumPy y Matplotlib para visualizar la función de densidad de probabilidad (PDF) de varias distribuciones exponenciales con diferentes parámetros de tasa.
+
+```python
+# Importar las bibliotecas necesarias para el manejo de arrays y visualización
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generar 1000 puntos equidistantes en el rango de 0 a 10
+x = np.linspace(0, 10, 1000)
+
+# Crear diferentes valores del parámetro de tasa 'lambda', desde 0.1 hasta 2, en total 4 valores
+lmdaz = np.linspace(0.1, 2, 4)
+
+# Iterar sobre cada valor de lambda
+for i in lmdaz:
+    # Calcular la función de densidad de probabilidad exponencial para cada valor de x y lambda
+    fx = i * np.exp(-i * x)  # f(x) = lambda * exp(-lambda * x)
+    
+    # Graficar la función calculada, etiquetando con el valor de lambda correspondiente
+    plt.plot(x, fx, label=str(i))
+
+# Añadir una leyenda al gráfico, que muestra las etiquetas de los valores de lambda
+plt.legend()
+
+# Mostrar el gráfico resultante
+plt.show()
+```
+
+![Probability density funtion](https://fer78docs.github.io/assets/images/pdfuntions.png)
