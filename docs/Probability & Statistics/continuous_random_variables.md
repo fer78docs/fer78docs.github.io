@@ -5,6 +5,20 @@ nav_order: 5
 parent: Probability & Statistics
 ---
 
+## Contenido
+
+- [Variables aleatorias continuas](#variables-aleatorias-continuas)
+- [Zero Probability to Individual Values](#zero-probability-to-individual-values)
+- [Probability Density Functions](#probability-density-functions)
+- [Continuos Uniform Distribution](#continuos-uniform-distribution)
+- [Exponential Random Variables](#exponential-random-variables)
+- [Gaussian Random Variables (Normal Random Variables)](#gaussian-random-variables-normal-random-variables)
+- [Función de Distribución Acumulativa con variables continuas]
+- [Transformacion de Variables Aleatorias](#transformacion-de-variables-aleatorias)
+
+
+
+
 
 ## Variables aleatorias continuas
 
@@ -222,9 +236,9 @@ $$
 
 Aquí, $$\mu$$ representa la media, o el centro de la distribución, mientras que $$\sigma^2$$ denota la varianza, dictando la dispersión de los datos alrededor de la media. La forma de la función es simétricamente campaniforme, alcanzando su máximo en $$\mu$$ y decayendo a medida que los valores se alejan de la media, lo que indica que la probabilidad de observar valores cercanos a $$\mu$$ es más alta.
 
-#### Comprensión Conceptual a Través de Funciones Exponenciales
+### Comprensión Conceptual a Través de Funciones Exponenciales
 
-Para comprender el comportamiento de la PDF gaussiana, se puede considerar el papel de la función exponencial en la fórmula. Por ejemplo, usando la base exponencial \( e \) (un número positivo mayor que uno), a medida que \( x \) se desvía de \( \mu \), el término \( e^{-\frac{(x-\mu)^2}{2\sigma^2}} \) disminuye rápidamente. Esto demuestra cómo la densidad de probabilidad disminuye simétricamente a medida que los valores se alejan de la media, enfatizando la naturaleza "normal" de la distribución de datos alrededor de la media.
+Para comprender el comportamiento de la PDF gaussiana, se puede considerar el papel de la función exponencial en la fórmula. Por ejemplo, usando la base exponencial $$e$$ (un número positivo mayor que uno), a medida que $$x$$ se desvía de $$\mu$$, el término $$e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$ disminuye rápidamente. Esto demuestra cómo la densidad de probabilidad disminuye simétricamente a medida que los valores se alejan de la media, enfatizando la naturaleza "normal" de la distribución de datos alrededor de la media.
 
 #### Ejemplos Prácticos: Simulación y Visualización
 
@@ -325,6 +339,143 @@ plt.show()
 
 Esta visualización te permite observar claramente cómo es la forma de campana de la distribución gaussiana, y cómo varían las probabilidades con respecto a la distancia de la media. Puedes modificar `mu` y `sigma` en el código para ver cómo cambia la forma de la distribución con diferentes parámetros.
 
+## Función de Distribución Acumulativa en variables continuas y Mixtas
+
+### Función de Distribución Acumulativa (CDF) para Variables Continuas
+
+{: .highlight}
+Se define como la probabilidad de que la variable aleatoria tome un valor menor o igual a un valor específico $$x$$. Para una variable continua $$X$$, la CDF $$F_X(x)$$ se define como:
+
+$$
+F_X(x) = P(X \leq x)
+$$
+
+#### Propiedades de la CDF en Variables Continuas
+
+1. **Continuidad**: La CDF de una variable continua es una función continua en todo su dominio. Esto refleja el hecho de que no hay saltos en la probabilidad para valores específicos de $$X$$.
+
+2. **Límites Asintóticos**:
+   - $$\lim_{x \to -\infty} F_X(x) = 0$$ hasta $$\lim_{x \to \infty} F_X(x) = 1$$
+
+Estos límites indican que la CDF abarca todas las posibilidades desde la certeza de un evento no ocurriendo hasta la certeza de que ocurrirá.
+
+3. **Suavidad y Derivabilidad**:
+   - Si la variable tiene una función de densidad de probabilidad (PDF), la CDF es la integral de la PDF desde $$-\infty$$ hasta $$x$$.
+   - $$f_X(x) = F_X'(x)$$, donde $$f_X(x)$$ es la PDF de $$X$$.
+
+#### Ejemplo en Variables Continuas
+
+Para una variable aleatoria $$X$$ que sigue una distribución normal con media $$\mu$$ y desviación estándar $$ \sigma$$, la CDF se expresa como:
+
+$$
+F_X(x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma \sqrt{2}}\right)\right]
+$$
+
+donde $$\text{erf}$$ es la función de error, que surge de la normalización de la distribución normal estándar.
+
+### Función de Distribución Acumulativa (CDF) para Variables Mixtas
+
+Las variables mixtas tienen componentes tanto continuos como discretos, haciendo que sus CDFs combinen características de ambos tipos de variables.
+
+#### Características de la CDF en Variables Mixtas
+
+1. **Continuidad y Discontinuidad**:
+   - La CDF para una variable mixta es generalmente continua donde la variable es continua y tiene saltos en los puntos donde la variable toma valores discretos con probabilidad positiva.
+
+2. **Saltos**:
+   - Cada salto en la CDF corresponde a la probabilidad puntual de un valor específico de la variable mixta.
+
+3. **Ejemplo en Variables Mixtas**:
+
+Supongamos que $$X$$ puede tomar el valor 0 con una probabilidad de 0.2 y se distribuye uniformemente entre 1 y 2. La CDF $$F_X(x)$$ sería:
+   - $$F_X(x) = 0$$ para $$x < 0$$
+   - $$F_X(x) = 0.2$$ para $$ 0 \leq x < 1 $$
+   - $$F_X(x) = 0.2 + 0.8 \times \frac{x - 1}{1}$$ para $$1 \leq x \leq 2$$
+   - $$F_X(x) = 1 $$ para $$x > 2 $$
+
+En este caso, la función tiene un salto en $$x = 0$$ debido al componente discreto, y es lineal entre 1 y 2, reflejando la parte continua de la distribución.
+
+Las CDFs son herramientas esenciales en estadística y probabilidad, facilitando la comprensión de cómo se distribuyen las variables aleatorias bajo diferentes condiciones y ayudando en la inferencia estadística y análisis de datos.
+
+#### Inplamentacion con Python
+
+Para aplicar la función de distribución acumulativa (CDF) en Python, especialmente para variables continuas y mixtas, podemos utilizar librerías como `SciPy`, que ofrece una amplia gama de funciones estadísticas predefinidas. Además, `NumPy` y `Matplotlib` pueden ser utilizados para manejar cálculos numéricos y visualizaciones respectivamente. A continuación, te muestro cómo implementar y visualizar CDFs para variables continuas y mixtas usando estas herramientas.
+
+### Ejemplo para Variables Continuas: Distribución Normal
+
+Vamos a calcular y graficar la CDF de una distribución normal estándar.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Definir los parámetros de la distribución
+media = 0
+desviacion_estandar = 1
+
+# Generar valores para x
+x = np.linspace(-4, 4, 1000)
+
+# Calcular la CDF para la distribución normal
+cdf_normal = norm.cdf(x, media, desviacion_estandar)
+
+# Graficar la CDF
+plt.figure(figsize=(8, 4))
+plt.plot(x, cdf_normal, label='CDF - Distribución Normal', color='blue')
+plt.title('Función de Distribución Acumulativa para la Distribución Normal')
+plt.xlabel('x')
+plt.ylabel('Probabilidad Acumulada')
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+![CDF para la distribución normal](https://fer78docs.github.io/assets/images/cdf_normal_dist.png)
+
+### Ejemplo para Variables Mixtas
+
+Para demostrar el manejo de una variable mixta, consideremos un ejemplo donde la variable toma un valor discreto con cierta probabilidad y se distribuye uniformemente en otro rango. En este ejemplo, la variable toma el valor 0 con una probabilidad de 0.2 y se distribuye uniformemente entre 1 y 2.
+
+```python
+from scipy.stats import uniform
+
+# Definir la función CDF para una variable mixta
+def cdf_mixta(x):
+    if x < 0:
+        return 0
+    elif 0 <= x < 1:
+        return 0.2
+    elif 1 <= x <= 2:
+        return 0.2 + 0.8 * (x - 1)
+    else:
+        return 1
+
+# Generar valores para x
+x_mixto = np.linspace(-1, 3, 1000)
+
+# Calcular la CDF para cada punto x
+cdf_mixto = np.vectorize(cdf_mixta)(x_mixto)
+
+# Graficar la CDF
+plt.figure(figsize=(8, 4))
+plt.plot(x_mixto, cdf_mixto, label='CDF - Variable Mixta', color='green')
+plt.title('Función de Distribución Acumulativa para Variable Mixta')
+plt.xlabel('x')
+plt.ylabel('Probabilidad Acumulada')
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+![CDF para la distribución normal](https://fer78docs.github.io/assets/images/cdf_mixta.png.png)
+
+### Explicación
+
+1. **Librerías**: Se utiliza `NumPy` para manejar operaciones numéricas y crear rangos de datos, `Matplotlib` para la visualización de datos, y `SciPy` para funciones estadísticas específicas como la CDF de la distribución normal.
+2. **CDF para Variables Mixtas**: En el segundo ejemplo, definimos una función que maneja las condiciones de la variable mixta manualmente, calculando la probabilidad acumulada dependiendo del rango en el que se encuentre `x`.
+
+Estos ejemplos muestran cómo implementar y visualizar la CDF para diferentes tipos de variables en Python, lo cual es fundamental para análisis estadísticos y modelado en ciencia de datos y otras aplicaciones técnicas.
 ## Transformacion de Variables Aleatorias
 
 La transformación de variables aleatorias es un concepto fundamental en probabilidad y estadística que implica **modificar variables aleatorias mediante una función para obtener nuevas variables con propiedades deseadas o más fáciles de analizar**. Este método es esencial para simplificar problemas, realizar cálculos estadísticos y entender la distribución de datos transformados. 

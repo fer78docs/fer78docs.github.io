@@ -11,6 +11,7 @@ parent: Probability & Statistics
 - [Bernoulli Random Variables](#bernoulli-random-variables)
 - [Geometric Random Variable](#geometric-random-variable)
 - [Binomial Random Variables](#binomial-random-variables)
+- [Cumulative Distribution Function](#cumulative-distribution-function)
 - [Random Variables in Real Datasets](#random-variables-in-real-datasets)
 
 
@@ -391,7 +392,7 @@ La imagen de la derecha demuestra cómo funciona esto. Es importante tener en cu
 
 [Enlace a la animacion](https://static-assets.codecademy.com/skillpaths/master-stats-ii/probability-distributions/cdf-animation/animation.html)
 
-## Usando la función de distribución acumulativa en Python
+### Usando la función de distribución acumulativa en Python
 
 Podemos utilizar el método `binom.cdf()` de la biblioteca `scipy.stats` para calcular la función de distribución acumulativa. Este método toma 3 valores:
 
