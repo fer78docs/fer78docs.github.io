@@ -325,3 +325,29 @@ plt.show()
 
 Esta visualización te permite observar claramente cómo es la forma de campana de la distribución gaussiana, y cómo varían las probabilidades con respecto a la distancia de la media. Puedes modificar `mu` y `sigma` en el código para ver cómo cambia la forma de la distribución con diferentes parámetros.
 
+## Transformacion de Variables Aleatorias
+
+La transformación de variables aleatorias es un concepto fundamental en probabilidad y estadística que implica **modificar variables aleatorias mediante una función para obtener nuevas variables con propiedades deseadas o más fáciles de analizar**. Este método es esencial para simplificar problemas, realizar cálculos estadísticos y entender la distribución de datos transformados. 
+
+{: .highlight}
+Si tienes una variable aleatoria $$X$$ y la transformas usando una función $$g$$, obtienes una nueva variable aleatoria $$Y = g(X)$$. El propósito es estudiar la distribución de $$Y$$ a partir del conocimiento de la distribución de $$X$$ y de la función $$g$$.
+
+### Métodos de Transformación
+
+1. **Transformación directa**:
+   - Si $$g$$ es una función monótona (ya sea siempre creciente o siempre decreciente), entonces la función de distribución acumulativa (CDF) de $$Y$$ puede ser derivada directamente de la CDF de $$X$$.
+   - La función de densidad de probabilidad (PDF) de $$Y$$, si $$X$$ es una variable continua, se calcula como:
+     $$
+     f_Y(y) = f_X(g^{-1}(y)) \left| \frac{d}{dy}g^{-1}(y) \right|
+     $$
+   donde $$g^{-1}$$ es la función inversa de $$g$$.
+
+2. **Método del cambio de variable (Transformación inversa)**:
+   - Utilizado principalmente para simular variables aleatorias según distribuciones específicas, donde eliges una función $$g$$ que hace que $$Y$$ tenga una distribución uniforme.
+   - Si $$X$$ es uniforme, cualquier función inversa aplicada a $$X$$ resultará en una distribución de $$Y$$ que es la distribución deseada.
+
+### Ejemplos de Uso
+
+- **Normalización**: Si $$X$$ tiene media $$\mu$$ y desviación estándar $$\sigma$$, la variable $$Z = \frac{X - \mu}{\sigma}$$ sigue una distribución normal estándar, útil en muchas pruebas estadísticas.
+- **Simulación**: Las técnicas de transformación se usan en métodos de Monte Carlo para simular datos que siguen distribuciones complejas, partiendo de variables más simples como la uniforme o la normal.
+

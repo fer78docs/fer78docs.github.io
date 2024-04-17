@@ -7,6 +7,7 @@ grand_parent: Probability
 ---
 
 # Función de distribución acumulativa
+
 La función de distribución acumulativa para una variable aleatoria discreta se puede derivar de la función de masa de probabilidad. Sin embargo, en lugar de la probabilidad de observar un valor específico, **la función de distribución acumulativa proporciona la probabilidad de observar un valor específico O MENOS.**
 
 Como se analizó anteriormente, las probabilidades de todos los valores posibles en una distribución de probabilidad dada suman 1. **El valor de una función de distribución acumulativa en un valor dado es igual a la suma de las probabilidades menores que él, con un valor de 1 para la mayor número posible.**
