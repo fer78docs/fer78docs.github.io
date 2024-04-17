@@ -6,6 +6,12 @@ parent: Probability & Statistics
 ---
 
 
+## Variables aleatorias continuas
+
+{: .highlight}
+Cuando **los valores posibles de una variable aleatoria son incontables, se le llama variable aleatoria continua**. Generalmente son variables de medición y no se pueden contar porque las mediciones siempre pueden ser más precisas: metros, centímetros, milímetros, etc.
+
+Por ejemplo, la temperatura en Los Ángeles en un día elegido al azar es una variable aleatoria continua. Siempre podemos ser más precisos sobre la temperatura expandiendo a otro decimal (96 grados, 96,44 grados, 96,437 grados, etc.).
 
 
 ## Zero Probability to Individual Values
@@ -199,3 +205,123 @@ plt.show()
 ```
 
 ![Probability density funtion](https://fer78docs.github.io/assets/images/pdfuntions.png)
+
+
+## Gaussian Random Variables (Normal Random Variables)
+
+La variable aleatoria gaussiana, también conocida como variable aleatoria normal, es fundamental tanto en los ámbitos teóricos como prácticos del aprendizaje automático. Su importancia surge de su capacidad para modelar numerosos fenómenos naturales y su extenso uso en algoritmos. 
+
+{: .highlight}
+Una variable aleatoria gaussiana $$X$$ se define por su capacidad para tomar cualquier valor real, efectivamente abarcando desde $$-\infty$$ hasta $$+\infty$$. Esta característica subraya su versatilidad en la modelización estadística, donde puede representar una amplia gama de distribuciones de datos.
+
+La **función de densidad de probabilidad** (PDF) de una variable aleatoria gaussiana es uno de sus aspectos más cruciales. Se expresa matemáticamente como:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+$$
+
+Aquí, $$\mu$$ representa la media, o el centro de la distribución, mientras que $$\sigma^2$$ denota la varianza, dictando la dispersión de los datos alrededor de la media. La forma de la función es simétricamente campaniforme, alcanzando su máximo en $$\mu$$ y decayendo a medida que los valores se alejan de la media, lo que indica que la probabilidad de observar valores cercanos a $$\mu$$ es más alta.
+
+#### Comprensión Conceptual a Través de Funciones Exponenciales
+
+Para comprender el comportamiento de la PDF gaussiana, se puede considerar el papel de la función exponencial en la fórmula. Por ejemplo, usando la base exponencial \( e \) (un número positivo mayor que uno), a medida que \( x \) se desvía de \( \mu \), el término \( e^{-\frac{(x-\mu)^2}{2\sigma^2}} \) disminuye rápidamente. Esto demuestra cómo la densidad de probabilidad disminuye simétricamente a medida que los valores se alejan de la media, enfatizando la naturaleza "normal" de la distribución de datos alrededor de la media.
+
+#### Ejemplos Prácticos: Simulación y Visualización
+
+Para calcular la Función de Densidad de Probabilidad (PDF) de una distribución Gaussiana (o normal) en Python, puedes utilizar la librería `scipy.stats`. La distribución Gaussiana se define por dos parámetros principales: la media $$\mu\$$ y la desviación estándar $$\sigma$$. 
+
+Aquí tienes un ejemplo práctico de cómo calcular la PDF gaussiana para un valor específico usando `scipy.stats.norm`:
+
+```python
+from scipy.stats import norm
+
+# Parámetros de la distribución
+mu = 0      # Media
+sigma = 1   # Desviación estándar
+
+# Crear un objeto de distribución normal
+distribucion_normal = norm(loc=mu, scale=sigma)
+
+# Calcular la PDF en un punto específico, por ejemplo x = 1
+x = 1
+pdf_value = distribucion_normal.pdf(x)
+
+print("La PDF de una distribución normal estándar en x = 1 es:", pdf_value)
+```
+
+Este código configura una distribución normal estándar (con media 0 y desviación estándar 1) y calcula la PDF en el punto $$x = 1$$. Puedes cambiar los valores de `mu` y `sigma` para ajustar la distribución a tus necesidades, y calcular la PDF en cualquier punto que requieras.
+
+### Función para Calcular la PDF de una Distribución Gaussiana
+
+Si prefieres implementar la función manualmente sin usar `scipy`, aquí tienes un ejemplo de cómo hacerlo:
+
+```python
+import math
+
+def gaussian_pdf(x, mu, sigma):
+    # Factor constante de la PDF gaussiana
+    const = 1 / (math.sqrt(2 * math.pi * sigma ** 2))
+    # Exponente de la función exponencial
+    exponente = -((x - mu) ** 2) / (2 * sigma ** 2)
+    return const * math.exp(exponente)
+
+# Ejemplo de uso
+x = 1
+mu = 0
+sigma = 1
+pdf_value = gaussian_pdf(x, mu, sigma)
+print("La PDF de una distribución normal estándar en x = 1 es:", pdf_value)
+```
+
+Este código implementa la misma fórmula de la PDF gaussiana de forma explícita, lo que te permite entender claramente cómo se estructura la función.
+
+#### Visualización
+
+Para visualizar la función de densidad de probabilidad (PDF) de una distribución gaussiana en Python, puedes usar la biblioteca de visualización `matplotlib` junto con `numpy` para generar los puntos de datos y `scipy.stats` para calcular los valores de la PDF. A continuación, te muestro cómo crear una visualización de la PDF para una distribución normal estándar y otra con diferentes parámetros.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Parámetros de la distribución
+mu = 0      # Media
+sigma = 1   # Desviación estándar
+
+# Generar puntos de datos para el eje x
+x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+
+# Crear un objeto de distribución normal
+distribucion_normal = norm(loc=mu, scale=sigma)
+
+# Calcular la PDF para cada punto x
+pdf_values = distribucion_normal.pdf(x)
+
+# Crear el gráfico
+plt.figure(figsize=(8, 4))
+plt.plot(x, pdf_values, label=f'Normal({mu}, {sigma}^2)', color='blue')
+plt.title('Función de Densidad de Probabilidad de una Distribución Normal')
+plt.xlabel('Valores de X')
+plt.ylabel('Probabilidad')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+![Probability density funtion](https://fer78docs.github.io/assets/images/normal_distribution.png)
+
+
+### Explicación del Código
+
+1. **Importación de Librerías**: Se importan `numpy` para operaciones numéricas, `matplotlib.pyplot` para la visualización, y `norm` de `scipy.stats` para trabajar con la distribución normal.
+
+2. **Parámetros de la Distribución**: Se define la media (`mu`) y la desviación estándar (`sigma`).
+
+3. **Generación de Puntos**: Se utilizan `np.linspace` para crear un arreglo de 1000 puntos en el eje x, que cubre desde $$\mu - 4\sigma$$ hasta $$\mu + 4\sigma$$. Esto asegura que se incluya la mayoría de la masa de la distribución.
+
+4. **Cálculo de la PDF**: Se utiliza el método `pdf` del objeto de distribución normal para calcular la probabilidad en cada uno de los puntos x generados.
+
+5. **Creación de la Gráfica**: Se usa `matplotlib.pyplot` para crear una gráfica lineal de los valores de x contra los valores de la PDF. Se configura el título, etiquetas de los ejes, leyenda, y se activa la cuadrícula para mejor visualización.
+
+Esta visualización te permite observar claramente cómo es la forma de campana de la distribución gaussiana, y cómo varían las probabilidades con respecto a la distancia de la media. Puedes modificar `mu` y `sigma` en el código para ver cómo cambia la forma de la distribución con diferentes parámetros.
+
