@@ -468,7 +468,7 @@ plt.legend()
 plt.show()
 ```
 
-![CDF para la distribución normal](https://fer78docs.github.io/assets/images/cdf_mixta.png.png)
+![CDF para la distribución normal](https://fer78docs.github.io/assets/images/cdf_mixta.png)
 
 ### Explicación
 
