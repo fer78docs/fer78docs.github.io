@@ -133,7 +133,7 @@ plt.show()
 ![Grandes Numeros](https://fer78docs.github.io/assets/images/grandes_numeros.png)
 
 
-##  Independencia y Distribución Idéntica de las Muestras (IID)
+## Independencia y Distribución Idéntica de las Muestras (IID)
 
 {: .note}
 Datos independientes e idénticamente distribuidos (IID) **son aquellos donde cada dato en una muestra es generado de manera independiente de los otros y todos siguen exactamente la misma distribución de probabilidad.** Esta propiedad es esencial para aplicar correctamente la Ley de los Grandes Números.
@@ -146,40 +146,74 @@ En contextos experimentales, garantizar que los datos son IID implica diseñar e
 
 - **Estimación de Parámetros**: La estimación de parámetros se realiza utilizando la media de la muestra y otras estadísticas para hacer inferencias sobre la población total. Esto es fundamental en áreas como la demografía y la investigación de mercado, donde no es práctico estudiar a toda la población.
 
-### 4. Ejemplos de Variables Aleatorias y sus Expectativas
+### Ejemplos de Variables Aleatorias y sus Expectativas
 
 **Variables Discretas Comunes**:
-   - **Bernoulli**: Eventos de éxito/fallo; la expectativa es \(p\).
-   - **Binomial**: Número de éxitos en \(n\) ensayos de Bernoulli; expectativa \(np\).
-   - **Geométrica**: Número de ensayos hasta el primer éxito; expectativa \(1/p\).
-   - **Poisson**: Número de eventos en un intervalo fijo; expectativa \(\lambda\).
+   - **Bernoulli**: Eventos de éxito/fallo; la expectativa es $$p$$.
+   - **Binomial**: Número de éxitos en $$n$$ ensayos de Bernoulli; expectativa $$np$$.
+   - **Geométrica**: Número de ensayos hasta el primer éxito; expectativa $$1/p$$.
+   - **Poisson**: Número de eventos en un intervalo fijo; expectativa $$\lambda$$.
 
 **Variables Continuas Comunes**:
-   - **Normal (Gaussiana)**: Distribuida simétricamente alrededor de la media; la expectativa es \(\mu\).
-   - **Exponencial**: Tiempo entre eventos en un proceso de Poisson; expectativa \(1/\lambda\).
+   - **Normal (Gaussiana)**: Distribuida simétricamente alrededor de la media; la expectativa es $$\mu$$.
+   - **Exponencial**: Tiempo entre eventos en un proceso de Poisson; expectativa $$1/\lambda$$.
 
-### 5. Simulaciones en Python
+## Momentos 
 
-**Generación de Datos Aleatorios**:
-Utilización de `numpy` y `scipy` para generar datos simulados y aplicar la LLN. Se explicará cómo generar datos para cada tipo de distribución mencionada anteriormente.
+{: .highlight}
+Los **momentos** son medidas que **capturan características importantes sobre la forma de una distribución de probabilidad. Estos incluyen la tendencia central, la dispersión y la forma de la distribución.** Los momentos se definen generalmente respecto al origen o respecto a la media de la distribución, y cada uno de ellos ofrece información específica sobre la distribución.
 
-**Verificación de la Ley de los Grandes Números**:
-Demostraciones prácticas y gráficas utilizando `matplotlib` para mostrar cómo la media de la muestra converge hacia la media poblacional con el aumento del tamaño de la muestra.
+### Momentos Respecto al Origen
 
-### 6. Implicaciones Prácticas de la Ley de los Grandes Números
+Los momentos respecto al origen se calculan como el valor esperado de las potencias sucesivas de la variable aleatoria $$X$$. Matemáticamente, el $$k$$-ésimo momento respecto al origen de una variable aleatoria $$X$$ se define como:
 
-**Estimación de Parámetros en la Vida Real**:
-Discusión sobre cómo los economistas y otros profesionales utilizan grandes bases de datos para estimar parámetros económicos, demográficos o de salud pública y cómo esto afecta la formulación de políticas y decisiones empresariales.
+$$\mu'_k = E[X^k]$$
 
-**Desafíos y Consideraciones**:
-Análisis de las limitaciones de la LLN, especialmente en datos correlacionados o en distribuciones con colas pesadas donde las varianzas son altas o infinitas.
+donde $$E[\cdot]$$ denota el valor esperado y $$k$$ es un entero no negativo.
 
-### 7. Conclusión
+### Momentos Centrales
 
-**Resumen del Tema**:
-Se reitera
+Los momentos centrales, por otro lado, se calculan respecto a la media de la distribución y proporcionan información sobre la variabilidad y la forma de la distribución más allá de la media. El $$k$$-ésimo momento central se define como:
 
- la importancia de la Ley de los Grandes Números en estadística y se resumen los puntos clave discutidos.
+$$\mu_k = E[(X - E[X])^k]$$
 
-**Próximos Pasos y Recursos Adicionales**:
-Se ofrecen direcciones para estudios futuros, incluyendo enlaces a recursos avanzados para aquellos interesados en explorar más allá de los fundamentos estadísticos.
+### Tipos de Momentos y su Significado
+
+1. **Primer Momento (Media):**
+   - El primer momento respecto al origen es simplemente la media de la distribución, $$E[X]$$.
+   - Este momento mide la tendencia central de la distribución.
+
+2. **Segundo Momento (Varianza):**
+   - El segundo momento central, conocido como la varianza, $$\text{Var}(X) = E[(X - E[X])^2]$$, mide la dispersión de la distribución alrededor de su media.
+   - Cuanto mayor es la varianza, más dispersos están los datos alrededor de la media.
+
+3. **Tercer Momento (Asimetría):**
+   - El tercer momento central está relacionado con la asimetría (skewness) de la distribución.
+   - Una asimetría positiva indica una distribución con una cola más larga hacia la derecha; una negativa indica una cola más larga hacia la izquierda.
+
+4. **Cuarto Momento (Curtosis):**
+   - El cuarto momento central se relaciona con la curtosis, que mide la "altitud" y la "anchura" de las colas de la distribución.
+   - La curtosis compara la cantidad de datos en las colas con la cantidad de datos cerca de la media, proporcionando una percepción de la forma general de la distribución.
+
+{: .highlight}
+Los momentos son fundamentales en estadística porque permiten describir y comparar distribuciones de manera cuantitativa. Son esenciales en muchas aplicaciones estadísticas, incluyendo el ajuste de modelos, pruebas de hipótesis y en el desarrollo de teoremas centrales como el Teorema del Límite Central. Además, los momentos son cruciales para entender propiedades de distribuciones teóricas como la normal, la binomial, y otras distribuciones comunes en estudios estadísticos.
+
+## Varianza 
+
+### Transformación de Variables Aleatorias
+
+{: .highlight}
+Una variable aleatoria transformada surge cuando se aplica una función a una variable aleatoria. Ejemplo de transformación: $$Y = 3X^2 + 9$$, donde $$X$$ es la variable aleatoria original y $$Y$$ es la nueva variable.
+
+#### Varianza y sus Implicaciones
+
+1. **Definición y Cálculo**:
+   - La varianza $$\text{Var}(X)$$ es el valor esperado de la desviación cuadrada desde la media: $$\text{Var}(X) = E[(X - E[X])^2]$$.
+   - Para una distribución normal, la varianza se denota como \( \sigma^2 \).
+
+2. **Interpretación**:
+   - Una alta varianza indica una amplia dispersión de los puntos de datos alrededor de la media, sugiriendo valores de datos diversos.
+   - En el contexto de las distribuciones normales, entender la varianza es crucial para comprender la dispersión general de la distribución.
+
+3. **Relevancia Estadística**:
+   - A diferencia de la media, la ley de los grandes números no se aplica a la varianza, lo que significa que las varianzas de muestras pueden no converger a la varianza de la población sin suposiciones o correcciones adicionales.
