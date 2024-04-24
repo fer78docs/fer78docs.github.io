@@ -99,12 +99,19 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
     $$P(A \cup B) = \frac{3}{6} + \frac{2}{6} - \frac{1}{6} = \frac{4}{6} = \frac{2}{3}$$
 
 3. **Sala de espera**
-   - En la sala de espera de un consultorio medico, el dos-tercios de los pacientes toma cafe, el 50% lee revistas y unicamente el 20% delas personas toma cafe mientras lee revistas. Si se selecciona un paciente al azar ¿cual es la probabilidad de que tome cafe o lea revistas?
+   - En la sala de espera de un consultorio medico, el 60% de los pacientes toma cafe, el 50% lee revistas y unicamente el 20% delas personas toma cafe mientras lee revistas. Si se selecciona un paciente al azar ¿cual es la probabilidad de que tome cafe o lea revistas?
    - C = pacientes que toman cafe
    - R = Pacientes que leen revistas
 
+   $$P(C\cupR) = P(C) + P(R) - P(PUR)$$
+   $$P(C\cupR) = 60\% + 50\% - 20\%
+   $$P(C\cupR) = 90\%
+
 
    ![Ejemplo Suma](https://fer78docs.github.com/assets/images/ejemplo_suma.jpg)
+
+    
+
 
 
 
