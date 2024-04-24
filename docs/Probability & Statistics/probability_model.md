@@ -103,12 +103,14 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
    - C = pacientes que toman cafe
    - R = Pacientes que leen revistas
 
-   $$P(C\cupR) = P(C) + P(R) - P(PUR)$$
-   $$P(C\cupR) = 60\% + 50\% - 20\%
-   $$P(C\cupR) = 90\%
+   $$
+    P(C\cupR) = P(C) + P(R) - P(PUR)$
+    P(C\cupR) = 60\% + 50\% - 20\%
+    P(C\cupR) = 90\%
+   $$
 
 
-   ![Ejemplo Suma](https://fer78docs.github.com/assets/images/ejemplo_suma.jpg)
+   ![Ejemplo Suma](https://fer78docs.github.io/assets/images/ejemplo_suma.jpg)
 
     
 
