@@ -7,21 +7,19 @@ parent: Probability & Statistics
 
 ## Conjuntos (sets)
 
-- [Definicion y creacion](#definicion)
-- [Cardinalidad de un conjunto](#cardi)
-- [Conjuntos Contables y No Contables](#conjuntos-contables)
-- [Subs Sets](#subconjuntos)
+- [Definicion y creacion](#definicion-y-creacion)
+- [Tipos de conjuntos](#tipos-de-conjuntos)
+- [Subconjuntos](#subconjuntos)
 - [Power Sets](#power-sets)
-- [Universal Sets](#universal)
-- [Sets Operations](#operations)
+- [Universal Sets](#universal-sets)
+- [Operaciones de Cojnuntos](#operaciones-con-conjuntos)
 - [Leyes de Morgan](#leyes-de-morgan)
 - [Venn Diagrams Operations](#venn-diagrams-operations)
 
-La probabilidad hace un uso extensivo de operaciones de conjuntos. Por eso es importante introducir la notación y la terminología relevantes desde el principio. Entonces, comencemos por definir un conjunto. Hay muchas definiciones, con diferentes palabras y todas reflejan el mismo tipo de significado. La definición que he escrito aquí es de Nach Rosen quien trabajó en los laboratorios Bell y escribió libros sobre matemáticas.
+## Definicion y creacion
 
-## Definicion y creacion {#definicion}
-
-Uno de sus libros mas famoso, es *Matemáticas Discretas*. Definió el conjunto como: **una colección desordenada de objetos distintos**. En Python se define **como una colección no ordenada de elementos únicos e inmutables.**
+{: .note}
+Un conjunto es **una colección desordenada de objetos distintos**. En Python se define **como una colección no ordenada de elementos únicos e inmutables.**
 
 Un conjunto es básicamente una colección, tiene muchos objetos dentro y eso es una colección, pero la colección tiene cierto tipo de propiedades.
 
@@ -29,11 +27,9 @@ Un conjunto es básicamente una colección, tiene muchos objetos dentro y eso es
 - **Elementos Únicos**: Cada elemento en un set debe ser único; no se permiten duplicados.
 - **Inmutables**: Los elementos de un set deben ser de tipo inmutable, como números, cadenas y tuplas. No puedes incluir listas o diccionarios como elementos de un set debido a su mutabilidad.
 - **Iterables**: Los sets en Python son iterables, lo que significa que puedes recorrer sus elementos utilizando un bucle for.
-- Almacena cualquier tipo de objeto
+- Almacena **cualquier tipo de objeto**.
 
-Analicemos ahora qué es el objeto y cuáles son las propiedades de los objetos que deberían permanecer en la colección. Bueno, estos son cualquier objeto, puede ser un número, puede ser un libro, puede ser un curso completo, puede ser un sistema informático y sus accesorios.
-
-Para definir un conjunto, puedes usar llaves `{}` con elementos separados por comas dentro de ellas, o bien, puedes usar la función `set()` para crear un conjunto, opcionalmente pasando un iterable (como una lista o tupla) desde el cual se crearán los elementos del conjunto. Aquí tienes ejemplos de ambas maneras:
+Para definir un conjunto en Python, puedes usar llaves `{}` con elementos separados por comas dentro de ellas, o bien, puedes usar la función `set()` para crear un conjunto, opcionalmente pasando un iterable (como una lista o tupla) desde el cual se crearán los elementos del conjunto. Aquí tienes ejemplos de ambas maneras:
 {: #definicion}
 
 ```python
@@ -73,18 +69,18 @@ En cardinalidad, hablamos de un elemento de un conjunto o, a veces, de un miembr
 A = {1, 2, 5, 7}
 ```
 
-Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego $$∈$$ se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de A de esta manera $$1∈A$$. De forma contraria $$∉$$ expresa que el elemento no pertenece al conjunto: $$4∉A$$.
+Cada numero seria un elemento diferente en el conjunto. Puedes llamarlo elemento, o miembro. El símbolo griego $$∈$$ se usa para denotar la relación de membresía a un conjunto. Se puede expresar que 1 es elemento de $$A$$ de esta manera $$1∈A$$. De forma contraria $$∉$$ expresa que el elemento no pertenece al conjunto: $$4∉A$$.
 
 {: .highlight}
 **La cardinalidad de un conjunto se refiere al número de elementos que contiene el conjunto**. En matemáticas y teoría de conjuntos, la cardinalidad puede ser **finita** o **infinita**. Un conjunto con una cantidad limitada de elementos tiene una cardinalidad finita, mientras que un conjunto que contiene una cantidad infinita de elementos tiene una cardinalidad infinita.
 
 ### Cardinalidad Finita
 
-La cardinalidad de un conjunto finito se denota como $$\|A\|$$, donde A es el conjunto. Por ejemplo, si tenemos un conjunto  A={2,4,6,8}, la cardinalidad de A es 4, porque hay cuatro elementos en el conjunto. Se escribe como  $$\|A\| = 4$$.
+La cardinalidad de un conjunto finito se denota como $$\|A\|$$, donde $$A$$ es el conjunto. Por ejemplo, si tenemos un conjunto  $$A={2,4,6,8}$$, la cardinalidad de $$A$$ es $$4$$, porque hay cuatro elementos en el conjunto. Se escribe como  $$\|A\| = 4$$.
 
 ### Cardinalidad Infinita
 
-Los conjuntos infinitos pueden ser contablemente infinitos o incontablemente infinitos. Un conjunto es contablemente infinito si sus elementos pueden ser contados uno por uno y asignados a los números naturales, como el conjunto de todos los números enteros. Un conjunto es incontablemente infinito si su tamaño es mayor que el conjunto de todos los números naturales, como el conjunto de todos los números reales entre 0 y 1.
+**Los conjuntos infinitos pueden ser contablemente infinitos o incontablemente infinitos.** Un conjunto es contablemente infinito si sus elementos pueden ser contados uno por uno y asignados a los números naturales, como el conjunto de todos los números enteros. Un conjunto es incontablemente infinito si su tamaño es mayor que el conjunto de todos los números naturales, como el conjunto de todos los números reales entre 0 y 1.
 
 #### Cardinalidad en Python
 
@@ -97,37 +93,39 @@ print(len(mi_conjunto))
 
 Esto imprimirá 4, que es la cantidad de elementos en mi_conjunto.
 
-Solo quiero mencionar aquí que, aunque estos son los conjuntos finitos con los que trabajaremos principalmente en ciencia de datos, estos Los conjuntos finitos son en su mayoría muestras de una población más grande, que en sí misma es un conjunto infinito. Y a veces necesitamos inferir las propiedades de aquellas poblaciones que son básicamente, que se representan como conjuntos infinitos usando estos conjuntos finitos. Entonces es importante tener en cuenta ¿qué queremos decir con conjunto infinito? **Es un conjunto con un número total de elementos que la cardinalidad del conjunto ya no es finita**.
-
 También existen otras categorías de conjuntos finitos e infinitos. Los términos **"contable"** y **"no contable"** se utilizan para describir el tamaño de conjuntos infinitos. Estos conceptos son fundamentales para entender diferentes tipos de infinitos y cómo se pueden comparar entre sí.
 
-## Conjuntos Contables y No Contables
-
-{: #conjuntos-contables}
+## Tipos de Conjuntos
 
 ### Conjuntos Contables
 
-Un conjunto se dice que es contable si sus elementos se pueden contar uno por uno, si es un objeto listable, si puedes generar una secuencia de los elementos del set. Los conjuntos contables pueden ser finitos o infinitos. Más formalmente, un conjunto es contable si se puede establecer una correspondencia uno a uno (biyección) entre los elementos del conjunto y los números naturales (0, 1, 2, 3, ...). Esto significa que, incluso si el conjunto es infinito, sus elementos se pueden enumerar.
+{: .highlight}
+Un conjunto se dice que **es contable si sus elementos se pueden contar uno por uno, si es un objeto listable, si puedes generar una secuencia de los elementos del set**. Los conjuntos contables pueden ser finitos o infinitos. Más formalmente, un conjunto es contable si se puede establecer una correspondencia uno a uno (biyección) entre los elementos del conjunto y los números naturales (0, 1, 2, 3, ...). Esto significa que, incluso si el conjunto es infinito, sus elementos se pueden enumerar.
 
 Ejemplos:
 
-- El conjunto de **todos los números enteros** $$Z$$ es contable.
-- El conjunto de **todos los números racionales** $$Q$$ (fracciones de enteros) es contable.
+- El conjunto de **todos los números enteros** $$\mathbb{Z}$$: En matemáticas, el conjunto de todos los números enteros se denota comúnmente con la letra $$ \mathbb{Z}$$. Este conjunto incluye todos los números enteros positivos y negativos, así como el cero. Es decir, $$\mathbb{Z}$$ consiste en:
+
+$$ \mathbb{Z} = \{..., -3, -2, -1, 0, 1, 2, 3, ...\} $$
+
+- El conjunto de **todos los números racionales** $$\mathbb{Q}$$ (fracciones de enteros) es contable: El conjunto de todos los números racionales, denotado como $$\mathbb{Q}$$, es el conjunto que incluye todos los números que pueden ser expresados como el cociente $$\frac{a}{b}$$, donde $$a$$ y $$b$$ son números enteros y $$b \neq 0 $$. En otras palabras, **un número es racional si puede ser expresado como la fracción de dos números enteros, con el denominador diferente de cero.**
 
 ### Conjuntos No Contables
 
-Un conjunto se dice que es no contable si es infinito y no se puede establecer una correspondencia uno a uno con los números naturales. Es decir, no hay manera de enumerar todos sus elementos, (1.01 no hay forma de definir cual es el numero siguiente, puede ser 1.010001 o 1.0101, la fraccionalidad seria infinita). Los conjuntos no contables son "más grandes" que los conjuntos contables, aunque ambos son infinitos.
+{: .highlight}
+Un conjunto se dice que **es no contable si es infinito y no se puede establecer una correspondencia uno a uno con los números naturales**, Un ejemplo clásico de un conjunto que es **no contable** es el conjunto de los **números reales** $$\mathbb{R}$$. Este conjunto incluye todos los números racionales e irracionales en la línea numérica, extendiéndose desde $$-\infty$$ hasta $$+\infty$$.
 
-Ejemplo:
+Un ejemplo específico de un conjunto no contable, además del conjunto de todos los números reales $$\mathbb{R}$$, es el **conjunto de los números reales entre 0 y 1**, también conocido como el **intervalo unitario** $$[0, 1]$$.
 
-- El conjunto de **todos los números reales** $$R$$, que incluye todos los puntos de una línea continua, es no contable.
-- El conjunto de **los números irracionales** (números que no se pueden expresar como fracciones de enteros, como $$\sqrt 2$$ o  $$π$$) es un subconjunto de $$R$$ que también es no contable.
+Este conjunto incluye todos los números reales $$ x $$ tal que $$ 0 \leq x \leq 1$$. Aunque parece ser solo una pequeña parte de la línea numérica, este intervalo contiene infinitos números y es tan grande como el conjunto de todos los números reales en términos de cardinalidad.
+
+**Números Irracionales**: Números que no pueden ser expresados como fracciones de enteros. Incluyen los números que tienen expansiones decimales infinitas no periódicas, como $$\pi \) y \( \sqrt{2}$$.
+
 
 ## Subconjuntos
 
-{: #subset}
-
-En matemáticas, el concepto de **subconjunto** es fundamental en la teoría de conjuntos. Un subconjunto se refiere a una colección de elementos que son todos parte de otro conjunto, conocido como el conjunto superior o conjunto contenedor. La relación de subconjunto se define de manera que, si todos los elementos de un conjunto $$A$$ también pertenecen a un conjunto $$B$$, entonces $$A$$ es un subconjunto de $$B$$, lo cual se denota como $$A ⊆ B$$.
+{: .highlight}
+En matemáticas, el concepto de **subconjunto** es fundamental en la teoría de conjuntos. Un subconjunto se refiere a **una colección de elementos que son todos parte de otro conjunto**, conocido como el conjunto superior o conjunto contenedor. La relación de subconjunto se define de manera que, si todos los elementos de un conjunto $$A$$ también pertenecen a un conjunto $$B$$, entonces $$A$$ es un subconjunto de $$B$$, lo cual se denota como $$A ⊆ B$$.
 
 ### Propiedades de los Subconjuntos
 
@@ -148,8 +146,9 @@ En matemáticas, el concepto de **subconjunto** es fundamental en la teoría de 
 - **Unión:** La unión de dos o más conjuntos contiene todos los elementos que pertenecen a cualquiera de los conjuntos. Un conjunto es un subconjunto de la unión de él mismo con cualquier otro conjunto.
 - **Complemento:** El complemento de un conjunto  $$A$$  dentro de un conjunto universal `U` contiene todos los elementos de $$U$$ que no están en $$A$$. Por definición, $$A$$ y su complemento son subconjuntos de $$U$$.
 
-## Power Set {#power-sets}
+## Power Sets
 
+{: .highlight}
 El **conjunto potencia** o **power set** de un conjunto dado es el conjunto de todos los subconjuntos posibles de ese conjunto, incluyendo el conjunto vacío y el conjunto mismo. Si el conjunto original se denota como $$S$$, entonces su conjunto potencia se denota como $$2^S$$ o $$P(S)$$.
 
 ### Propiedades
@@ -167,9 +166,10 @@ P(A) = {∅,{1},{2},{3},{4},{1,2},{1,3},{1,4},{2,3},{2,4},{3,4},{1,2,3},{1,2,4},
 
 Este conjunto potencia tiene $$2^4 = 16$$ subconjuntos, como esperaríamos dado que el conjunto original tiene 4 elementos.
 
-## Universal Sets {#universal}
+## Universal Sets
 
-En teoría de conjuntos, un **conjunto universal** es un conjunto que contiene todos los objetos o elementos bajo consideración para un problema o discusión específica. Es el conjunto que incluye todos los posibles elementos que pueden pertenecer a otros conjuntos definidos en ese contexto. La noción de un conjunto universal es importante porque permite definir complementos de conjuntos y realizar operaciones de conjuntos en un marco completo y cerrado.
+{: .highlight}
+En teoría de conjuntos, un **conjunto universal** es un conjunto que **contiene todos los objetos o elementos bajo consideración para un problema o discusión específica**. Es el conjunto que incluye todos los posibles elementos que pueden pertenecer a otros conjuntos definidos en ese contexto. La noción de un conjunto universal es importante porque permite definir complementos de conjuntos y realizar operaciones de conjuntos en un marco completo y cerrado.
 
 ### Características del Conjunto Universal
 
@@ -188,7 +188,7 @@ U = {Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo}
 
 Cualquier conjunto de días, como los días laborables o el fin de semana, sería un subconjunto de este conjunto universal.
 
-## Operaciones con conjuntos {#operations}
+## Operaciones con conjuntos
 
 Python proporciona una amplia gama de operaciones y métodos para trabajar con conjuntos (`set` y `frozenset`). Estas operaciones incluyen métodos matemáticos de teoría de conjuntos, así como métodos para añadir y remover elementos. Aquí te detallo la mayoría de ellos:
 
@@ -318,31 +318,37 @@ Los diagramas de Venn utilizan figuras que típicamente se sitúan dentro de un 
 ![Diagrama de Venn](https://fer78docs.github.io/assets/images/diagrama_venn.png)
 
 ### Unión
+
+{: .highlight}
 La unión de dos conjuntos engloba cualquier elemento que exista en uno o en ambos. Podemos representar esto visualmente como un diagrama de Venn .
 
 Por ejemplo, digamos que tenemos dos conjuntos, $$A$$ y $$B$$. 
 
-- A representa lanzar un número impar con un dado de seis caras: $$A = {1, 3, 5}$$. 
-- B representa sacar un número mayor que dos: $$B = {3, 4, 5, 6}$$.
+- A representa lanzar un número impar con un dado de seis caras: $$A = \{1, 3, 5\}$$. 
+- B representa sacar un número mayor que dos: $$B = \{3, 4, 5, 6\}$$.
 
-La unión de estos dos conjuntos sería todo en el conjunto $$A$$ , el conjunto $$B$$ o ambos: $${1, 3, 4, 5, 6}$$. Podemos escribir la unión de dos eventos matemáticamente como $$A ∪ B$$.
+La unión de estos dos conjuntos sería todo en el conjunto $$A$$ , el conjunto $$B$$ o ambos: $$\{1, 3, 4, 5, 6\}$$. Podemos escribir la unión de dos eventos matemáticamente como $$A ∪ B$$.
 
 ![Union de conjuntos](https://fer78docs.github.io/assets/images/union-ayb.png)
 
 ### Intersección
+
+{: .highlight}
 La intersección de dos conjuntos abarca cualquier elemento que exista en ambos conjuntos. Visualmente:
 
 ![interseccion de conjuntos](https://fer78docs.github.io/assets/images/interseccion_ayb.png)
 
-La intersección de los conjuntos anteriores ($$A$$ representa sacar un número impar en un dado de seis caras y $$B$$ representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: $${3, 5}$$ . Podemos escribir matemáticamente la intersección de dos eventos como $$P(A ∩ B)$$.
+La intersección de los conjuntos anteriores ($$A$$ representa sacar un número impar en un dado de seis caras y $$B$$ representa sacar un número mayor que dos) incluye cualquier valor que aparezca en ambos conjuntos: $$\{3, 5\}$$ . Podemos escribir matemáticamente la intersección de dos eventos como $$P(A ∩ B)$$.
 
 
 ### Complemento
+
+{: .highlight}
 Por último, el complemento de un conjunto consta de todos los resultados posibles fuera del conjunto. Visualmente:
 
 ![Complementos de A](https://fer78docs.github.io/assets/images/complemento_dea.png)
 
-Considere el conjunto $$A$$ del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: $${2, 4, 6}$$ . Podemos escribir el complemento del conjunto $$A$$ como $$AC$$ . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: $${1, 2, 3, 4, 5, 6}$$ .
+Considere el conjunto $$A$$ del ejemplo anterior (lanzando un número impar en un dado de 6 caras). El complemento de este conjunto sería sacar un número par: $$\{2, 4, 6\}$$ . Podemos escribir el complemento del conjunto $$A$$ como $$AC$$ . Una característica clave de los complementos es que un conjunto y su complemento cubren todo el espacio muestral. En este ejemplo de tirada de dado, el conjunto de números pares e impares cubriría todas las tiradas posibles: $$\{1, 2, 3, 4, 5, 6\}$$ .
 
 **Ejemplo 1:**
 

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Random Variables
-nav_order: 4
+title: Discrete Distributions
+nav_order: 6
 parent: Probability & Statistics
 ---
 
 ## Indice
 
-- [Variables Aleatorias](#variables-aleatorias)
+- [Variables Aleatorias Discretas](#variables-aleatorias-discretas)
 - [Bernoulli Random Variables](#bernoulli-random-variables)
 - [Geometric Random Variable](#geometric-random-variable)
 - [Binomial Random Variables](#binomial-random-variables)
@@ -15,12 +15,19 @@ parent: Probability & Statistics
 - [Random Variables in Real Datasets](#random-variables-in-real-datasets)
 
 
-## Variables Aleatorias
+## Variables Aleatorias Discretas
 
-{: .note}
-Una **variable aleatoria** se define técnicamente como una función de valor real que asigna un número real a cada resultado posible de un experimento aleatorio. Aunque se llama "variable", en realidad es una función que mapea resultados a números.
+{: .highlight}
+Las **variables aleatorias con un número contable de valores posibles** se denominan **variables aleatorias discretas**. Por ejemplo, lanzar un dado normal de 6 caras se consideraría una variable aleatoria discreta porque las opciones de resultado se limitan a los números del dado.
 
-Las variables aleatorias deben ser numéricas, lo que significa que siempre toman un número en lugar de una característica o cualidad. Si queremos usar una variable aleatoria para representar un evento con resultados no numéricos, podemos elegir números para representar esos resultados. Por ejemplo, podríamos representar el lanzamiento de una moneda como una variable aleatoria asignando a “cara” un valor de 1 y a “cruz” un valor de 0.
+Las variables aleatorias discretas también son comunes cuando se observan eventos de conteo, como cuántas personas ingresaron a una tienda en un día seleccionado al azar. En este caso, los valores son contables porque se limitan a números enteros (no se puede observar la mitad de una persona).
+
+
+
+
+
+
+
 
 En esta lección, usaremos `random.choice(a, size = size, replace = True/False)`de la biblioteca `numpy` para simular variables aleatorias en Python. En este método:
 
@@ -95,12 +102,8 @@ La utilidad de estas variables aleatorias radica en su capacidad para simplifica
 - **Probabilidad de Eventos Específicos:** Por ejemplo, la probabilidad de que $$A$$ tome el valor 4 se calcula sumando las probabilidades de todos los eventos que producen un máximo de 4 en los lanzamientos, tales como (1,4), (2,4), (3,4), (4,1), (4,2), (4,3), y (4,4).
 - **Modelado de la Distribución:** La distribución de probabilidad para cada variable aleatoria discreta se puede describir utilizando **funciones de masa de probabilidad**, las cuales asignan a cada valor de la variable aleatoria la probabilidad del evento correspondiente.
 
-### Variables aleatorias discretas
 
-{: .highlight}
-Las **variables aleatorias con un número contable de valores posibles** se denominan variables aleatorias discretas. Por ejemplo, lanzar un dado normal de 6 caras se consideraría una variable aleatoria discreta porque las opciones de resultado se limitan a los números del dado.
 
-Las variables aleatorias discretas también son comunes cuando se observan eventos de conteo, como cuántas personas ingresaron a una tienda en un día seleccionado al azar. En este caso, los valores son contables porque se limitan a números enteros (no se puede observar la mitad de una persona).
 
 ## Bernoulli Random Variables
 

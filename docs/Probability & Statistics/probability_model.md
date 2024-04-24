@@ -7,7 +7,6 @@ parent: Probability & Statistics
 
 ## Temas
 
-- [Espacio Muestral](#espacio-muestral-el-fundamento-del-modelo-de-probabilidad)
 - [Asignacion de Probabilidades](#asignación-de-probabilidades-medida-de-confianza-en-los-eventos)
 - [Axiomas de la Probabilidad](#axiomas-de-la-probabilidad)
 - [Derivaciones de axiomas de probabilidad](#derivaciones-de-axiomas-de-probabilidad)
@@ -17,42 +16,26 @@ parent: Probability & Statistics
 - [Independencia de los modelos de probabilidad](#independencia-de-los-modelos-de-probabilidad)
 - [Modelos de probabilidad de Independencia condicional](#modelos-de-probabilidad-de-independencia-condicional)
 
-## Modelo de Probabilidad
-
-{: .note}
-El **modelo de probabilidad** es un marco conceptual y matemático esencial en estadística y teoría de probabilidad que permite analizar y predecir el comportamiento de fenómenos aleatorios. Este modelo se basa en dos pilares fundamentales: **la definición del espacio muestral** y **la asignación de probabilidades** a los eventos dentro de este espacio. 
-
-El objetivo principal de un modelo de probabilidad es establecer una regla (la ley de probabilidad) que asigne valores no negativos a los subconjuntos del espacio muestral, reflejando nuestra confianza o creencia en la ocurrencia de esos eventos. Estos valores se conocen como probabilidades y representan nuestra estimación de qué tan probable es que un resultado específico, o un conjunto de resultados, ocurra. desarrolla esto
-
-### Espacio Muestral: El Fundamento del Modelo de Probabilidad
-
-{: .note}
-El **espacio muestral** de un experimento aleatorio es el **conjunto de todos los posibles resultados que el experimento puede producir**. 
-
-Es la base sobre la cual se construye el modelo de probabilidad, ya que define el universo de resultados posibles. Este espacio puede ser **finito**, como en el lanzamiento de un dado (donde los resultados posibles son los números del 1 al 6), o **infinito**, como en el tiempo de espera hasta un determinado evento, aunque aún contable si cada resultado puede ser enumerado.
-
-### Eventos: Subconjuntos del Espacio Muestral
-
-Un **evento** es cualquier subconjunto del espacio muestral que representa una colección de resultados posibles en los que estamos interesados. Por ejemplo, en el lanzamiento de dos dados, un evento podría ser "obtener una suma par". Los eventos pueden variar desde el conjunto vacío (un evento imposible) hasta el espacio muestral completo (un evento seguro), incluyendo eventos más específicos que reflejan preguntas particulares sobre el experimento.
-
-### Ejemplos
-
-- **Lanzamiento de Dados:** Consideramos un experimento donde se lanzan dos dados de cuatro caras. El espacio muestral incluye todas las combinaciones posibles de resultados, y un evento de interés podría ser "obtener una suma par". La probabilidad de este evento se calcula considerando todos los pares de resultados que cumplen con la condición y asignando probabilidades basadas en la regla de conteo uniforme o datos históricos.
-
-- **Control de Temperatura:** En un centro comercial que utiliza un sensor de temperatura para evaluar la fiebre de los visitantes, el espacio muestral incluye todas las temperaturas posibles registradas. Un evento relevante podría ser "registrar una temperatura menor o igual a 98 grados Fahrenheit", y su probabilidad refleja la proporción de visitantes que se espera que cumplan con esta condición.
-
 ## Asignación de Probabilidades: Ley de Laplace
 
+### Modelo de Probabilidad
+
 {: .note}
-La **asignación de probabilidades** es el proceso mediante el cual se atribuyen valores numéricos a los eventos en el espacio muestral, reflejando la confianza o la creencia en la ocurrencia de esos eventos. La probabilidad de un evento $$A$$, denotada como $$P(A)$$, es un **número no negativo** que indica qué tan probable es que $$A$$ ocurra cuando se realiza el experimento. 
+El modelo de probabilidad es un **marco conceptual y matemático esencial en estadística y teoría de probabilidad que permite analizar y predecir el comportamiento de fenómenos aleatorios.** Este modelo se basa en dos pilares fundamentales: **la definición del espacio muestral** que se aborda en la seccion anterior y **la asignación de probabilidades** a los eventos dentro de este espacio.
 
-La **Ley de Laplace**, también conocida como la regla de sucesión de Laplace, es un principio en teoría de probabilidades desarrollado por el matemático francés Pierre-Simon Laplace. Esta ley es una extensión del principio de indiferencia o principio de razón insuficiente, que establece que en ausencia de conocimiento previo sobre un fenómeno, uno debe asignar probabilidades iguales a todos los eventos posibles.
+El objetivo principal de un modelo de probabilidad es establecer una regla (la ley de probabilidad) **que asigne valores no negativos a los subconjuntos del espacio muestral, reflejando nuestra confianza o creencia en la ocurrencia de esos eventos**. Estos valores se conocen como probabilidades y representan nuestra estimación de qué tan probable es que un resultado específico, o un conjunto de resultados, ocurra. desarrolla esto
 
-La Ley de Laplace se aplica principalmente cuando no se tiene información previa que favorezca un resultado sobre otro. En este caso, la probabilidad de un evento en particular es simplemente el recíproco del número total de eventos igualmente probables.
+### Asignacion de Probabilidades
 
-Si se considera que un evento puede resultar en $$n$$ resultados igualmente probables, y hay $$k$$ formas en que un evento específico puede ocurrir, entonces la probabilidad de ese evento, según Laplace, es:
+{: .highlight}
+La asignación de probabilidades es el **proceso mediante el cual se atribuyen valores numéricos a los eventos en el espacio muestral, reflejando la confianza o la creencia en la ocurrencia de esos eventos**. La probabilidad de un evento $$A$$, denotada como $$P(A)$$, es un **número no negativo, entre 0 y 1**,  que indica qué tan probable es que $$A$$ ocurra cuando se realiza el experimento. 
 
-$$P(E) = \frac{k}{n}$$
+### Ley de Laplace
+
+{: .note}
+También conocida como la regla de la probabilidad clásica o equiprobable, establece que si un experimento aleatorio tiene resultados igualmente probables, entonces la probabilidad de un evento $$𝐸$$ es el número de resultados en $$\|E\|$$ dividido por el número total de resultados posibles en el espacio muestral $$\|S\|$$.
+
+$$P(E) = \frac{|E|}{|S|}$$
 
 ### Ejemplo Práctico
 
@@ -62,12 +45,10 @@ $$P(\text{Roja}) = \frac{3}{5}$$
 
 Si no supiéramos los colores de las bolas en el bol, pero sabemos que hay 5 bolas, y asumimos equiprobabilidad (ignorando cualquier información adicional), la probabilidad de sacar cualquier bola específica sería $$\frac{1}{5} $$.
 
-En resumen, la Ley de Laplace ofrece un marco útil para el análisis probabilístico en situaciones de información limitada, aunque es crucial considerar sus limitaciones y el contexto específico en que se aplica para evitar inferencias erróneas.
-
 ## Axiomas de la Probabilidad
 
 {: .highlight}
-Los **axiomas de la probabilidad**, son las *reglas fundamentales para definir las probabilidades de los eventos* dentro del marco de la teoría de probabilidad. Estos axiomas son esenciales para construir modelos de probabilidad que permitan analizar y predecir el comportamiento de fenómenos aleatorios de manera matemáticamente rigurosa. Hay tres axiomas principales de probabilidad, y a partir de ellos se pueden derivar diversas reglas y propiedades.
+Son las reglas fundamentales **para definir las probabilidades de los eventos dentro del marco de la teoría de probabilidad**. Estos axiomas son esenciales para construir modelos de probabilidad que permitan analizar y predecir el comportamiento de fenómenos aleatorios de manera matemáticamente rigurosa. Hay tres axiomas principales de probabilidad, y a partir de ellos se pueden derivar diversas reglas y propiedades.
 
 ### Axioma 1: No Negatividad
 
@@ -93,14 +74,19 @@ $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
 
 Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la probabilidad de que $$A$$ y $$B$$ ocurran al mismo tiempo. Este ajuste es necesario para obtener una medida precisa de la probabilidad de que ocurra cualquiera de los eventos.
 
-### Ejemplos Prácticos
+### Ejemplos Prácticos de eventos no excluyentes
 
 1. **Cartas**:
-   - Si tienes un mazo de 52 cartas y quieres saber la probabilidad de sacar un as o un corazón, primero sumarías la probabilidad de sacar un as $$4/52$$ con la probabilidad de sacar un corazón $$13/52$$. Luego, restarías la probabilidad de sacar un as de corazones, ya que se contó dos veces $$1/52$$:
+   - Si tienes un mazo de 52 cartas y quieres saber la probabilidad de sacar un as o un corazón, primero sumarías la probabilidad de sacar un as $$4/52$$ con la probabilidad de sacar un corazón $$13/52$$. Luego, restarías la probabilidad de sacar un as de corazones, la intersección de los eventos $$1/52$$:
+     - Sacar un As, 4 cartas: $$P(A) = \frac{4}{52}$$
+     - Sacar un corazon (5, 6): $$P(B) = \frac{13}{52}$$
+     - Sacar el As de corazones, 1 carta: $$P(A \cap B) = \frac{1}{52}$$
    
      $$
      P(\text{As} \cup \text{Corazón}) = \frac{4}{52} + \frac{13}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}
      $$
+
+     Los datos puedes darse de tres maneras: $$\frac{4}{13}$$, 0,3076 o como porcentaje multiplicando el resultado anterior por 100: 30,76%. 
 
 2. **Dados**:
    - Si lanzas un dado y quieres saber la probabilidad de obtener un número impar o un número mayor que 4, primero determinarías la probabilidad de cada uno de estos eventos y luego su intersección:
@@ -111,6 +97,15 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
      Aplicando la regla de la suma:
    
     $$P(A \cup B) = \frac{3}{6} + \frac{2}{6} - \frac{1}{6} = \frac{4}{6} = \frac{2}{3}$$
+
+3. **Sala de espera**
+   - En la sala de espera de un consultorio medico, el dos-tercios de los pacientes toma cafe, el 50% lee revistas y unicamente el 20% delas personas toma cafe mientras lee revistas. Si se selecciona un paciente al azar ¿cual es la probabilidad de que tome cafe o lea revistas?
+   - C = pacientes que toman cafe
+   - R = Pacientes que leen revistas
+
+
+   ![Ejemplo Suma](https://fer78docs.github.com/assets/images/ejemplo_suma.jpg)
+
 
 
 ### Regla de multiplicación

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Continuous Random Variables
-nav_order: 5
+title: Continuous Distributions
+nav_order: 7
 parent: Probability & Statistics
 ---
 
