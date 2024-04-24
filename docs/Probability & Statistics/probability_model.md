@@ -102,18 +102,25 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
    - En la sala de espera de un consultorio medico, el 60% de los pacientes toma cafe, el 50% lee revistas y unicamente el 20% delas personas toma cafe mientras lee revistas. Si se selecciona un paciente al azar ¿cual es la probabilidad de que tome cafe o lea revistas?
    - C = pacientes que toman cafe
    - R = Pacientes que leen revistas
+   - $$P(C \cup R) = 60\% + 50\% - 20\% = 90\%$$
 
-   $$
-    P(C\cupR) = P(C) + P(R) - P(PUR)$
-    P(C\cupR) = 60\% + 50\% - 20\%
-    P(C\cupR) = 90\%
-   $$
+  ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/ejemplo_suma.jpg)
 
+4. **Solucion utilizando una Tabla**
+   - En una ciudad el 60% de las personas tienen ojos negros, el 80% tienen cabello negro y el 50% tienen cabello negro y ojos negros. Si se selecciona una persona al azar, calcule la probabilidad que:
+   1. No tenga los ojos negros.
+   2. Tenga los ojos o cabello negro
+   - O = Personas con ojos negros
+   - C = Personas con cabellos negros
+  
+  ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/Ejercicio_2_suma.jpg)
 
-   ![Ejemplo Suma](https://fer78docs.github.io/assets/images/ejemplo_suma.jpg)
+  Solucion a traves de una tabla
 
-    
-
+      |O Negros | O No negros 
+  C Negros | 50% | 30% |  80 %
+  C No Negros | 10% | 10% | 20%
+  | 60% | 40% | 100 %
 
 
 
