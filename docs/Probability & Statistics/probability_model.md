@@ -104,7 +104,7 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
    - R = Pacientes que leen revistas
    - $$P(C \cup R) = 60\% + 50\% - 20\% = 90\%$$
 
-  ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/ejemplo_suma.jpg)
+  ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/ejercicio3suma.jpg)
 
 4. **Solucion utilizando una Tabla**
    - En una ciudad el 60% de las personas tienen ojos negros, el 80% tienen cabello negro y el 50% tienen cabello negro y ojos negros. Si se selecciona una persona al azar, calcule la probabilidad que:
