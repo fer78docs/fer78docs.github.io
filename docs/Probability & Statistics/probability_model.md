@@ -115,38 +115,76 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
   
   ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/Ejercicio_2_suma.jpg)
 
-  Solucion a traves de una tabla
+  Solucion a traves de una tabla:
 
-      |O Negros | O No negros 
-  C Negros | 50% | 30% |  80 %
-  C No Negros | 10% | 10% | 20%
-  | 60% | 40% | 100 %
+  |               | O Negros | O No Negros | Total |
+  |---------------|----------|-------------|-------|
+  | C Negros      | 50%      | 30%         | 80%   |
+  | C No Negros   | 10%      | 10%         | 20%   |
+  | Total         | 60%      | 40%         | 100%  |
 
+  Probabilidad de que no tenga ojos negros: 40%  
+  Personas con ojos o cabellos negros: 
+
+  $$P(O\cup C) = P(O) + P(C) - P(O\cup C) = 60\% + 80\% - 50\% = 90\%$$
 
 
 ### Regla de multiplicación
 
 Hemos analizado la regla de la suma, que describe la probabilidad de que ocurra un evento U otro evento (o ambos). ¿Qué pasa si queremos calcular la probabilidad de que dos eventos sucedan simultáneamente? Para dos eventos, $$A$$ y $$B$$ , esto es $$P(A y B)$$ o la probabilidad de la intersección de $$A∩B$$.
 
-La fórmula general para la probabilidad de que dos eventos ocurran simultáneamente es:
+La fórmula general para la probabilidad de que dos eventos dependientes ocurran simultáneamente es:
 
 $$P(A∩B) = P(A) * P(B|A)$$
 
-Sin embargo, para eventos independientes, podemos simplificar ligeramente esta fórmula.
+En la formula se calcula la probabilidad de que ocurran un eventos dado que ya ha ocurrido otro que modifica las probabilidades. 
 
-### Eventos dependientes
+Sin embargo, para eventos independientes, podemos simplificar ligeramente esta fórmula como: 
 
-Volvamos a nuestro ejemplo de la bolsa de canicas. Tenemos cinco canicas: dos son azules y tres son rojas. Escogemos dos canicas sin reposición. ¿Qué pasa si queremos saber la probabilidad de elegir una canica azul primero Y una canica azul después?
+$$P(A∩B) = P(A) * P(B)$$
 
-Teniendo en cuenta la probabilidad condicional, la regla de multiplicación para estos dos eventos dependientes es:
+### Ejercicios Eventos dependientes
 
-$$
-P(Azul 1.º y Azul 2.º) = P(azul 1º) * P(azul 2.º | Azul 1º )  
-P(Azul 1.º y Azul 2.º) = 2/5 * 1/4  
-P(Azul 1.º y Azul 2.º) = 1/10  
-$$
+1. **Canicas**: 
+- En una urna hay 5 canicas azules, 2 rojas y una verde. Si se sacan canicas consecutivas al azar sin remplazo, calcule la probabilidad que:
+
+1. La primera sea azul y la segunda sea verde.
+2. Las dos sean rojas
+
+Calcular la probabilidad de que la primera canica sea azul $$A$$ y la segunda sea verde $$V$$
+
+$$P(A∩V) = P(A) * P(V|A) = \frac{5}{8} * \frac{1}{7} = \frac{5}{56} = 0.089 = 8,9%$$
+
+Calcular la probabilidad de que las dos sean rojas $$R$$:
+
+$$P(R∩R) = P(R) * P(R|R) = \frac{2}{8} * \frac{1}{7} = \frac{2}{56} = 0.035 = 3,5%$$
+
+
+2. **Una Clase** 
+ - En una clase hay 10 niños y 8 niñas, si se seleccionan 3 estudiantes al azar:
+
+1. ¿Cual es la probabilidad de que todos sean niños?
+2. ¿Cual es la probabilidad de que todos sean niñas?
+
+Probabilidad de que todos sean niños:
+
+$$P(Nº∩Nº∩Nº) = P(Nº)  *  P(Nº|Nº)  *  P(Nº|Nº∩Nº)$$
+
+$$P(Nº∩Nº∩Nº) = \frac{10}{18} * \frac{9}{17} * \frac{8}{16}$$
+
+$$P(Nº∩Nº∩Nº) = \frac{5}{34} = 0.147 = 14,7%$$
+
+Probabilidad de que todos sean niñas:
+
+$$P(Nª∩Nª∩Nª) = P(Nª)  *  P(Nª|Nª)  *  P(Nª|Nª∩Nª)$$
+
+$$P(Nª∩Nª∩Nª) = \frac{8}{18} * \frac{7}{17} * \frac{6}{16}$$
+
+$$P(Nª∩Nª∩Nª) = \frac{336}{4896} = 0.068 = 6,8%$$
 
 Una forma de visualizar todos los resultados posibles de un par de eventos es un diagrama de árbol .
+
+### El diagrama de arbol
 
 Los diagramas de árbol tienen las siguientes propiedades:
 
@@ -166,11 +204,13 @@ $$P(A y B) = P(A) * P(B)$$
 
 Esto se debe a que lo siguiente es cierto para eventos independientes:
 
-$$P(B|A ) = P(B)$$
+$$P(B|A) = P(B)$$
 
 Veamos el ejemplo más sencillo: lanzar dos veces una moneda justa. El evento $$A$$ es que obtenemos cruz en el primer lanzamiento, y el evento $$B$$ es que obtenemos cruz en el segundo lanzamiento. $$P(A) = P(B) = 0.5$$ , entonces según nuestra fórmula, la probabilidad de obtener cruz en ambos lanzamientos sería:
 
 $$P(B y A ) = 0.5 * 0.5 = 0.25$$
+
+#### Ejemplo de evento independiente 
 
 El subprograma del enlace hay un diagrama de árbol y diez canicas azules y naranjas debajo del diagrama de árbol (es posible que deba desplazarse hacia abajo para ver las canicas). Si haces clic en una de las canicas, el diagrama de árbol se completará según lo que hayas seleccionado. 
 
@@ -271,7 +311,9 @@ Cada celda representa una posibilidad de resultado:
 
 Una vez establecido el espacio muestral y las probabilidades, podemos investigar ciertas preguntas:
 
-**Probabilidad de Suma Par:** ¿Cuál es la probabilidad de que la suma de los resultados de los dos dados sea un número par? Para responder, identificamos los pares cuya suma es par y calculamos la probabilidad combinada de estos pares.
+#### Probabilidad de Suma Par 
+
+¿Cuál es la probabilidad de que la suma de los resultados de los dos dados sea un número par? Para responder, identificamos los pares cuya suma es par y calculamos la probabilidad combinada de estos pares.
 
 |        | 1     | 2      | 3     | 4      |
 |--------|-------|--------|-------|--------|
@@ -282,10 +324,12 @@ Una vez establecido el espacio muestral y las probabilidades, podemos investigar
 
 La cantidad de celdas con valores pares es 8 asi que seria 8 * 1/16 = 1/2, asi que la probabilidad de que la suma de los resultados sea un numero par es de un 50%.
 
-**Probabilidad de que al Menos un Dado Muestre un Cuatro:** ¿Cuál es la probabilidad de que al menos uno de los dados muestre un cuatro? Nuevamente, seleccionamos los pares que cumplen con esta condición y sumamos sus probabilidades.
+#### Probabilidad de que al Menos un Dado Muestre un Cuatro:
+
+¿Cuál es la probabilidad de que al menos uno de los dados muestre un cuatro? Nuevamente, seleccionamos los pares que cumplen con esta condición y sumamos sus probabilidades.
 Segun nuestra tabla de espacio muestral hay 7 eventos que pueden tener 4 como resultado. Seria 7 * 1/16 = 7/16.
 
-**Ejemplo Práctico: Predicciones de Enfermedades por un Médico**
+### Ejemplo Práctico: Predicciones de Enfermedades por un Médico
 
 Imaginemos que tenemos un médico con 20 años de experiencia que, basándose en datos históricos, ha desarrollado un modelo para predecir la probabilidad de que el próximo paciente que llegue a su clínica tenga malaria o tifoidea, o ambas enfermedades. Según este modelo:
 
@@ -293,51 +337,37 @@ Imaginemos que tenemos un médico con 20 años de experiencia que, basándose en
 - La probabilidad de que el próximo paciente tenga tifoidea es del 0.7.
 - La probabilidad de que el próximo paciente tenga tanto malaria como tifoidea es del 0.4.
 
-Con esta información, se nos plantea la pregunta: ¿Cuál es la probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea?
+Con esta información, se nos plantea la pregunta:   
+**¿Cuál es la probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea?**
 
-### Solución Utilizando Teoría de Conjuntos y Axiomas de Probabilidad
+Para calcular la probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea, podemos utilizar la teoría de probabilidad de conjuntos, específicamente la ley de la probabilidad del complemento y la fórmula para la unión de dos eventos.
 
-Para resolver este problema, aplicaremos las leyes de De Morgan, que nos permiten relacionar la unión y la intersección de eventos con sus complementos, y los axiomas de probabilidad, que definen cómo calcular la probabilidad de eventos compuestos.
+### Leyes y Fórmulas Utilizadas
 
-#### Paso 1: Aplicación de la Ley de De Morgan
+1. **Probabilidad del Complemento**:  
+   $$P(\text{no } A) = 1 - P(A)$$
+   Esta fórmula se utiliza para encontrar la probabilidad de que un evento no ocurra, que es uno menos la probabilidad de que el evento ocurra.
 
-De acuerdo con la ley de De Morgan, el complemento de la unión de dos eventos es igual a la intersección de sus complementos:
+2. **Fórmula de la Unión de Dos Eventos**:
+   $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+   Aquí, $$P(A \cup B)$$ representa la probabilidad de que ocurra al menos uno de los eventos $$A$$ o $$B$$, $$P(A)$$ y $$P(B)$$ son las probabilidades de los eventos individuales, y $$P(A \cap B)$$ es la probabilidad de que ambos eventos ocurran simultáneamente.
 
-$$(M \cup T)^c = M^c \cap T^c$$
+Dado que:
+- La probabilidad de tener Malaria: $$P(M) = 0.6 $$
+- La probabilidad de tener Tifoidea:  $$P(T) = 0.7 $$
+- La probabilidad de tener ambos: $$P(M \cap T) = 0.4$$
 
-Donde $$M$$ es el evento de tener malaria, $$T$$ es el evento de tener tifoidea, y los complementos representan no tener cada enfermedad.
+Queremos calcular $$P(\text{ni malaria ni tifoidea}) $$, que es el complemento de la probabilidad de que el paciente tenga malaria o tifoidea. Primero, calcularemos $$P(\text{malaria} \cup \text{tifoidea})$$ usando la fórmula de la unión de dos eventos:
 
-#### Paso 2: Cálculo de la Probabilidad Deseada
+$$P(M \cup T) = P(M) + P(T) - P(M \cap T) = 0.6 + 0.7 - 0.4 = 0.9$$
 
-La probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea se puede calcular como:
+Luego, aplicaremos la probabilidad del complemento para obtener la probabilidad de que el paciente no tenga ninguna de las dos enfermedades:
 
-$$P((M \cup T)^c) = 1 - P(M \cup T)$$
+$$P(\text{ni malaria ni tifoidea}) = 1 - P(M \cup T) = 1 − 0.9 = 0.1$$
 
-Y aplicando la regla de adición para probabilidades:
+Así que, basado en estos cálculos, la probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea es del 10%. Si puedes acceder a un entorno de Python, simplemente puedes utilizar estos cálculos directamente para confirmar el resultado.
 
-$$P(M \cup T) = P(M) + P(T) - P(M \cap T)$$
 
-Sustituyendo los valores dados:
-
-$$P((M \cup T)^c) = 1 - (0.6 + 0.7 - 0.4) = 0.1$$
-
-Por lo tanto, la probabilidad de que el próximo paciente no tenga ni malaria ni tifoidea es del 0.1, o 10%.
-
-Este ejemplo nos muestra cómo combinar los axiomas de probabilidad con la teoría de conjuntos para resolver problemas complejos de probabilidad. A través de un enfoque paso a paso, hemos podido determinar la probabilidad de un evento compuesto utilizando información sobre eventos individuales y su intersección.
-
-## Modelos de probabilidad continua
-
-En los modelos de probabilidad discretos donde el espacio muestral es contable. Esto significa que, ya sea finito o infinito, los resultados posibles de nuestro experimento se pueden enumerar o indexar de manera secuencial. Estos modelos **permiten asignar probabilidades positivas a eventos específicos**, incluso a aquellos que contienen un único resultado.
-
-Sin embargo, **nos encontramos con una complejidad adicional cuando el espacio muestral se vuelve incontable.** Imaginemos, por ejemplo, una rueda de dardos. Si consideramos el punto donde impacta el dardo dentro de un círculo unitario, cada punto tiene la misma probabilidad de ser elegido. Pero, ¿cómo asignamos probabilidades a eventos tan infinitesimales como un punto específico dentro del círculo?
-
-Cuando el espacio muestral es incontable, asignar probabilidades positivas a cada evento individual resulta imposible. Incluso asignando la más mínima probabilidad positiva a cada posible punto de impacto del dardo en el círculo, nos encontraríamos rápidamente con que la suma total de estas probabilidades excedería el límite de 1, violando así los axiomas fundamentales de la probabilidad.
-
-### La Solución: Trabajar con Intervalos
-
-**En los modelos de probabilidad continua, en lugar de tratar con eventos individuales, trabajamos con intervalos de eventos.** No asignamos probabilidades a puntos específicos, sino a la probabilidad de que un evento ocurra dentro de un rango determinado. Por ejemplo, en lugar de preguntar por la probabilidad de que el dardo impacte exactamente a una distancia de 0.73 del centro, preguntaríamos por la probabilidad de que impacte dentro de un intervalo, como entre 0.5 y 0.7.
-
-Consideremos un círculo unitario. Si el juego consiste en lanzar un dardo y calcular la distancia desde el origen hasta el punto de impacto, nos enfrentamos a un espacio muestral incontable. Cada punto dentro del círculo tiene una probabilidad de ser alcanzado, pero es imposible asignar una probabilidad específica a cada punto. En cambio, debemos enfocarnos en los intervalos de distancia.
 
 ## La probabilidad condicional
 
@@ -348,19 +378,40 @@ $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
 
 donde $$P(A \cap B)$$ es la probabilidad de que ocurran $$A$$ y $$B$$ juntos, y $$P(B)$$ es la probabilidad de que ocurra $$B$$.
 
-### Espacio Muestral y Probabilidades en Modelos Discretos y Continuos
+### Ejemplos Prácticos 
 
-Antes de adentrarnos en ejemplos, es importante recordar la diferencia entre modelos de probabilidad discretos y continuos:
+1. **Ejemplo 1**
+En una ciudad el 40% de la poblacion tiene pelo castaño (PC), el 25% tiene ojos castaños(OC) y el 15% tiene cabellos y ojos castaños. Si se selecciona una persona al azar y esta tiene ojos castaños ¿Cual es la probabilidad de que tenga tambien cabello castaño?
+Formula de la probabilidad condicional:
 
-{: .highlight}
-**Modelos Discretos:** El espacio muestral es contable, lo que significa que podemos enumerar todos los posibles resultados del experimento.
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
 
-{: .highlight}
-**Modelos Continuos:** El espacio muestral es incontable, como los puntos en un segmento de línea. Aquí, no podemos asignar probabilidades a eventos individuales de manera directa.
+Solucion: 
 
-### Ejemplo Práctico con un Dado Cargado
+- Probabilidad de que tenga el cabello castaño: $$P(C) = 40\%$$
+- Probabilidad de que tenga los ojos castaños: $$P(O) = 25\% $$
+- Probabilidad de que tenga el cabello castaño y los ojos castaños: $$P(C \cap O) = \15%$$
+
+Formulacion: 
+
+
+$$
+\begin{aligned}
+P(C|O) = \frac{P(C \cap O)}{P(O)} \\
+P(C|O) = \frac{15}{25} \\
+P(C|O) = \frac{0.15}{0.25} \\
+P(C|O) = 0.6 = 60\%
+\end{aligned}
+$$
+
+![Ejercicio de Suma](https://fer78docs.github.io/assets/images/procondicional_ejercicio1.jpg)
+
+
+
+
 
 Imaginemos que tenemos un dado de seis caras que está cargado de tal manera que los números pares tienen el doble de probabilidades de salir que los números impares. Si definimos dos eventos:
+
 - $$A$$: Sacar un número no mayor que 4: $$A = \{1, 2, 3, 4\}$$.
 - $$B$$: Sacar un número par: $$B = \{2, 4, 6\}$$.
 
@@ -389,26 +440,6 @@ P(A) = \frac{2}{3}
 $$
 
 Por lo tanto, la probabilidad de sacar un número no mayor que 4 con este dado cargado es de $$\frac{2}{3}$$.
-
-### Calculando la Probabilidad de $$A$$ dado $$B$$
-
-Si sabemos con certeza que el resultado será un número par, entonces nuestro espacio muestral se reduce a $$B$$, y los resultados posibles son únicamente los números pares. Dado este nuevo espacio muestral, ¿cómo cambia la probabilidad de $$A$$? En este escenario, solo los resultados que son comunes a $$A$$ y $$B$$ (es decir, 2 y 4) serán relevantes para calcular $$P(A\|B)$$.
-
-La fórmula para calcular la probabilidad condicional es:
-
-$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
-
-Donde:
-- $$P(A\|B)$$ es la probabilidad de que ocurra $$A$$, dado que $$B$$ ha ocurrido.
-- $$P(A \cap B)$$ es la probabilidad de que ocurran tanto $$A$$ como $$B$$ juntos.
-- $$P(B)$$ es la probabilidad de que ocurra $$B$$.
-
-**3. Ejemplo Práctico: Dado Cargado**
-
-Imaginemos un dado de seis caras cargado, donde los números pares $$2, 4, 6$$ tienen el doble de probabilidades de aparecer que los impares $$1, 3, 5$$. Definimos dos eventos:
-
-- $$A$$: Sacar un número no mayor que 4: $$A = \{1, 2, 3, 4\}$$.
-- $$B$$: Sacar un número par: $$B = \{2, 4, 6\}$$.
 
 **4. Cálculo de la Probabilidad Condicional en el Ejemplo**
 
@@ -536,3 +567,28 @@ La distinción entre modelado generativo y discriminativo es fundamental en el a
 Las **variables aleatorias** son entidades matemáticas que asignan resultados de procesos aleatorios a valores numéricos. **Son fundamentales para describir fenómenos en términos cuantitativos, permitiendo el uso de herramientas matemáticas y estadísticas para análisis y predicción.** Estas variables nos permiten la transición de conceptos teóricos de probabilidad a su aplicación práctica para modelar y analizar **datos reales**. 
 
 Este paso es crucial, ya que en el aprendizaje automático, los datos —y, por ende, los eventos que representan— se expresan casi exclusivamente a través de números. Aquí, se propone una sólida comprensión de cómo los principios de probabilidad y estadística subyacen en la base de modelos complejos de aprendizaje automático, particularmente a través del ejemplo del reconocimiento facial.
+
+
+## Modelos de probabilidad continua
+
+En los modelos de probabilidad discretos donde el espacio muestral es contable. Esto significa que, ya sea finito o infinito, los resultados posibles de nuestro experimento se pueden enumerar o indexar de manera secuencial. Estos modelos **permiten asignar probabilidades positivas a eventos específicos**, incluso a aquellos que contienen un único resultado.
+
+Sin embargo, **nos encontramos con una complejidad adicional cuando el espacio muestral se vuelve incontable.** Imaginemos, por ejemplo, una rueda de dardos. Si consideramos el punto donde impacta el dardo dentro de un círculo unitario, cada punto tiene la misma probabilidad de ser elegido. Pero, ¿cómo asignamos probabilidades a eventos tan infinitesimales como un punto específico dentro del círculo?
+
+Cuando el espacio muestral es incontable, asignar probabilidades positivas a cada evento individual resulta imposible. Incluso asignando la más mínima probabilidad positiva a cada posible punto de impacto del dardo en el círculo, nos encontraríamos rápidamente con que la suma total de estas probabilidades excedería el límite de 1, violando así los axiomas fundamentales de la probabilidad.
+
+### La Solución: Trabajar con Intervalos
+
+**En los modelos de probabilidad continua, en lugar de tratar con eventos individuales, trabajamos con intervalos de eventos.** No asignamos probabilidades a puntos específicos, sino a la probabilidad de que un evento ocurra dentro de un rango determinado. Por ejemplo, en lugar de preguntar por la probabilidad de que el dardo impacte exactamente a una distancia de 0.73 del centro, preguntaríamos por la probabilidad de que impacte dentro de un intervalo, como entre 0.5 y 0.7.
+
+Consideremos un círculo unitario. Si el juego consiste en lanzar un dardo y calcular la distancia desde el origen hasta el punto de impacto, nos enfrentamos a un espacio muestral incontable. Cada punto dentro del círculo tiene una probabilidad de ser alcanzado, pero es imposible asignar una probabilidad específica a cada punto. En cambio, debemos enfocarnos en los intervalos de distancia.
+
+### Espacio Muestral y Probabilidades en Modelos Discretos y Continuos
+
+Antes de adentrarnos en ejemplos, es importante recordar la diferencia entre modelos de probabilidad discretos y continuos:
+
+{: .highlight}
+**Modelos Discretos:** El espacio muestral es contable, lo que significa que podemos enumerar todos los posibles resultados del experimento.
+
+{: .highlight}
+**Modelos Continuos:** El espacio muestral es incontable, como los puntos en un segmento de línea. Aquí, no podemos asignar probabilidades a eventos individuales de manera directa.
