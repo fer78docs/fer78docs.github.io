@@ -404,9 +404,18 @@ P(C|O) = 0.6 = 60\%
 \end{aligned}
 $$
 
+
+Resolviendo el ejercicio utilizando los diagramas de Venn, representamos la interseccion de los dos conjuntos, los de cabello castaño, los de ojos castaños. Como queremos saber la probabilidad de que al escojer una persona con los ojos castaños tenga tambien el cabello castaño, estaremos trabajando con el conjunto de las personas de ojos castaños y la interseccion con el conjunto de cabello castaño. 
+
 ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/procondicional_ejercicio1.jpg)
 
-
+$$
+\begin{aligned}
+P(C|O) = \frac{15}{25} \\
+P(C|O) = \frac{0.15}{0.25} \\
+P(C|O) = 0.6 = 60\%
+\end{aligned}
+$$
 
 
 
