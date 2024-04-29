@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright 2017 mathsisfun.com -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="664.6"
+   height="238.3"
+   version="1.1"
+   id="svg90"
+   sodipodi:docname="probability-tree-coin3.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata94">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     id="namedview92"
+     showgrid="false"
+     inkscape:zoom="1.6328077"
+     inkscape:cx="331.02785"
+     inkscape:cy="122.82199"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g88" />
+  <defs
+     id="defs8">
+    <linearGradient
+       id="linearGradient922"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#00e117;stop-opacity:1;"
+         offset="0"
+         id="stop920" />
+    </linearGradient>
+    <marker
+       style="overflow:visible;"
+       orient="auto"
+       id="id01">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="stroke:black; stroke-width:1pt;"
+         id="path2" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       orient="auto"
+       id="id02">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#9ade00; stroke:#9ade00; stroke-width:1pt;"
+         id="path5" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient922"
+       id="linearGradient952"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-11.786324,2.3049033)"
+       x1="1500.5791"
+       y1="-1006.0062"
+       x2="1562.0062"
+       y2="-1006.0062" />
+  </defs>
+  <g
+     transform="translate(-898.846,1118.81)"
+     id="g88">
+    <rect
+       x="1217.7"
+       y="-1105"
+       ry="0"
+       width="105.12817"
+       height="224.39999"
+       style="color:#000000;overflow:visible;fill:#19aeff;fill-opacity:0.38999999;stroke-width:1.62488365"
+       id="rect10" />
+    <path
+       d="m 918.3,-1003.5 c 1.9,-1.4 57.5,-36.9 91.8,-43.8 34.4,-7 57.4,-17.9 147.9,-20 90.4,-2.1 347.3,-2.4 347.3,-2.4"
+       style="fill:none; stroke:#ffff3e; stroke-width:38.5; stroke-opacity:0.32; stroke-linecap:round;"
+       id="path12" />
+    <text
+       x="1374.6"
+       y="-1064.3"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0e232e; stroke-width:0.55px;"
+       id="text14">0.5 × 0.5 = 0.25</text>
+    <circle
+       cx="916"
+       cy="-1006.6"
+       r="4.34938"
+       style="color:black; overflow:visible; fill:none; stroke:#0084c8; stroke-width:1.8; stroke-linejoin:round;"
+       id="circle16" />
+    <path
+       d="m 923.9,-1009.3 87.4,-38"
+       style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.43;"
+       id="path18" />
+    <path
+       d="m 923.4,-1002.9 87.4,38"
+       style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.43;"
+       id="path20" />
+    <text
+       x="1017.3"
+       y="-1043.1"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#ff6600;stroke-width:0.55000001px"
+       id="text22">Cara</text>
+    <text
+       x="1012"
+       y="-954.40002"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#0084c8;stroke-width:0.55000001px"
+       id="text24">
+      <tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.06666756px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan884">Escudo</tspan>
+    </text>
+    <path
+       d="m 1307.6,-1069.8 h 54"
+       style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.1; stroke-dasharray:4.4, 4.4;"
+       id="path26" />
+    <text
+       x="951.8"
+       y="-1034.7"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#ff6600; stroke-width:0.55px;"
+       id="text28">0.5</text>
+    <text
+       x="952.1"
+       y="-963.6"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0084c8; stroke-width:0.55px;"
+       id="text30">0.5</text>
+    <path
+       d="m 1064.7,-1052.2 90.6,-15.8"
+       style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.43;"
+       id="path32" />
+    <text
+       x="1374.6"
+       y="-974.1"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0e232e; stroke-width:0.55px;"
+       id="text34">0.5 × 0.5 = 0.25</text>
+    <path
+       d="M 1315.4086,-979.14067 1361.6,-979.6"
+       style="fill:none;stroke:#000000;stroke-width:1.10000002;stroke-dasharray:4.4, 4.4;marker-end:url(#id01)"
+       id="path36"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       x="1374.6"
+       y="-1025.4"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0e232e; stroke-width:0.55px;"
+       id="text38">0.5 × 0.5 = 0.25</text>
+    <path
+       d="m 1315.1024,-1030.2876 c -0.3062,-0.9186 46.4976,-0.6124 46.4976,-0.6124"
+       style="fill:none;stroke:#000000;stroke-width:1.10000002;stroke-dasharray:4.4, 4.4;marker-end:url(#id01)"
+       id="path40"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       x="1374.6"
+       y="-933.9"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0e232e; stroke-width:0.55px;"
+       id="text42">0.5 × 0.5 = 0.25</text>
+    <path
+       d="M 1322.1455,-939.4 H 1361.6"
+       style="fill:none;stroke:#000000;stroke-width:1.10000002;stroke-dasharray:4.4, 4.4;marker-end:url(#id01)"
+       id="path44"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       d="m 1065.2,-1046.5 90.6,15.8"
+       style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.43;"
+       id="path46" />
+    <path
+       d="m 1067.6,-961.7 90.6,-15.8"
+       style="fill:none;stroke:#000000;stroke-width:1.42999995;marker-end:url(#id01)"
+       id="path48"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 1068.1,-956 90.6,15.8"
+       style="fill:none;stroke:#000000;stroke-width:1.42999995;marker-end:url(#id01)"
+       id="path50"
+       inkscape:connector-curvature="0" />
+    <text
+       x="1164.1"
+       y="-1063"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#ff6600;stroke-width:0.55000001px"
+       id="text52">Cara</text>
+    <text
+       x="1165.7"
+       y="-971.09998"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#ff6600;stroke-width:0.55000001px"
+       id="text56">Cara</text>
+    <text
+       x="1097.9"
+       y="-1066.9"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#ff6600; stroke-width:0.55px;"
+       id="text60">0.5</text>
+    <text
+       x="1098.7"
+       y="-1020.2"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0084c8; stroke-width:0.55px;"
+       id="text62">0.5</text>
+    <text
+       x="1097.9"
+       y="-975.6"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#ff6600; stroke-width:0.55px;"
+       id="text64">0.5</text>
+    <text
+       x="1098.7"
+       y="-928.8"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0084c8; stroke-width:0.55px;"
+       id="text66">0.5</text>
+    <text
+       x="1223.8"
+       y="-1064.6"
+       style="color:#000000;font-style:italic;font-size:16px;font-family:Georgia;overflow:visible;fill:#2d2d2d;stroke-width:0.55000001px"
+       id="text68">
+      <tspan
+         style="-inkscape-font-specification:'Georgia, Italic';font-family:Georgia;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:14.66666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+         id="tspan918">Cara, Cara</tspan>
+    </text>
+    <text
+       x="1223.3"
+       y="-1026.9"
+       style="color:#000000;font-style:italic;font-size:16px;font-family:Georgia;overflow:visible;fill:#2d2d2d;stroke-width:0.55000001px"
+       id="text70">
+      <tspan
+         style="-inkscape-font-specification:'Georgia, Italic';font-family:Georgia;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:14.66666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+         id="tspan916">Cara, Escudo</tspan>
+    </text>
+    <text
+       x="1223.5"
+       y="-973.40002"
+       style="color:#000000;font-style:italic;font-size:16px;font-family:Georgia;overflow:visible;fill:#2d2d2d;stroke-width:0.55000001px"
+       id="text72">
+      <tspan
+         style="-inkscape-font-specification:'Georgia, Italic';font-family:Georgia;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:14.66666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+         id="tspan914">Escudo, Cara</tspan>
+    </text>
+    <text
+       x="1219.1"
+       y="-933.59998"
+       style="color:#000000;font-style:italic;font-size:16px;font-family:Georgia;overflow:visible;fill:#2d2d2d;stroke-width:0.55000001px"
+       id="text74">
+      <tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.66666698px;font-family:Georgia;-inkscape-font-specification:'Georgia, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan912">Escudo, Escudo</tspan>
+    </text>
+    <text
+       x="1207.6674"
+       y="-810.10736"
+       transform="rotate(-13.5654)"
+       style="color:#000000;font-size:32px;font-family:Georgia;overflow:visible;fill:#ff9900;stroke-width:0.55000001px"
+       id="text76">
+      <tspan
+         style="font-size:29.33333333px"
+         id="tspan98">Multiplicar</tspan>
+    </text>
+    <path
+       d="m 1532,-1076.2 v 171"
+       style="marker-end:url(#id02); fill:#9ade00; stroke:#9ade00; stroke-width:3.58;"
+       id="path78" />
+    <text
+       x="1487.8136"
+       y="-996.29498"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.33333397px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;overflow:visible;fill:#009100;stroke:url(#linearGradient952);stroke-width:0.55000001px"
+       id="text80">
+      <tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.33333397px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke:url(#linearGradient952)"
+         id="tspan96">Sumar</tspan>
+    </text>
+    <text
+       x="1468.4"
+       y="-896.4"
+       style="font-family:Arial; font-size:18.7px; color:black; overflow:visible; fill:#0e232e; stroke-width:0.55px;"
+       id="text82">1.00</text>
+    <path
+       d="m 1460.1,-891 h 47.6"
+       style="fill:none; stroke:black; stroke-width:0.58px;"
+       id="path84" />
+    <path
+       d="m 1460.1,-915 h 47.6"
+       style="fill:none; stroke:black; stroke-width:0.58px;"
+       id="path86" />
+    <text
+       x="1161.5848"
+       y="-933.94757"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#0084c8;stroke-width:0.55000001px"
+       id="text24-7">
+      <tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.06666756px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan884-0">Escudo</tspan>
+    </text>
+    <text
+       x="1160.2856"
+       y="-1025.7566"
+       style="color:#000000;font-size:18.70000076px;font-family:Georgia;overflow:visible;fill:#0084c8;stroke-width:0.55000001px"
+       id="text24-8">
+      <tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.06666756px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan884-7">Escudo</tspan>
+    </text>
+  </g>
+</svg>

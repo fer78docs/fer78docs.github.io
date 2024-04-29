@@ -33,7 +33,7 @@ La asignación de probabilidades es el **proceso mediante el cual se atribuyen v
 ### Ley de Laplace
 
 {: .note}
-También conocida como la regla de la probabilidad clásica o equiprobable, establece que si un experimento aleatorio tiene resultados igualmente probables, entonces la probabilidad de un evento $$𝐸$$ es el número de resultados en $$\|E\|$$ dividido por el número total de resultados posibles en el espacio muestral $$\|S\|$$.
+También conocida como la **regla de la probabilidad clásica** o equiprobable, establece que si un experimento aleatorio tiene resultados igualmente probables, entonces **la probabilidad de un evento $$𝐸$$ es el número de resultados en $$\|E\|$$ dividido por el número total de resultados posibles en el espacio muestral $$\|S\|$$.**
 
 $$P(E) = \frac{|E|}{|S|}$$
 
@@ -43,7 +43,9 @@ Imagina que un bol contiene 3 bolas rojas y 2 bolas azules. Si se va a extraer u
 
 $$P(\text{Roja}) = \frac{3}{5}$$
 
-Si no supiéramos los colores de las bolas en el bol, pero sabemos que hay 5 bolas, y asumimos equiprobabilidad (ignorando cualquier información adicional), la probabilidad de sacar cualquier bola específica sería $$\frac{1}{5} $$.
+Si no supiéramos los colores de las bolas en el bol, pero sabemos que hay 5 bolas, y asumimos equiprobabilidad (ignorando cualquier información adicional), la probabilidad de sacar cualquier bola específica sería:
+
+$$P(\text{Roja}) = \frac{1}{5}$$
 
 ## Axiomas de la Probabilidad
 
@@ -58,17 +60,17 @@ El primer axioma establece que **la probabilidad de cualquier evento es siempre 
 
 La **regla de la suma**, también conocida como la **regla de adición**, es un principio fundamental en la teoría de probabilidades que se utiliza para calcular la probabilidad de que ocurra al menos uno de dos eventos. 
 
-#### Eventos Mutuamente Excluyentes
+**1 - Eventos Mutuamente Excluyentes**
 
-Para dos eventos $$A$$ y $$B$$ que no pueden ocurrir al mismo tiempo (es decir, son mutuamente excluyentes), la regla de la suma establece que la probabilidad de que ocurra $$A$$ o $$B$$ es simplemente la suma de sus probabilidades individuales:
+Para dos eventos $$A$$ y $$B$$ que **no pueden ocurrir al mismo tiempo** (es decir, son mutuamente excluyentes), la regla de la suma establece que la probabilidad de que ocurra $$A$$ o $$B$$ es simplemente la suma de sus probabilidades individuales:
 
 $$P(A \cup B) = P(A) + P(B)$$
 
 Por ejemplo, si tienes un mazo de cartas y quieres saber la probabilidad de sacar un rey o una reina, sumarías la probabilidad de sacar un rey con la probabilidad de sacar una reina, dado que no puedes sacar una carta que sea ambos a la vez.
 
-#### Eventos No Mutuamente Excluyentes
+**2 - Eventos No Mutuamente Excluyentes**
 
-Cuando los eventos pueden ocurrir simultáneamente (es decir, no son mutuamente excluyentes), se debe ajustar la regla de la suma para evitar contar dos veces la intersección de los eventos. La regla modificada es:
+Cuando los eventos **pueden ocurrir simultáneamente** (es decir, no son mutuamente excluyentes), se debe ajustar la regla de la suma para evitar contar dos veces la intersección de los eventos. La regla modificada es:
 
 $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
 
@@ -104,7 +106,7 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
    - R = Pacientes que leen revistas
    - $$P(C \cup R) = 60\% + 50\% - 20\% = 90\%$$
 
-  ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/ejercicio3suma.jpg)
+    ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/ejercicio3suma.jpg)
 
 4. **Solucion utilizando una Tabla**
    - En una ciudad el 60% de las personas tienen ojos negros, el 80% tienen cabello negro y el 50% tienen cabello negro y ojos negros. Si se selecciona una persona al azar, calcule la probabilidad que:
@@ -115,7 +117,7 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
   
   ![Ejercicio de Suma](https://fer78docs.github.io/assets/images/Ejercicio_2_suma.jpg)
 
-  Solucion a traves de una tabla:
+  Solucion a traves de una tabla de contingencia:
 
   |               | O Negros | O No Negros | Total |
   |---------------|----------|-------------|-------|
@@ -129,88 +131,167 @@ Esto significa que se suma la probabilidad de $$A$$ y $$B$$, pero se resta la pr
   $$P(O\cup C) = P(O) + P(C) - P(O\cup C) = 60\% + 80\% - 50\% = 90\%$$
 
 
-### Regla de multiplicación
+### Axioma 3: Regla de multiplicación
 
-Hemos analizado la regla de la suma, que describe la probabilidad de que ocurra un evento U otro evento (o ambos). ¿Qué pasa si queremos calcular la probabilidad de que dos eventos sucedan simultáneamente? Para dos eventos, $$A$$ y $$B$$ , esto es $$P(A y B)$$ o la probabilidad de la intersección de $$A∩B$$.
+{: .highlight}
+La **Regla de Multiplicación** en probabilidad es una herramienta fundamental para calcular la probabilidad de que ocurran dos o más eventos independientes o dependientes sucesivamente. Esta regla se aplica en dos formas principales, dependiendo de si los eventos son independientes o dependientes.
 
-La fórmula general para la probabilidad de que dos eventos dependientes ocurran simultáneamente es:
+### 1. Eventos Independientes
 
-$$P(A∩B) = P(A) * P(B|A)$$
+Cuando los eventos son **independientes**, la probabilidad de que todos ocurran es simplemente el producto de sus probabilidades individuales. Esto se debe a que la ocurrencia de un evento no afecta la probabilidad de ocurrencia de otro.
 
-En la formula se calcula la probabilidad de que ocurran un eventos dado que ya ha ocurrido otro que modifica las probabilidades. 
+**Fórmula:**
 
-Sin embargo, para eventos independientes, podemos simplificar ligeramente esta fórmula como: 
+$$P(A \cap B) = P(A) \times P(B)$$
 
-$$P(A∩B) = P(A) * P(B)$$
+Donde $$P(A \cap B)$$ es la probabilidad de que ocurran tanto $$A$$ como $$B$$, y $$P(A) $$ y $$P(B)$$ son las probabilidades de que ocurran $$A$$ y $$B$$, respectivamente.
+
+**Ejemplo:**
+Si la probabilidad de sacar una carta roja de una baraja estándar es $$\frac{1}{2}$$ y la probabilidad de sacar un rey es $$\frac{1}{13}$$, entonces la probabilidad de sacar una carta que sea tanto roja como un rey (asumiendo que cada extracción es independiente, como volver a meter la carta en la baraja y barajar de nuevo) es:
+
+$$P(\text{Rey Rojo}) = \frac{1}{2} \times \frac{1}{13} = \frac{1}{26}$$
+
+### 2. Eventos Dependientes
+
+Cuando los eventos son **dependientes**, la probabilidad de la conjunción de eventos depende de la ocurrencia de los eventos anteriores.
+
+**Fórmula:**
+
+$$P(A \cap B) = P(A) \times P(B \mid A)$$
+
+Donde $$P(B \mid A)$$ es la probabilidad de que ocurra $$B$$ dado que $$A$$ ya ha ocurrido.
+
+**Ejemplo:**
+
+Si sacas una carta de una baraja de 52 cartas y quieres saber la probabilidad de que la primera carta sea un as y la segunda también sea un as, utilizarías la regla de multiplicación para eventos dependientes:
+
+$$
+\begin{aligned}
+P(\text{As en primera carta}) = \frac{4}{52} \\
+P(\text{As en segunda carta} \mid \text{As en primera carta}) = \frac{3}{51} \\
+P(\text{Dos Ases}) = \frac{4}{52} \times \frac{3}{51} 
+\end{aligned}
+$$
 
 ### Ejercicios Eventos dependientes
 
-1. **Canicas**: 
-- En una urna hay 5 canicas azules, 2 rojas y una verde. Si se sacan canicas consecutivas al azar sin remplazo, calcule la probabilidad que:
+**Ejercicio 1**  
+En una urna hay 5 canicas azules, 2 rojas y una verde. Si se sacan canicas consecutivas al azar sin remplazo, calcule la probabilidad que:
+  - La primera sea azul y la segunda sea verde.
+  - Las dos sean rojas
+  
+  Calcular la probabilidad de que la primera canica sea azul $$A$$ y la segunda sea verde $$V$$
+  
+  $$P(A∩V) = P(A) * P(V|A) = \frac{5}{8} * \frac{1}{7} = \frac{5}{56} = 0.089 = 8,9%$$
 
-1. La primera sea azul y la segunda sea verde.
-2. Las dos sean rojas
+   la probabilidad de que las dos sean rojas $$R$$:
 
-Calcular la probabilidad de que la primera canica sea azul $$A$$ y la segunda sea verde $$V$$
-
-$$P(A∩V) = P(A) * P(V|A) = \frac{5}{8} * \frac{1}{7} = \frac{5}{56} = 0.089 = 8,9%$$
-
-Calcular la probabilidad de que las dos sean rojas $$R$$:
-
-$$P(R∩R) = P(R) * P(R|R) = \frac{2}{8} * \frac{1}{7} = \frac{2}{56} = 0.035 = 3,5%$$
+  $$P(R∩R) = P(R) * P(R|R) = \frac{2}{8} * \frac{1}{7} = \frac{2}{56} = 0.035 = 3,5%$$
 
 
-2. **Una Clase** 
- - En una clase hay 10 niños y 8 niñas, si se seleccionan 3 estudiantes al azar:
 
-1. ¿Cual es la probabilidad de que todos sean niños?
-2. ¿Cual es la probabilidad de que todos sean niñas?
+**Ejercicio 2**: En una clase hay 10 niños y 8 niñas, si se seleccionan 3 estudiantes al azar:
+  - ¿Cual es la probabilidad de que todos sean niños?
+  - ¿Cual es la probabilidad de que todos sean niñas?
 
-Probabilidad de que todos sean niños:
+ Probabilidad de que todos sean niños:
 
-$$P(Nº∩Nº∩Nº) = P(Nº)  *  P(Nº|Nº)  *  P(Nº|Nº∩Nº)$$
+  $$
+  \begin{aligned}
+  P(Nº∩Nº∩Nº) = P(Nº)  *  P(Nº|Nº)  *  P(Nº|Nº∩Nº) \\
+  P(Nº∩Nº∩Nº) = \frac{10}{18} * \frac{9}{17} * \frac{8}{16} \\
+  P(Nº∩Nº∩Nº) = \frac{5}{34} = 0.147 = 14,7\% \\
+  \end{aligned}
+  $$
 
-$$P(Nº∩Nº∩Nº) = \frac{10}{18} * \frac{9}{17} * \frac{8}{16}$$
+ Probabilidad de que todos sean niñas:
 
-$$P(Nº∩Nº∩Nº) = \frac{5}{34} = 0.147 = 14,7%$$
-
-Probabilidad de que todos sean niñas:
-
-$$P(Nª∩Nª∩Nª) = P(Nª)  *  P(Nª|Nª)  *  P(Nª|Nª∩Nª)$$
-
-$$P(Nª∩Nª∩Nª) = \frac{8}{18} * \frac{7}{17} * \frac{6}{16}$$
-
-$$P(Nª∩Nª∩Nª) = \frac{336}{4896} = 0.068 = 6,8%$$
-
+  $$
+  \begin{aligned}
+  P(Nª∩Nª∩Nª) = P(Nª)  *  P(Nª|Nª)  *  P(Nª|Nª∩Nª) \\
+  P(Nª∩Nª∩Nª) = \frac{8}{18} * \frac{7}{17} * \frac{6}{16} \\
+  P(Nª∩Nª∩Nª) = \frac{336}{4896} = 0.068 = 6,8\% \\
+  \end{aligned}
+  $$
+  
 Una forma de visualizar todos los resultados posibles de un par de eventos es un diagrama de árbol .
+
+**Ejercicio 3:**En un curso el 80% de los estudiantes aprueba matematicas, el 75% aprueba ingles. De los estudiantes que apueban matematicas, el 90% tambien aprueban ingles. Si se selecciona un estudiante al azar y este ha aprovado ingles, que probabilidades hay de que haya aprovado matematicas?
+
+  - Probabilidad de que aprueben matematicas: $$P(M) = 80\%$$
+  - Probabilidad de que aprueben Ingles: $$P(I) = 75\%$$
+  - Probabilidad de que aprueben Ingles dado que hayan aprobado matematicas: $$P(I\|M) = 90\%$$
+
+  Para calcular la probabilidada de la interseccion, o sea de que haya aprobado las dos asignaturas, que se necesita para calcular el resultado 
+
+  $$
+  \begin{aligned}
+  P(M \cap I) = P(M) * P(I|M) \\
+  P(M \cap I) = 0.8 * 0.9 \\
+  P(M \cap I) = 0.72 = 72\% \\
+  \end{aligned} \\
+  $$
+
+Calcular el resultado del ejercicio. 
+
+  $$
+  \begin{aligned}
+  P(M|I) = \frac{P(M \cap I)}{P(I)} \\
+  P(M|I) = \frac{72\%}{75\%} \\
+  P(M|I) = 0.96 = 96\% \\
+  \end{aligned}
+  $$
 
 ### El diagrama de arbol
 
-Los diagramas de árbol tienen las siguientes propiedades:
+{: .note}
+Un **diagrama de árbol es una herramienta gráfica utilizada en estadística para representar todas las posibles consecuencias de una serie de decisiones o eventos sucesivos**. Este tipo de diagrama es útil para visualizar el espacio muestral de un proceso aleatorio, especialmente cuando este proceso implica varios pasos o decisiones secuenciales.
 
-- Cada rama representa un conjunto específico de eventos.
-- Las probabilidades de que las ramas terminales (todos los conjuntos posibles de resultados) sumen uno.
-- Multiplicamos entre ramas (¡usando la regla de la multiplicación!) para calcular la probabilidad de que ocurra cada rama (conjunto de resultados).
+### Características de un Diagrama de Árbol
+
+1. **Nodos**: Puntos que representan los eventos o las decisiones. Los nodos iniciales se llaman nodos raíz, y los nodos al final de cada rama se llaman nodos hoja.
+2. **Ramas**: Conexiones entre nodos que representan el paso de un evento o decisión a otro. Cada rama está etiquetada con la probabilidad de pasar del nodo anterior al siguiente.
+
+### Cómo Crear un Diagrama de Árbol
+
+#### Paso 1: Definir el Problema
+Determina los eventos o decisiones que necesitas analizar. Establece claramente cuáles son las opciones o posibles resultados en cada etapa.
+
+#### Paso 2: Dibujar el Diagrama
+- **Nodo Inicial**: Comienza con un nodo que represente el punto de partida del proceso o la primera decisión.
+- **Ramas**: Desde el nodo inicial, dibuja ramas para cada posible resultado del evento o decisión. Etiqueta cada rama con la probabilidad correspondiente.
+- **Repetir para Subsecuentes Decisiones o Eventos**: Para cada nuevo nodo creado en el paso anterior, repite el proceso de dibujar ramas para cada posible resultado siguiente.
+
+#### Paso 3: Calcular Probabilidades
+Utiliza las etiquetas de probabilidad en las ramas para calcular la probabilidad de secuencias de eventos. La probabilidad de cualquier secuencia de eventos es el producto de las probabilidades a lo largo del camino que representa esa secuencia en el diagrama.
+
+### Ejemplo de un Diagrama de Árbol: Lanzar dos monedas
+
+Supongamos que lanzamos una moneda dos veces y queremos representar los posibles resultados.
+
+- **Nodo Raíz**: Comienza el diagrama.
+- **Primer Lanzamiento**: Dos ramas, una para Cara (C) y otra para Cruz (Z), cada una con probabilidad de 0.5.
+- **Segundo Lanzamiento**: Desde cada uno de los nodos resultantes del primer lanzamiento, dibuja otras dos ramas, una para Cara y otra para Cruz, también cada una con probabilidad de 0.5.
+
+![diagrama de arbol](https://fer78docs.github.io/assets/images/probability-tree-coin3.svg)
+
+- **Cálculo de Probabilidades**:
+  - Probabilidad de "Cara, Cara" (CC): \(0.5 \times 0.5 = 0.25\)
+  - Probabilidad de "Cara, Cruz" (CZ): \(0.5 \times 0.5 = 0.25\)
+  - Probabilidad de "Cruz, Cara" (ZC): \(0.5 \times 0.5 = 0.25\)
+  - Probabilidad de "Cruz, Cruz" (ZZ): \(0.5 \times 0.5 = 0.25\)
+
+### Utilidad del Diagrama de Árbol
+
+Los diagramas de árbol son particularmente útiles en la enseñanza de la probabilidad, en la toma de decisiones bajo incertidumbre, en el análisis de juegos, en la planificación estratégica, y en cualquier situación donde las decisiones sucesivas conducen a resultados que deben ser analizados o entendidos claramente.
 
 ¡En el navegador de la derecha podrás jugar con uno en este enlace: 
 
 [Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/tree-diagram/tree.html)
 
-### Eventos independientes
 
-Para dos eventos independientes, la regla de la multiplicación se vuelve menos complicada. La probabilidad de que ocurran dos eventos independientes es:
 
-$$P(A y B) = P(A) * P(B)$$
-
-Esto se debe a que lo siguiente es cierto para eventos independientes:
-
-$$P(B|A) = P(B)$$
-
-Veamos el ejemplo más sencillo: lanzar dos veces una moneda justa. El evento $$A$$ es que obtenemos cruz en el primer lanzamiento, y el evento $$B$$ es que obtenemos cruz en el segundo lanzamiento. $$P(A) = P(B) = 0.5$$ , entonces según nuestra fórmula, la probabilidad de obtener cruz en ambos lanzamientos sería:
-
-$$P(B y A ) = 0.5 * 0.5 = 0.25$$
-
-#### Ejemplo de evento independiente 
+### Ejemplo online de evento independiente 
 
 El subprograma del enlace hay un diagrama de árbol y diez canicas azules y naranjas debajo del diagrama de árbol (es posible que deba desplazarse hacia abajo para ver las canicas). Si haces clic en una de las canicas, el diagrama de árbol se completará según lo que hayas seleccionado. 
 
@@ -286,6 +367,54 @@ $$A ⊆ B -> P(A) ≤ P(B)$$
 ### 6. **Límites de Probabilidad**
 
 **Cualquier probabilidad $$P(A)$$ para un evento $$A$$ siempre estará en el rango de 0 a 1, inclusive.** Esto se deriva del hecho de que todas las probabilidades son no negativas y que la probabilidad del espacio muestral, el conjunto más grande posible, es 1.
+
+
+## Analisis utilizando una Tabla de contingencia
+
+Una tabla de contingencia en probabilidad se utiliza para organizar y mostrar las probabilidades asociadas con combinaciones de categorías de dos o más variables aleatorias. Esta herramienta es muy útil para visualizar la distribución conjunta de las variables, así como para calcular probabilidades condicionales y marginales.
+
+### Creación de una Tabla de Contingencia en Probabilidad
+
+Para ilustrar cómo se puede usar una tabla de contingencia en un contexto de probabilidad, consideremos un ejemplo sencillo con dos variables: tipo de vehículo (auto o camión) y color (blanco o negro).
+
+Supongamos que tenemos las siguientes probabilidades:
+
+- La probabilidad de que un vehículo sea un auto es 0.7 y un camión 0.3.
+- Dada que es un auto, la probabilidad de que sea blanco es 0.4 y negro 0.6.
+- Dada que es un camión, la probabilidad de que sea blanco es 0.5 y negro 0.5.
+
+**Paso 1: Establecer las Probabilidades Conjuntas**
+
+Calculamos las probabilidades conjuntas multiplicando la probabilidad de cada tipo de vehículo por la probabilidad de cada color dado ese tipo. Por ejemplo, la probabilidad de que un vehículo sea un auto blanco se calcularía como $$0.7 \times 0.4 = 0.28$$.
+
+#### Paso 2: Crear la Tabla
+
+La tabla se organiza poniendo una variable en las filas y otra en las columnas, con las probabilidades calculadas en las celdas correspondientes.
+
+| Vehículo/Color | Blanco | Negro | Total |
+|----------------|--------|-------|-------|
+| Auto           | 0.28   | 0.42  | 0.7   |
+| Camión         | 0.15   | 0.15  | 0.3   |
+| **Total**      | 0.43   | 0.57  | 1     |
+
+### Análisis de la Tabla
+
+1. **Probabilidades Marginales**:
+   - $$P(\text{Blanco}) = 0.43$$
+   - $$P(\text{Negro}) = 0.57$$
+
+2. **Probabilidades Condicionales**:
+   - $$P(\text{Auto} \mid \text{Blanco}) = \frac{0.28}{0.43} \approx 0.651 $$
+   - $$P(\text{Camión} \mid \text{Blanco}) = \frac{0.15}{0.43} \approx 0.349 $$
+
+### Importancia y Usos
+
+- **Visualización de Relaciones**: La tabla de contingencia muestra claramente cómo se distribuyen las probabilidades entre diferentes categorías de variables.
+- **Facilita el Cálculo**: Permite calcular fácilmente probabilidades marginales y condicionales.
+- **Análisis Estadístico**: Puede ser utilizada para realizar pruebas de independencia como el test de chi-cuadrado.
+
+Tablas de contingencia como esta son extremadamente útiles en estadísticas, ciencia de datos, investigación de mercados, y muchos otros campos donde las relaciones entre variables categóricas son importantes para el análisis de decisiones y predicciones.
+
 
 ### Ejemplos de modelos de probabilidad discretos:
 
