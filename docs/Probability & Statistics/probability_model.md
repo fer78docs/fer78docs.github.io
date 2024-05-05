@@ -7,14 +7,19 @@ parent: Probability & Statistics
 
 ## Temas
 
-- [Asignacion de Probabilidades](#asignación-de-probabilidades-medida-de-confianza-en-los-eventos)
+- [Asignacion de Probabilidades](#asignación-de-probabilidades-ley-de-laplace)
 - [Axiomas de la Probabilidad](#axiomas-de-la-probabilidad)
+ - [Regla de la Suma](#axioma-2-aditividad-regla-de-la-suma)
+ - [Regla de multiplicación](#axioma-3-regla-de-multiplicación)
+ - [Diagrama de Arbol](#el-diagrama-de-arbol)
 - [Derivaciones de axiomas de probabilidad](#derivaciones-de-axiomas-de-probabilidad)
-- [Modelos de probabilidad continua](#modelos-de-probabilidad-continua)
+- [Analisis utilizando una Tabla de contingencia](#analisis-utilizando-una-tabla-de-contingencia)
 - [La probabilidad condicional](#la-probabilidad-condicional)
 - [Probabilidad condicional en la Ley de Probabilidad Total](#probabilidad-condicional-en-la-ley-de-probabilidad-total)
 - [Independencia de los modelos de probabilidad](#independencia-de-los-modelos-de-probabilidad)
 - [Modelos de probabilidad de Independencia condicional](#modelos-de-probabilidad-de-independencia-condicional)
+- [Regla de Bayes](#regla-de-bayes)
+- [Proyecto: crear un Clasificador de Bayes desde cero](#proyecto-crear-un-clasificador-de-bayes-desde-cero)
 
 ## Asignación de Probabilidades: Ley de Laplace
 
@@ -242,7 +247,7 @@ Calcular el resultado del ejercicio.
   \end{aligned}
   $$
 
-### El diagrama de arbol
+## El diagrama de arbol
 
 {: .note}
 Un **diagrama de árbol es una herramienta gráfica utilizada en estadística para representar todas las posibles consecuencias de una serie de decisiones o eventos sucesivos**. Este tipo de diagrama es útil para visualizar el espacio muestral de un proceso aleatorio, especialmente cuando este proceso implica varios pasos o decisiones secuenciales.
@@ -275,16 +280,6 @@ Supongamos que lanzamos una moneda dos veces y queremos representar los posibles
 
 ![diagrama de arbol](https://fer78docs.github.io/assets/images/probability-tree-coin3.svg)
 
-- **Cálculo de Probabilidades**:
-  - Probabilidad de "Cara, Cara" (CC): \(0.5 \times 0.5 = 0.25\)
-  - Probabilidad de "Cara, Cruz" (CZ): \(0.5 \times 0.5 = 0.25\)
-  - Probabilidad de "Cruz, Cara" (ZC): \(0.5 \times 0.5 = 0.25\)
-  - Probabilidad de "Cruz, Cruz" (ZZ): \(0.5 \times 0.5 = 0.25\)
-
-### Utilidad del Diagrama de Árbol
-
-Los diagramas de árbol son particularmente útiles en la enseñanza de la probabilidad, en la toma de decisiones bajo incertidumbre, en el análisis de juegos, en la planificación estratégica, y en cualquier situación donde las decisiones sucesivas conducen a resultados que deben ser analizados o entendidos claramente.
-
 ¡En el navegador de la derecha podrás jugar con uno en este enlace: 
 
 [Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/intro-probability/tree-diagram/tree.html)
@@ -315,10 +310,6 @@ A partir de estos axiomas, se pueden derivar varias propiedades importantes de l
 - **Probabilidad del Complemento:** La probabilidad de que un evento no ocurra (su complemento) es 1 menos la probabilidad de que el evento ocurra.
 - **Probabilidad del Conjunto Vacío:** La probabilidad del conjunto vacío, que representa un evento imposible, es 0. Esto es coherente con la interpretación del conjunto vacío como un evento sin resultados posibles.
 
-### Aplicaciones y Ejemplos
-
-Los axiomas de probabilidad son aplicados en una gran variedad de contextos para calcular probabilidades de eventos complejos y para desarrollar modelos de probabilidad más sofisticados. Por ejemplo, en un experimento de lanzar un dado justo, la probabilidad asignada a cada cara sería $$1/6$$, reflejando la equiprobabilidad de cada resultado. A partir de ahí, se pueden calcular las probabilidades de eventos compuestos, como obtener un número par, mediante la suma de las probabilidades de los eventos simples relevantes.
-
 ## Derivaciones de axiomas de probabilidad
 
 {: .highlight}
@@ -326,7 +317,7 @@ Las **derivaciones de los axiomas de probabilidad** se refieren a las propiedade
 
 Estos axiomas, como ya se ha mencionado, son la no negatividad, la aditividad (o regla de suma para eventos disjuntos) y que la probabilidad del espacio muestral completo es 1. A partir de estos axiomas, se pueden deducir varias reglas importantes que son esenciales para el trabajo práctico en probabilidad y estadística.
 
-### 1. **Probabilidad del Complemento de un Evento**
+### 1. Probabilidad del Complemento de un Evento
 
 **Una de las derivaciones más directas es la probabilidad del complemento de un evento**. Si $$A$$ es un evento, entonces el complemento de $$A$$, denotado $$A^c$$, representa la ocurrencia de $$no-A$$. Utilizando los axiomas, se puede demostrar que:
 
@@ -334,7 +325,7 @@ $$P(A^c) = 1 - P(A)$$
 
 Esto se deduce del hecho de que $$A$$ y $$A^c$$ son mutuamente excluyentes y su unión es el espacio muestral completo, cuya probabilidad es 1.
 
-### 2. **Probabilidad de la Unión de Eventos**
+### 2. Probabilidad de la Unión de Eventos
 
 **Para dos eventos $$A$$ y $$B$$, la probabilidad de su unión puede ser expresada en términos de las probabilidades de $$A$$, $$B$$, y su intersección $$A ∩ B$$**. Esta regla se aplica incluso si $$A$$ y $$B$$ no son disjuntos y se deriva como sigue:
 
@@ -342,15 +333,15 @@ $$P(A ∪ B) = P(A) + P(B) - P(A ∩ B)$$
 
 Esto ajusta la aditividad para el caso de eventos qsue no son mutuamente excluyentes, evitando la sobrecontabilización de la intersección de $$A$$ y $$B$$.
 
-### 3. **Subaditividad**
+### 3. Subaditividad
 
 La subaditividad se refiere a la propiedad de que **la probabilidad de la unión de cualquier colección de eventos es menor o igual a la suma de sus probabilidades individuales.** Para una secuencia de eventos $$A1, A2,...., An$$:
 
 Esta propiedad es particularmente útil para tratar con uniones de eventos que no son necesariamente disjuntos.
 
-### 4. **Probabilidad de Eventos Vacíos y Ciertos**
+### 4. Probabilidad de Eventos Vacíos y Ciertos
 
-Directamente de los axiomas, se establece que la **probabilidad del conjunto vacío** `{∅}`, que es un evento imposible, es 0:
+Directamente de los axiomas, se establece que la **probabilidad del conjunto vacío** $${∅}$$, que es un evento imposible, es 0:
 
 $$P(∅) = 0$$
 
@@ -358,16 +349,15 @@ Asimismo, la probabilidad del espacio muestral completo $$(Ω)$$, que representa
 
 $$P(Ω) = 1$$
 
-### 5. **Monotonicidad**
+### 5. Monotonicidad
 
 **Si un evento $$A$$ es un subconjunto de otro evento $$B$$, entonces la probabilidad de $$A$$ es menor o igual a la probabilidad de $$B$$**. Esto refleja la idea de que la ocurrencia de $$B$$ incluye la ocurrencia de $$A$$ junto con posiblemente otros resultados:
 
 $$A ⊆ B -> P(A) ≤ P(B)$$
 
-### 6. **Límites de Probabilidad**
+### 6. Límites de Probabilidad
 
 **Cualquier probabilidad $$P(A)$$ para un evento $$A$$ siempre estará en el rango de 0 a 1, inclusive.** Esto se deriva del hecho de que todas las probabilidades son no negativas y que la probabilidad del espacio muestral, el conjunto más grande posible, es 1.
-
 
 ## Analisis utilizando una Tabla de contingencia
 
@@ -663,28 +653,115 @@ Este concepto es crucial en contextos donde la independencia absoluta no se mant
 
 Considera el caso de testear un software bajo diferentes condiciones de red. Dos fallos distintos, $$A$$ y $$B$$, pueden no ser independientes en general (es decir, que uno ocurra puede afectar la probabilidad del otro), pero si condicionamos al tipo de red $$C$$ (por ejemplo, 4G vs. WiFi), estos fallos pueden volverse independientes dentro de cada tipo de red.
 
-## Modelos de probabilidad Regla de Bayes
-
-La **Regla de Bayes** o **Teorema de Bayes**, es un pilar fundamental en la probabilidad y estadística, especialmente crucial en el campo del aprendizaje automático. Este concepto se presenta como un puente hacia el entendimiento de cómo se pueden utilizar modelos estadísticos para interpretar y predecir a partir de datos. 
+## Regla de Bayes
 
 {: .note}
-La Regla de Bayes proporciona una forma de calcular la probabilidad posterior de un evento, dado algún conocimiento previo. Matemáticamente, se expresa como:
+El **Teorema de Bayes**, nombrado así por el reverendo Thomas Bayes, es un principio fundamental en la teoría de la probabilidad que **permite actualizar la probabilidad de un evento basado en nueva evidencia o información.** Este teorema es esencial para el razonamiento estadístico y se utiliza en una amplia variedad de campos, desde la inteligencia artificial hasta la epidemiología.
 
-$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+### Fórmula del Teorema de Bayes
 
-donde:
-- $$P(A\|B)$$ es la probabilidad de $$A$$ dado que $$B$$ ha ocurrido.
-- $$P(B\|A)$$ es la probabilidad de $$B$$ dado que $$A$$ ha ocurrido.
-- $$P(A)$$ es la probabilidad a priori de $$A$$.
-- $$P(B)$$ es la probabilidad total de $$B$$.
+La fórmula del Teorema de Bayes relaciona las probabilidades condicionales e incondicionales de eventos estadísticos. Se expresa matemáticamente como:
 
-### Prueba de la Regla de Bayes
+$$P(A \mid B) = \frac{P(B \mid A) \times P(A)}{P(B)}$$
 
-La prueba se basa en el principio de que la probabilidad conjunta de dos eventos, $$A$$ y $$B$$, es la misma sin importar el orden en que se consideren, es decir, $$P(A \cap B) = P(B \cap A)$$. Aplicando la definición de probabilidad condicional a ambos lados, obtenemos la regla de Bayes.
+Donde:
+- $$P(A \mid B)$$ es la probabilidad posterior de $$A$$ dado $$B$$, o la probabilidad de $$A$$ después de haber observado $$B$$.
+- $$P(B \mid A)$$ es la probabilidad de observar $$B$$ dado que $$A$$ es verdadero.
+- $$P(A)$$ es la probabilidad a priori de $$A$$, o la probabilidad de $$A$$ antes de observar $$B$$.
+- $$P(B)$$ es la probabilidad total de $$B$$, que se calcula utilizando la ley de probabilidad total.
 
-### Ejemplo 
+### Entendiendo las Partes del Teorema
 
-Imagina que tienes una enfermedad rara (Evento $$A$$) y una prueba que detecta dicha enfermedad (Evento $$B$$). La Regla de Bayes te permite calcular la probabilidad de tener la enfermedad dado que la prueba es positiva, utilizando el conocimiento previo sobre la prevalencia de la enfermedad y la precisión de la prueba.
+- **Probabilidad a Priori $$P(A)$$**: Es la probabilidad inicial de $$A$$ antes de que se tenga en cuenta cualquier información adicional.
+- **Probabilidad Condicional $$P(B \mid A)$$**: Es la probabilidad de observar $$B$$ cuando $$A$$ es cierto.
+- **Probabilidad a Posteriori $$P(A \mid B)$$**: Es la probabilidad revisada de $$A$$ después de tener en cuenta la evidencia $$B$$.
+- **Probabilidad Marginal $$P(B)$$**: También conocida como la probabilidad total de $$ B$$, esta es la suma de las probabilidades de $$B$$ sobre todos los posibles resultados anteriores. Se calcula como:
+
+  $$P(B) = P(B \mid A) \times P(A) + P(B \mid A^c) \times P(A^c)$$
+
+  donde $$A^c$$ es el complemento de $$A$$.
+
+### Ejemplo de Aplicación
+
+Para este problema, seguiremos el diagrama de árbol:
+
+![Ley de la probabilidad Total](https://fer78docs.github.io/assets/images/ejercicio de bayes.png)
+
+Supongamos que lo siguiente es cierto (esto se muestra en el primer conjunto de ramas del diagrama):
+
+- El 20 por ciento de la población tiene faringitis estreptocócica: $$P(ST) = 0.20$$
+- El 80 por ciento de la población no tiene faringitis estreptocócica: $$P(No ST) = 0.80$$
+
+Ahora supongamos que hacemos pruebas a un grupo de personas para detectar faringitis estreptocócica. Los posibles resultados de estas pruebas se muestran en el siguiente conjunto de ramas:
+
+- Si una persona tiene faringitis estreptocócica, hay un 85% de posibilidades de que su prueba sea positiva y un 15% de posibilidades de que sea negativa. Esto está etiquetado como:
+
+ - Test Positivo: P(+\|ST) = 0.85
+ - Test Negativo: P(-\|ST) = 0.15
+
+Por otra parte: 
+
+- Si una persona **NO** tiene faringitis estreptocócica, hay un 2% de posibilidades de que su prueba sea positiva y un 98% de posibilidades de que sea negativa. Esto está etiquetado como:
+
+ - Test Positivo: P(+\|No ST) = 0.02
+ - Test Negativo: P(-\|No ST) = 0.98
+
+Finalmente, veamos los cuatro posibles pares de resultados que forman las ramas terminales de nuestro diagrama:
+
+ - $$P(ST y + ) = 0.17$$ 
+ - $$P(ST y - ) = 0.03$$ 
+ - $$P(No ST y +) = 0.016$$ 
+ - $$P(No ST y -) = 0.784$$  
+​
+
+En conjunto, estos suman uno, ya que capturan todos los resultados potenciales después de que se realizan las pruebas a los pacientes.
+
+Es genial que tengamos toda esta información. Sin embargo, nos falta algo. Si alguien obtiene un resultado positivo, ¿cuál es la probabilidad de que este correcto el test y realmente tenga faringitis estreptocócica? Notacionalmente, podemos escribir esta probabilidad como: $$P(ST\|+)$$
+
+Imagine que es un paciente que recientemente dio positivo por faringitis estreptocócica. Es posible que desee saber la probabilidad de que TIENE faringitis estreptocócica, dado que su prueba dio positivo. Para calcular esta probabilidad, el Teorema de Bayes , que establece lo siguiente:
+
+$$P(A \mid B) = \frac{P(B \mid A) \times P(A)}{P(B)}$$
+
+Calculando
+
+$$
+\begin{aligned}
+P(ST\|+) = \frac{P(+\|ST) \times P(ST)}{P(+)} \\
+P(ST\|+) = \frac{0,85 \times 0,20}{P(+)} \\
+\end{aligned}
+$$
+
+Qué pasa con P(+) ? ¿Es esto algo que sabemos? Bueno, pensemos en esto. Hay cuatro resultados posibles:
+​
+- Tener faringitis estreptocócica y dar positivo
+- Tener faringitis estreptocócica y dar negativo
+- No tener faringitis estreptocócica y dar positivo
+- No tener faringitis estreptocócica y dar negativo
+
+Solo nos importan los dos resultados en los que un paciente da positivo en $$P(+)$$ . Por tanto, podemos decir:
+
+$$
+\begin{aligned}
+P(+) = P(ST y +) + P(No ST y +) \\
+P(+) = 0,17 + 0,16 \\
+P(+) = 0,186 \\
+\end{aligned}
+$$
+
+Continuamos con la formula principal:
+
+$$
+\begin{aligned}
+P(ST\|+) = \frac{P(+\|ST) \times P(ST)}{P(+)} \\
+P(ST\|+) = \frac{0,85 \times 0,20}{0,186} \\
+P(ST\|+) = 0.914
+\end{aligned}
+$$
+
+Existe un 91,4% de posibilidades de que realmente tenga faringitis estreptocócica si su prueba da positivo. Esto no es obvio a partir de la información descrita en nuestro diagrama de árbol, pero con el poder del teorema de Bayes, pudimos calcularlo.
+
+Podemos calcular otras probabilidades condicionales como, $$P(ST\|-), P(NoST\|+), P(NoST\|-)$$.
+
 
 ### Aplicaciones en el Aprendizaje Automático
 
@@ -700,33 +777,8 @@ La distinción entre modelado generativo y discriminativo es fundamental en el a
 - **Modelo Generativo**: Intenta modelar cómo se generan los datos, combinando las distribuciones de las características y las clases. Ejemplos incluyen el clasificador Bayesiano y la mezcla de modelos Gaussianos.
 - **Modelo Discriminativo**: Se enfoca en la frontera entre las clases, intentando directamente predecir la clase a partir de las características observadas. Ejemplos incluyen la regresión logística y las máquinas de soporte vectorial (SVM).
 
-## Modelos de probabilidad hacia variables aleatoria
 
-Las **variables aleatorias** son entidades matemáticas que asignan resultados de procesos aleatorios a valores numéricos. **Son fundamentales para describir fenómenos en términos cuantitativos, permitiendo el uso de herramientas matemáticas y estadísticas para análisis y predicción.** Estas variables nos permiten la transición de conceptos teóricos de probabilidad a su aplicación práctica para modelar y analizar **datos reales**. 
+## Proyecto: crear un Clasificador de Bayes desde cero
 
-Este paso es crucial, ya que en el aprendizaje automático, los datos —y, por ende, los eventos que representan— se expresan casi exclusivamente a través de números. Aquí, se propone una sólida comprensión de cómo los principios de probabilidad y estadística subyacen en la base de modelos complejos de aprendizaje automático, particularmente a través del ejemplo del reconocimiento facial.
+Para el proyecto utilizaremos el conjunto de datos `iris` de la biblioteca `seaborn. El conjunto de datos Iris contiene mediciones de 150 flores de iris, específicamente sus longitudes y anchuras de pétalos y sépalos. Cada flor es clasificada en una de tres especies: Setosa, Versicolor o Virginica. La carga de datos se realiza típicamente con bibliotecas como Seaborn, que facilita la visualización y manipulación de datos:
 
-
-## Modelos de probabilidad continua
-
-En los modelos de probabilidad discretos donde el espacio muestral es contable. Esto significa que, ya sea finito o infinito, los resultados posibles de nuestro experimento se pueden enumerar o indexar de manera secuencial. Estos modelos **permiten asignar probabilidades positivas a eventos específicos**, incluso a aquellos que contienen un único resultado.
-
-Sin embargo, **nos encontramos con una complejidad adicional cuando el espacio muestral se vuelve incontable.** Imaginemos, por ejemplo, una rueda de dardos. Si consideramos el punto donde impacta el dardo dentro de un círculo unitario, cada punto tiene la misma probabilidad de ser elegido. Pero, ¿cómo asignamos probabilidades a eventos tan infinitesimales como un punto específico dentro del círculo?
-
-Cuando el espacio muestral es incontable, asignar probabilidades positivas a cada evento individual resulta imposible. Incluso asignando la más mínima probabilidad positiva a cada posible punto de impacto del dardo en el círculo, nos encontraríamos rápidamente con que la suma total de estas probabilidades excedería el límite de 1, violando así los axiomas fundamentales de la probabilidad.
-
-### La Solución: Trabajar con Intervalos
-
-**En los modelos de probabilidad continua, en lugar de tratar con eventos individuales, trabajamos con intervalos de eventos.** No asignamos probabilidades a puntos específicos, sino a la probabilidad de que un evento ocurra dentro de un rango determinado. Por ejemplo, en lugar de preguntar por la probabilidad de que el dardo impacte exactamente a una distancia de 0.73 del centro, preguntaríamos por la probabilidad de que impacte dentro de un intervalo, como entre 0.5 y 0.7.
-
-Consideremos un círculo unitario. Si el juego consiste en lanzar un dardo y calcular la distancia desde el origen hasta el punto de impacto, nos enfrentamos a un espacio muestral incontable. Cada punto dentro del círculo tiene una probabilidad de ser alcanzado, pero es imposible asignar una probabilidad específica a cada punto. En cambio, debemos enfocarnos en los intervalos de distancia.
-
-### Espacio Muestral y Probabilidades en Modelos Discretos y Continuos
-
-Antes de adentrarnos en ejemplos, es importante recordar la diferencia entre modelos de probabilidad discretos y continuos:
-
-{: .highlight}
-**Modelos Discretos:** El espacio muestral es contable, lo que significa que podemos enumerar todos los posibles resultados del experimento.
-
-{: .highlight}
-**Modelos Continuos:** El espacio muestral es incontable, como los puntos en un segmento de línea. Aquí, no podemos asignar probabilidades a eventos individuales de manera directa.
