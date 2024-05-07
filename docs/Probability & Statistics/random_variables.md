@@ -5,209 +5,70 @@ nav_order: 6
 parent: Probability & Statistics
 ---
 
-## Indice
+## Temas
 
-- [Variables Aleatorias Discretas](#variables-aleatorias-discretas)
-- [Bernoulli Random Variables](#bernoulli-random-variables)
-- [Geometric Random Variable](#geometric-random-variable)
-- [Binomial Random Variables](#binomial-random-variables)
-- [Cumulative Distribution Function](#cumulative-distribution-function)
-- [Random Variables in Real Datasets](#random-variables-in-real-datasets)
+ - [Distribucion Binomial](#distribucion-binomial)
 
+Los tipos de variables aleatorias discretas se clasifican comúnmente según las distribuciones de probabilidad que describen cómo se comportan los datos asociados a estas variables. 
 
-## Variables Aleatorias Discretas
-
-{: .highlight}
-Las **variables aleatorias con un número contable de valores posibles** se denominan **variables aleatorias discretas**. Por ejemplo, lanzar un dado normal de 6 caras se consideraría una variable aleatoria discreta porque las opciones de resultado se limitan a los números del dado.
-
-Las variables aleatorias discretas también son comunes cuando se observan eventos de conteo, como cuántas personas ingresaron a una tienda en un día seleccionado al azar. En este caso, los valores son contables porque se limitan a números enteros (no se puede observar la mitad de una persona).
-
-
-
-
-
-
-
-
-En esta lección, usaremos `random.choice(a, size = size, replace = True/False)`de la biblioteca `numpy` para simular variables aleatorias en Python. En este método:
-
-- `a` es una lista u otro objeto que tiene valores de los que estamos tomando muestras
-- `size` es un número que representa cuántos valores elegir
-- `replace` puede ser igual a `True` o `False` y determina si mantenemos un valor adespués de dibujarlo `(replace = True)` o lo eliminamos del grupo `(replace = False)`.
-
-El siguiente código simula el resultado de lanzar un dado justo dos veces usando `np.random.choice()`:
-
-```python
-import numpy as np
-
-# 7 is not included in the range function
-die_6 = range(1, 7)
-
-rolls = np.random.choice(die_6, size = 2, replace = True)
-
-print(rolls)
-```
-output
-```
-[2, 5]
-```
-
-
-### Ejemplo Práctico: Lanzamiento de Dos Dados
-
-Consideremos el experimento de lanzar dos dados de seis caras. El espacio muestral de este experimento, es decir, todos los posibles resultados de lanzar dos dados, contiene 36 posibles combinaciones (desde $$(1,1)$$ hasta $$(6,6)$$).
-
-#### Definición de la Función
-
-Definimos una función $$F$$ que toma como entrada un resultado del experimento (en este caso, una pareja de números que representan el resultado de cada dado) y devuelve la suma de estos dos números. Esta función $$F$$ es un ejemplo de una variable aleatoria porque asigna un valor numérico real (la suma) a cada posible resultado del experimento (cada pareja de números). Imaginemos cómo se vería esta función en Python:
-
-```python
-def suma_dados(a, b):
-    return a + b
-```
-
-Esta función, `suma_dados`, acepta dos entradas (los resultados de cada dado) y devuelve su suma.
-
-### Variables Aleatorias Basadas en el Mismo Experimento
-
-Podemos definir múltiples variables aleatorias basadas en el mismo experimento de lanzamiento de dos dados:
-
-1. **Suma de los resultados** ($$S$$): Como ya definimos con la función `suma_dados`.
-2. **Máximo de los resultados** ($$M$$): Una variable aleatoria que devuelve el máximo de los dos números obtenidos.
-3. **Indicador de número primo** ($$I$$): Una variable aleatoria que devuelve 1 si la suma es un número primo, y 0 en caso contrario.
-
-Visualización de los Valores de $$S$$
-
-Para cada posible valor de la suma $$S$$, podemos identificar qué resultados del lanzamiento corresponden a ese valor específico. Por ejemplo:
-
-- Si $$S = 2$$, el único resultado posible es $$(1,1)$$.
-- Si $$S = 3$$, los resultados posibles son $$(1,2)$$ y $$(2,1)$$.
-- Si $$S = 4$$, los resultados posibles son $$(1,3), (2,2)$$, y $$(3,1)$$.
-
-Y así sucesivamente para los demás valores posibles de `S`.
-
-### Probabilidades Asociadas a las Variables Aleatorias
-
-La probabilidad de que una variable aleatoria tome un valor específico es la probabilidad del evento que genera ese valor. Por ejemplo:
-
-- La probabilidad de que $$S = 2$$ es la probabilidad de obtener $$(1,1)$$ en el lanzamiento, que es $$\frac{1}{36}$$.
-- La probabilidad de que $$S = 4$$ es la suma de las probabilidades de obtener $$(1,3), (2,2), y (3,1)$$, que sería $$\frac{3}{36} = \frac{1}{12}$$.
-
-Las variables aleatorias deben ser numéricas, lo que significa que siempre toman un número en lugar de una característica o cualidad. Si queremos usar una variable aleatoria para representar un evento con resultados no numéricos, podemos elegir números para representar esos resultados. Por ejemplo, podríamos representar el lanzamiento de una moneda como una variable aleatoria asignando a “cara” un valor de 1 y a “cruz” un valor de 0.
-
-### Aplicación de las Variables Aleatorias
-
-La utilidad de estas variables aleatorias radica en su capacidad para simplificar el análisis del experimento:
-
-- **Probabilidad de Eventos Específicos:** Por ejemplo, la probabilidad de que $$A$$ tome el valor 4 se calcula sumando las probabilidades de todos los eventos que producen un máximo de 4 en los lanzamientos, tales como (1,4), (2,4), (3,4), (4,1), (4,2), (4,3), y (4,4).
-- **Modelado de la Distribución:** La distribución de probabilidad para cada variable aleatoria discreta se puede describir utilizando **funciones de masa de probabilidad**, las cuales asignan a cada valor de la variable aleatoria la probabilidad del evento correspondiente.
-
-
-
-
-## Bernoulli Random Variables
-
-### Función de Masa de Probabilidad (PMF)
+## Distribucion Binomial
 
 {: .note}
-La **función de masa de probabilidad** asigna probabilidades a los posibles valores discretos de una variable aleatoria. La **PMF** cumple con los axiomas de la probabilidad:
+La distribución binomial o distribución binómica es una distribución de probabilidad discreta que cuenta el número de éxitos en una secuencia de $$𝑛$$ ensayos de Bernoulli independientes entre sí con una probabilidad fija $$𝑝$$ de ocurrencia de éxito entre los ensayos.
 
-- La probabilidad de cada valor es no negativa.
-- La suma de las probabilidades de todos los posibles valores es igual a 1.
+La distribución binomial se utiliza con frecuencia para modelizar el número de aciertos en una muestra de tamaño $$𝑛$$ extraída con reemplazo de una población de tamaño N. 
 
-### Ejemplo con la Suma de Dos Dados
+Para cada experimento llamado **ensayo Bernoulli**, utilizamos una variable aleatoria que toma el valor 1 cuando se consigue un éxito y el valor 0 en caso contrario. La variable aleatoria, suma de todas estas variables aleatorias, cuenta el número de éxitos y sigue una distribución binomial. Es posible entonces obtener la probabilidad de k éxitos en una repetición de n experimentos:
 
-Si consideramos la variable $$S$$ como la suma de dos lanzamientos de un dado:
-- $$P(S = 2) = \frac{1}{36}$$ porque solo hay una forma de obtener un 2: lanzando dos unos.
-- $$P(S = 3) = \frac{2}{36}$$ porque hay dos combinaciones que dan un 3: (1,2) y (2,1).
-- Y así sucesivamente hasta $$S = 12$$.
+La ley binomial se utiliza en diversos campos de estudio, especialmente a través de pruebas estadísticas que permiten interpretar datos y tomar decisiones en situaciones que dependen del azar. Debido a su sencilla definición, es una de las leyes de probabilidad que se estudian en los cursos introductorios de teoría de la probabilidad.
 
-Estos cálculos asumen que todos los resultados son igualmente probables, lo cual es cierto para un dado justo.
+### Ejemplo Explicativo
 
-### Aplicación Práctica: Variable Aleatoria Bernoulli
+Supongamos que lanzamos una moneda tres veces $$N = 3$$, y cada lanzamiento tiene una probabilidad de 0.7 de ser cara. Los posibles resultados (espacio muestral) y la distribución de $$X$$ serían:
 
-{: .highlight}
-Una **variable aleatoria Bernoulli** es un tipo especial de variable aleatoria discreta que solo toma dos valores, generalmente 0 y 1. Es extremadamente útil para modelar experimentos binarios como el lanzamiento de una moneda.
+- **0 caras (X = 0):** $$(Cruz, Cruz, Cruz)$$
+  - Probabilidad: $$(1 - 0.7)^3 = 0.027 $$
+- **1 cara (X = 1):** $$(Cara, Cruz, Cruz), (Cruz, Cara, Cruz), (Cruz, Cruz, Cara)$$
+  - Probabilidad: $$ \binom{3}{1} \times 0.7^1 \times 0.3^2 = 0.189 $$
+- **2 caras (X = 2):** $$(Cara, Cara, Cruz), (Cruz, Cara, Cara), (Cara, Cruz, Cara)$$
+  - Probabilidad: $$ \binom{3}{2} \times 0.7^2 \times 0.3^1 = 0.441$$
+- **3 caras (X = 3):** $$(Cara, Cara, Cara)$$
+  - Probabilidad: $$ 0.7^3 = 0.343 $$
 
-#### Ejemplo con el Lanzamiento de una Moneda
-- Si la moneda es justa, $$P(X = 1) = 0.5$$ y $$P(X = 0) = 0.5$$.
-- Si la moneda no es justa y la probabilidad de cara es 0.7, entonces $$P(X = 1) = 0.7$$ y $$P(X = 0) = 0.3$$.
+### Ejemplo de Código en Python
 
-La **PMF** en este caso asignaría 0.7 a obtener cara y 0.3 a obtener cruz, reflejando la naturaleza sesgada de la moneda.
+Para trabajar con la variable aleatoria binomial en Python, una de las herramientas más útiles y comunes es el módulo `numpy`, específicamente la función `numpy.random.binomial`. Este módulo facilita la simulación de ensayos binomiales, permitiendo generar datos que siguen una distribución binomial. 
 
-### Simulación en Python
-
-Vamos a construir una función en Python que simule un experimento de Bernoulli, el cual podría representar, por ejemplo, el lanzamiento de una moneda:
+Este código utiliza la función `np.random.binomial` para simular 1000 ensayos binomiales donde se lanzan 10 monedas por ensayo con una probabilidad de 0.7 de obtener cara en cada lanzamiento. Luego, genera un histograma para visualizar la distribución de los resultados.
 
 ```python
 import numpy as np
-
-def bernoulli_trial(p=0.5):
-    """Simula un experimento de Bernoulli.
-        Args:
-    p (float): Probabilidad de éxito (por defecto 0.5).
-        Returns:
-    int: 1 si el experimento resulta en éxito, 0 en caso contrario.
-    """
-    return 1 if np.random.rand() <= p else 0
-```
-
-En esta función, `np.random.rand()` genera un número aleatorio entre 0 y 1, y compara este número con la probabilidad de éxito `p`. Si el número generado es menor o igual a `p`, el resultado es un éxito (1); de lo contrario, es un fracaso (0).
-
-### Simulación y Análisis de Resultados
-
-Podemos usar esta función para realizar múltiples ensayos y observar la frecuencia de éxitos, lo que nos permite estimar la probabilidad de éxito de la moneda:
-
-```python
-def simulate_bernoulli_trials(n, p=0.5):
-    """Simula n ensayos de Bernoulli y reporta la frecuencia de éxitos.
-        Args:
-    n (int): Número de ensayos.
-    p (float): Probabilidad de éxito.
-    
-    Returns:
-    float: Frecuencia de éxitos.
-    """
-    results = [bernoulli_trial(p) for _ in range(n)]
-    return sum(results) / n
-
-# Simular 1000 lanzamientos de una moneda con p = 0.7
-n_trials = 1000
-success_prob = 0.612199
-frequency_of_success = simulate_bernoulli_trials(n_trials, success_prob)
-
-print(f"La frecuencia de éxito estimada es {frequency_of_success:.2f}")
-```
-Output:
-```
-La frecuencia de éxito estimada es 0.71
-```
-
-Este código simula 1000 lanzamientos de una moneda donde la probabilidad de obtener cara (éxito) es del 70%. La función simulate_bernoulli_trials devuelve la frecuencia de éxitos, que debería acercarse a 0.7 a medida que el número de ensayos aumenta.
-
-### Visualización de la Convergencia
-
-Para visualizar cómo la frecuencia de éxitos converge a la probabilidad real, podríamos realizar múltiples simulaciones aumentando progresivamente el número de ensayos y graficar los resultados:
-
-```python
 import matplotlib.pyplot as plt
 
-trial_counts = [10, 50, 100, 500, 1000, 5000, 10000]
-frequencies = [simulate_bernoulli_trials(count, success_prob) for count in trial_counts]
+def simulate_binomial(n, p, trials):
+    """Simula 'trials' ensayos binomiales de 'n' lanzamientos con probabilidad 'p'."""
+    results = np.random.binomial(n, p, trials)
+    return results
 
-plt.figure(figsize=(10, 5))
-plt.plot(trial_counts, frequencies, marker='o', linestyle='-')
-plt.axhline(y=success_prob, color='r', linestyle='--')
-plt.title('Convergencia de la Frecuencia de Éxitos a la Probabilidad Real')
-plt.xlabel('Número de Ensayos')
-plt.ylabel('Frecuencia de Éxitos')
-plt.xscale('log')
+# Parámetros de la simulación
+n = 10  # Número de lanzamientos
+p = 0.7  # Probabilidad de cara
+trials = 1000  # Número de simulaciones
+
+# Realizar simulaciones
+results = simulate_binomial(n, p, trials)
+
+# Visualizar resultados
+plt.hist(results, bins=np.arange(n+2)-0.5, edgecolor='black', density=True)
+plt.title('Distribución Binomial de Caras en 10 Lanzamientos')
+plt.xlabel('Número de Caras')
+plt.ylabel('Frecuencia Relativa')
+plt.xticks(range(n+1))
 plt.show()
 ```
 
-![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/Visualización de la Convergencia.png)
+![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/distribucion_binomial.png)
 
-Este gráfico mostrará cómo la frecuencia de éxitos se estabiliza y converge hacia la probabilidad real de éxito (0.612199 en este caso) a medida que aumenta el número de ensayos, ilustrando la ley de los grandes números.
 
 ## Geometric Random Variable
 
@@ -292,59 +153,7 @@ plt.show()
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/variable_aleatoria_geométrica.png)
 
 
-## Binomial Random Variables
 
-Este segmento explica la variable aleatoria binomial, que emerge de realizar múltiples ensayos independientes de Bernoulli, como lanzar una moneda varias veces. Esta variable aleatoria es crucial para entender fenómenos donde los resultados son binarios y se repiten en condiciones de independencia entre ensayos.
-
-{: .note}
-La **variable aleatoria binomial** $$X$$ representa el número de éxitos obtenidos en un número fijo $$N$$ de ensayos independientes de Bernoulli, cada uno con una probabilidad de éxito $$P$$. Por ejemplo, si lanzamos una moneda $$N$$ veces y cada lanzamiento tiene una probabilidad $$P$$ de resultar en cara (éxito), $$X$$ contaría cuántas caras se obtuvieron.
-
-#### Ejemplo Explicativo
-
-Supongamos que lanzamos una moneda tres veces $$N = 3$$, y cada lanzamiento tiene una probabilidad de 0.7 de ser cara. Los posibles resultados (espacio muestral) y la distribución de $$X$$ serían:
-
-- **0 caras (X = 0):** $$(Cruz, Cruz, Cruz)$$
-  - Probabilidad: $$(1 - 0.7)^3 = 0.027 $$
-- **1 cara (X = 1):** $$(Cara, Cruz, Cruz), (Cruz, Cara, Cruz), (Cruz, Cruz, Cara)$$
-  - Probabilidad: $$ \binom{3}{1} \times 0.7^1 \times 0.3^2 = 0.189 $$
-- **2 caras (X = 2):** $$(Cara, Cara, Cruz), (Cruz, Cara, Cara), (Cara, Cruz, Cara)$$
-  - Probabilidad: $$ \binom{3}{2} \times 0.7^2 \times 0.3^1 = 0.441$$
-- **3 caras (X = 3):** $$(Cara, Cara, Cara)$$
-  - Probabilidad: $$ 0.7^3 = 0.343 $$
-
-### Ejemplo de Código en Python
-
-Para trabajar con la variable aleatoria binomial en Python, una de las herramientas más útiles y comunes es el módulo `numpy`, específicamente la función `numpy.random.binomial`. Este módulo facilita la simulación de ensayos binomiales, permitiendo generar datos que siguen una distribución binomial. 
-
-Este código utiliza la función `np.random.binomial` para simular 1000 ensayos binomiales donde se lanzan 10 monedas por ensayo con una probabilidad de 0.7 de obtener cara en cada lanzamiento. Luego, genera un histograma para visualizar la distribución de los resultados.
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-def simulate_binomial(n, p, trials):
-    """Simula 'trials' ensayos binomiales de 'n' lanzamientos con probabilidad 'p'."""
-    results = np.random.binomial(n, p, trials)
-    return results
-
-# Parámetros de la simulación
-n = 10  # Número de lanzamientos
-p = 0.7  # Probabilidad de cara
-trials = 1000  # Número de simulaciones
-
-# Realizar simulaciones
-results = simulate_binomial(n, p, trials)
-
-# Visualizar resultados
-plt.hist(results, bins=np.arange(n+2)-0.5, edgecolor='black', density=True)
-plt.title('Distribución Binomial de Caras en 10 Lanzamientos')
-plt.xlabel('Número de Caras')
-plt.ylabel('Frecuencia Relativa')
-plt.xticks(range(n+1))
-plt.show()
-```
-
-![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/distribucion_binomial.png)
 
 ## Cumulative Distribution Function 
 
