@@ -58,3 +58,96 @@ Una prueba de hipótesis comienza con dos hipótesis en competencia sobre la pob
 **Hipótesis 1 (técnicamente llamada Hipótesis Nula ):** Los 100 estudiantes de la Academia de Estadística son una muestra aleatoria de la población general de examinados, que obtuvieron una puntuación promedio de 29,92. Si esta hipótesis es cierta, los estudiantes de la Academia de Estadística obtuvieron una puntuación promedio ligeramente más alta por casualidad. Visualmente, esta configuración se parece a esto:
 
 ![Hipotesis](https://fer78docs.github.io/assets/images/Statistics_HypothesisTestingDiagram_2.svg)
+
+**Hipótesis 2 (técnicamente llamada Hipótesis Alternativa ):** Los 100 estudiantes de la Academia de Estadística provenían de una población con una puntuación promedio diferente de 29,92. En esta hipótesis, debemos imaginar dos poblaciones diferentes que en realidad no existen: una en la que todos los estudiantes tomaron el programa de preparación para exámenes de la Academia de Estadística y otra en la que ninguno de los estudiantes tomó el programa. Si la hipótesis alternativa es cierta, nuestra muestra de 100 estudiantes de la Academia de Estadística provenía de una población diferente a la de los demás examinados. Esto se puede visualizar de la siguiente manera:
+
+![Hipotesis](https://fer78docs.github.io/assets/images/Statistics_HypothesisTestingDiagram_1.svg)
+
+Hay una aclaración más que debemos hacer para especificar completamente la hipótesis alternativa. Observe que, hasta ahora, no hemos dicho nada sobre el puntaje promedio para la “población 1” en el diagrama anterior, aparte de que NO es 29,92. En realidad, tenemos tres opciones para lo que dice la hipótesis alternativa sobre este promedio poblacional:
+
+- es MAYOR QUE 29.92
+- NO ES IGUAL A (es decir, MAYOR O MENOR QUE) 29,92
+- es MENOS DE 29,92
+
+Más adelante, analizaremos cómo la elección entre “mayor que”, “distinto de” y “menor que” afecta la prueba.
+
+### Paso 3: determinar la distribución nula
+
+Ahora que tenemos nuestra hipótesis nula, podemos generar una distribución nula : la distribución (entre muestras repetidas) de la estadística que nos interesa si la hipótesis nula es verdadera. En el ejemplo del IBDP descrito anteriormente, esta es la distribución de puntuaciones promedio para muestras repetidas de tamaño 100 extraídas de una población con una puntuación promedio de 29,92.
+
+¡Esto puede resultarle familiar si ha aprendido sobre el teorema del límite central (CLT)! La teoría estadística nos permite estimar la forma de esta distribución utilizando una sola muestra. Puede aprender cómo hacer esto leyendo más sobre CLT, pero para los propósitos de este ejemplo, simulemos la distribución nula usando nuestra población. Podemos hacer esto mediante:
+
+- Tomar muchas muestras aleatorias de 100 puntuaciones, cada una, de la población.
+- Calcular y almacenar la puntuación promedio para cada una de esas muestras.
+- Trazar un histograma de las puntuaciones medias
+
+Esto produce la siguiente distribución, que es aproximadamente normal y centrada en el promedio de la población:
+
+![`Null Distribution`](https://fer78docs.github.io/assets/images/null_distribution.png)
+
+Si la hipótesis nula es cierta, entonces la puntuación promedio de 31,16 observada entre los estudiantes de la Academia de Estadística es simplemente uno de los valores de esta distribución. Tracemos el promedio muestral en la distribución nula. Observe que este valor está dentro del rango de la distribución nula, pero está hacia la derecha donde hay menos densidad:
+
+![null distribution_2](https://fer78docs.github.io/assets/images/null_distribution2.png)
+
+### Paso 4: Calcule un valor P (o intervalo de confianza)
+
+Aquí está la pregunta básica formulada en nuestra prueba de hipótesis:
+
+Dado que la hipótesis nula es cierta (que los 100 estudiantes de la Academia de Estadística fueron seleccionados de una población con una puntuación promedio del IBDP de 29,92), ¿qué probabilidad hay de que su puntuación promedio sea 31,16?
+
+El problema menor de esta pregunta es que la probabilidad de cualquier puntuación promedio exacta es muy pequeña, por lo que realmente queremos estimar la probabilidad de un rango de puntuaciones. Volvamos ahora a nuestras tres posibles hipótesis alternativas y veamos cómo la pregunta y el cálculo cambian ligeramente, dependiendo de cuál elijamos:
+
+**Opción 1**
+
+**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio superior a 29,92.
+
+En este caso, queremos saber la probabilidad de observar un promedio muestral mayor o igual a 31,16 dado que la hipótesis nula es verdadera. Visualmente, esta es la proporción de la distribución nula que es mayor o igual a 31,16 (sombreada en rojo a continuación). Aquí, la región roja representa alrededor del 3,1% de la distribución total. Esta proporción, que normalmente se escribe en forma decimal (es decir, 0,031), se denomina valor p .
+
+![null distribution_3](https://fer78docs.github.io/assets/images/null_distribution_3.png)
+
+**opcion 2**
+
+**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio que no es igual (es decir, mayor o menor que) 29,92.
+
+Observamos un promedio muestral de 31,16 entre los estudiantes de la Academia de Estadística, que es 1,24 puntos más alto que el promedio poblacional (si la hipótesis nula es cierta) de 29,92. En la primera versión de la prueba de hipótesis (opción 1), estimamos la probabilidad de observar un promedio muestral que sea al menos 1,24 puntos mayor que el promedio poblacional. Para la hipótesis alternativa descrita en la opción 2, nos interesa la probabilidad de observar un promedio de muestra que sea al menos 1,24 puntos DIFERENTE (mayor O menor) que el promedio de la población. Visualmente, esta es la proporción de la distribución nula que está al menos a 1,24 unidades del promedio de la población (sombreado en rojo a continuación). Tenga en cuenta que esta área es dos veces mayor que en el ejemplo anterior, lo que lleva a un valor p que también es dos veces mayor: 0,062.
+
+
+![null distribution_3](https://fer78docs.github.io/assets/images/null_distribution_4.png)
+
+Si bien la opción 1 a menudo se conoce como prueba de una cara o de una cola , esta versión se conoce como prueba de dos caras o de dos colas , y hace referencia a las dos colas de la distribución nula que se cuentan en el valor p. Es importante tener en cuenta que la mayoría de las funciones de prueba de hipótesis en Python y R implementan una prueba de dos colas de forma predeterminada.
+
+**Opción 3** 
+
+**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio inferior a 29,92.
+
+Aquí queremos saber la probabilidad de observar un promedio muestral menor o igual a 31,16, dado que la hipótesis nula es verdadera. Esta también es una prueba unilateral, justo el lado opuesto de la opción 1. Visualmente, esta es la proporción de la distribución nula que es menor o igual a 31,16. Esta es un área muy grande (¡casi el 97% de la distribución!), lo que lleva a un valor p de 0,969.
+
+![null distribution_5](https://fer78docs.github.io/assets/images/null_distribution_5.png)
+
+En este punto, usted puede estar pensando: ¿por qué alguien elegiría esta versión de la hipótesis alternativa? En la vida real, si un programa de preparación de exámenes planeaba realizar un experimento riguroso para ver si sus estudiantes obtienen calificaciones diferentes a las de la población general, deberían elegir la hipótesis alternativa antes de recopilar datos. En ese momento, no sabrán si su muestra de estudiantes tendrá una puntuación promedio mayor o menor que el promedio de la población, aunque probablemente esperan que sea mayor.
+
+Paso 5: interpretar los resultados
+En los tres ejemplos anteriores, calculamos tres valores p diferentes (0,031, 0,062 y 0,969, respectivamente). Considere el primer valor p de 0,031. La interpretación de este número es la siguiente:
+
+Si los 100 estudiantes de la Academia de Estadística fueron seleccionados al azar de toda la población (que obtuvo una puntuación promedio de 29,92), hay un 3,1% de posibilidades de que su puntuación promedio sea de 31,16 puntos o más.
+
+Esto significa que es relativamente improbable, pero no imposible, que los estudiantes de la Academia de Estadística obtengan puntuaciones más altas (en promedio) que sus compañeros por casualidad, a pesar de que no hay una diferencia real a nivel de población. En otras palabras, los datos observados son improbables si la hipótesis nula es cierta. Tenga en cuenta que hemos probado directamente la hipótesis nula, ¡pero no la hipótesis alternativa! Por lo tanto, debemos tener un poco de cuidado al interpretar esta prueba: no podemos decir que hemos demostrado que la hipótesis alternativa es la verdad, sólo que los datos que recopilamos serían improbables bajo la hipótesis nula y, por lo tanto, creemos que la hipótesis alternativa es cierta. La hipótesis alternativa es más consistente con nuestras observaciones.
+
+### Umbrales de significancia
+
+Si bien es perfectamente razonable informar un valor p, muchos científicos de datos utilizan un umbral predeterminado para decidir si un valor p particular es significativo o no. Los valores P por debajo del umbral elegido se declaran significativos y llevan al científico de datos a "rechazar la hipótesis nula en favor de la alternativa". Una elección común para este umbral, que a veces también se denomina Alfa , es 0,05, ¡pero es una elección arbitraria! Usar un umbral más bajo significa que es menos probable que encuentre resultados significativos, pero también es menos probable que informe erróneamente un resultado significativo cuando no lo hay.
+
+Utilizando el primer valor p de 0,031 y un umbral de significancia de 0,05, la Academia de Estadística podría rechazar la hipótesis nula y concluir que los 100 estudiantes que participaron en su programa obtuvieron puntuaciones significativamente más altas en la prueba que la población general.
+
+Impacto de la hipótesis alternativa
+Tenga en cuenta que diferentes hipótesis alternativas pueden llevar a conclusiones diferentes. Por ejemplo, la prueba unilateral descrita anteriormente (p = 0,031) llevaría a un científico de datos a rechazar la nula en un nivel de significancia de 0,05. Mientras tanto, una prueba bilateral sobre los mismos datos conduce a un valor p de 0,062, que es mayor que el umbral de 0,05. Por tanto, para la prueba bilateral, un científico de datos no podría rechazar la hipótesis nula. ¡Esto resalta la importancia de elegir una hipótesis alternativa con anticipación!
+
+### Resumen y aplicaciones adicionales
+
+Como seguramente habrá aprendido de este artículo, las pruebas de hipótesis pueden ser un marco útil para formular y responder preguntas sobre datos. Antes de utilizar las pruebas de hipótesis en la práctica, es importante recordar lo siguiente:
+
+Un valor p es una probabilidad, generalmente expresada como un decimal entre cero y uno.
+Un valor p pequeño significa que es poco probable que ocurra una estadística de muestra observada (o algo más extremo) si la hipótesis nula es cierta.
+Se puede utilizar un umbral de significancia para traducir un valor p en un resultado "significativo" o "no significativo".
+En la práctica, la hipótesis alternativa y el umbral de significancia deben elegirse antes de la recopilación de datos.
+Existen muchas pruebas de hipótesis diferentes que se pueden utilizar para responder diferentes tipos de preguntas sobre datos. ¡Ahora que has aprendido sobre uno, tienes todas las habilidades que necesitas para comprender muchos más!
