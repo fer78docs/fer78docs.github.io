@@ -18,9 +18,7 @@ La distribución binomial o distribución binómica es una distribución de prob
 
 La distribución binomial se utiliza con frecuencia para modelizar el número de aciertos en una muestra de tamaño $$𝑛$$ extraída con reemplazo de una población de tamaño N. 
 
-Para cada experimento llamado **ensayo Bernoulli**, utilizamos una variable aleatoria que toma el valor 1 cuando se consigue un éxito y el valor 0 en caso contrario. La variable aleatoria, suma de todas estas variables aleatorias, cuenta el número de éxitos y sigue una distribución binomial. Es posible entonces obtener la probabilidad de k éxitos en una repetición de n experimentos:
-
-La ley binomial se utiliza en diversos campos de estudio, especialmente a través de pruebas estadísticas que permiten interpretar datos y tomar decisiones en situaciones que dependen del azar. Debido a su sencilla definición, es una de las leyes de probabilidad que se estudian en los cursos introductorios de teoría de la probabilidad.
+Para cada experimento llamado **ensayo Bernoulli**, utilizamos una variable aleatoria que toma el valor 1 cuando se consigue un éxito y el valor 0 en caso contrario. La variable aleatoria, suma de todas estas variables aleatorias, cuenta el número de éxitos y sigue una distribución binomial. Es posible entonces obtener la probabilidad de $$k$$ éxitos en una repetición de $$n$$ experimentos:
 
 ### Ejemplo Explicativo
 
@@ -69,6 +67,103 @@ plt.show()
 
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/distribucion_binomial.png)
 
+### Función de Masa de Probabilidad (PMF)
+
+Para una distribución binomial, la PMF **muestra la probabilidad de que un número específico de éxitos ocurra en un número fijo de ensayos**, cuando cada ensayo es independiente y tiene una probabilidad fija de éxito.
+
+### Ejemplo de Implementación en Python
+
+Podemos usar la biblioteca `scipy.stats` para calcular la PMF de una distribución binomial.
+
+```python
+from scipy.stats import binom
+
+# Parámetros de la distribución binomial
+n = 10  # Número de ensayos
+p = 0.5  # Probabilidad de éxito en cada ensayo
+
+# Número de éxitos deseado
+k = 5
+
+# Calcular la PMF para k éxitos
+pmf = binom.pmf(k, n, p)
+
+# Mostrar el resultado
+print(f"PMF de {k} éxitos en {n} ensayos con p = {p}: {pmf:.4f}")
+```
+Salida: 
+```
+PMF de 5 éxitos en 10 ensayos con p = 0.5: 0.2461
+```
+
+### Interpretación de la PMF Binomial
+
+- La PMF te permite determinar la probabilidad de que un número específico de éxitos ocurra dado un número fijo de ensayos y una probabilidad conocida de éxito.
+- Es útil para modelar eventos donde hay un número finito de pruebas independientes, cada una con dos posibles resultados, como éxito/fracaso, cara/cruz, sí/no.
+
+### Visualización de la PMF
+
+La PMF también puede ser visualizada utilizando gráficos de barras, lo que ayuda a entender cómo están distribuidas las probabilidades de diferentes cantidades de éxitos.
+
+```python
+import matplotlib.pyplot as plt
+
+# Crear un rango de valores k desde 0 hasta n
+k_values = range(n + 1)
+
+# Calcular la PMF para cada valor de k
+pmf_values = [binom.pmf(k, n, p) for k in k_values]
+
+# Graficar la PMF
+plt.bar(k_values, pmf_values)
+plt.xlabel('Número de éxitos (k)')
+plt.ylabel('Probabilidad')
+plt.title(f'PMF de una distribución binomial (n={n}, p={p})')
+plt.show()
+```
+
+![PMF binomial](https://fer78docs.github.io/assets/images/pmf_binoimial.png)
+
+Este gráfico muestra cómo las probabilidades se distribuyen para diferentes números de éxitos posibles en una distribución binomial con parámetros específicos.
+
+La **Función de Distribución Acumulativa (CDF)** para una distribución binomial muestra la probabilidad acumulada de que una variable aleatoria tome un valor menor o igual a un valor específico. 
+
+La CDF se calcula sumando las probabilidades de la Función de Masa de Probabilidad (PMF) para todos los valores desde 0 hasta $$k$$.
+
+### Ejemplo de Implementación en Python
+
+Puedes utilizar `scipy.stats` para calcular y visualizar la CDF de una distribución binomial.
+
+```python
+from scipy.stats import binom
+import matplotlib.pyplot as plt
+
+# Parámetros de la distribución binomial
+n = 10  # Número de ensayos
+p = 0.5  # Probabilidad de éxito en cada ensayo
+
+# Crear un rango de valores k desde 0 hasta n
+k_values = range(n + 1)
+
+# Calcular la CDF para cada valor de k
+cdf_values = [binom.cdf(k, n, p) for k in k_values]
+
+# Graficar la CDF
+plt.step(k_values, cdf_values, where='mid', label=f'CDF de Binomial (n={n}, p={p})')
+plt.xlabel('Número de éxitos (k)')
+plt.ylabel('Probabilidad acumulada')
+plt.title('Función de Distribución Acumulativa (CDF) para una Distribución Binomial')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+![CDF binomial](https://fer78docs.github.io/assets/images/cdf_binomial.png)
+
+
+### Interpretación de la CDF Binomial
+
+La CDF binomial es útil para comprender la probabilidad acumulada de obtener hasta cierto número de éxitos en un conjunto dado de ensayos. Permite responder preguntas como "¿Cuál es la probabilidad de obtener 5 o menos éxitos?" en un experimento, y es crucial para el análisis probabilístico y la toma de decisiones en diversos campos como control de calidad, finanzas, investigación biomédica, entre otros.
 
 ## Geometric Random Variable
 
