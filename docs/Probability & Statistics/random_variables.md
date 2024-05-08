@@ -166,6 +166,7 @@ plt.show()
 La CDF binomial es útil para comprender la probabilidad acumulada de obtener hasta cierto número de éxitos en un conjunto dado de ensayos. Permite responder preguntas como "¿Cuál es la probabilidad de obtener 5 o menos éxitos?" en un experimento, y es crucial para el análisis probabilístico y la toma de decisiones en diversos campos como control de calidad, finanzas, investigación biomédica, entre otros.
 
 ## Distribución de Poisson
+
 {: .note }
 La distribución de Poisson **se utiliza para describir la cantidad de veces que ocurre un determinado evento dentro de un intervalo de tiempo o espacio fijo**. Por ejemplo, la distribución de Poisson se puede utilizar para describir la cantidad de automóviles que pasan por una intersección específica entre las 4 p.m. y las 5 p.m. de un día determinado. También se puede utilizar para describir la cantidad de llamadas recibidas en una oficina entre las 13:00 y las 15:00 horas de un día determinado.
 
@@ -182,7 +183,7 @@ Utilice el control deslizante del subprograma para ver cómo cambia la distribuc
 [Enlace al programa](https://static-assets.codecademy.com/skillpaths/master-stats-ii/probability-distributions/poisson-slider/index.html)
 
 
-## Calcular probabilidades de valores exactos utilizando la función de masa de probabilidad
+### Calcular probabilidades de valores exactos utilizando la función de masa de probabilidad
 
 La distribución de Poisson es una distribución de probabilidad discreta, por lo que puede describirse mediante una función de masa de probabilidad y una función de distribución acumulativa.
 
@@ -215,7 +216,7 @@ Output
 0.21976538076223123
 ```
 
-## Calcular probabilidades de un rango usando la función de densidad acumulativa
+### Calcular probabilidades de un rango usando la función de densidad acumulativa
 
 Podemos usar el método `poisson.cdf()` en la biblioteca `scipy.stats` para evaluar la probabilidad de observar un número específico o menos dado el valor esperado de una distribución. Por ejemplo, si quisiéramos calcular la probabilidad de observar 6 o menos eventos de lluvia en los próximos 30 días cuando esperábamos 10, podríamos hacer lo siguiente:
 
@@ -261,7 +262,7 @@ Output
 0.29603734909303947
 ```
 
-## Expectativa de la distribución de Poisson
+### Expectativa de la distribución de Poisson
 
 Anteriormente mencionamos que el parámetro lambda (λ) es el valor esperado (o valor promedio) de la distribución de Poisson. Pero ¿qué significa esto?
 
@@ -358,16 +359,15 @@ Output:
 
 Estos valores están más distribuidos, lo que indica una variación mayor.
 
+## Distribucion Geometrica
 
-
-
-
-## Geometric Random Variable
+{: .note}
+La distribución geométrica es una distribución de probabilidad discreta que **describe el número de intentos necesarios para lograr el primer éxito en una serie de ensayos independientes, cada uno con una probabilidad constante de éxito.** Es una distribución discreta porque el número de intentos es un valor entero.
 
 ### Ensayos Independientes de Bernoulli
 
 {: .highlight}
-Un ensayo independiente implica que el resultado de un ensayo no influye ni puede ser influenciado por los resultados de otros ensayos. En el contexto de lanzar una moneda, significa que el resultado de un lanzamiento no afecta el resultado del siguiente.
+**Un ensayo independiente implica que el resultado de un ensayo que no influye ni puede ser influenciado por los resultados de otros ensayos.** En el contexto de lanzar una moneda, significa que el resultado de un lanzamiento no afecta el resultado del siguiente.
 
 #### Ejemplo con Dos Lanzamientos
 Si lanzamos una moneda dos veces con una probabilidad de 0.7 de sacar cara en cada lanzamiento, la probabilidad de obtener dos caras seguidas sería $$0.7 \times 0.7 = 0.49$$.
@@ -393,8 +393,7 @@ Esta función utiliza la función de Bernoulli definida anteriormente para simul
 
 ### Función de Masa de Probabilidad (PMF) de la Variable Geométrica
 
-{: .highlight}
-La PMF de una variable aleatoria geométrica da la probabilidad de que se necesite un número específico de ensayos para alcanzar el primer éxito. 
+ La PMF de una variable aleatoria geométrica da la probabilidad de que se necesite un número específico de ensayos para alcanzar el primer éxito. 
 
 #### Ejemplo
 
@@ -445,149 +444,4 @@ plt.show()
 ![Visualización de la Convergencia](https://fer78docs.github.io/assets/images/variable_aleatoria_geométrica.png)
 
 
-
-
-## Cumulative Distribution Function 
-
-La **Función de Distribución Acumulativa** (CDF, por sus siglas en inglés "Cumulative Distribution Function") es una herramienta fundamental en teoría de la probabilidad y estadística que describe la **acumulación de probabilidad hasta un cierto valor de una variable aleatoria**. Vamos a explorar en detalle qué es, cómo funciona, y sus aplicaciones principales.
-
-{: .highlight}
-Para una variable aleatoria $$X$$, la función de distribución acumulativa $$F_X(x)$$ se define como la probabilidad de que $$X$$ tome un valor menor o igual a $$x$$. Matemáticamente, esto se expresa como:
-$$
-F_X(x) = P(X \leq x)
-$$
-Esta función proporciona una descripción completa de la distribución de probabilidad de la variable aleatoria.
-
-### Propiedades de la CDF
-
-1. **No decreciente**: $$F_X(x)$$ es siempre una función no decreciente de $$x$$. Esto significa que si $$a \leq b $$, entonces $$F_X(a) \leq F_X(b)$$.
-2. **Límites**: $$F_X(x)$$ tiene un límite de 0 cuando $$x$$ tiende a $$-\infty$$ y un límite de 1 cuando $$x$$ tiende a $$\infty$$).
-3. **Continuidad por la derecha**: $$F_X(x)$$ es continua por la derecha en cada punto. Esto significa que $$\lim_{x \to x_0^+} F_X(x) = F_X(x_0)$$.
-4. **Saltos en los valores de discontinuidad**: Los puntos donde $$F_X(x)$$ tiene saltos corresponden a los valores de $$x$$ donde la variable aleatoria $$X$$ puede tomar valores discretos con probabilidad positiva.
-
-### Tipos de Variables Aleatorias y sus CDFs
-
-- **Variables Discretas**: Para variables aleatorias discretas, la CDF es una función escalonada que aumenta en puntos donde la variable aleatoria tiene masa de probabilidad.
-- **Variables Continuas**: Para variables continuas, la CDF es una función suave y continua. La derivada de la CDF, cuando existe, es la función de densidad de probabilidad (PDF).
-- **Variables Mixtas**: Algunas variables aleatorias tienen componentes tanto continuos como discretos, lo que resulta en una CDF que es en parte suave y en parte escalonada.
-
-### Ejemplo Práctico
-
-Supongamos que tienes una variable aleatoria $$X$$ que sigue una distribución uniforme en el intervalo $$[0,1]$$. La CDF de $$X$$ es:
-$$
-F_X(x) = 
-\begin{cases} 
-0 & \text{si } x < 0 \\
-x & \text{si } 0 \leq x \leq 1 \\
-1 & \text{si } x > 1 
-\end{cases}
-$$
-Este ejemplo muestra cómo la CDF describe de manera efectiva la distribución de $$X$$, indicando que cualquier valor dentro del intervalo [0,1] es igualmente probable.
-
-En resumen, l**a función de distribución acumulativa es una herramienta esencial en probabilidad y estadística para entender cómo se distribuyen los valores de una variable aleatoria a lo largo del espectro de posibles valores**.
-
-La animación del enlace muestra la relación entre la `función de masa de probabilidad` y la `función de distribución acumulativa`. El gráfico superior es el PMF, mientras que el gráfico inferior es el CDF correspondiente. Al observar la gráfica de una CDF, cada valor del eje y es la suma de las probabilidades menores o iguales que él en la PMF.
-
-[Enlace a la animacion](https://static-assets.codecademy.com/skillpaths/master-stats-ii/probability-distributions/cdf-vs-pmf/animated.html)
-
-Podemos usar una función de distribución acumulativa para calcular la probabilidad de un rango específico tomando la diferencia entre dos valores de la función de distribución acumulativa. Por ejemplo, para encontrar la probabilidad de observar entre 3 y 6 caras, podemos tomar la probabilidad de observar 6 o menos cabezas y restar la probabilidad de observar 2 o menos caras. Esto deja un remanente de entre 3 y 6 cabezas.
-
-La imagen de la derecha demuestra cómo funciona esto. Es importante tener en cuenta que para incluir el límite inferior en el rango, el valor que se resta debe ser uno menos que el límite inferior. En este ejemplo, queríamos saber la probabilidad de 3 a 6, que incluye 3. 
-
-[Enlace a la animacion](https://static-assets.codecademy.com/skillpaths/master-stats-ii/probability-distributions/cdf-animation/animation.html)
-
-### Usando la función de distribución acumulativa en Python
-
-Podemos utilizar el método `binom.cdf()` de la biblioteca `scipy.stats` para calcular la función de distribución acumulativa. Este método toma 3 valores:
-
-- `x`: el valor de interés, buscando la probabilidad de este valor o menos
-- `n`: el tamaño de la muestra
-- `p`: la probabilidad de éxito
-
-Calcular matemáticamente la probabilidad de observar 6 o menos caras en 10 lanzamientos de moneda justos (0 a 6 caras) se parece a lo siguiente:
-
-```math
-P(6 or fewer heads) = P(0 to 6 heads)
-```
-El codigo en Python es:
-```python
-import scipy.stats as stats
-
-print(stats.binom.cdf(6, 10, 0.5))
-```
-Output
-```
-0.828125
-```
-Se puede pensar que calcular la probabilidad de observar entre 4 y 8 caras en 10 lanzamientos de moneda justos es tomar la diferencia del valor de la función de distribución acumulativa en 8 de la función de distribución acumulativa en 3:
-
-```math
-P(4 to 8 Heads) = P(0 to 8 Heads) − P(0 to 3 Heads)
-```
-En Python utilizamos el codigo:
-```python
-import scipy.stats as stats
-
-print(stats.binom.cdf(8, 10, 0.5) - stats.binom.cdf(3, 10, 0.5))
-```
-Output
-```
-0.81738
-```
-Para calcular la probabilidad de observar más de 6 caras en 10 lanzamientos de moneda justos, restamos el valor de la función de distribución acumulativa en 6 de 1. Matemáticamente, esto se parece a lo siguiente:
-```math
-P(more than 6 Heads) = 1 - P(6 or fewer Heads)
-```
-Tenga en cuenta que "más de 6 cabezas" no incluye 6. En Python, calcularíamos esta probabilidad usando el siguiente código:
-```python
-import scipy.stats as stats
-print(1 - stats.binom.cdf(6, 10, 0.5))
-```
-Output
-```
-0.171875
-```
-
-## Random Variables in Real Datasets
-
-Para explorar cómo se utilizan las variables aleatorias en conjuntos de datos reales, se puede utilizar Python junto con bibliotecas como `Pandas` y `Seaborn` para cargar y analizar datos. Por ejemplo, el conjunto de datos de Iris es frecuentemente usado para este tipo de análisis:
-
-```python
-import pandas as pd
-import seaborn as sns
-
-# Cargar el conjunto de datos de Iris
-iris = sns.load_dataset('iris')
-
-# Mostrar las primeras cinco filas del conjunto de datos
-print(iris.head())
-
-# Explorar las categorías únicas de la variable 'species'
-print(iris['species'].unique())
-```
-
-Este código carga el conjunto de datos de Iris, que incluye medidas como la longitud y el ancho del sépalo y del pétalo de diferentes especies de iris. Cada una de estas medidas se puede considerar como una variable aleatoria, donde los valores que toman son resultados de procesos aleatorios bajo condiciones controladas.
-
-#### Tareas de Aprendizaje Automático
-En el contexto del aprendizaje automático, las tareas comúnmente asociadas con variables aleatorias incluyen clasificación y regresión:
-- **Clasificación:** Determinar a qué categoría (especies en el caso de Iris) pertenece una observación basada en sus características.
-- **Regresión:** Predecir un valor continuo basado en otras variables (por ejemplo, predecir el largo del pétalo basado en otras medidas).
-
-Estas tareas utilizan las propiedades de las variables aleatorias para entrenar modelos que puedan generalizar bien a partir de datos nuevos.
-
-### Modelado de Variables Aleatorias en Python
-
-Para modelar variables aleatorias y sus distribuciones en Python, se utilizan técnicas estadísticas y de aprendizaje automático para ajustar modelos a los datos. Esto puede implicar calcular la función de masa de probabilidad para variables discretas o la función de densidad de probabilidad para variables continuas.
-
-#### Visualización y Análisis
-Utilizar visualizaciones como histogramas o gráficos de dispersión ayuda a entender la distribución y la relación entre variables aleatorias. Por ejemplo:
-
-```python
-sns.pairplot(iris, hue='species')
-plt.show()
-```
-
-Este gráfico muestra las relaciones entre todas las medidas en el conjunto de datos de Iris, coloreadas por especie, proporcionando una intuición visual de cómo las variables aleatorias se relacionan entre sí y cómo podrían influir en la clasificación de las especies.
-
-Comprender cómo las variables aleatorias se aplican a datos reales permite a los científicos de datos y a los profesionales del aprendizaje automático construir modelos más precisos y efectivos. La teoría detrás de las variables aleatorias es fundamental, pero su aplicación práctica a través de herramientas como Python facilita la exploración y el modelado efectivo de datos complejos en situaciones del mundo real.
 
