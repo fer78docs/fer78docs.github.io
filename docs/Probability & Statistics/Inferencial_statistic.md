@@ -44,3 +44,17 @@ El Programa de Bachillerato Internacional (IBDP) es un programa educativo a nive
 ![Distribucion Prueba T](https://fer78docs.github.io/assets/images/distribucion_pruebaT.svg)
 
 Imagine una hipotética escuela en línea, Statistics Academy, que ofrece un programa de preparación para exámenes de cinco semanas. Supongamos que 100 estudiantes que tomaron la evaluación del IBDP en mayo de 2020 fueron elegidos al azar para participar en el primer grupo de este programa y que estos 100 estudiantes obtuvieron una puntuación promedio de 31,16 puntos en el examen, ¡aproximadamente 1,24 puntos más que el promedio internacional! ¿Estos estudiantes realmente están superando a sus compañeros? ¿O podría atribuirse esta diferencia al azar?
+
+### Paso 2: definir las hipótesis nula y alternativa
+
+Antes de intentar responder esta pregunta, es útil reformularla de manera que sea comprobable. En este momento, nuestra pregunta (**“¿Los estudiantes de la Academia de Estadística realmente están superando a sus compañeros?”**) no está claramente definida. Objetivamente, este grupo de 100 estudiantes tuvo un mejor desempeño que la población general, pero respondieron “¡sí, superaron a sus compañeros!” No se siente particularmente satisfactorio.
+
+La razón por la que no es satisfactorio es la siguiente: si elegimos aleatoriamente CUALQUIER grupo de 100 estudiantes de la población de todos los examinados y calculamos el puntaje promedio para esa muestra, hay un 50% de posibilidades de que sea más alto que el promedio de la población. No es sorprendente observar un promedio más alto para una sola muestra.
+
+Por supuesto, las grandes diferencias con el promedio de la población son menos probables: si todos los estudiantes de la Academia de Estadística obtuvieran 45 puntos en el examen (la puntuación más alta posible), probablemente estaríamos convencidos de que estos estudiantes tenían una ventaja real. El truco consiste en cuantificar cuándo las diferencias son “lo suficientemente grandes” como para convencernos de que estos estudiantes son sistemáticamente diferentes de la población general. Podemos hacer esto reformulando nuestra pregunta para centrarnos en la(s) población(es), en lugar de en nuestra(s) muestra(s) específica(s).
+
+Una prueba de hipótesis comienza con dos hipótesis en competencia sobre la población de la que proviene una muestra particular (en este caso, los 100 estudiantes de la Academia de Estadística):
+
+**Hipótesis 1 (técnicamente llamada Hipótesis Nula ):** Los 100 estudiantes de la Academia de Estadística son una muestra aleatoria de la población general de examinados, que obtuvieron una puntuación promedio de 29,92. Si esta hipótesis es cierta, los estudiantes de la Academia de Estadística obtuvieron una puntuación promedio ligeramente más alta por casualidad. Visualmente, esta configuración se parece a esto:
+
+![Hipotesis](https://fer78docs.github.io/assets/images/Statistics_HypothesisTestingDiagram_2.svg)
