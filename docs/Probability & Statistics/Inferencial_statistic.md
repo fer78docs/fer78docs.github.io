@@ -34,7 +34,6 @@ Supongamos que usted es un investigador que estudia la relación entre las calif
 
 ### Introducción a la prueba de hipótesis (simulación de una prueba T de una muestra)
 
-{: .note}
 La prueba de hipótesis es un marco para hacer preguntas sobre un conjunto de datos y responderlas con declaraciones probabilísticas. Existen muchos tipos diferentes de pruebas de hipótesis que se pueden utilizar para abordar diferentes tipos de preguntas y datos. En este artículo, analizaremos una simulación de una prueba t de una muestra para desarrollar una intuición sobre cuántos tipos diferentes de pruebas de hipótesis funcionan.
 
 **El Caso**
@@ -83,7 +82,7 @@ Ahora que tenemos nuestra hipótesis nula, podemos generar una distribución nul
 
 Esto produce la siguiente distribución, que es aproximadamente normal y centrada en el promedio de la población:
 
-![`Null Distribution`](https://fer78docs.github.io/assets/images/null_distribution.png)
+![Null Distribution_](https://fer78docs.github.io/assets/images/null_distribution.png)
 
 Si la hipótesis nula es cierta, entonces la puntuación promedio de 31,16 observada entre los estudiantes de la Academia de Estadística es simplemente uno de los valores de esta distribución. Tracemos el promedio muestral en la distribución nula. Observe que este valor está dentro del rango de la distribución nula, pero está hacia la derecha donde hay menos densidad:
 
@@ -112,7 +111,7 @@ En este caso, queremos saber la probabilidad de observar un promedio muestral ma
 Observamos un promedio muestral de 31,16 entre los estudiantes de la Academia de Estadística, que es 1,24 puntos más alto que el promedio poblacional (si la hipótesis nula es cierta) de 29,92. En la primera versión de la prueba de hipótesis (opción 1), estimamos la probabilidad de observar un promedio muestral que sea al menos 1,24 puntos mayor que el promedio poblacional. Para la hipótesis alternativa descrita en la opción 2, nos interesa la probabilidad de observar un promedio de muestra que sea al menos 1,24 puntos DIFERENTE (mayor O menor) que el promedio de la población. Visualmente, esta es la proporción de la distribución nula que está al menos a 1,24 unidades del promedio de la población (sombreado en rojo a continuación). Tenga en cuenta que esta área es dos veces mayor que en el ejemplo anterior, lo que lleva a un valor p que también es dos veces mayor: 0,062.
 
 
-![null distribution_3](https://fer78docs.github.io/assets/images/null_distribution_4.png)
+![null distribution_4](https://fer78docs.github.io/assets/images/null_distribution_4.png)
 
 Si bien la opción 1 a menudo se conoce como prueba de una cara o de una cola , esta versión se conoce como prueba de dos caras o de dos colas , y hace referencia a las dos colas de la distribución nula que se cuentan en el valor p. Es importante tener en cuenta que la mayoría de las funciones de prueba de hipótesis en Python y R implementan una prueba de dos colas de forma predeterminada.
 

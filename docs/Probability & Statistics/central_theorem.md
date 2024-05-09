@@ -10,10 +10,31 @@ parent: Probability & Statistics
 
 # El teorema del límite central
 
-Una introducción al teorema del límite central mediante simulación
+El teorema del límite central (TLC) es un principio fundamental en estadística que describe el comportamiento de la distribución de las medias muestrales de poblaciones. 
 
-### ¿Qué es el teorema del límite central?
-El teorema del límite central (CLT) es una poderosa herramienta estadística que resulta útil para cuantificar la incertidumbre en torno a las estimaciones de las medias muestrales. También es la base para pruebas de hipótesis comunes, como las pruebas Z y t. Una prueba formal del CLT requiere algunas matemáticas complejas, ¡pero este artículo lo demostrará mediante una simulación!
+{: .note}
+Establece que, **dadas ciertas condiciones, la distribución de las medias muestrales de un gran número de muestras independientes y aleatorias de una población tiende a ser una distribución normal (también conocida como distribución gaussiana), independientemente de la forma de la distribución original de la población**. Es la base para pruebas de hipótesis comunes, como las pruebas Z y t.
+
+### Implicaciones:
+
+1. **Normalidad**: La distribución de las medias muestrales será aproximadamente normal si se cumple una de las siguientes condiciones:
+   - La población de la que se extraen las muestras es ya normal.
+   - El tamaño de muestra es suficientemente grande, generalmente más de 30. Sin embargo, un tamaño de muestra más pequeño puede ser suficiente si la distribución de la población no se aleja mucho de la normalidad.
+
+2. **Media y varianza**:
+   - La media de la distribución de las medias muestrales es igual a la media de la población original.
+   - La varianza de la distribución de las medias muestrales es igual a la varianza de la población dividida entre el tamaño de la muestra.
+
+3. **Error estándar**:
+   - La desviación estándar de la distribución de las medias muestrales se llama *error estándar de la media* y se calcula como:
+
+   $$
+   \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}},
+   $$
+
+   donde:
+   - $$sigma$$: Desviación estándar de la población.
+   - $$n$$: Tamaño de la muestra.
 
 ### Desarrollar la intuición para el CLT
 
@@ -71,19 +92,13 @@ print(percentiles)
 ## Definición formal del CLT
 Ahora es el momento de definir formalmente el CLT, que nos dice que la distribución muestral de la media:
 
-- se distribuye normalmente (para un tamaño de muestra suficientemente grande)
-- está centrado en la media poblacional
-- tiene una desviación estándar igual a la desviación estándar de la población dividida por la raíz cuadrada del tamaño de la muestra. Esto se llama error estándar .
+- Se distribuye normalmente (para un tamaño de muestra suficientemente grande (>=30)).
+- Está centrado en la media poblacional.
+- Tiene una desviación estándar igual a la desviación estándar de la población dividida por la raíz cuadrada del tamaño de la muestra. Esto se llama error estándar.
 
 Con respecto a la fórmula del error estándar descrita anteriormente, tenga en cuenta que hay dos palancas en el ancho de la distribución muestral:
 
-- La desviación estándar de la población . Las poblaciones con mayor variación producirán medias muestrales con mayor variación. Por ejemplo, imagine muestrear las alturas de niños de 5 años en comparación con el muestreo de alturas de niños de 5 a 18 años. Hay más variación en las alturas de los niños de 5 a 18 años, por lo que habrá más variación en las muestras individuales.
+- **La desviación estándar de la población.** Las poblaciones con mayor variación producirán medias muestrales con mayor variación. Por ejemplo, imagine muestrear las alturas de niños de 5 años en comparación con el muestreo de alturas de niños de 5 a 18 años. Hay más variación en las alturas de los niños de 5 a 18 años, por lo que habrá más variación en las muestras individuales.
 
-- El tamaño de la muestra . Cuanto mayor sea el tamaño de la muestra, menor será la variación en las medias de muestras repetidas. En el ejemplo de salario anterior, imagine muestrear solo a cinco personas en lugar de 150. Esas cinco personas muestreadas podrían incluir un valor atípico que desvíe toda la media de la muestra. Si tomamos una muestra de 150 (o incluso más) personas, es más probable que tengamos valores atípicos altos y bajos que se anulan entre sí.
-
-Para desarrollar su intuición, la siguiente simulación puede resultarle útil. Podemos usar la random.normal()función from NumPypara generar populationvalores con una desviación estándar ( pop_stdev) y una media particulares (arbitrariamente establecidas en 10 en este ejemplo). Como antes, podemos hacer lo siguiente:
-
-- tomar muestras aleatorias de algún tamaño ( samp_size) de la población
-- registrar la media muestral para cada uno
-- trazar un histograma de las medias muestrales
+- **El tamaño de la muestra.** Cuanto mayor sea el tamaño de la muestra, menor será la variación en las medias de muestras repetidas. En el ejemplo de salario anterior, imagine muestrear solo a cinco personas en lugar de 150. Esas cinco personas muestreadas podrían incluir un valor atípico que desvíe toda la media de la muestra. Si tomamos una muestra de 150 (o incluso más) personas, es más probable que tengamos valores atípicos altos y bajos que se anulan entre sí.
 
