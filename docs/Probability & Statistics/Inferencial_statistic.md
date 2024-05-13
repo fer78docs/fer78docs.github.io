@@ -7,7 +7,7 @@ parent: Probability & Statistics
 
 ## Estadística inferencial
 
-La estadística descriptiva y la estadística inferencial son dos subcampos de la estadística. La estadística descriptiva incluye temas tratados anteriormente en este camino, incluidos resúmenes numéricos y visuales de datos. La prueba de hipótesis, por otro lado, es una forma de estadística inferencial, que se utiliza para hacer inferencias sobre una población utilizando una muestra más pequeña de datos.
+La estadística descriptiva y la estadística inferencial son dos subcampos de la estadística. La estadística descriptiva incluye temas tratados anteriormente en este camino, incluidos resúmenes numéricos y visuales de datos. La **prueba de hipótesis**, por otro lado, es una forma de estadística inferencial, que se utiliza para hacer inferencias sobre una población utilizando una muestra más pequeña de datos.
 
 Esto es importante porque las estadísticas descriptivas pueden informarnos sobre los datos que tenemos, pero a veces no podemos recopilar todos los datos que necesitamos para responder nuestras preguntas. Por ejemplo, tal vez queramos saber si las personas que reciben una vacuna tienen menos probabilidades de contraer una enfermedad. No podemos vacunar a todas las personas del mundo para probar esto, por lo que tendremos que vacunar a una muestra más pequeña de personas. Luego, si la vacuna parece funcionar en nuestra muestra, necesitamos saber si pudo haber sido una casualidad aleatoria o si es probable que sea cierto para el resto de la población. ¡Aquí es donde las pruebas de hipótesis pueden ayudar!
 
@@ -73,19 +73,31 @@ Supongamos que usted es un investigador que estudia la relación entre las calif
    - Si el valor p es menor que $$\alpha$$, rechazar $$H_0$$.
    - Si el valor p es mayor o igual que $$\alpha$$, no hay suficiente evidencia para rechazar $$H_0$$.
 
-### Ejemplo:
 
-Supongamos que queremos probar si la media de una población es diferente de 50.
+## Estadisticos de Prueba
 
-- $$H_0$$: La media de la población es 50.
-- $$H_1$$: La media de la población es diferente de 50.
-- Tomamos una muestra aleatoria y calculamos su media.
-- Elegimos un nivel de significancia, como (0.05).
-- Calculamos el estadístico t o z según corresponda.
-- Comparamos el valor p con (0.05).
-- Si el valor p es menor que (0.05), rechazamos (H_0) y concluimos que hay suficiente evidencia para decir que la media es diferente de 50.
+Los estadísticos de prueba son fundamentales en el análisis de pruebas de hipótesis y varían según el tipo de datos y la naturaleza de la hipótesis que se está probando. 
 
-### Introducción a la prueba de hipótesis (simulación de una prueba T de una muestra)
+### t de Student
+
+La prueba t-Student para una muestra es una técnica utilizada para determinar si la media de una muestra es estadísticamente diferente de una media poblacional conocida o hipotética. Esta prueba se utiliza cuando la población **no sigue una distribución normal o cuando el tamaño de la muestra es pequeño (menos de 30).**
+
+En resumen, la prueba t-Student para una muestra es una herramienta útil para analizar si una muestra de datos es representativa de una población más grande y para determinar si la diferencia entre la media de la muestra y la media poblacional es significativa desde un punto de vista estadístico.
+
+### Tipos de prueba t-Student
+Hay varios tipos de pruebas t de Student, cada uno diseñado para abordar una situación particular. Los tipos más comunes de pruebas t de Student son:
+
+- **Prueba t de dos muestras para datos independientes:** Esta prueba se utiliza cuando se quieren comparar las medias de dos grupos independientes, es decir, cuando las observaciones en un grupo no están relacionadas de ninguna manera con las observaciones en el otro grupo. Por ejemplo, se podría usar para comparar las calificaciones promedio de dos grupos de estudiantes que tomaron diferentes cursos.
+
+- **Prueba t de dos muestras para datos relacionados o emparejados:** En este caso, se comparan las medias de dos grupos que están relacionados de alguna manera, como las mediciones antes y después de un tratamiento en el mismo grupo de individuos. También se conoce como «prueba t de muestras relacionadas» o «prueba t emparejada».
+
+- **Prueba t de una muestra**: Esta prueba se utiliza cuando se quiere comparar la media de una sola muestra con un valor de referencia conocido o hipotético (por ejemplo, la media poblacional). Se utiliza para determinar si la muestra difiere significativamente de la media hipotética.
+
+- **Prueba t de varianzas iguales o heterogéneas**: La mayoría de las pruebas t de Student asumen que las varianzas de los dos grupos que se comparan son iguales. Sin embargo, en ocasiones, esta suposición puede no cumplirse. La prueba t de varianzas iguales se utiliza cuando se asume que las varianzas son iguales, mientras que la prueba t de varianzas heterogéneas se utiliza cuando se asume que las varianzas son diferentes entre los dos grupos.
+
+- **Prueba t de una cola o de dos colas**: Las pruebas t de Student pueden ser de una cola o de dos colas, dependiendo de la naturaleza de la pregunta de investigación. Una prueba de una cola se utiliza cuando se está interesado en determinar si una media es significativamente mayor o menor que otra, mientras que una prueba de dos colas se utiliza para detectar cualquier diferencia significativa entre las medias, ya sea mayor o menor.
+
+## Simulación de una prueba T de una muestra
 
 La prueba de hipótesis es un marco para hacer preguntas sobre un conjunto de datos y responderlas con declaraciones probabilísticas. Existen muchos tipos diferentes de pruebas de hipótesis que se pueden utilizar para abordar diferentes tipos de preguntas y datos. En este artículo, analizaremos una simulación de una prueba t de una muestra para desarrollar una intuición sobre cuántos tipos diferentes de pruebas de hipótesis funcionan.
 
@@ -95,25 +107,23 @@ El Programa de Bachillerato Internacional (IBDP) es un programa educativo a nive
 
 ![Distribucion Prueba T](https://fer78docs.github.io/assets/images/distribucion_pruebaT.svg)
 
-Imagine una hipotética escuela en línea, Statistics Academy, que ofrece un programa de preparación para exámenes de cinco semanas. Supongamos que 100 estudiantes que tomaron la evaluación del IBDP en mayo de 2020 fueron elegidos al azar para participar en el primer grupo de este programa y que estos 100 estudiantes obtuvieron una puntuación promedio de 31,16 puntos en el examen, ¡aproximadamente 1,24 puntos más que el promedio internacional! ¿Estos estudiantes realmente están superando a sus compañeros? ¿O podría atribuirse esta diferencia al azar?
+Imagine una hipotética escuela en línea, Statistics Academy, que ofrece un programa de preparación para exámenes de cinco semanas. Supongamos que 100 estudiantes que tomaron la evaluación del IBDP en mayo de 2020 fueron elegidos al azar para participar en el primer grupo de este programa y que **estos 100 estudiantes obtuvieron una puntuación promedio de 31,16 puntos en el examen**, ¡aproximadamente 1,24 puntos más que el promedio internacional! 
+
+¿Estos estudiantes realmente están superando a sus compañeros? ¿O podría atribuirse esta diferencia al azar?
 
 ### Paso 2: definir las hipótesis nula y alternativa
 
-Antes de intentar responder esta pregunta, es útil reformularla de manera que sea comprobable. En este momento, nuestra pregunta (**“¿Los estudiantes de la Academia de Estadística realmente están superando a sus compañeros?”**) no está claramente definida. Objetivamente, este grupo de 100 estudiantes tuvo un mejor desempeño que la población general, pero respondieron “¡sí, superaron a sus compañeros!” No se siente particularmente satisfactorio.
-
-La razón por la que no es satisfactorio es la siguiente: si elegimos aleatoriamente CUALQUIER grupo de 100 estudiantes de la población de todos los examinados y calculamos el puntaje promedio para esa muestra, hay un 50% de posibilidades de que sea más alto que el promedio de la población. No es sorprendente observar un promedio más alto para una sola muestra.
-
-Por supuesto, las grandes diferencias con el promedio de la población son menos probables: si todos los estudiantes de la Academia de Estadística obtuvieran 45 puntos en el examen (la puntuación más alta posible), probablemente estaríamos convencidos de que estos estudiantes tenían una ventaja real. El truco consiste en cuantificar cuándo las diferencias son “lo suficientemente grandes” como para convencernos de que estos estudiantes son sistemáticamente diferentes de la población general. Podemos hacer esto reformulando nuestra pregunta para centrarnos en la(s) población(es), en lugar de en nuestra(s) muestra(s) específica(s).
+Antes de intentar responder esta pregunta, es útil reformularla de manera que sea comprobable. En este momento, nuestra pregunta (**“¿Los estudiantes de la Academia de Estadística realmente están superando a sus compañeros?”**) no está claramente definida.
 
 Una prueba de hipótesis comienza con dos hipótesis en competencia sobre la población de la que proviene una muestra particular (en este caso, los 100 estudiantes de la Academia de Estadística):
 
-**Hipótesis 1 (técnicamente llamada Hipótesis Nula ):** Los 100 estudiantes de la Academia de Estadística son una muestra aleatoria de la población general de examinados, que obtuvieron una puntuación promedio de 29,92. Si esta hipótesis es cierta, los estudiantes de la Academia de Estadística obtuvieron una puntuación promedio ligeramente más alta por casualidad. Visualmente, esta configuración se parece a esto:
+**Hipótesis Nula $$H_0$$:** Los 100 estudiantes de la Academia de Estadística son una muestra aleatoria de la población general de examinados, que obtuvieron una puntuación promedio de 29,92. 
 
-![Hipotesis](https://fer78docs.github.io/assets/images/Statistics_HypothesisTestingDiagram_2.svg)
+Si esta hipótesis es cierta, los estudiantes de la Academia de Estadística obtuvieron una puntuación promedio ligeramente más alta por casualidad. Visualmente, esta configuración se parece a esto:
 
-**Hipótesis 2 (técnicamente llamada Hipótesis Alternativa ):** Los 100 estudiantes de la Academia de Estadística provenían de una población con una puntuación promedio diferente de 29,92. En esta hipótesis, debemos imaginar dos poblaciones diferentes que en realidad no existen: una en la que todos los estudiantes tomaron el programa de preparación para exámenes de la Academia de Estadística y otra en la que ninguno de los estudiantes tomó el programa. Si la hipótesis alternativa es cierta, nuestra muestra de 100 estudiantes de la Academia de Estadística provenía de una población diferente a la de los demás examinados. Esto se puede visualizar de la siguiente manera:
+**Hipótesis Alternativa $$H_1$$:** Los 100 estudiantes de la Academia de Estadística provenían de una población con una puntuación promedio diferente de 29,92. 
 
-![Hipotesis](https://fer78docs.github.io/assets/images/Statistics_HypothesisTestingDiagram_1.svg)
+En esta hipótesis, debemos imaginar dos poblaciones diferentes que en realidad no existen: una en la que todos los estudiantes tomaron el programa de preparación para exámenes de la Academia de Estadística y otra en la que ninguno de los estudiantes tomó el programa. Si la hipótesis alternativa es cierta, nuestra muestra de 100 estudiantes de la Academia de Estadística provenía de una población diferente a la de los demás examinados. 
 
 Hay una aclaración más que debemos hacer para especificar completamente la hipótesis alternativa. Observe que, hasta ahora, no hemos dicho nada sobre el puntaje promedio para la “población 1” en el diagrama anterior, aparte de que NO es 29,92. En realidad, tenemos tres opciones para lo que dice la hipótesis alternativa sobre este promedio poblacional:
 
@@ -149,19 +159,21 @@ Dado que la hipótesis nula es cierta (que los 100 estudiantes de la Academia de
 
 El problema menor de esta pregunta es que la probabilidad de cualquier puntuación promedio exacta es muy pequeña, por lo que realmente queremos estimar la probabilidad de un rango de puntuaciones. Volvamos ahora a nuestras tres posibles hipótesis alternativas y veamos cómo la pregunta y el cálculo cambian ligeramente, dependiendo de cuál elijamos:
 
-**Opción 1**
+### Opción 1
 
-**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio superior a 29,92.
+**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población **con un puntaje promedio superior a 29,92**.
 
 En este caso, queremos saber la probabilidad de observar un promedio muestral mayor o igual a 31,16 dado que la hipótesis nula es verdadera. Visualmente, esta es la proporción de la distribución nula que es mayor o igual a 31,16 (sombreada en rojo a continuación). Aquí, la región roja representa alrededor del 3,1% de la distribución total. Esta proporción, que normalmente se escribe en forma decimal (es decir, 0,031), se denomina valor p .
 
 ![null distribution_3](https://fer78docs.github.io/assets/images/null_distribution_3.png)
 
-**opcion 2**
+### opcion 2
 
-**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio que no es igual (es decir, mayor o menor que) 29,92.
+**Hipótesis alternativa:** La muestra de 100 puntajes obtenidos por estudiantes de la Academia de Estadística provino de una población con un puntaje promedio que no es igual (**es decir, mayor o menor que) 29,92.**
 
-Observamos un promedio muestral de 31,16 entre los estudiantes de la Academia de Estadística, que es 1,24 puntos más alto que el promedio poblacional (si la hipótesis nula es cierta) de 29,92. En la primera versión de la prueba de hipótesis (opción 1), estimamos la probabilidad de observar un promedio muestral que sea al menos 1,24 puntos mayor que el promedio poblacional. Para la hipótesis alternativa descrita en la opción 2, nos interesa la probabilidad de observar un promedio de muestra que sea al menos 1,24 puntos DIFERENTE (mayor O menor) que el promedio de la población. Visualmente, esta es la proporción de la distribución nula que está al menos a 1,24 unidades del promedio de la población (sombreado en rojo a continuación). Tenga en cuenta que esta área es dos veces mayor que en el ejemplo anterior, lo que lleva a un valor p que también es dos veces mayor: 0,062.
+Observamos un promedio muestral de 31,16 entre los estudiantes de la Academia de Estadística, que es 1,24 puntos más alto que el promedio poblacional (si la hipótesis nula es cierta) de 29,92. En la primera versión de la prueba de hipótesis (opción 1), estimamos la probabilidad de observar un promedio muestral que sea al menos 1,24 puntos mayor que el promedio poblacional. 
+
+Para la hipótesis alternativa descrita en la opción 2, nos interesa la probabilidad de observar un promedio de muestra que sea al menos 1,24 puntos DIFERENTE (mayor O menor) que el promedio de la población. Visualmente, esta es la proporción de la distribución nula que está al menos a 1,24 unidades del promedio de la población (sombreado en rojo a continuación). Tenga en cuenta que esta área es dos veces mayor que en el ejemplo anterior, lo que lleva a un valor p que también es dos veces mayor: 0,062.
 
 ![null distribution_4](https://fer78docs.github.io/assets/images/null_distribution_4.png)
 
@@ -179,17 +191,19 @@ En este punto, usted puede estar pensando: ¿por qué alguien elegiría esta ver
 
 ### Paso 5: interpretar los resultados
 
-En los tres ejemplos anteriores, calculamos tres valores p diferentes (0,031, 0,062 y 0,969, respectivamente). Considere el primer valor p de 0,031. La interpretación de este número es la siguiente:
+En los tres ejemplos anteriores, se calcularon tres valores p diferentes (0,031, 0,062 y 0,969, respectivamente). Considere el primer valor p de 0,031. La interpretación de este número es la siguiente:
 
 Si los 100 estudiantes de la Academia de Estadística fueron seleccionados al azar de toda la población (que obtuvo una puntuación promedio de 29,92), hay un 3,1% de posibilidades de que su puntuación promedio sea de 31,16 puntos o más.
 
-Esto significa que es relativamente improbable, pero no imposible, que los estudiantes de la Academia de Estadística obtengan puntuaciones más altas (en promedio) que sus compañeros por casualidad, a pesar de que no hay una diferencia real a nivel de población. En otras palabras, los datos observados son improbables si la hipótesis nula es cierta. Tenga en cuenta que hemos probado directamente la hipótesis nula, ¡pero no la hipótesis alternativa! Por lo tanto, debemos tener un poco de cuidado al interpretar esta prueba: no podemos decir que hemos demostrado que la hipótesis alternativa es la verdad, sólo que los datos que recopilamos serían improbables bajo la hipótesis nula y, por lo tanto, creemos que la hipótesis alternativa es cierta. La hipótesis alternativa es más consistente con nuestras observaciones.
+Esto significa que es relativamente improbable, pero no imposible, que los estudiantes de la Academia de Estadística obtengan puntuaciones más altas (en promedio) que sus compañeros por casualidad, a pesar de que no hay una diferencia real a nivel de población. 
 
-### Umbrales de significancia
+En otras palabras, **los datos observados son improbables si la hipótesis nula es cierta**. Tenga en cuenta que hemos probado directamente la hipótesis nula, ¡pero no la hipótesis alternativa! Por lo tanto, debemos tener un poco de cuidado al interpretar esta prueba: no podemos decir que hemos demostrado que la hipótesis alternativa es la verdad, sólo que los datos que recopilamos serían improbables bajo la hipótesis nula y, por lo tanto, creemos que la hipótesis alternativa es cierta. La hipótesis alternativa es más consistente con nuestras observaciones.
 
-Si bien es perfectamente razonable informar un valor p, muchos científicos de datos utilizan un umbral predeterminado para decidir si un valor p particular es significativo o no. Los valores P por debajo del umbral elegido se declaran significativos y llevan al científico de datos a "rechazar la hipótesis nula en favor de la alternativa". Una elección común para este umbral, que a veces también se denomina Alfa , es 0,05, ¡pero es una elección arbitraria! Usar un umbral más bajo significa que es menos probable que encuentre resultados significativos, pero también es menos probable que informe erróneamente un resultado significativo cuando no lo hay.
+## Umbrales de significancia
 
-Utilizando el primer valor p de 0,031 y un umbral de significancia de 0,05, la Academia de Estadística podría rechazar la hipótesis nula y concluir que los 100 estudiantes que participaron en su programa obtuvieron puntuaciones significativamente más altas en la prueba que la población general.
+Si bien es perfectamente razonable informar un valor $$p$$, muchos científicos de datos utilizan un umbral predeterminado para decidir si un valor $$p$$ particular es significativo o no. Los valores P por debajo del umbral elegido se declaran significativos y llevan al científico de datos a "**rechazar la hipótesis nula en favor de la alternativa**". Una elección común para este umbral, que a veces también se denomina Alfa , es 0,05, ¡pero es una elección arbitraria! Usar un umbral más bajo significa que es menos probable que encuentre resultados significativos, pero también es menos probable que informe erróneamente un resultado significativo cuando no lo hay.
+
+Utilizando el primer valor p de 0,031 y un umbral de significancia de 0,05, la Academia de Estadística **podría rechazar la hipótesis nula y concluir que los 100 estudiantes que participaron en su programa obtuvieron puntuaciones significativamente más altas** en la prueba que la población general.
 
 **Impacto de la hipótesis alternativa**
 
@@ -199,10 +213,10 @@ Tenga en cuenta que diferentes hipótesis alternativas pueden llevar a conclusio
 
 Como seguramente habrá aprendido de este artículo, las pruebas de hipótesis pueden ser un marco útil para formular y responder preguntas sobre datos. Antes de utilizar las pruebas de hipótesis en la práctica, es importante recordar lo siguiente:
 
-Un valor p es una probabilidad, generalmente expresada como un decimal entre cero y uno.
-Un valor p pequeño significa que es poco probable que ocurra una estadística de muestra observada (o algo más extremo) si la hipótesis nula es cierta.
-Se puede utilizar un umbral de significancia para traducir un valor p en un resultado "significativo" o "no significativo".
-En la práctica, la hipótesis alternativa y el umbral de significancia deben elegirse antes de la recopilación de datos.
+- Un valor $$p$$ es una probabilidad, generalmente expresada como un decimal entre cero y uno.
+- Un valor $$p$$ pequeño significa que es poco probable que ocurra una estadística de muestra observada (o algo más extremo) si la hipótesis nula es cierta.
+- Se puede utilizar un umbral de significancia para traducir un valor p en un resultado "significativo" o "no significativo".
+- En la práctica, la hipótesis alternativa y el umbral de significancia deben elegirse antes de la recopilación de datos.
 
 ## Implementación de una prueba t de una muestra en Python
 

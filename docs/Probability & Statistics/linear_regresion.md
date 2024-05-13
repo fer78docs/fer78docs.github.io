@@ -31,7 +31,7 @@ Cuando miramos este gráfico, vemos que hay cierta evidencia de una relación en
 ### Ecuación de una recta
 
 
-Como su nombre lo indica, la regresión LINEar implica ajustar una línea a un conjunto de puntos de datos. Para ajustar una línea, es útil comprender la ecuación de una línea, que a menudo se escribe como $$y=mx+b$$ . En esta ecuación:
+Como su nombre lo indica, la regresión linear implica ajustar una línea a un conjunto de puntos de datos. Para ajustar una línea, es útil comprender la ecuación de una línea, que a menudo se escribe como $$y=mx+b$$ . En esta ecuación:
 
 - $$x$$ e $$y$$ representan variables, como altura y peso u horas de estudio y puntuaciones de exámenes .
 - $$b$$ representa la intersección y de la línea. Aquí es donde la línea se cruza con el eje y (una línea vertical ubicada en $$x = 0$$ ).
@@ -66,18 +66,18 @@ Observe que elevamos al cuadrado cada distancia individual de modo que los punto
 
 La visualización interactiva en el navegador le permite intentar encontrar la línea que mejor se ajuste a un conjunto aleatorio de puntos de datos:
 
-- El control deslizante de la izquierda controla la m(pendiente)
-- El control deslizante de la derecha controla la b(intercepción)
+- El control deslizante de la izquierda controla la $$m$$ (pendiente)
+- El control deslizante de la derecha controla la $$b$$ (intercepción)
 
 Puede ver la pérdida total en el lado derecho de la visualización. Para obtener la línea de mejor ajuste, queremos que esta pérdida sea lo más pequeña posible.
 
 Para comprobar si obtuvo la mejor línea, marque la casilla "Trazar mejor ajuste".
 
-Aleatoriza un nuevo conjunto de puntos e intenta ajustar una nueva línea ingresando la cantidad de puntos que deseas (¡pruébalo 8!) en el cuadro de texto y presionando Randomize Points.
+Aleatoriza un nuevo conjunto de puntos e intenta ajustar una nueva línea ingresando la cantidad de puntos que deseas en el cuadro de texto y presionando Randomize Points.
 
 Juegue con el subprograma y vea si puede encontrar la línea que mejor se ajuste a los puntos que ha aleatorizado.
 
-[](https://content.codecademy.com/programs/data-science-path/line-fitter/line-fitter.html)
+- [Acceso a la simulacion ](https://content.codecademy.com/programs/data-science-path/line-fitter/line-fitter.html)
 
 ## Ajuste de un modelo de regresión lineal en Python
 
@@ -111,6 +111,7 @@ dtype: float64
 Esto nos dice que la intersección de mejor ajuste es -21.67 y la pendiente de mejor ajuste es 0.50.
 
 **Ejemplo**:
+
 Utilizando el conjunto de datos `students`, cree un modelo de regresión lineal que prediga el `score` del estudiante utilizando `hours_studied` como predictor y guarde el resultado en una variable denominada `model`.
 
 ```python
@@ -174,6 +175,7 @@ dtype: float64
 Tenga en cuenta que obtenemos el mismo resultado (58.33) que con los otros métodos; sin embargo, se devuelve como un marco de datos.
 
 **Ejemplo**
+
 Continuando con el ejemplo anterior teniamos los coeficientes: 
 ```python
 print(results.params)
@@ -186,7 +188,7 @@ dtype: float64
 ```
 
 Utilizando este modelo, ¿cuál es la puntuación prevista para un estudiante que pasó 3 horas estudiando? Podemos calcular la probabilidad utilizando la formula de la linea y el metodo `predict()`.
-
+```python
 pred_3hr = results.params[1]*3 + results.params[0]
 print(pred_3hr)
 
@@ -194,4 +196,27 @@ print(pred_3hr)
 newdata = {"hours_studied":[5]}
 pred_5hr = results.predict(newdata)
 print(pred_5hr)
+```
 
+## Interpreting a Regression Model
+
+Inspeccionemos nuevamente el resultado de una regresión que predice el peso en función de la altura. La línea de regresión se parece a esto:
+
+![Linea de Regresion ](https://fer78docs.github.io/assets/images/linea de regresion.png)
+
+
+Tenga en cuenta que las unidades de la intersección y la pendiente de una recta de regresión coinciden con las unidades de las variables originales; la intersección de esta línea se mide en kg y la pendiente se mide en kg/cm. Para que la intersección (que calculamos anteriormente como -21.67kg) tenga sentido, alejemos este gráfico:
+
+![Linea de Regresion ](https://fer78docs.github.io/assets/images/reg_alejado.png)
+
+Vemos que la intersección es el valor predicho de la variable de resultado (peso) cuando la variable predictora (altura) es igual a cero. En este caso, la interpretación del origen es que se espera que una persona de 0 cm de altura pese -21 kg. ¡Esto no tiene sentido porque es imposible que alguien mida 0 cm de altura!
+
+Sin embargo, en otros casos, este valor tiene sentido y es útil interpretarlo. Por ejemplo, si predijeramos las ventas de helado en función de la temperatura, la intersección serían las ventas esperadas cuando la temperatura sea 0 grados.
+
+Para visualizar la pendiente, acerquemos nuestro gráfico:
+
+![Linea de Regresion ](https://fer78docs.github.io/assets/images/reg_acercado.png)
+
+Recuerde que la pendiente se puede considerar como subida/corrida: la relación entre las distancias vertical y horizontal entre dos puntos cualesquiera de la línea. Por lo tanto, la pendiente (que previamente calculamos en 0.50kg/cm) es la diferencia esperada en la variable de resultado (peso) para una diferencia de una unidad en la variable predictiva (altura). En otras palabras, esperamos que una diferencia de altura de un centímetro se asocie con 0,5 kilogramos adicionales de peso.
+
+Tenga en cuenta que la pendiente nos da dos datos: la magnitud Y la dirección de la relación entre las variables $$x$$ e $$y$$. Por ejemplo, supongamos que en lugar de eso ajustamos una regresión de peso con minutos de ejercicio por día como predictor y calculamos una pendiente de -.1. Interpretaríamos que esto significa que se espera que las personas que hacen ejercicio durante un minuto adicional al día pesen 0,1 kg MENOS.
