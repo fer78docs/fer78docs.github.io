@@ -513,7 +513,7 @@ from scipy import binom_test
 p_value_1sided = binom_test(41, n=500, p=0.1, alternative = 'less')
 print(p_value_1sided) 
 ```
-Salidaç
+Salida
 ```
 0.1001135269756488
 ```
@@ -530,3 +530,94 @@ Ahora sabes cómo ejecutar una prueba de hipótesis binomial usando una función
     - tomar muestras aleatorias repetidas donde se supone que la hipótesis nula es verdadera
     - usar esas muestras simuladas para generar una distribución nula
     - comparar una estadística de muestra observada con esa distribución nula
+
+
+## Introducción a los umbrales de significancia
+
+A veces, cuando ejecutamos una prueba de hipótesis, simplemente informamos un valor p o un intervalo de confianza y damos una interpretación (por ejemplo, el valor $$p$$ fue 0,05, lo que significa que hay un 5 % de probabilidad de observar dos o menos cabezas). en 10 lanzamientos de moneda).
+
+En otras situaciones, queremos usar nuestro valor p para tomar una decisión o responder una pregunta de sí o no. Por ejemplo, supongamos que estamos desarrollando una nueva pregunta de prueba en Codecademy y queremos que los alumnos tengan un 70 % de posibilidades de responder correctamente la pregunta (más alto significaría que la pregunta es demasiado fácil, más bajo significaría que la pregunta es demasiado difícil). Mostramos nuestra pregunta del cuestionario a una muestra de 100 alumnos y 60 de ellos responden correctamente. ¿Es esto significativamente diferente de nuestro objetivo del 70%? Si es así, queremos eliminar la pregunta e intentar reescribirla.
+
+Para convertir un valor $$p$$, que es una probabilidad, en una respuesta de sí o no, los científicos de datos suelen utilizar un umbral de significancia preestablecido. El umbral de significancia puede ser cualquier número entre 0 y 1, pero una opción común es 0,05. Los valores de $$p$$ que son inferiores a este umbral se consideran "significativos", mientras que los valores de $$p$$ mayores se consideran "no significativos".
+
+Realizamos una prueba de hipótesis binomial con las siguientes hipótesis nula y alternativa:
+
+- **Nulo**: la probabilidad de que un alumno responda correctamente la pregunta es del 70%.
+- **Alternativa**: La probabilidad de que un alumno responda correctamente la pregunta no es del 70%.
+
+Suponiendo que establecimos un umbral de significancia de 0,05 para esta prueba:
+
+- Si el valor $$p$$ es inferior a 0,05, el valor **p es significativo**. "Rechazaremos la hipótesis nula" y concluiremos que la probabilidad de una respuesta correcta es significativamente diferente del 70%. Esto nos llevaría a reescribir la pregunta.
+- Si el valor $$p$$ es mayor que 0,05, el valor **p no es significativo**. No podremos rechazar la hipótesis nula y concluiremos que la probabilidad de una respuesta correcta no es significativamente diferente del 70%. Esto nos llevaría a dejar la pregunta en el sitio.
+
+## Tipos de errores
+
+Siempre que ejecutamos una prueba de hipótesis utilizando un umbral de significancia, nos exponemos a cometer dos tipos diferentes de errores: errores tipo I (falsos positivos) y errores tipo II (falsos negativos):
+
+| Resultado / Verdad | Hipótesis nula: es verdad | Hipótesis nula: es falsa |
+|----------------------|---------------------------|--------------------------|
+| Valor p significativo | Error tipo I              | ¡Correcto!               |
+| Valor p no significativo | ¡Correcto!               | Error tipo II            |
+
+
+Considere la prueba de hipótesis de preguntas del cuestionario descrita en los ejercicios anteriores:
+
+- Nulo: la probabilidad de que un alumno responda correctamente una pregunta es del 70%.
+- Alternativa: La probabilidad de que un alumno responda correctamente una pregunta no es del 70%.
+
+Supongamos, por un momento, que la probabilidad real de que un alumno responda correctamente la pregunta es del 70% (si mostráramos la pregunta a TODOS los alumnos, exactamente el 70% la respondería correctamente). Esto nos coloca en la primera columna de la tabla anterior (la hipótesis nula “es verdadera”). Si ejecutamos una prueba y calculamos un valor p significativo, cometeremos un error tipo I (también llamado falso positivo porque el valor p es falsamente significativo), lo que nos llevará a eliminar la pregunta cuando no sea necesario.
+
+Por otro lado, si la probabilidad real de acertar la pregunta no es del 70%, la hipótesis nula “es falsa” (la columna más a la derecha de nuestra tabla). Si ejecutamos una prueba y calculamos un valor p no significativo, cometemos un error de tipo II, lo que nos lleva a dejar la pregunta en nuestro sitio cuando deberíamos haberla eliminado.
+
+### Configuración de la tasa de error tipo I
+
+Resulta que, cuando ejecutamos una prueba de hipótesis con un umbral de significancia, el umbral de significancia es igual a la tasa de error tipo I (falso positivo) de la prueba. Para ver esto, podemos usar una simulación.
+
+Recuerde nuestro ejemplo de pregunta del cuestionario: la hipótesis nula es que la probabilidad de acertar una pregunta del cuestionario es igual al 70%. Cometeremos un error de tipo I si la hipótesis nula es correcta (la probabilidad real de una respuesta correcta es del 70%), pero de todos modos obtenemos un valor p significativo.
+
+### Problemas con pruebas de hipótesis múltiples
+
+Si bien los umbrales de significancia permiten a un científico de datos controlar la tasa de falsos positivos para una sola prueba de hipótesis, esto comienza a fallar cuando se realizan múltiples pruebas como parte de un solo estudio.
+
+Por ejemplo, supongamos que estamos escribiendo un cuestionario en codecademy que incluirá 10 preguntas. Para cada pregunta, queremos saber si la probabilidad de que un alumno responda correctamente la pregunta es diferente del 70%. Ahora tenemos que ejecutar 10 pruebas de hipótesis, una para cada pregunta.
+
+Si la hipótesis nula es verdadera para cada prueba de hipótesis (la probabilidad de una respuesta correcta es del 70% para cada pregunta) y utilizamos un nivel de significancia de 0,05 para cada prueba, entonces:
+
+- Cuando ejecutamos una prueba de hipótesis para una sola pregunta, tenemos un 95% de posibilidades de obtener la respuesta correcta (un valor p > 0,05) y un 5% de posibilidades de cometer un error de tipo I.
+
+- Cuando ejecutamos pruebas de hipótesis para dos preguntas, tenemos solo un 90% de posibilidades de obtener la respuesta correcta para ambas pruebas de hipótesis (0,95*0,95 = 0,90) y un 10% de posibilidades de cometer al menos un error de tipo I.
+
+- Cuando realizamos pruebas de hipótesis para las 10 preguntas, tenemos un 60 % de posibilidades de obtener la respuesta correcta para las diez pruebas de hipótesis (0,95 ^ 10 = 0,60) y un 40 % de posibilidades de cometer al menos un error de tipo I.
+
+**Cuando se ejecuta más de una prueba de hipótesis con un umbral de significancia particular, la probabilidad de cometer al menos un error tipo I es:**
+
+Para abordar este problema, es importante planificar la investigación con anticipación: decida qué preguntas desea abordar y determine cuántas pruebas de hipótesis necesita realizar. Cuando ejecute varias pruebas, utilice un umbral de significancia más bajo (p. ej., 0,01) para cada prueba para reducir la probabilidad de cometer un error de tipo I.
+
+Cuando se ejecutan múltiples pruebas de hipótesis utilizando el mismo conjunto de datos y un umbral de significancia fijo (como el comúnmente usado \( \alpha = 0.05 \)), la probabilidad de cometer al menos un error tipo I —es decir, rechazar incorrectamente la hipótesis nula cuando es verdadera— en alguna de las pruebas aumenta con cada prueba adicional realizada.
+
+Esta situación se debe a lo que se conoce como el problema de la comparación múltiple o multiplicidad. La forma más sencilla de entender esto es mediante la idea de que cada prueba tiene una probabilidad \(\alpha\) de producir un error tipo I si la hipótesis nula es cierta. Cuando se hacen múltiples pruebas, estas probabilidades no desaparecen, sino que se acumulan.
+
+Por lo tanto, la respuesta correcta es:
+
+**superior al umbral de significancia**
+
+Para mitigar este efecto y controlar la probabilidad de cometer uno o más errores de Tipo I cuando se realizan múltiples pruebas, los investigadores pueden ajustar el nivel de significancia utilizando métodos como el ajuste de Bonferroni o el procedimiento de control de la tasa de falsos descubrimientos (FDR). Estos métodos buscan proporcionar un equilibrio más preciso entre el riesgo de cometer errores tipo I y la capacidad de detectar verdaderos efectos estadísticamente significativos.
+
+Ejercicios:
+Supongamos que un grupo de investigadores está interesado en saber si los residentes de una ciudad en particular tienden a tener presión arterial sistólica (PAS) alta en promedio. Toman una muestra de 100 residentes, miden su PAS y quieren realizar una prueba de hipótesis para comprender si la PAS promedio de todos los residentes es significativamente superior a 120 mm Hg. ¿Qué tipo de prueba de hipótesis sería apropiada para esta pregunta?
+
+Opciones de respuesta:
+
+- Prueba t de una muestra
+- Prueba t de dos muestras
+- Prueba de chi-cuadrado
+- prueba binomial
+
+Supongamos que una empresa de medios en línea envió recientemente un correo electrónico a 100 suscriptores potenciales, promocionando su nuevo boletín. Antes de enviar el correo electrónico a aún más suscriptores potenciales, la empresa quiere asegurarse de que estén cumpliendo su objetivo: que el 50% (o más) de los destinatarios del correo electrónico abran el correo electrónico. ¿Qué tipo de prueba de hipótesis sería apropiada para esta pregunta?
+
+Opciones de respuesta
+
+- prueba Z
+- Prueba t de una muestra
+- Prueba de chi-cuadrado
+- prueba binomial
