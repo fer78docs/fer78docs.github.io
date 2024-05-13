@@ -39,6 +39,8 @@ $$m$$ representa la pendiente. Esto controla qué tan pronunciada es la línea. 
 
 El siguiente gráfico muestra una recta con la ecuación $$y = 2x + 12$$ :
 
+![Ecuacion 1](https://fer78docs.github.io/assets/images/ecuacion_1.png)
+
 Tenga en cuenta que también podemos tener una recta con pendiente negativa. Por ejemplo, el siguiente gráfico muestra la recta con la ecuación $$y = -2x + 8$$ :
 
 ![Ecuacion 2](https://fer78docs.github.io/assets/images/ecuacion2.png)
