@@ -220,3 +220,119 @@ Para visualizar la pendiente, acerquemos nuestro gráfico:
 Recuerde que la pendiente se puede considerar como subida/corrida: la relación entre las distancias vertical y horizontal entre dos puntos cualesquiera de la línea. Por lo tanto, la pendiente (que previamente calculamos en 0.50kg/cm) es la diferencia esperada en la variable de resultado (peso) para una diferencia de una unidad en la variable predictiva (altura). En otras palabras, esperamos que una diferencia de altura de un centímetro se asocie con 0,5 kilogramos adicionales de peso.
 
 Tenga en cuenta que la pendiente nos da dos datos: la magnitud Y la dirección de la relación entre las variables $$x$$ e $$y$$. Por ejemplo, supongamos que en lugar de eso ajustamos una regresión de peso con minutos de ejercicio por día como predictor y calculamos una pendiente de -.1. Interpretaríamos que esto significa que se espera que las personas que hacen ejercicio durante un minuto adicional al día pesen 0,1 kg MENOS.
+
+
+## Supuestos de regresión lineal Parte 1
+
+Hay una serie de supuestos de regresión lineal simple, que es importante comprobar si se está ajustando a un modelo lineal. El primer supuesto es que la relación entre la variable de resultado y el predictor es lineal (puede describirse mediante una línea). Podemos verificar esto antes de ajustar la regresión simplemente mirando una gráfica de las dos variables.
+
+Los dos supuestos siguientes (normalidad y homocedasticidad) son más fáciles de comprobar después de ajustar la regresión. Aprenderemos más sobre estos supuestos en los siguientes ejercicios, pero primero necesitamos calcular dos cosas: valores ajustados y residuos .
+
+Considere nuevamente nuestro modelo de regresión para predecir el peso en función de la altura (fórmula del modelo 'weight ~ height'). Los valores ajustados son los pesos previstos para cada persona en el conjunto de datos que se utilizó para ajustar el modelo, mientras que los residuos son las diferencias entre el peso previsto y el peso real de cada persona. Visualmente:
+
+![Ajuste Modelo ](https://fer78docs.github.io/assets/images/configuracion.png)
+
+Podemos calcular los valores ajustados .predict()pasando los datos originales. El resultado es una serie de pandas que contiene valores predichos para cada persona en el conjunto de datos original:
+
+```python
+fitted_values = results.predict(body_measurements)
+print(fitted_values.head())
+```
+Salida:
+```
+0    66.673077
+1    59.100962
+2    71.721154
+3    70.711538
+4    65.158654
+dtype: float64
+```
+Los residuales son las diferencias entre cada uno de estos valores ajustados y los valores verdaderos de la variable de resultado. Se pueden calcular restando los valores ajustados de los valores reales. Podemos realizar esta resta de elementos en Python simplemente restando una serie de Python de la otra, como se muestra a continuación:
+
+```python
+residuals = body_measurements.weight - fitted_values
+print(residuals.head())
+```
+Salida
+```
+0   -2.673077
+1   -1.100962
+2    3.278846
+3   -3.711538
+4    2.841346
+dtype: float64
+
+Una vez que hayamos calculado los valores ajustados y los residuos de un modelo, podemos verificar los supuestos de normalidad y homocedasticidad de la regresión lineal.
+
+**Supuesto de normalidad**
+
+El supuesto de normalidad establece que los residuos deben distribuirse normalmente. Se hace esta suposición porque, estadísticamente, los residuos de cualquier conjunto de datos independiente se aproximarán a una distribución normal cuando el conjunto de datos sea lo suficientemente grande. Para obtener más información sobre esto, haga clic aquí .
+
+Para comprobar el supuesto de normalidad, podemos inspeccionar un histograma de los residuos y asegurarnos de que la distribución parezca aproximadamente normal (sin sesgos ni múltiples “jorobas”):
+
+```python
+plt.hist(residuals)
+plt.show()
+```
+
+![Residuals](https://fer78docs.github.io/assets/images/residual.png)
+
+Estos residuos aparecen distribuidos normalmente, lo que nos lleva a concluir que se cumple el supuesto de normalidad.
+
+Si, en cambio, el gráfico se pareciera a la siguiente distribución (que está sesgada hacia la derecha), nos preocuparía que no se cumpliera el supuesto de normalidad:
+
+![Residuals](https://fer78docs.github.io/assets/images/residuals2.png)
+
+## Supuesto de homocedasticidad
+
+La homocedasticidad es una forma elegante de decir que los residuos tienen la misma variación en todos los valores de la variable predictiva (independiente). Cuando no se cumple la homocedasticidad, esto se llama heterocedasticidad, lo que significa que la variación en el tamaño del término de error difiere entre la variable independiente.
+
+Dado que una regresión lineal busca minimizar los residuos y otorga el mismo peso a todas las observaciones, la heteroscedasticidad puede generar sesgos en los resultados.
+
+Una forma común de comprobar esto es trazando los residuos frente a los valores ajustados.
+
+```python
+plt.scatter(fitted_values, residuals)
+plt.show()
+```
+
+![comparacion](https://fer78docs.github.io/assets/images/residuals2.png)
+
+## Predictores categóricos
+
+En los ejercicios anteriores, usamos un predictor cuantitativo en nuestra regresión lineal, pero es importante señalar que también podemos usar predictores categóricos. El caso más simple de un predictor categórico es una variable binaria (solo dos categorías).
+
+Por ejemplo, supongamos que encuestamos a 100 adultos y les pedimos que informaran su altura en cm y si juegan o no baloncesto. Hemos codificado la variable `bball_player` para que sea igual a `1` si la persona juega baloncesto y `0` si no. A continuación se muestra un gráfico de `height` vs `bball_player`:
+
+![comparacion](https://fer78docs.github.io/assets/images/predictor_categorico.png)
+
+Vemos que las personas que juegan baloncesto tienden a ser más altas que las que no lo hacen. Al igual que antes, podemos dibujar una línea que se ajuste a estos puntos. ¡Tómate un momento para pensar en cómo se vería esa línea!
+
+Es posible que hayas adivinado (¡correctamente!) que la línea que mejor se ajusta a esta gráfica es la que pasa por la altura media de cada grupo. Para recrear el diagrama de dispersión con la línea de mejor ajuste, podríamos usar el siguiente código:
+
+```python
+# Calculate group means
+print(data.groupby('play_bball').mean().height)
+```
+Salida:
+
+|   |jugar_bball
+|0 |	169.016
+|1 |	183.644
+
+Esto generará el siguiente gráfico (sin etiquetas ni colores adicionales):
+
+```python
+# Create scatter plot
+plt.scatter(data.play_bball, data.height)
+
+# Add the line using calculated group means
+plt.plot([0,1], [169.016, 183.644])
+
+# Show the plot
+plt.show()
+```
+
+![comparacion](https://fer78docs.github.io/assets/images/altura_play_basquet.png)
+
+
