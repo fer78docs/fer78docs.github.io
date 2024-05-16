@@ -261,6 +261,7 @@ Salida
 3   -3.711538
 4    2.841346
 dtype: float64
+```
 
 Una vez que hayamos calculado los valores ajustados y los residuos de un modelo, podemos verificar los supuestos de normalidad y homocedasticidad de la regresión lineal.
 
