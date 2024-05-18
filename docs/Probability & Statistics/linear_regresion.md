@@ -337,3 +337,228 @@ plt.show()
 ![comparacion](https://fer78docs.github.io/assets/images/altura_play_basquet.png)
 
 
+### Predictores categóricos: ajuste e interpretación
+
+Ahora que hemos visto cómo se ve visualmente un modelo de regresión con un predictor binario, podemos ajustar el modelo usando `statsmodels.api.OLS.from_formula()`, de la misma manera que lo hicimos con un predictor cuantitativo:
+
+```python
+model = sm.OLS.from_formula('height ~ play_bball', data)
+results = model.fit()
+print(results.params)
+```
+Salida
+```
+Intercept     169.016
+play_bball     14.628
+dtype: float64
+```
+
+Tenga en cuenta que esto funcionará si la variable `play_bball` está codificada con 0 y 1, pero también funcionará si está codificada con `True` y `False`, o incluso si está codificada con cadenas como 'yes'y 'no'(en este caso, la etiqueta del coeficiente se verá algo como `play_bball[T.yes]` en la salida params, indicando que 'yes'corresponde a 1).
+
+Para interpretar este resultado, primero debemos recordar que la intersección es el valor esperado de la variable de resultado cuando el predictor es igual a cero. En este caso, la intersección es, por tanto, la altura media de los jugadores que no son jugadores de baloncesto.
+
+La pendiente es la diferencia esperada en la variable de resultado para una diferencia de una unidad en la variable predictiva. En este caso, una diferencia de una unidad `play_bballes` la diferencia entre no ser jugador de baloncesto y ser jugador de baloncesto. Por lo tanto, la pendiente es la diferencia en las alturas medias de los jugadores de baloncesto y los que no lo son.
+
+## Regresión lineal con un predictor categórico
+
+Aprenda a ajustar e interpretar un modelo lineal con un predictor categórico que tiene más de dos categorías.
+
+**Introducción**
+
+La regresión lineal es una técnica de aprendizaje automático que se puede utilizar para modelar la relación entre una variable cuantitativa y algunas otras variables. Esas otras variables pueden ser cuantitativas (por ejemplo, altura o salario) o categóricas (por ejemplo, industria laboral o color de cabello). Sin embargo, si queremos incluir predictores categóricos en un modelo de regresión lineal, debemos tratarlos de manera un poco diferente a las variables cuantitativas. Este artículo explorará la implementación e interpretación de un único predictor categórico con más de dos categorías.
+
+**Los datos**
+
+Como ejemplo, usaremos un conjunto de datos de StreetEasy que contiene información sobre alquileres de viviendas en la ciudad de Nueva York. Por ahora, sólo nos centraremos en dos columnas de este conjunto de datos:
+
+- `rent`: el precio de alquiler de cada apartamento
+- `borough`: el municipio donde se encuentra el apartamento, con tres valores posibles ( 'Manhattan', 'Brooklyn', y 'Queens')
+
+Las primeras cinco filas de datos se imprimen a continuación:
+
+```python
+import pandas as pd
+rentals = pd.read_csv('rentals.csv')
+print(rentals.head(5))
+```
+
+|	|alquilar|	ciudad
+|0	|5295   |	Brooklyn
+|1	|4020   |	manhattan
+|2	|16000  |	manhattan
+|3	|3150   |	reinas
+|4	|2955   |	reinas
+
+
+**La matriz X**
+
+Para comprender cómo podemos ajustar un modelo de regresión con un predictor categórico, es útil analizar lo que sucede cuando utilizamos `statsmodels.api.OLS.from_formula()` para crear un modelo. Cuando pasamos una fórmula a esta función (como `'weight ~ height'`o `'rent ~ borough'`), en realidad crea un nuevo conjunto de datos, que no vemos. Este nuevo conjunto de datos a menudo se denomina matriz `X` y se utiliza para ajustar el modelo.
+
+Cuando usamos un predictor cuantitativo, la matriz `X` se ve similar a los datos originales, pero con una columna adicional de 1s al frente (el razonamiento detrás de esta columna de 1s es el tema de un artículo futuro; por ahora, no hay necesidad de preocuparse por ¡él!). Sin embargo, cuando ajustamos el modelo con un predictor categórico, sucede algo más: terminamos con columnas adicionales de 1s y 0s.
+
+Por ejemplo, digamos que queremos ajustar una predicción de regresión `rent` basada en `borough`. Podemos ver la matriz `X` para este modelo usando `patsy.dmatrices()`, que se implementa detrás de escena en `statsmodels`:
+
+```python
+import pandas as pd
+import patsy
+
+rentals = pd.read_csv('rentals.csv')
+y, X = patsy.dmatrices('rent ~ borough', rentals)
+
+# Print out the first 5 rows of X
+print(X[0:5])
+```
+Salida
+```
+[[1. 0. 0.]
+ [1. 1. 0.]
+ [1. 1. 0.]
+ [1. 0. 1.]
+ [1. 0. 1.]]
+```
+
+La primera columna es toda 1s, tal como la obtendríamos para un predictor cuantitativo; pero las dos segundas columnas se formaron en función de la variable `borough`. Recuerde que los primeros cinco valores de la columna `borough` se veían así:
+
+ciudad
+Brooklyn
+manhattan
+manhattan
+reinas
+reinas
+
+Tenga en cuenta que la segunda columna de la matriz `X [0, 1, 1, 0, 0]` es una variable indicadora de `Manhattan`: es igual a  1 cuando `borough` is `'Manhattan'` y 0 en caso contrario. Mientras tanto, la tercera columna de la matriz X ([0, 0, 0, 1, 1])es un indicador de la variable 'Queens' que es igual a 1 cuando `borough` is `'Queens'` y 0 en caso contrario.
+
+La matriz X no contiene una variable indicadora para Brooklyn. Esto se debe a que este conjunto de datos solo contiene tres valores posibles de borough: 'Brooklyn', 'Manhattan'y 'Queens'. Para recrear la columna borough, solo necesitamos dos columnas indicadoras, porque cualquier apartamento que no esté 'Manhattan'o 'Queens'deba estarlo 'Brooklyn'. Por ejemplo, la primera fila de la matriz X tiene 0s en ambas columnas del indicador, lo que indica que el apartamento debe estar en Brooklyn. Matemáticamente decimos que un indicador 'Brooklyn' crea colinealidad en la matriz X. En inglés normal: un indicador 'Brooklyn' no añade ninguna información nueva.
+
+Debido a 'Brooklyn' falta en la matriz X, es la categoría de referencia para este modelo.
+
+### Implementación e interpretación
+
+Ahora ajustemos un modelo de regresión lineal usando statsmodel e imprimamos los coeficientes del modelo:
+
+```python
+import statsmodels.api as sm
+model = sm.OLS.from_formula('rent ~ borough', rentals).fit()
+print(model.params)
+```
+Salida
+```
+Intercept               3327.403751
+borough[T.Manhattan]    1811.536627
+borough[T.Queens]       -811.256430
+dtype: float64
+```
+
+En el resultado, vemos dos pendientes diferentes: una para `borough[T.Manhattan]` y otra para `borough[T.Queens]`, que son las dos variables indicadoras que vimos en la matriz X. Podemos usar la intersección y dos pendientes para construir la siguiente ecuación para predecir el alquiler:
+
+$$rent = 3327.4 + 1811.5 ∗ borough[T.Manhattan] − 811.3 ∗ borough[T.Queens]$$
+
+Para comprender e interpretar esta ecuación, podemos construir ecuaciones separadas para cada distrito:
+
+**Ecuación 1: Brooklyn**
+
+Cuando un apartamento está ubicado en Brooklyn, ambos `borough[T.Manhattan]` y `borough[T.Queens]` serán iguales a cero y la ecuación queda:
+
+$$rent = 3327.4 + 1811.5 ∗ 0−811.3 ∗ 0$$
+$$rent = 3327.4$$
+​
+En otras palabras, el intercepto es el precio de alquiler previsto (promedio) de un apartamento en Brooklyn (la categoría de referencia).
+
+**Ecuación 2: Manhattan**
+
+Cuando un apartamento está ubicado en Manhattan, `borough[T.Manhattan] = 1` y `borough[T.Queens] = 0`. La ecuación se convierte en:
+
+$$rent = 3327.4 + 1811.5 ∗ 1 − 811.3 ∗ 0$$
+$$rent = 3327.4 + 1811.5$$
+$$rent = 5138.9$$
+
+Vemos que el precio de alquiler (promedio) previsto para un apartamento en Manhattan es 3327,4 + 1811,5 : el intercepto (que es el precio promedio en Brooklyn) más la pendiente de `borough[T.Manhattan]`. Por tanto, podemos interpretar la pendiente `borough[T.Manhattan]` como la diferencia en el precio medio de alquiler entre apartamentos en Brooklyn (la categoría de referencia) y Manhattan.
+
+**Ecuación 3: Reinas**
+
+Cuando un apartamento está ubicado en Queens, `borough[T.Manhattan] = 0` y `borough[T.Queens] = 1`. La ecuación se convierte en:
+
+$$rent = 3327.4 + 1811.5 ∗ 0 − 811.3 ∗ 1$$
+$$rent = 3327.4 − 811.3$$
+$$rent = 2516.1$$
+​
+Vemos que el precio de alquiler previsto (promedio) para un apartamento en Queens es 3327,4 - 811,3 : el intercepto (que es el precio promedio en Brooklyn) más la pendiente `borough[T.Queens]` (que resulta ser negativa porque los apartamentos en Queens son menos costosos que los apartamentos en Brooklyn). Por tanto, podemos interpretar la pendiente `borough[T.Queens]` como la diferencia en el precio medio de alquiler entre apartamentos en Brooklyn (la categoría de referencia) y Queens.
+
+Podemos verificar nuestra comprensión de todos estos coeficientes imprimiendo los precios medios de alquiler por municipio:
+
+```python
+print(rentals.groupby('borough').mean())
+```
+
+Salida
+```
+                 rent
+borough               
+Brooklyn   3327.403751
+Manhattan  5138.940379
+Queens     2516.147321
+```
+
+¡Los precios promedio en cada distrito arrojan exactamente los mismos valores que predijimos según el modelo de regresión lineal! Por ahora, esto puede parecer una forma demasiado complicada de recuperar los precios medios de alquiler por municipio, pero es importante entender cómo funciona para construir modelos de regresión lineal más complejos en el futuro.
+
+### Cambiar la categoría de referencia
+
+En el ejemplo anterior, vimos que esa `'Brooklyn'` era la categoría de referencia predeterminada (porque aparece primero alfabéticamente), pero podemos cambiar fácilmente la categoría de referencia en el modelo de la siguiente manera:
+
+```python
+model = sm.OLS.from_formula('rent ~ C(borough, Treatment("Manhattan"))', rentals).fit()
+print(model.params)
+```
+Salida:
+```
+Intercept                                         5138.940379
+C(borough, Treatment("Manhattan"))[T.Brooklyn]   -1811.536627
+C(borough, Treatment("Manhattan"))[T.Queens]     -2622.793057
+dtype: float64
+```
+
+En este ejemplo, la categoría de referencia es 'Manhattan'. Por lo tanto, la intersección es el precio medio de alquiler en Manhattan y las otras pendientes son las diferencias medias de Brooklyn y Queens en comparación con Manhattan.
+
+### Otras bibliotecas de Python para ajustar modelos lineales
+
+Existen algunas bibliotecas de Python diferentes que se pueden utilizar para ajustar modelos de regresión lineal. Por lo tanto, es importante comprender en qué se diferencia esta implementación para cada biblioteca. En statsmodels, la creación de la matriz X ocurre completamente "entre bastidores" una vez que pasamos una fórmula modelo.
+
+En `scikit-learn` (otra biblioteca popular para regresión lineal), en realidad necesitamos construir las variables indicadoras nosotros mismos. Tenga en cuenta que no tenemos que construir la columna adicional de 1s que vimos en la matriz X; esto también sucede detrás de escena en scikit-learn. Para construir esas variables indicadoras, la función de pandas `get_dummies()` es extremadamente útil:
+
+```python
+import pandas as pd 
+rentals = pd.get_dummies(rentals, columns = ['borough'], drop_first = True)
+print(rentals.head())
+```
+Producción:
+|    |rent  |borough_Manhattan|  borough_Queens|
+|0   |5295                 | 0            |   0
+|1   |4020                  |1             |  0
+|2  |16000                  |1             |  0
+|3   |3150                 | 0             |  1
+|4   |2955                 | 0              | 1
+
+
+La configuración `drop_first = True` le dice a Python que elimine la primera variable indicadora (`'Brooklyn'` en este caso), que es lo que necesitamos para la regresión lineal. Luego podemos ajustar exactamente el mismo modelo usando `scikit-learn` la siguiente manera:
+
+```python
+from sklearn.linear_model import LinearRegression
+
+X = rentals[['borough_Manhattan', 'borough_Queens']]
+y = rentals[['rent']]
+
+# Fit model
+regr = LinearRegression()
+regr.fit(X, y)
+print(regr.intercept_)
+print(regr.coef_)
+```
+Salida
+```
+LinearRegression()
+[3327.40375123]
+[[1811.5366274  -811.25642981]]
+```
+
+
+
