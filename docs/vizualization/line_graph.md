@@ -296,7 +296,7 @@ que mostraría una leyenda en nuestro gráfico, etiquetando cada línea:
 
 Estos son los valores de posición `loc` que acepta:
 
-|Código numérico	Cadena|
+|**Código numérico**	|**Cadena**|
 |0	|mejor|
 |1	|superior derecha|
 |2	|arriba a la izquierda|
@@ -344,18 +344,81 @@ plt.show()
 
 En todos nuestros ejercicios anteriores, nuestros comandos comenzaron con plt.. Para modificar las marcas, tendremos que probar algo un poco diferente.
 
-Debido a que nuestras tramas pueden tener múltiples subtramas, debemos especificar cuál queremos modificar. Para ello llamamos plt.subplot() de otra forma.
+Debido a que nuestras tramas pueden tener múltiples subtramas, debemos especificar cuál queremos modificar. Para ello llamamos `plt.subplot()` de otra forma.
 
+```python
 ax = plt.subplot(1, 1, 1)
+```
 
-axes un objeto de ejes y nos permite modificar los ejes que pertenecen a una subtrama específica. Incluso si solo tenemos una subtrama, cuando queramos modificar los ticks, necesitaremos comenzar llamando a ax = plt.subplot(1, 1, 1)o ax = plt.subplot()para obtener nuestro objeto de ejes.
+`ax` es un objeto de ejes y nos permite modificar los ejes que pertenecen a una subtrama específica. Incluso si solo tenemos una subtrama, cuando queramos modificar los ticks, necesitaremos comenzar llamando a `ax = plt.subplot(1, 1, 1)` o `ax = plt.subplot()` para obtener nuestro objeto de ejes.
 
 Supongamos que queremos configurar nuestras marcas x en 1, 2 y 4. Usaríamos el siguiente código:
 
+```python
 ax = plt.subplot()
 plt.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16])
 plt.plot([0, 1, 2, 3, 4], [0, 1, 8, 27, 64])
 ax.set_xticks([1, 2, 4])
+```
+El resultado se vería así:
 
-Nuestro resultado se vería así:
+![Line Graph](https://fer78docs.github.io/assets/images/tick_marks.png)
 
+También podemos modificar las marcas y usando `ax.set_yticks()`.
+
+Cuando cambiamos las marcas `x`, sus etiquetas cambian automáticamente para coincidir. Pero, si queremos etiquetas especiales (como cadenas), podemos usar el comando `ax.set_xticklabels()` o `ax.set_yticklabels()`. Por ejemplo, es posible que deseemos tener un eje y con marcas en 0,1, 0,6 y 0,8, pero etiquetarlas como 10 %, 60 % y 80 %, respectivamente. Para ello utilizamos los siguientes comandos:
+
+```python
+ax = plt.subplot()
+plt.plot([1, 3, 3.5], [0.1, 0.6, 0.8], 'o')
+ax.set_yticks([0.1, 0.6, 0.8])
+ax.set_yticklabels(['10%', '60%', '80%'])
+```
+Esto daría como resultado este etiquetado del eje y:
+
+![Line Graph](https://fer78docs.github.io/assets/images/y_ticks.webp)
+
+
+### Cifras
+
+Cuando creamos muchos gráficos, es fácil terminar con líneas que se han trazado y no se muestran. Si no tenemos cuidado, estas líneas "olvidadas" aparecerán en sus nuevos gráficos. Para asegurarse de que no tenga líneas perdidas, puede usar el comando `plt.close('all')` para borrar todos los trazados existentes antes de trazar uno nuevo.
+
+Anteriormente aprendimos cómo colocar dos conjuntos de ejes en la misma figura. A veces preferimos tener dos figuras separadas. Podemos usar el comando `plt.figure()` para crear nuevas figuras y dimensionarlas como queramos. Podemos agregar la palabra clave `figsize=(width, height)` para establecer el tamaño de la figura, en pulgadas. Usamos paréntesis ((y)) para pasar el ancho y el alto, que están separados por una coma.
+
+Para crear una figura con un ancho de 4 pulgadas y una altura de 10 pulgadas, usaríamos:
+
+```python
+plt.figure(figsize=(4, 10))
+```
+
+Se vería alto y delgado, así:
+
+![Line Graph](https://fer78docs.github.io/assets/images/tall_fig.webp)
+
+
+Una vez que hayamos creado una figura, es posible que queramos guardarla para poder usarla en una presentación o en un sitio web. Podemos usar el comando `plt.savefig()` para guardar en muchos formatos de archivo diferentes, como png, svg o pdf. Después de trazar, podemos llamar `plt.savefig('name_of_graph.png')`:
+
+```python
+# Figure 2
+plt.figure(figsize=(4, 10)) 
+plt.plot(x, parabola)
+plt.savefig('tall_and_narrow.png')
+```
+
+### Ejemplo de Resumen
+
+```python
+x = [1, 2, 3, 4, 5, 6]
+y1 = [15, 17, 20, 25, 30, 37]
+y2 = [16, 18, 21, 24, 31, 40]
+
+plt.plot(x, y1, color = 'pink', marker='o', label="y1")
+plt.plot(x, y2, color = 'gray', marker='o', label="y2")
+plt.xlabel('Amazing X-axis')
+plt.ylabel('Incredible Y-axis')
+plt.title("Two Lines on One Graph")
+plt.legend(loc = 4)
+plt.show()
+```
+
+![Line Graph](https://fer78docs.github.io/assets/images/ejemplo_lines.png)
