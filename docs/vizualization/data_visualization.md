@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python
-nav_order: 2
+title: Data Visualization
+nav_order: 5
 has_children: true
 ---

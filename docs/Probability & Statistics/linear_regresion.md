@@ -198,7 +198,7 @@ pred_5hr = results.predict(newdata)
 print(pred_5hr)
 ```
 
-## Interpreting a Regression Model
+## Interpretar el Modelo de Regression
 
 Inspeccionemos nuevamente el resultado de una regresión que predice el peso en función de la altura. La línea de regresión se parece a esto:
 
