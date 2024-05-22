@@ -6,7 +6,11 @@ has_children: true
 ---
 
 
+
 # Cómo seleccionar una visualización significativa
+
+
+[Catalogo de graficos](https://datavizcatalogue.com/)
 
 Este artículo lo guiará a través del proceso de selección de un gráfico para una visualización.
 
