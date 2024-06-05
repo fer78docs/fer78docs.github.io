@@ -3,6 +3,7 @@ layout: default
 title: Data Transformation
 nav_order: 1
 parent: Exploratory Data Analysis
+has_children: true
 ---
 
 # Transformación de datos
