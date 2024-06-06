@@ -366,3 +366,93 @@ dataset = [4, 10, 38, 85, 193]
 interquartile_range = iqr(dataset)
 ```
 
+## Diagramas de caja
+
+Los diagramas de caja son una de las formas más comunes de visualizar un conjunto de datos. Al igual que los histogramas , los diagramas de caja dan una idea de la tendencia central y la dispersión de los datos.
+
+Eche un vistazo al diagrama de caja de esta página. Este diagrama de caja visualiza un conjunto de datos que contiene la duración de 9975 canciones. Destacaremos algunas de las características del diagrama de caja y las profundizaremos con más detalle en esta lección:
+
+- La línea en el centro del cuadro es la mediana .
+- Los bordes de la caja son el primer y tercer cuartil . Esto hace que la longitud del cuadro sea el rango intercuartil : el 50% central de sus datos.
+- Los bigotes del diagrama de caja se extienden para incluir la mayoría de los datos. Hay muchas formas diferentes de calcular la longitud de los bigotes.
+- Los valores atípicos son puntos que quedan más allá de los bigotes. Esos puntos están representados con puntos. En el diagrama de caja que mostramos hay muchos valores atípicos.
+
+### Mediana
+
+Al hacer un diagrama de caja, el lugar más fácil para comenzar es la línea que está dentro del cuadro. Esta línea es la mediana del conjunto de datos. La mitad de los datos están por encima de esa línea y la otra mitad por debajo de ella.
+
+Podemos encontrar la mediana de un conjunto de datos usando la función `median()` de `NumPy`.
+
+```python
+import numpy as np
+
+dataset = [4, 8, 15, 16, 23]
+dataset_median = np.median(dataset) 
+# dataset_median stores the value 15
+```
+
+### Rango intercuartil
+
+Ahora que hemos dibujado la mediana, dibujemos los bordes de la caja. El cuadro se extiende al primer y tercer cuartil del conjunto de datos.
+
+Esto divide visualmente los datos en cuartos. Una cuarta parte de los datos quedarán fuera del cuadro de la izquierda. Otra cuarta parte de los datos se ubicará entre el lado izquierdo del cuadro y la línea mediana. Un tercer cuarto de los datos se encuentra entre la línea mediana y el lado derecho del cuadro. Y el último cuarto de los datos queda fuera del cuadro de la derecha.
+
+Al dibujar los bordes del cuadro utilizando el primer y tercer cuartil, se visualiza el rango intercuartil . La longitud del cuadro representa esta estadística descriptiva de uso común.
+
+Podemos usar la función  `quantile()` de `NumPy` para encontrar el primer y tercer cuartil:
+
+```python
+dataset = [4, 8, 15, 16, 23]
+
+first_quartile = np.quantile(dataset, 0.25) 
+third_quartile = np.quantile(dataset, 0.75)
+```
+
+### Bigotes
+
+Los bigotes de un diagrama de caja muestran información relacionada con la dispersión del conjunto de datos.
+
+Hay muchas formas diferentes de trazar los bigotes de un diagrama de caja. Es posible que vea algunos diagramas de caja donde los bigotes se extienden hasta los valores mínimo y máximo. Algunos diagramas de caja tienen bigotes que se extienden una desviación estándar desde la media de los datos.
+
+Sin embargo, uno de los métodos más utilizados para dibujar los bigotes es extenderlos 1,5 veces el rango intercuartil desde el primer y tercer cuartil.
+
+Por ejemplo, digamos que tiene un conjunto de datos donde el primer cuartil es 4 y el tercer cuartil es 9. El rango intercuartil de este conjunto de datos es 5.
+
+Los bigotes se extenderían 1,5 veces la longitud del IQR. En este caso, es decir 1.5 * 5, o 7.5.
+
+Sabemos que los bigotes extienden hasta 7.5, pero ¿por dónde empiezan? Comienzan en los bordes de la caja, o en el primer y tercer cuartil. En este caso, el bigote izquierdo comienza en el primer cuartil (4) y se extiende 7.5 unidades hacia la izquierda. Entonces el bigote izquierdo se extiende hasta -3.5. El bigote derecho comienza en el tercer cuartil (9) y se extiende hasta 16.5.
+
+![Line Chart](https://fer78docs.github.io/assets/images/whiskers.svg)
+
+Un pequeño detalle más a tener en cuenta: los bigotes generalmente no se extienden hasta 1,5 veces el IQR. En cambio, se extienden hasta el punto más cercano 1.5 al IQR en la dirección de la mediana. Esto significa que en lugar de extenderse hasta -3.5 y 16.5, los bigotes en realidad se extenderían hasta el primer punto mayor que -3.5 y el primer punto menor que 16.5.
+
+![Line Chart](https://fer78docs.github.io/assets/images/short_whiskers.svg)
+
+### Valores atípicos
+
+La última pieza de un diagrama de caja es la representación de valores atípicos. Un valor atípico es un punto del conjunto de datos que queda fuera de los bigotes. Los valores atípicos suelen representarse con un punto o un asterisco.
+
+### Diagramas de caja en Matplotlib
+
+Pasamos esta lección construyendo un diagrama de caja a mano. ¡Veamos ahora cómo lo hace la biblioteca Matplotlib de Python!
+
+El módulo `matplotlib.pyplot` tiene una función llamada `boxplot()`. boxplot()toma un conjunto de datos como parámetro . Este conjunto de datos podría ser algo así como una lista de números o un Pandas DataFrame.
+
+```python
+import matplotlib.pyplot as plt
+
+data = [1, 2, 3, 4, 5]
+plt.boxplot(data)
+plt.show()
+```
+
+Uno de los puntos fuertes de Matplotlib es la facilidad para trazar dos diagramas de caja uno al lado del otro. Si pasa `boxplot()` una lista de conjuntos de datos, Matplotlib creará un diagrama de caja para cada uno, lo que le permitirá comparar su distribución y tendencias centrales.
+
+```python
+import matplotlib.pyplot as plt
+
+dataset_one = [1, 2, 3, 4, 5]
+dataset_two = [3, 4, 5, 6, 7]
+plt.boxplot([dataset_one, dataset_two])
+plt.show()
+```
