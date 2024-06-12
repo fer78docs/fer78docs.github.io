@@ -443,3 +443,174 @@ dataframe.column.value_counts() / len(dataframe.column)
 Para las variables categóricas , los gráficos de barras y los gráficos circulares son opciones comunes para visualizar el recuento (o proporción) de valores en cada categoría. También pueden transmitir las frecuencias relativas de cada categoría.
 
 La biblioteca de Python seaborn ofrece varias funciones que pueden crear gráficos de barras. La forma más sencilla de trazar los recuentos es `countplot()`:
+
+
+### Variables Categóricas Ordinales - Tendencia Central
+
+Las variables categóricas ordinales tienen categorías ordenadas. Para las variables categóricas ordinales , podemos encontrar la categoría modal como en el ejercicio anterior, pero también podemos calcular otras estadísticas de resumen que no son posibles para las variables categóricas nominales. Para tendencia central, esto significa que también podemos calcular una mediana.
+
+Para calcular estadísticas numéricas para categorías ordenadas, primero debemos asignar valores numéricos a las categorías. Considere la variable educationde los datos del censo. Podemos inspeccionar las categorías únicas en esta variable usando .unique():
+
+```python
+print(list(df['education'].unique()))
+```
+Salida:
+```
+['HS-grad', 'Some-college', '7th-8th', '10th', 'Doctorate', 'Prof-school', 'Bachelors', 'Masters', '11th', 'Assoc-acdm', 'Assoc-voc', '1st-4th', '5th-6th', '12th', '9th', 'Preschool']
+```
+
+Luego, podemos asociar cada una de estas categorías con un valor numérico, que indica el "nivel educativo" de un individuo. En Python, la forma más sencilla de hacer esto es convertir la variable a tipo 'category'usando `pandas.Categorical()`. Al convertir una columna a tipo 'category', también podemos pasar una lista con las categorías de la columna (y utilizando  el parámetro ordered=True ) para indicar el orden deseado.
+
+```python
+correct_order = ['Preschool', '1st-4th', '5th-6th', '7th-8th', '9th', '10th', '11th', '12th', 'HS-grad', 'Some-college', 'Assoc-voc', 'Assoc-acdm', 'Bachelors', 'Masters', 'Prof-school', 'Doctorate']
+
+df['education'] = pd.Categorical(df['education'], correct_order, ordered=True)
+```
+
+Las variables almacenadas como categoría de tipo tienen un atributo ( cat.codes) que convierte las categorías en números. Esto nos permite realizar operaciones numéricas en este campo categórico. Esto nos permite calcular la categoría mediana usando la función median() de numpy:
+
+```python
+median_index = np.median(df['education'].cat.codes)
+print(median_index) # Output: 9
+
+median_category = correct_order[int(median_index)]
+print(median_category) # Output: Some college
+```
+
+Al usar `.cat.codes` en education, podemos calcular que el valor medio para el nivel educativo es '9'lo que se traduce en 'Some college'.
+
+En el ejercicio anterior, solíamos utilizar  `.cat.codes` para encontrar la categoría mediana para una variable categórica ordinal. Podemos usarlo cat.codespara devolver valores numéricos y también realizar una amplia gama de operaciones con datos categóricos. Sin embargo, antes de realizar cualquier operación, debe verificar que tengan sentido en el contexto de los datos.
+
+Por ejemplo, recuerde que las categorías para education(en orden) son las siguientes:
+
+```python
+education_levels_ordered = ['Preschool', '1st-4th', '5th-6th', '7th-8th', '9th', '10th', '11th', '12th','HS-grad', 'Some-college', 'Assoc-voc', 'Assoc-acdm', 'Bachelors', 'Masters', 'Prof-school', 'Doctorate']
+```
+
+Si bien podemos representar estas categorías con números igualmente espaciados, no existe un espaciado igual entre categorías. Algunas brechas entre los niveles educativos representan hasta cuatro años adicionales de escolaridad (por ejemplo, '1.º-4.º' a '5.º-6.º'), mientras que otras representan un solo año adicional de escolaridad (por ejemplo, del '9.º' al '10.º').
+
+Cuando utilizamos `.cat.codes` para traducir estas categorías a números enteros, esos números enteros tienen el mismo espacio. Si bien a menudo es necesario traducir categorías a números para almacenar y usar el orden de las categorías (para calcular una estadística como la mediana, que solo se basa en el orden, no en el espaciado), no debemos usar esos números para calcular estadísticas , como la media. - para los cuales la distancia entre valores importa.
+
+En la práctica, los investigadores a veces (aunque incorrectamente) informan medias para categorías ordinales. Por ejemplo, un investigador podría querer analizar las respuestas de una encuesta a la pregunta "Califica tu felicidad en una escala del 1 al 5, donde 1 significa 'muy infeliz' y 5 significa 'muy feliz'".
+
+Si ese investigador calcula la 'puntuación media de felicidad', está asumiendo que la diferencia de felicidad entre una calificación de 1 y 2 es la misma que la diferencia de felicidad para una calificación de 3 y 4. En la práctica, esta suposición probablemente no sea cierta. y debe reconocerse si se informa una media de una variable categórica ordinal.
+
+### Categorías ordinales: Propagación
+
+En el último ejercicio, aprendimos que la media no es interpretable para variables categóricas ordinales porque la media se basa en el supuesto de un espaciado igual entre categorías.
+
+Muchas otras estadísticas que normalmente usaríamos para datos numéricos se basan en la media. Por este motivo, estas estadísticas no son apropiadas para datos ordinales. Recuerde que la desviación estándar y la varianza dependen de la media; sin una media, ¡tampoco podemos tener una desviación estándar o una varianza confiable!
+
+En cambio, podemos confiar en otras estadísticas resumidas, como la proporción de los datos dentro de un rango o percentiles/cuantiles. Por ejemplo, considere la variable educación de antes. Para calcular un rango que contiene el 80% de los datos, podemos usar `np.percentile()`:
+
+```python
+tenth_perc_ind = np.percentile(df['education'].cat.codes, 10)
+tenth_perc_cat = correct_order[int(tenth_perc_ind)]
+print(tenth_perc_cat) # output: 11th
+ 
+nintieth_perc_ind = np.percentile(df['education'].cat.codes, 90)
+nintieth_perc_cat = correct_order[int(nintieth_perc_ind)]
+print(nintieth_perc_cat): #output: Bachelors
+```
+
+Esto nos dice que al menos el 80% de los encuestados tienen un "nivel educativo" desde el 11º grado hasta una licenciatura.
+
+### Tabla de proporciones
+
+Ya has visto que podemos usar la función `.value_counts()` para obtener una tabla de frecuencias para una variable categórica. Una tabla de frecuencias suele ser el primer enfoque que un científico de datos podría utilizar para resumir una variable categórica; sin embargo, a veces resulta útil observar la proporción de valores en cada categoría.
+
+Por ejemplo, saber que hay 14976 personas en el conjunto de datos del censo que están casadas con un cónyuge civil es difícil de interpretar sin el contexto de conocer las cifras de las otras categorías. En cambio, si sabemos que el 32% de la población encuestada está casada con un cónyuge civil, tenemos más contexto sobre la frecuencia relativa de esta categoría. Podemos calcular proporciones dividiendo la frecuencia por el número de observaciones en los datos.
+
+```python
+df['education'].value_counts()/len(df['education'])
+```
+
+También podemos calcular proporciones usando `.value_counts()` estableciendo el parámetro `normalize`  igual a `True`:
+
+```python
+df['education'].value_counts(normalize = True).head()
+```
+Salida:
+```
+HS-grad         0.322502
+Some-college    0.223918
+Bachelors       0.164461
+```
+
+### Tabla de proporciones: datos faltantes
+
+Una cosa a tener en cuenta al calcular la proporción de datos en una categoría particular: ¿cómo se manejan los datos faltantes? Por ejemplo, considere la variable `workclass`  de los datos del censo. Esta columna contiene 1836 valores faltantes, codificados como `NaN`. De forma predeterminada, esos valores faltantes no se cuentan con `.value_counts()`.
+
+Por lo tanto, los resultados de los codigos vistos anteriormente serán ligeramente diferentes. Puede configurar el parámetro `dropna`  para que `.value_counts()` determine cómo se manejan los valores `NaN` en los resúmenes de datos.
+
+Cuando dividimos la frecuencia de cada categoría por `len(df['workclass'])`, calculamos la proporción de un grupo workclass específico como parte de todas las personas en el conjunto de datos. Esto equivale a configurar dropna = False cuando se llama a `.value_counts()`.
+
+```python
+df.workclass.value_counts(dropna = False, normalize = True)
+```
+Salida
+```
+Private             0.697030
+Self-emp-not-inc    0.078038
+Local-gov           0.064279
+NaN                 0.056386
+State-gov           0.039864
+Self-emp-inc        0.034274
+Federal-gov         0.029483
+Without-pay         0.000430
+Never-worked        0.000215
+```
+
+Aquí, vemos que al 5,6% de los encuestados tienen valores faltantes. Por el contrario, usar `.value_counts(normalize = True)` o  `.value_counts(normalize = True, dropna = True)` para ser explícito devuelve la proporción de un workclassgrupo específico como parte de las personas en el conjunto de datos que respondieron a esta pregunta.
+
+```python
+df.workclass.value_counts(normalize = True)
+```
+Salida
+```
+Private             0.738682
+Self-emp-not-inc    0.082701
+Local-gov           0.068120
+State-gov           0.042246
+Self-emp-inc        0.036322
+Federal-gov         0.031245
+Without-pay         0.000456
+Never-worked        0.
+```
+Tenga en cuenta que si no incluimos los valores faltantes en nuestro denominador, observamos proporciones ligeramente mayores en cada categoría (y en ninguna NaNcategoría) en el resultado anterior. Es importante pensar en cómo desea tratar los datos faltantes al resumir una variable categórica y luego interpretar los valores resultantes de manera adecuada.
+
+
+### Variables categóricas binarias
+
+Las variables categóricas binarias tienen sólo dos categorías. En Python, estas variables suelen codificarse como 0 - 1 o True - False. Esto facilita el cálculo de la frecuencia/proporción de estas variables en un conjunto de datos. Por ejemplo, considere una variable `income_>50K`, que es igual a 1 si una persona gana más de 50.000 dólares al año, y 0 en caso contrario. Si sumamos todos los 1s y 0s en esta columna, la suma será exactamente igual al número de 1s (personas que ganan más de 50k):
+
+```python
+np.sum(df['income_>50K'])  #output: 7841
+```
+
+En Python, el mismo comportamiento se aplica a las columnas codificadas como True/ False porque True son forzadas 1 y False forzadas 0 (esto también es cierto en la mayoría de los otros lenguajes de programación utilizados por los científicos de datos). De manera similar, podemos calcular la proporción igual 1 o True tomando la media de la columna. Esto funciona porque la media es solo la suma de todos los valores de la columna (que es la frecuencia de 1 s o Trues) dividida por el número de valores de la columna:
+
+```python
+np.mean(df['income_>50K'])  #output: 0.24
+```
+
+Finalmente, podemos hacer uso de este ingenioso truco para cualquier variable usando un condicional para traducir una variable no binaria a valores Truey False. Por ejemplo, recuerde la workclassvariable del ejercicio anterior. Supongamos que desea calcular el número (o proporción) de personas que trabajan en el gobierno local. Podríamos traducir la workclasscolumna a una variable binaria que indique si una persona trabaja en el gobierno local ( True) o no ( False) usando un condicional.
+
+```python
+print(df.workclass == 'Local-gov')
+```
+Salida
+```
+0        False
+1        True
+2        True
+3        False
+4        False
+```
+
+Luego, podemos usar la suma o media para calcular una frecuencia o proporción de Trues en los datos.
+
+```
+(df.workclass == 'Local-gov').sum()  #output: 2093
+(df.workclass == 'Local-gov').mean() #output: 0.064
+```
