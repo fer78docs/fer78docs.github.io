@@ -1,6 +1,6 @@
 ---
 layout: default
-title: NYC Tree Census and Income: Data Setup
+title: NYC Tree Census and Income - Data Setup
 nav_order: 1
 parent: Tableau's
 ---
@@ -18,4 +18,12 @@ Esta es la Parte I del proyecto de Ingresos y Censos de Árboles de la Ciudad de
 Repositorio de Github para este proyecto:
 
 [Repositorio](https://github.com/Codecademy-Curriculum/Learn-Tableau-for-Data-Viz)
+
+En este proyecto, utilizaremos el censo de árboles de la ciudad de Nueva York, el conjunto de datos de árboles nativos de la ciudad de Nueva York y los datos de ingresos de la ciudad de Nueva York.
+
+Siga las instrucciones en este video:
+
+[Project I: NYC Tree Census and Income - Data Setup](https://youtu.be/itLufvC00bk)
+
+![Proyecto 1](https://fer78docs.github.io/assets/images/Projecto-Tabeau.png)
 
