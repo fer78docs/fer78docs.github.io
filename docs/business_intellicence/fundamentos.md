@@ -144,7 +144,3 @@ Los procesos ETL han evolucionado hacia arquitecturas más flexibles y escalable
   - Integración con plataformas en la nube como AWS Glue, Azure Data Factory y Google Cloud Dataflow.
 
 Los Data Pipelines han permitido mejorar la disponibilidad y rapidez del acceso a datos, brindando capacidades de BI en tiempo real y facilitando la toma de decisiones instantáneas en sectores como finanzas, e-commerce y telecomunicaciones.
-
----
-
-Puedes copiarlo y pegarlo donde lo necesites. ¡Avísame si quieres modificar o agregar más información! 😊
